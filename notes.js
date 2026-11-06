@@ -34,12 +34,13 @@ const Notes = (() => {
     list().forEach(note => {
       note.w = clamp(note.w, 250, W - 10); note.h = clamp(note.h, 120, H - 60);
       note.x = clamp(note.x, 0, W - Math.min(note.w, W)); note.y = clamp(note.y, 48, H - 60);
+      if (note.min) { layer.appendChild(bubble(note)); return; }
       const el = document.createElement("div"); el.className = "note"; el.dataset.id = note.id;
       Object.assign(el.style, { left: note.x + "px", top: note.y + "px", width: note.w + "px", height: note.h + "px", background: note.color });
       el.innerHTML = `<div class="nt-bar" title="Arraste para mover">
           <div class="nt-colors">${COLORS.map(([c, n]) => `<button class="nt-c${c === note.color ? " on" : ""}" style="background:${c}" data-c="${c}" title="${n}" aria-label="Cor ${n}"></button>`).join("")}</div>
           <button class="nt-b" data-a="minus" title="Diminuir letra">A−</button><button class="nt-b" data-a="plus" title="Aumentar letra">A+</button>
-          <button class="nt-b" data-a="new" title="Nova nota">＋</button><button class="nt-b nt-del" data-a="del" title="Apagar nota">🗑</button>
+          <button class="nt-b" data-a="new" title="Nova nota">＋</button><button class="nt-b" data-a="min" title="Minimizar (vira bolinha)">–</button><button class="nt-b nt-del" data-a="del" title="Apagar nota">🗑</button>
         </div><textarea placeholder="Escreva sua nota…" style="font-size:${SIZES[note.fs]}px"></textarea>`;
       const ta = el.querySelector("textarea"); ta.value = note.text;
       ta.addEventListener("input", () => { note.text = ta.value; save(); });
@@ -48,6 +49,7 @@ const Notes = (() => {
       el.querySelector('[data-a="plus"]').onclick = () => { note.fs = Math.min(SIZES.length - 1, note.fs + 1); ta.style.fontSize = SIZES[note.fs] + "px"; save(); };
       el.querySelector('[data-a="new"]').onclick = () => add(note);
       el.querySelector('[data-a="del"]').onclick = () => remove(note.id);
+      el.querySelector('[data-a="min"]').onclick = () => { note.min = true; save(); el.classList.add("shrink"); try { Sound.tock(); } catch (e) {} setTimeout(render, 220); };
       // arrastar pela barra
       const bar = el.querySelector(".nt-bar");
       bar.addEventListener("pointerdown", e => {
@@ -63,6 +65,27 @@ const Notes = (() => {
       layer.appendChild(el);
     });
     paint();
+  }
+  /* nota minimizada: bolinha colorida que pode ser arrastada; um toque abre a nota */
+  function bubble(note) {
+    const B = 54, W = window.innerWidth, H = window.innerHeight;
+    note.bx = clamp(note.bx != null ? note.bx : note.x, 0, W - B); note.by = clamp(note.by != null ? note.by : note.y, 48, H - B - 50);
+    const b = document.createElement("button"); b.className = "note-min"; b.dataset.id = note.id;
+    Object.assign(b.style, { left: note.bx + "px", top: note.by + "px", background: note.color });
+    b.textContent = "📝";
+    b.title = note.text.trim() ? note.text.trim().slice(0, 120) + (note.text.length > 120 ? "…" : "") + "\n(toque para abrir)" : "Nota vazia (toque para abrir)";
+    b.setAttribute("aria-label", "Abrir nota minimizada");
+    b.addEventListener("pointerdown", e => {
+      e.preventDefault(); b.setPointerCapture(e.pointerId);
+      const sx = e.clientX - note.bx, sy = e.clientY - note.by, x0 = e.clientX, y0 = e.clientY; let moved = false;
+      const mv = ev => { if (Math.abs(ev.clientX - x0) + Math.abs(ev.clientY - y0) > 5) moved = true; if (!moved) return; b.classList.add("drag");
+        note.bx = clamp(ev.clientX - sx, 0, window.innerWidth - B); note.by = clamp(ev.clientY - sy, 48, window.innerHeight - B - 10); b.style.left = note.bx + "px"; b.style.top = note.by + "px"; };
+      const up = () => { b.removeEventListener("pointermove", mv); b.removeEventListener("pointerup", up); b.classList.remove("drag");
+        if (moved) { save(); return; }
+        note.min = false; note.x = clamp(note.bx, 0, window.innerWidth - note.w); note.y = note.by; save(); try { Sound.pop(); } catch (e) {} render(); };
+      b.addEventListener("pointermove", mv); b.addEventListener("pointerup", up);
+    });
+    return b;
   }
   function paint() {
     const b = document.getElementById("bNotes"), n = list().length;
