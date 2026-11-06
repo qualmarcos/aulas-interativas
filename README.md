@@ -15,7 +15,7 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - As equipes usam **os mesmos nomes da roleta**, divididos ao acaso em duas (**🔀 Sortear equipes** refaz a divisão).
 - A Equipe A fica à esquerda e a B à direita. **A vez alterna a cada palavra** e, dentro da equipe, gira quem joga.
 - Quem acerta ganha **pontos iguais aos corações que sobraram** (sem erros = 6 pontos; com 5 erros = 1 ponto), direto no placar do topo.
-- **⏱ Tempo:** depois de **1 minuto sem nenhuma letra**, começa uma **contagem de 15 segundos**; se zerar, a equipe perde 1 coração e o relógio recomeça. O botão **⏱ Tempo** liga/desliga.
+- **⏱ Tempo:** depois de **1 minuto sem nenhuma letra**, a equipe perde **1 coração a cada 15 segundos** (com contagem regressiva na tela); se os corações acabarem, a palavra aparece e a equipe perde a rodada. Qualquer letra zera o relógio. O botão **⏱ Tempo** liga/desliga.
 - **💡 Mostrar dica custa 2 corações** (aparecem 2 partes do boneco). Com 2 corações ou menos, a dica fica bloqueada.
 - **Arraste um nome** de um lado para o outro (ou toque nele) para mudar a pessoa de equipe. Toque no nome da equipe para renomeá-la.
 

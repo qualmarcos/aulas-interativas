@@ -300,20 +300,26 @@ function R_hangman(s, el) {
   function resetClock() {
     stopClock(); const c = $(".hang-clock"); c.className = "hang-clock"; c.innerHTML = "";
     const sl = el.closest(".slide"); if (!clockOn || over || !sl || !sl.classList.contains("on")) return;
-    idleT0 = Date.now(); tick = setInterval(clockStep, 250); clockStep();
+    idleT0 = Date.now(); lostHere = 0; tick = setInterval(clockStep, 250); clockStep();
   }
   let lastSec = -1;
   function clockStep() {
     const c = $(".hang-clock"), el2 = Math.floor((Date.now() - idleT0) / 1000);
     if (el2 < IDLE) { c.className = "hang-clock"; c.innerHTML = `⏱ ${Math.floor(el2 / 60)}:${String(el2 % 60).padStart(2, "0")} sem resposta <small>(depois de 1:00 começa a contagem de ${COUNT} s)</small>`; return; }
-    const left = COUNT - (el2 - IDLE);
+    const left = COUNT - ((el2 - IDLE) % COUNT);
     if (left !== lastSec) { lastSec = left; if (left > 0) left <= 5 ? Sound.tick(1.4) : Sound.tock(); }
-    if (left > 0) { c.className = "hang-clock alert"; c.innerHTML = `<span class="hc-num">${left}</span><span class="hc-txt">⏰ Respondam! Se o tempo acabar, a equipe perde 1 ❤️</span><span class="hc-bar"><span style="width:${left / COUNT * 100}%"></span></span>`; return; }
-    // tempo esgotado: perde um coração
-    timeouts++; parts[Math.min(MAX, errors()) - 1].classList.add("show"); Sound.error();
-    const fb = $(".fb"); fb.className = "fb bad"; fb.innerHTML = "⏰ Tempo esgotado: a equipe perdeu 1 ❤️.";
-    lastSec = -1; paint(); resetClock();
+    // a cada 15 s depois do primeiro minuto, perde 1 coração (sem voltar para o minuto inteiro)
+    const due = timeoutsDue(el2);
+    if (due > lostHere) {
+      lostHere++; timeouts++; byTime = true; parts[Math.min(MAX, errors()) - 1].classList.add("show"); Sound.error();
+      const fb = $(".fb"); fb.className = "fb bad"; fb.innerHTML = `⏰ Mais 15 segundos sem resposta: a equipe perdeu 1 ❤️.`;
+      lastSec = -1; paint(); if (over) return;
+    }
+    c.className = "hang-clock alert";
+    c.innerHTML = `<span class="hc-num">${left}</span><span class="hc-txt">⏰ Respondam! A cada 15 segundos sem resposta, a equipe perde 1 ❤️</span><span class="hc-bar"><span style="width:${left / COUNT * 100}%"></span></span>`;
   }
+  const timeoutsDue = sec => sec < IDLE ? 0 : Math.floor((sec - IDLE) / COUNT);
+  let lostHere = 0, byTime = false;
   s._stop = stopClock;
   s.init = () => { if (cur && !over) resetClock(); };
   bHint.onclick = () => {
@@ -334,7 +340,7 @@ function R_hangman(s, el) {
     let p = pool().filter(x => !used.has(x.w)); if (!p.length) { pool().forEach(x => used.delete(x.w)); p = pool(); }
     cur = p[Math.floor(Math.random() * p.length)]; used.add(cur.w);
     if (started) Teams.nextTurn(); started = true; paintTurn();
-    guessed = new Set(); wrong = []; timeouts = 0; over = false; hintOn = false;
+    guessed = new Set(); wrong = []; timeouts = 0; byTime = false; over = false; hintOn = false;
     svg.classList.remove("lost", "won"); parts.forEach(pt => pt.classList.remove("show"));
     keys.querySelectorAll("button").forEach(b => { b.disabled = false; b.className = ""; });
     const fb = $(".fb"); fb.className = "fb"; fb.textContent = ""; paint(); resetClock();
@@ -369,7 +375,7 @@ function R_hangman(s, el) {
       const t = Teams.turn, other = Teams.name(t ? 0 : 1);
       const pts = MAX - errors();
       if (won) { svg.classList.add("won"); point(t, pts); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! <b>+${pts} ${pts === 1 ? "ponto" : "pontos"} para ${Teams.name(t)}</b> (${pts} ❤️ ${pts === 1 ? "restante" : "restantes"}). Agora diga uma frase com essa palavra. Próxima palavra: vez de <b>${other}</b>.`; win(); }
-      else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `😵 Não foi desta vez. A palavra era <b>${cur.w}</b>. Próxima palavra: vez de <b>${other}</b>.`; Sound.error(); }
+      else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `${byTime && fb.textContent.startsWith("⏰") ? "⏰ O tempo acabou com os corações! " : "😵 Não foi desta vez. "}A palavra era <b>${cur.w}</b>. ${Teams.name(t)} perdeu a rodada. Próxima palavra: vez de <b>${other}</b>.`; Sound.error(); }
     }
   }
   // teclado do computador
@@ -379,7 +385,7 @@ function R_hangman(s, el) {
   };
   document.addEventListener("keydown", onKey);
   paintCats(); next();
-  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. Depois de 1 minuto sem resposta, começa uma contagem de 15 s; se zerar, a equipe perde 1 coração. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
+  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. Depois de 1 minuto sem resposta, a equipe perde 1 coração a cada 15 s; se os corações acabarem, a palavra aparece e a equipe perde. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
 }
 /* ---------- corrida contra o relógio ---------- */
 function R_race(s, el) {
