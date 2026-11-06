@@ -10,7 +10,6 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - **🎡 Roleta**: escreva os nomes dos alunos (um por linha). Os nomes ficam salvos no navegador.
 - **🥁 Tambores** tocam antes de cada resposta ser revelada. O botão **🔊 Som** liga/desliga.
 - **Respostas · professor** mostra o gabarito em todas as atividades.
-- Palavras com 🔊 são lidas em voz alta (voz pt-BR do navegador).
 
 ## Estrutura
 Cada assunto começa com uma **capa** (assunto + estrutura gramatical):

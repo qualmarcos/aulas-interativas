@@ -115,7 +115,7 @@ function R_memory(s, el) {
       b.onclick = () => {
         if (lock || b.classList.contains("up") || b.classList.contains("found")) return;
         Sound.tock(); b.classList.add("up"); open.push([b, c]);
-        if (c.k === "b" || (!s.svg && !c.f.startsWith("<"))) Speak(c.f);
+
         if (open.length === 2) {
           moves++; const [[b1, c1], [b2, c2]] = open; open = [];
           if (c1.id === c2.id && c1.k !== c2.k) { setTimeout(() => { b1.classList.add("found"); b2.classList.add("found"); Sound.success(); found++; upd(); if (found === s.pairs.length) { info.innerHTML = `🎉 Todos os pares em ${moves} jogadas! Agora use duas palavras em uma frase.`; win(); } }, 450); }
@@ -133,8 +133,8 @@ function R_memory(s, el) {
 function R_gallery(s, el) {
   header(s, el, "Vocabulário"); const g = h("div", "gallery");
   s.items.forEach(([img, word, desc], i) => {
-    const b = h("button", "flip", `<div class="in"><div class="f"><img src="${I(img)}" alt="" loading="lazy"><span>${i + 1}</span></div><div class="b">${word}<small>${desc}</small><small>🔊 toque de novo</small></div></div>`);
-    b.onclick = () => { if (!b.classList.contains("up")) { b.classList.add("up"); Sound.pop(); Speak(word); } else { Speak(desc); b.classList.remove("up"); } };
+    const b = h("button", "flip", `<div class="in"><div class="f"><img src="${I(img)}" alt="" loading="lazy"><span>${i + 1}</span></div><div class="b">${word}<small>${desc}</small></div></div>`);
+    b.onclick = () => { if (!b.classList.contains("up")) { b.classList.add("up"); Sound.pop(); } else b.classList.remove("up"); };
     g.appendChild(b);
   });
   el.appendChild(g);
@@ -198,7 +198,7 @@ function R_order(s, el) {
       let ok = 0; [...seq.children].forEach((d, p) => { if (order[p] == null) return; const g = order[p] === p; d.classList.add(g ? "ok" : "bad"); if (g) ok++; });
       const all = ok === s.items.length; fb.className = "fb " + (all ? "ok" : "bad");
       fb.textContent = all ? "✅ Sequência coerente! Leiam o texto em voz alta." : `${ok} de ${s.items.length} na posição certa. Toque numa linha para devolvê-la.`;
-      if (all) { win(); Speak(s.items.join(" ")); } else judge(false);
+      if (all) win(); else judge(false);
     },
     reset() { order = []; mix = shuffle(mix); fb.className = "fb"; draw(); }
   });
@@ -269,7 +269,7 @@ function R_hangman(s, el) {
     });
     box.appendChild(k);
     const fb = h("div", "fb");
-    if (win_) { fb.className = "fb ok"; fb.textContent = "🎉 Acertou! Diga uma frase com essa palavra."; if (!box._won) { win(); Speak(w.toLowerCase()); } box._won = true; }
+    if (win_) { fb.className = "fb ok"; fb.textContent = "🎉 Acertou! Diga uma frase com essa palavra."; if (!box._won) win(); box._won = true; }
     else if (lose) { fb.className = "fb bad"; fb.textContent = "😅 Não foi desta vez. A palavra era " + w + "."; if (!box._lost) Sound.error(); box._lost = true; }
     else { box._won = false; box._lost = false; }
     box.appendChild(fb);
@@ -330,7 +330,7 @@ function R_where(s, el) {
         suspense(1.2).then(() => {
           b.classList.remove("wait"); const ok = i === p; judge(ok); b.classList.add(ok ? "ok" : "bad"); if (ok) hits++; else o.children[p].classList.add("ok");
           fb.className = "fb " + (ok ? "ok" : "bad"); fb.textContent = ok ? "✅ Isso! Agora diga a frase em voz alta." : "❌ Observe de novo: " + o.children[p].textContent;
-          Speak(o.children[p].textContent);
+
           const nx = h("button", "btn", "Nova rodada ›"); nx.style.marginTop = "10px"; nx.onclick = () => { n++; Sound.whoosh(); round(); }; box.appendChild(nx);
         });
       };
@@ -356,7 +356,7 @@ function R_credits(s, el) {
   el.appendChild(h("div", "card", `<b>Material de origem</b><p style="font-size:17px">NAB2 – Unidade 3 (flipchart); capa e protocolos Intercultura. Autoria/fonte: acervo fornecido pelo professor. Referência para adaptação pedagógica.</p>`));
   const rows = Object.entries(window.CREDITS || {}).sort().map(([k, c]) => `<tr><td><img src="${I(k)}" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:6px"></td><td><a href="${c.page}" target="_blank" rel="noopener">${c.title.replace(/^File:/, "")}</a></td><td>${c.author}</td><td>${c.license}</td></tr>`).join("");
   el.appendChild(h("div", "card", `<b>Fotografias (Wikimedia Commons)</b><p style="font-size:15px;color:var(--muted)">Imagens usadas sob as licenças indicadas, com redimensionamento e recorte para os quadros.</p><div class="tablewrap"><table class="conj" style="font-size:14px"><tr><th></th><th>Arquivo</th><th>Autoria</th><th>Licença</th></tr>${rows}</table></div>`));
-  el.appendChild(h("div", "card", `<b>Sons:</b> gerados no próprio navegador (Web Audio API). <b>Pronúncia:</b> voz sintetizada do navegador em português do Brasil (pt-BR), quando disponível.`));
+  el.appendChild(h("div", "card", `<b>Sons:</b> gerados no próprio navegador (Web Audio API).`));
 }
 /* ---------- slides simples ---------- */
 function R_cover(s, el) {
@@ -403,7 +403,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") menu.classList.remove("on");
   if (e.key.toLowerCase() === "r") Roleta.open();
 });
-document.addEventListener("click", e => { Sound.unlock(); const t = e.target.closest(".say"); if (t) { Speak(t.textContent); t.animate([{ transform: "scale(1)" }, { transform: "scale(1.12)" }, { transform: "scale(1)" }], { duration: 300 }); } }, true);
+document.addEventListener("click", () => Sound.unlock(), true);
 const menu = document.getElementById("menu"), ml = document.getElementById("menuList");
 S.forEach((s, i) => { const a = h("a", s.sec ? "sec" : "", (s.sec ? "" : "&nbsp;&nbsp;") + (i + 1) + ". " + (s.menu || s.title)); a.href = "#"; a.onclick = e => { e.preventDefault(); menu.classList.remove("on"); go(i); }; ml.appendChild(a); });
 document.getElementById("bMenu").onclick = () => menu.classList.add("on");

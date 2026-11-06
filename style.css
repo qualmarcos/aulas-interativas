@@ -70,9 +70,6 @@ table.conj th{background:var(--navy);color:#fff}
 table.conj td b{color:var(--blue)}
 table.conj tr:hover td{background:#f3f8fd}
 .tablewrap{overflow-x:auto}
-.say{cursor:pointer;border-bottom:2px dotted var(--sky);transition:.15s}
-.say:hover{color:var(--blue);border-color:var(--blue)}
-.say::after{content:" 🔊";font-size:.65em;opacity:.55}
 
 /* ---------- capas ---------- */
 .cover{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,#2d6fb8 100%);color:#fff;position:relative;overflow:hidden}

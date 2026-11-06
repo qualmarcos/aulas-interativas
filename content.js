@@ -34,8 +34,7 @@ S.push({ type: "html", menu: "Nossa rota", html: `
     <div class="col"><h3>🔮 3 · Futuros</h3><p>Planos, hipóteses e verbos do cotidiano; formas e posições.</p></div>
   </div>
   <div class="card"><b>Como funciona:</b> cada assunto começa com uma <span class="hl">capa</span> com o tema e a estrutura gramatical.
-  Antes de cada resposta, 🥁 <b>rufem os tambores!</b> Use o <b>placar</b> no topo para jogar em equipes e a <b>🎡 roleta</b> para sortear quem responde.
-  Palavras com 🔊 podem ser ouvidas: é só tocar nelas.</div>` });
+  Antes de cada resposta, 🥁 <b>rufem os tambores!</b> Use o <b>placar</b> no topo para jogar em equipes e a <b>🎡 roleta</b> para sortear quem responde.</div>` });
 S.push({ type: "wheel", menu: "Roleta da turma", title: "🎡 Roleta da turma",
   lead: "Professor: abra a roleta, escreva os nomes dos alunos (um por linha) e gire para sortear quem responde. A roleta também fica no botão do topo, em qualquer slide." });
 S.push({ type: "reveal", title: "Aquecimento: o que você levaria na mala?", lead: "Converse antes de revelar. Compare sua ideia com a resposta comentada.", top: I("mala"), items: [
@@ -48,7 +47,7 @@ S.push({ type: "reveal", title: "Aquecimento: o que você levaria na mala?", lea
 /* ================= 1. ROUPAS ================= */
 sec("Parte 1", "Roupas, calçados e acessórios", "Substantivos + adjetivos: concordância de cor, material (de + material) e padrão", "Nomear peças, descrevê-las e encontrar o que você procura.", "👗");
 S.push({ type: "html", menu: "Um guarda-roupa, muitas possibilidades", html: `
-  <div class="kicker"><span>Roupas, escolhas e futuros</span><span>Vocabulário · toque para ouvir 🔊</span></div>
+  <div class="kicker"><span>Roupas, escolhas e futuros</span><span>Vocabulário</span></div>
   <h1>Um guarda-roupa, muitas possibilidades</h1>
   <div class="cols">
     <div class="col"><h3>👕 Roupas</h3><p>${["camisa", "camiseta", "regata"].map(say).join(", ")}</p><p>${["calça", "bermuda", "short", "saia"].map(say).join(", ")}</p><p>${["vestido", "terno", "paletó", "pijama"].map(say).join(", ")}</p></div>
@@ -56,7 +55,7 @@ S.push({ type: "html", menu: "Um guarda-roupa, muitas possibilidades", html: `
     <div class="col"><h3>🧥 Clima e conforto</h3><p>${["casaco", "jaqueta", "cachecol", "luvas"].map(say).join(", ")}</p><p>${["boné", "chapéu", "canga"].map(say).join(", ")}</p><p>${["maiô", "biquíni", "sunga"].map(say).join(", ")}</p></div>
   </div>
   <div class="br"><b>🇧🇷 No Brasil:</b> na praia, usamos <b>sunga</b>, <b>maiô</b> ou <b>biquíni</b>, sentamos na <b>canga</b> e calçamos <b>chinelo</b>. No frio, também se diz <b>blusa de frio</b> ou <b>moletom</b>.</div>` });
-S.push({ type: "gallery", title: "Galeria do guarda-roupa", lead: "Olhe a foto, diga o nome em voz alta e toque para conferir (e ouvir a pronúncia).", items: [
+S.push({ type: "gallery", title: "Galeria do guarda-roupa", lead: "Olhe a foto, diga o nome em voz alta e toque para conferir.", items: [
   ["camiseta", "camiseta", "Uma camiseta branca"], ["vestido", "vestido", "Um vestido de verão"], ["casaco", "casaco", "Um casaco verde"], ["tenis", "tênis", "Tênis pretos e brancos"],
   ["bone", "boné", "Um boné xadrez"], ["cachecol", "cachecol", "Um cachecol azul"], ["bolsa", "bolsa", "Uma bolsa de couro"], ["luvas", "luva", "Uma luva de lã"],
   ["cinto", "cinto", "Um cinto preto"], ["relogio", "relógio", "Um relógio de pulso"], ["chapeu", "chapéu", "Um chapéu de palha"], ["pijama", "pijama", "Um pijama xadrez"],
@@ -128,7 +127,7 @@ S.push({ type: "race", title: "Desafio relâmpago: vestir", lead: "15 segundos p
 /* ================= 3. NA LOJA ================= */
 sec("Parte 3", "Na loja: perguntar antes de decidir", "Pedidos e perguntas de cortesia: Gostaria de… · Posso…? · Tem…? · Quanto custa?", "Pedir um tamanho, experimentar, negociar e pagar sem mal-entendidos.", "🛍️");
 S.push({ type: "html", menu: "Na loja: diálogo modelo", html: `
-  <div class="kicker"><span>Roupas, escolhas e futuros</span><span>Diálogo · toque nas falas para ouvir 🔊</span></div>
+  <div class="kicker"><span>Roupas, escolhas e futuros</span><span>Diálogo</span></div>
   <h1>Na loja: pergunte antes de decidir</h1>
   <div class="cols" style="align-items:start">
   <div class="card" style="margin:0"><p>🛍️ <b>Cliente:</b> <span class="say">Gostaria de ver uma camiseta azul. Tem tamanho M? Posso experimentar?</span></p>
@@ -154,7 +153,7 @@ S.push({ type: "role", title: "Loja pop-up da turma", lead: "Sorteie uma dupla n
 S.push({ type: "html", menu: "Cores e sentidos variam", html: `
   <div class="kicker"><span>Roupas, escolhas e futuros</span><span>Cultura</span></div>
   <h1>Cores e sentidos variam</h1>
-  <p class="lead">Toque em uma cor: você ouve o nome e recebe uma pergunta para conversar.</p>
+  <p class="lead">Toque em uma cor e receba uma pergunta para conversar.</p>
   <div class="colors">
     <button class="sw" style="background:#d62828" data-c="vermelho">vermelho</button><button class="sw" style="background:#1d4ed8" data-c="azul">azul</button>
     <button class="sw" style="background:#2e8b57" data-c="verde">verde</button><button class="sw" style="background:#f2b705" data-c="amarelo">amarelo</button>
@@ -169,7 +168,7 @@ S.push({ type: "html", menu: "Cores e sentidos variam", html: `
   <div class="br"><b>🇧🇷 No Brasil:</b> no Réveillon, muita gente veste <b>branco</b>; em Parintins, o <b>azul</b> é do Caprichoso e o <b>vermelho</b> é do Garantido.</div>`,
   init(el) {
     const qs = [c => `Em que ocasião você usaria uma roupa de cor ${c}?`, c => `Que lembrança a cor ${c} desperta em você?`, c => `Na sua cultura, a cor ${c} tem algum sentido especial?`, c => `Você tem alguma peça ${c} no seu guarda-roupa? Descreva.`];
-    el.querySelectorAll(".sw").forEach(b => b.onclick = () => { const c = b.dataset.c, box = el.querySelector(".cq"); Speak(c); Sound.pop();
+    el.querySelectorAll(".sw").forEach(b => b.onclick = () => { const c = b.dataset.c, box = el.querySelector(".cq"); Sound.pop();
       box.style.display = "block"; box.textContent = "💬 " + qs[Math.floor(Math.random() * qs.length)](c); box.style.animation = "none"; void box.offsetWidth; box.style.animation = ""; });
   } });
 S.push({ type: "reveal", title: "Dica visual: qual é a palavra?", lead: "Leia a dica, converse e depois revele (com tambores!).", items: [

@@ -66,22 +66,8 @@ const Sound = (() => {
   };
 })();
 
-/* ============ PRONÚNCIA (voz em português do Brasil) ============ */
-const Speak = (() => {
-  let voice = null;
-  function pick() {
-    const vs = speechSynthesis.getVoices();
-    voice = vs.find(v => /pt[-_]BR/i.test(v.lang)) || vs.find(v => /^pt/i.test(v.lang) && !/PT$/i.test(v.lang)) || null;
-  }
-  if ("speechSynthesis" in window) { pick(); speechSynthesis.onvoiceschanged = pick; }
-  return function (text) {
-    if (!("speechSynthesis" in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text.replace(/[🔊]/g, ""));
-    u.lang = "pt-BR"; if (voice) u.voice = voice; u.rate = .92;
-    speechSynthesis.speak(u);
-  };
-})();
+/* Leitura em voz alta desativada: a aula usa apenas os sons das atividades. */
+const Speak = () => {};
 
 /* ============ SUSPENSE: tambores antes de liberar a resposta ============ */
 function suspense(sec = 1.6) {
@@ -151,7 +137,7 @@ const Roleta = (() => {
   function finish(i) {
     spinning = false; Sound.fanfare(); confetti();
     const w = $("wWinner"); w.innerHTML = "🎉 " + names[i] + "!"; void w.offsetWidth; w.classList.add("on");
-    Speak(names[i]);
+
     if ($("wRemove").checked) { pendingRemove = i; $("wDone").textContent = `${names[i]} sai da roleta no próximo giro. Restam ${names.length - 1}.`; } else $("wDone").textContent = "";
   }
   function open() { $("wheel").classList.add("on"); draw(); }
