@@ -386,3 +386,11 @@ h1{margin:.15em 0 .15em}
 .hint-cost{color:var(--bad);font-weight:800;font-size:15px}
 .hang-worth{font-size:15px;color:var(--navy);margin-top:4px;min-height:22px}
 .hang-worth b{color:var(--green)}
+.hang-clock{font-size:15px;color:var(--muted);min-height:24px;margin:6px 0}
+.hang-clock small{opacity:.75}
+.hang-clock.alert{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:14px;align-items:center;background:var(--badbg);border:2px solid var(--bad);border-radius:14px;padding:8px 14px;color:var(--bad);animation:pop .3s}
+.hc-num{grid-row:1/3;font-size:44px;font-weight:900;line-height:1;min-width:56px;text-align:center;color:var(--bad);animation:hcPulse 1s infinite}
+@keyframes hcPulse{50%{transform:scale(1.18)}}
+.hc-txt{font-weight:800;font-size:16px}
+.hc-bar{height:9px;background:rgba(192,57,43,.2);border-radius:999px;overflow:hidden}
+.hc-bar span{display:block;height:100%;background:var(--bad);transition:width .25s linear}

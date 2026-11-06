@@ -282,23 +282,51 @@ function R_hangman(s, el) {
   box.innerHTML = `<div class="hang-grid"><div class="hang-art">${HANG_SVG}<div class="lives"></div><div class="hang-worth"></div></div>
     <div class="hang-main"><div class="hang-turn"></div><div class="row"><span class="tag hang-cat"></span><span class="tag hang-count"></span></div>
     <div class="word hang-word"></div><div class="hang-hint"></div><div class="hang-wrong"></div><div class="keys"></div><div class="fb"></div>
-    <div class="row hang-actions"></div><div class="tans"></div></div></div>`;
+    <div class="hang-clock"></div><div class="row hang-actions"></div><div class="tans"></div></div></div>`;
   const $ = q => box.querySelector(q), parts = [...box.querySelectorAll(".part")], svg = $(".hang-svg");
   const keys = $(".keys");
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => { const b = h("button", null, L); b.dataset.l = L; b.onclick = () => guess(L); keys.appendChild(b); });
   const actions = $(".hang-actions");
   const bHint = h("button", "btn ghost", "💡 Mostrar dica (−2 ❤️)"), bNext = h("button", "btn", "Próxima palavra ›");
-  const errors = () => wrong.length + (hintOn ? HINT_COST : 0);
+  let timeouts = 0;
+  const errors = () => wrong.length + (hintOn ? HINT_COST : 0) + timeouts;
+  /* ---- tempo: 1 minuto sem resposta -> contagem de 15 s -> perde 1 coração ---- */
+  const IDLE = 60, COUNT = 15; let clockOn = true, tick = null, idleT0 = 0;
+  try { clockOn = localStorage.getItem("nab2-forca-tempo") !== "0"; } catch (e) {}
+  const bClock = h("button", "btn ghost");
+  const paintClockBtn = () => { bClock.textContent = clockOn ? "⏱ Tempo: ligado" : "⏱ Tempo: desligado"; };
+  bClock.onclick = () => { clockOn = !clockOn; try { localStorage.setItem("nab2-forca-tempo", clockOn ? "1" : "0"); } catch (e) {} paintClockBtn(); resetClock(); Sound.tock(); };
+  function stopClock() { clearInterval(tick); tick = null; }
+  function resetClock() {
+    stopClock(); const c = $(".hang-clock"); c.className = "hang-clock"; c.innerHTML = "";
+    const sl = el.closest(".slide"); if (!clockOn || over || !sl || !sl.classList.contains("on")) return;
+    idleT0 = Date.now(); tick = setInterval(clockStep, 250); clockStep();
+  }
+  let lastSec = -1;
+  function clockStep() {
+    const c = $(".hang-clock"), el2 = Math.floor((Date.now() - idleT0) / 1000);
+    if (el2 < IDLE) { c.className = "hang-clock"; c.innerHTML = `⏱ ${Math.floor(el2 / 60)}:${String(el2 % 60).padStart(2, "0")} sem resposta <small>(depois de 1:00 começa a contagem de ${COUNT} s)</small>`; return; }
+    const left = COUNT - (el2 - IDLE);
+    if (left !== lastSec) { lastSec = left; if (left > 0) left <= 5 ? Sound.tick(1.4) : Sound.tock(); }
+    if (left > 0) { c.className = "hang-clock alert"; c.innerHTML = `<span class="hc-num">${left}</span><span class="hc-txt">⏰ Respondam! Se o tempo acabar, a equipe perde 1 ❤️</span><span class="hc-bar"><span style="width:${left / COUNT * 100}%"></span></span>`; return; }
+    // tempo esgotado: perde um coração
+    timeouts++; parts[Math.min(MAX, errors()) - 1].classList.add("show"); Sound.error();
+    const fb = $(".fb"); fb.className = "fb bad"; fb.innerHTML = "⏰ Tempo esgotado: a equipe perdeu 1 ❤️.";
+    lastSec = -1; paint(); resetClock();
+  }
+  s._stop = stopClock;
+  s.init = () => { if (cur && !over) resetClock(); };
   bHint.onclick = () => {
     if (over || hintOn || MAX - errors() <= HINT_COST) return;
     hintOn = true; for (let k = errors() - HINT_COST; k < errors(); k++) parts[k].classList.add("show");
-    Sound.error(); paint();
+    Sound.error(); paint(); resetClock();
   };
   bNext.onclick = () => { Sound.whoosh(); next(); };
   const point = (t, n) => addPoints(t, n);
   let started = false;
   const paintTurn = () => { const t = Teams.turn, p = Teams.player(t); $(".hang-turn").innerHTML = `<span class="turn-badge t${t}">🎯 Vez: <b>${Teams.name(t)}</b>${p ? ` · joga <b>${p}</b>` : ""}</span>`; };
-  [bHint, bNext].forEach(b => actions.appendChild(b));
+  paintClockBtn();
+  [bHint, bNext, bClock].forEach(b => actions.appendChild(b));
   Teams.onChange(() => { if (cur) paintTurn(); });
   function paintCats() { top.querySelectorAll(".chip").forEach(b => b.classList.toggle("sel", b.dataset.c === cat)); }
   function pool() { return (cat === "Todas" ? cats : [cat]).flatMap(c => s.bank[c].map(([w, hint]) => ({ w, hint, c }))); }
@@ -306,10 +334,10 @@ function R_hangman(s, el) {
     let p = pool().filter(x => !used.has(x.w)); if (!p.length) { pool().forEach(x => used.delete(x.w)); p = pool(); }
     cur = p[Math.floor(Math.random() * p.length)]; used.add(cur.w);
     if (started) Teams.nextTurn(); started = true; paintTurn();
-    guessed = new Set(); wrong = []; over = false; hintOn = false;
+    guessed = new Set(); wrong = []; timeouts = 0; over = false; hintOn = false;
     svg.classList.remove("lost", "won"); parts.forEach(pt => pt.classList.remove("show"));
     keys.querySelectorAll("button").forEach(b => { b.disabled = false; b.className = ""; });
-    const fb = $(".fb"); fb.className = "fb"; fb.textContent = ""; paint();
+    const fb = $(".fb"); fb.className = "fb"; fb.textContent = ""; paint(); resetClock();
   }
   function letters() { return [...cur.w].filter(c => /[A-ZÀ-Ü]/i.test(c)); }
   function guess(L) {
@@ -317,7 +345,8 @@ function R_hangman(s, el) {
     const k = keys.querySelector(`[data-l="${L}"]`); k.disabled = true;
     if (letters().some(c => norm(c) === L)) { k.className = "hit"; Sound.pop(); }
     else { k.className = "miss"; wrong.push(L); parts[errors() - 1].classList.add("show"); Sound.error(); $(".hang-word").classList.remove("shake"); void box.offsetWidth; $(".hang-word").classList.add("shake"); }
-    paint(true);
+    const fb = $(".fb"); if (fb.textContent.startsWith("⏰")) { fb.className = "fb"; fb.textContent = ""; }
+    paint(true); resetClock();
   }
   function paint(fromGuess) {
     const won = letters().every(c => guessed.has(norm(c))), lost = errors() >= MAX;
@@ -335,7 +364,7 @@ function R_hangman(s, el) {
     $(".tans").textContent = "Resposta: " + cur.w;
     if (!over && (won || lost)) {
       $(".hang-worth").innerHTML = "";
-      over = true; keys.querySelectorAll("button").forEach(b => b.disabled = true);
+      over = true; stopClock(); $(".hang-clock").innerHTML = ""; $(".hang-clock").className = "hang-clock"; keys.querySelectorAll("button").forEach(b => b.disabled = true);
       const fb = $(".fb");
       const t = Teams.turn, other = Teams.name(t ? 0 : 1);
       const pts = MAX - errors();
@@ -350,7 +379,7 @@ function R_hangman(s, el) {
   };
   document.addEventListener("keydown", onKey);
   paintCats(); next();
-  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
+  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. Depois de 1 minuto sem resposta, começa uma contagem de 15 s; se zerar, a equipe perde 1 coração. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
 }
 /* ---------- corrida contra o relógio ---------- */
 function R_race(s, el) {
