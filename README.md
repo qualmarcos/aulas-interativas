@@ -19,6 +19,24 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - **💡 Mostrar dica custa 2 corações** (aparecem 2 partes do boneco). Com 2 corações ou menos, a dica fica bloqueada.
 - **Arraste um nome** de um lado para o outro (ou toque nele) para mudar a pessoa de equipe. Toque no nome da equipe para renomeá-la.
 
+## Modo equipes em todas as atividades
+Cada atividade mostra **de quem é a vez** (equipe e aluno), o **placar da atividade** e a regra de pontos. Os pontos vão direto para o placar do topo, e no final aparece o **resultado da atividade**.
+
+| Atividade | Pontos |
+|---|---|
+| Múltipla escolha, foto, lacunas | 1ª tentativa = 3 · 2ª = 2 · 3ª = 1 (depois a vez passa) |
+| Revelar resposta (oral) | o professor avalia: acertou = 2 · em parte = 1 |
+| Desafio relâmpago | quanto mais rápido, mais pontos (3/2/1) |
+| Memória | achou o par = +1 e joga de novo · errou = passa a vez |
+| Classificar / ordenar / associar | tudo certo no 1º “Conferir” = 5 · 2º = 3 · depois = 1 · se errar, a outra equipe continua |
+| Onde está? | acertou = 2 |
+| Produções | o professor dá +1, +2 ou +3 para cada equipe |
+
+**⇄ Passar a vez** troca a equipe; **Sem equipes** desliga o modo (sem vez e sem pontos).
+
+## Forca em rodadas
+Escolha **3, 5, 7 ou 10 rodadas** (em cada rodada, cada equipe joga uma palavra). No fim, aparece a **equipe vencedora** com o placar da partida. **⤼ Trocar palavra** troca a palavra sem contar.
+
 ## Notas adesivas
 - **＋ Nota** (ou tecla **N**) cria uma nota no slide atual; **📝 Notas** mostra/esconde as notas.
 - Em cada nota: escolha a cor, **A− / A+** muda o tamanho da letra, **＋** cria outra nota, **–** minimiza (vira uma bolinha; toque nela para abrir), **🗑** apaga (toque duas vezes se houver texto).

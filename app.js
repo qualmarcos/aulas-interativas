@@ -5,6 +5,7 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const h = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 const restart = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
 const TIP = "💬 Leve a ideia para uma situação da sua vida e converse com um colega.";
+const plural = (n, a, b) => n === 1 ? a : b;
 
 function whoBtn() { const b = h("button", "btn gold who", "🎡 Quem responde?"); b.onclick = () => Roleta.open(); return b; }
 function header(s, el, kind) {
@@ -13,7 +14,7 @@ function header(s, el, kind) {
   if (s.lead) el.appendChild(h("p", "lead", s.lead));
 }
 function controls(el, { check, reset, extra }) {
-  const r = h("div", "row"); r.style.marginTop = "16px";
+  const r = h("div", "row"); r.style.marginTop = "14px";
   if (check) { const b = h("button", "btn", "Conferir"); b.onclick = () => suspense().then(check); r.appendChild(b); }
   if (extra) extra.forEach(x => r.appendChild(x));
   const rb = h("button", "btn ghost", "Recomeçar"); rb.onclick = () => { Sound.whoosh(); reset(); }; r.appendChild(rb);
@@ -22,25 +23,72 @@ function controls(el, { check, reset, extra }) {
 function judge(ok) { ok ? Sound.success() : Sound.error(); }
 function win() { Sound.fanfare(); confetti(); }
 
+/* ============ MODO EQUIPES: vez + pontos em todas as atividades ============ */
+let teamMode = true;
+try { teamMode = localStorage.getItem("nab2-modo-equipes") !== "0"; } catch (e) {}
+const allBars = new Set();
+function setTeamMode(v) { teamMode = v; try { localStorage.setItem("nab2-modo-equipes", v ? "1" : "0"); } catch (e) {} allBars.forEach(f => f()); }
+/* act = placar desta atividade */
+function newAct(rule) { return { tally: [0, 0], rule, bar: null }; }
+function toast(txt, t) {
+  const d = h("div", "pt-toast t" + t, txt); document.body.appendChild(d); setTimeout(() => d.remove(), 1700);
+}
+/* dá pontos à equipe da vez (ou à equipe t) e devolve um texto para o feedback */
+function award(act, n, t) {
+  if (!teamMode || !n) return "";
+  t = t == null ? Teams.turn : t; addPoints(t, n); act.tally[t] += n; toast(`+${n} ${plural(n, "ponto", "pontos")} · ${Teams.name(t)}`, t); act.bar && act.bar();
+  return ` <b class="pts">+${n} ${plural(n, "ponto", "pontos")} para ${Teams.name(t)}</b>.`;
+}
+function passTurn(act) { if (!teamMode) return ""; Teams.nextTurn(); act.bar && act.bar(); return ` Agora é a vez de <b>${Teams.name(Teams.turn)}</b>.`; }
+function turnBar(el, act) {
+  const bar = h("div", "turnbar");
+  function paint() {
+    if (!teamMode) { bar.className = "turnbar off"; bar.innerHTML = `<span class="tb-off">👥 Modo equipes desligado</span><button class="btn ghost tb-on">👥 Jogar em equipes</button>`; bar.querySelector(".tb-on").onclick = () => { setTeamMode(true); Sound.pop(); }; return; }
+    const t = Teams.turn, p = Teams.player(t);
+    bar.className = "turnbar";
+    bar.innerHTML = `<span class="turn-badge t${t}">🎯 Vez: <b>${Teams.name(t)}</b>${p ? ` · joga <b>${p}</b>` : ""}</span>
+      <span class="tb-tally"><span class="t0">${Teams.name(0)} <b>${act.tally[0]}</b></span> × <span class="t1"><b>${act.tally[1]}</b> ${Teams.name(1)}</span> <small>nesta atividade</small></span>
+      <span class="tb-rule">${act.rule}</span>
+      <span class="tb-btns"><button class="btn ghost tb-pass" title="Passar a vez para a outra equipe">⇄ Passar a vez</button><button class="btn ghost tb-offb" title="Fazer sem equipes e sem pontos">Sem equipes</button></span>`;
+    bar.querySelector(".tb-pass").onclick = () => { Teams.nextTurn(); Sound.whoosh(); };
+    bar.querySelector(".tb-offb").onclick = () => { setTeamMode(false); Sound.tock(); };
+  }
+  act.bar = paint; allBars.add(paint); Teams.onChange(paint); paint(); el.appendChild(bar); return bar;
+}
+function resultHTML(act) {
+  const [a, b] = act.tally, na = Teams.name(0), nb = Teams.name(1);
+  const who = a === b ? "Empate! 🤝" : `Vitória de <b>${a > b ? na : nb}</b> nesta atividade! 🏆`;
+  return `<div class="result"><div class="r-title">🏁 Atividade concluída</div><div class="r-score"><span class="t0">${na} <b>${a}</b></span> × <span class="t1"><b>${b}</b> ${nb}</span></div><div class="r-who">${who}</div></div>`;
+}
+
 /* ---------- questões em sequência ---------- */
-function stepper(s, el, renderQ) {
-  const nav = h("div", "qnav"), box = h("div", "card"), state = s.items.map(() => ({})); let qi = 0, celebrated = false;
+function stepper(s, el, renderQ, rule) {
+  const act = newAct(rule || "1ª tentativa = 3 pts · 2ª = 2 · 3ª = 1");
+  turnBar(el, act);
+  const nav = h("div", "qnav"), box = h("div", "card"), res = h("div"), state = s.items.map(() => ({})); let qi = 0, celebrated = false;
   s.items.forEach((_, i) => { const b = h("button", null, i + 1); b.onclick = () => { qi = i; Sound.tock(); draw(); }; nav.appendChild(b); });
   const counter = h("span", "tag"), top = h("div", "row"); top.appendChild(nav); const sp = h("span"); sp.style.flex = "1"; top.appendChild(sp); top.appendChild(counter);
-  el.appendChild(top); el.appendChild(box);
+  el.appendChild(top); el.appendChild(box); el.appendChild(res);
   const nr = h("div", "row"), pb = h("button", "btn ghost", "‹ Anterior"), nb = h("button", "btn", "Próxima questão ›"), rb = h("button", "btn ghost", "Recomeçar");
   pb.onclick = () => { if (qi > 0) { qi--; Sound.whoosh(); draw(); } }; nb.onclick = () => { if (qi < s.items.length - 1) { qi++; Sound.whoosh(); draw(); } };
-  rb.onclick = () => { state.forEach(o => { for (const k in o) delete o[k]; }); qi = 0; celebrated = false; draw(); };
+  rb.onclick = () => { state.forEach(o => { for (const k in o) delete o[k]; }); qi = 0; celebrated = false; act.tally = [0, 0]; act.bar(); res.innerHTML = ""; draw(); };
   [pb, nb, rb].forEach(b => nr.appendChild(b)); el.appendChild(nr); el.appendChild(h("p", "tip", TIP));
   function draw() {
     counter.textContent = `Questão ${qi + 1} de ${s.items.length}`;
     [...nav.children].forEach((b, i) => { b.className = (i === qi ? "cur " : "") + (state[i].done ? "done" : ""); });
-    box.innerHTML = ""; restart(box, "fbx"); box.style.animation = "pop .4s";
-    renderQ(s.items[qi], box, state[qi], () => { state[qi].done = true; [...nav.children][qi].classList.add("done"); if (!celebrated && state.every(x => x.done)) { celebrated = true; setTimeout(win, 500); } });
+    box.innerHTML = ""; box.style.animation = "none"; void box.offsetWidth; box.style.animation = "pop .4s";
+    const myQ = qi;
+    renderQ(s.items[qi], box, state[qi], pts => {
+      state[myQ].done = true; [...nav.children][myQ].classList.add("done");
+      let msg = award(act, pts); msg += passTurn(act);
+      if (!celebrated && state.every(x => x.done)) { celebrated = true; setTimeout(() => { res.innerHTML = teamMode ? resultHTML(act) : ""; win(); }, 600); }
+      return msg;
+    });
     nb.disabled = qi === s.items.length - 1; pb.disabled = qi === 0;
   }
   draw();
 }
+const triesPts = tries => Math.max(1, 3 - tries);
 /* múltipla escolha (com ou sem foto) */
 function mcQ(q, box, st, done) {
   box.innerHTML = "";
@@ -48,21 +96,23 @@ function mcQ(q, box, st, done) {
   if (q.img) box.appendChild(h("div", "qimg", `<img src="${q.img}" alt="">`));
   box.appendChild(h("div", "big-q", q.q));
   const o = h("div", "opts"), fb = h("div", "fb");
+  if (!st.tried) st.tried = new Set();
   q.o.forEach((t, i) => {
     const b = h("button", "opt", t);
     if (st.done && i === q.a) b.classList.add("ok");
+    if (!st.done && st.tried.has(i)) { b.classList.add("bad"); b.disabled = true; }
     b.onclick = () => {
-      if (st.done || st.busy) return; st.busy = true; b.classList.add("wait");
+      if (st.done || st.busy || st.tried.has(i)) return; st.busy = true; b.classList.add("wait");
       suspense(1.3).then(() => {
         st.busy = false; b.classList.remove("wait"); const ok = i === q.a; judge(ok);
         b.classList.add(ok ? "ok" : "bad");
-        fb.className = "fb " + (ok ? "ok" : "bad"); fb.innerHTML = ok ? "✅ Muito bem! " + q.c : "❌ Ainda não. Tente outra opção.";
-        if (ok) { done(); st.done = true; } else setTimeout(() => b.classList.remove("bad"), 900);
+        if (ok) { st.done = true; st.msg = done(triesPts(st.tried.size)); fb.className = "fb ok"; fb.innerHTML = "✅ Muito bem! " + q.c + st.msg; }
+        else { st.tried.add(i); b.disabled = true; fb.className = "fb bad"; fb.innerHTML = `❌ Ainda não. Tente outra opção.${teamMode ? ` Agora vale <b>${triesPts(st.tried.size)} ${plural(triesPts(st.tried.size), "ponto", "pontos")}</b>.` : ""}`; }
       });
     };
     o.appendChild(b);
   });
-  box.appendChild(o); if (st.done) { fb.className = "fb ok"; fb.innerHTML = "✅ " + q.c; } box.appendChild(fb);
+  box.appendChild(o); if (st.done) { fb.className = "fb ok"; fb.innerHTML = "✅ " + q.c + (st.msg || ""); } box.appendChild(fb);
   box.appendChild(h("div", "tans", "Resposta: " + q.o[q.a]));
 }
 function R_mc(s, el) {
@@ -74,22 +124,23 @@ const R_photoquiz = R_mc;
 function R_fill(s, el) {
   header(s, el);
   stepper(s, el, function draw(q, box, st, done) {
-    box.innerHTML = ""; const [a, b] = q.t.split("___"), line = h("div", "gapline");
-    line.append(a); const g = h("span", "gap", st.done ? q.o[q.a] : (st.pick != null ? q.o[st.pick] : "?")); if (st.done) g.classList.add("ok"); line.appendChild(g); line.append(b); box.appendChild(line);
+    box.innerHTML = ""; if (!st.tried) st.tried = new Set();
+    const [a, b] = q.t.split("___"), line = h("div", "gapline");
+    line.append(a); const g = h("span", "gap", st.done ? q.o[q.a] : "?"); if (st.done) g.classList.add("ok"); line.appendChild(g); line.append(b); box.appendChild(line);
     const ch = h("div", "chips"), fb = h("div", "fb");
     q.o.forEach((t, i) => {
-      const c = h("button", "chip", t);
+      const c = h("button", "chip" + (!st.done && st.tried.has(i) ? " used" : ""), t);
       c.onclick = () => {
-        if (st.done || st.busy) return; st.busy = true; st.pick = i; g.textContent = t; g.className = "gap"; c.classList.add("sel");
+        if (st.done || st.busy || st.tried.has(i)) return; st.busy = true; g.textContent = t; g.className = "gap"; c.classList.add("sel");
         suspense(1.3).then(() => {
-          st.busy = false; const ok = i === q.a; judge(ok); g.className = "gap " + (ok ? "ok" : "bad");
-          fb.className = "fb " + (ok ? "ok" : "bad"); fb.innerHTML = ok ? "✅ " + q.c : "❌ Ainda não. Observe o contexto e tente de novo.";
-          c.classList.remove("sel"); if (ok) { st.done = true; done(); }
+          st.busy = false; const ok = i === q.a; judge(ok); g.className = "gap " + (ok ? "ok" : "bad"); c.classList.remove("sel");
+          if (ok) { st.done = true; st.msg = done(triesPts(st.tried.size)); fb.className = "fb ok"; fb.innerHTML = "✅ " + q.c + st.msg; }
+          else { st.tried.add(i); c.classList.add("used"); fb.className = "fb bad"; fb.innerHTML = `❌ Ainda não. Observe o contexto e tente de novo.${teamMode ? ` Agora vale <b>${triesPts(st.tried.size)} ${plural(triesPts(st.tried.size), "ponto", "pontos")}</b>.` : ""}`; }
         });
       };
       ch.appendChild(c);
     });
-    box.appendChild(ch); if (st.done) { fb.className = "fb ok"; fb.innerHTML = "✅ " + q.c; } box.appendChild(fb);
+    box.appendChild(ch); if (st.done) { fb.className = "fb ok"; fb.innerHTML = "✅ " + q.c + (st.msg || ""); } box.appendChild(fb);
     box.appendChild(h("div", "tans", "Resposta: " + q.o[q.a]));
   });
 }
@@ -99,29 +150,48 @@ function R_reveal(s, el) {
     box.classList.toggle("qwide", !!q.img);
     box.appendChild(q.img ? h("div", "qimg", `<img src="${q.img}" alt="">`) : h("div", "emoji", q.e));
     box.appendChild(h("div", "big-q", q.q));
-    const b = h("button", "btn green", st.done ? "✔ Resposta revelada" : "Descobrir resposta"), a = h("div", "reveal-ans" + (st.done ? " on" : ""), "💡 " + q.a);
-    b.onclick = () => { if (st.done) return; suspense(1.8).then(() => { st.done = true; Sound.success(); a.classList.add("on"); b.textContent = "✔ Resposta revelada"; done(); }); };
-    box.appendChild(b); box.appendChild(a);
-  });
+    const b = h("button", "btn green", st.shown ? "✔ Resposta revelada" : "Descobrir resposta"), a = h("div", "reveal-ans" + (st.shown ? " on" : ""), "💡 " + q.a);
+    const jd = h("div", "judge"), fb = h("div", "fb");
+    function judgeRow() {
+      jd.innerHTML = "";
+      if (st.done) { if (st.msg) { fb.className = "fb ok"; fb.innerHTML = "📝" + st.msg; } return; }
+      if (!teamMode) { st.done = true; done(0); return; }
+      jd.innerHTML = `<span>A equipe acertou?</span>`;
+      [["✔ Acertou", 2, "green"], ["◐ Em parte", 1, "gold"], ["✖ Não acertou", 0, "ghost"]].forEach(([lbl, n, cls]) => {
+        const x = h("button", "btn " + cls, `${lbl}${n ? ` (+${n})` : ""}`);
+        x.onclick = () => { if (st.done) return; st.done = true; n ? Sound.success() : Sound.error(); st.msg = done(n) || " Sem pontos desta vez."; jd.innerHTML = ""; fb.className = n ? "fb ok" : "fb bad"; fb.innerHTML = (n ? "📝" : "📝 Sem pontos.") + st.msg; };
+        jd.appendChild(x);
+      });
+    }
+    b.onclick = () => { if (st.shown) return; suspense(1.8).then(() => { st.shown = true; Sound.success(); a.classList.add("on"); b.textContent = "✔ Resposta revelada"; judgeRow(); }); };
+    box.appendChild(b); box.appendChild(a); box.appendChild(jd); box.appendChild(fb);
+    if (st.shown) judgeRow();
+  }, "O professor avalia: acertou = 2 pts · em parte = 1");
 }
-/* ---------- memória (cartas que viram em 3D) ---------- */
+/* ---------- memória (cartas que viram em 3D) — em equipes: achou o par, joga de novo ---------- */
 function face(x, svg) { if (svg) return SH[x]; if (x.startsWith("img:")) return `<img src="${I(x.slice(4))}" alt="">`; return x; }
 function R_memory(s, el) {
-  header(s, el, "Jogo"); const info = h("p", null), grid = h("div", "mem"); el.appendChild(info); el.appendChild(grid);
+  header(s, el, "Jogo");
+  const act = newAct("Achou o par = +1 e joga de novo · errou = passa a vez"); turnBar(el, act);
+  const info = h("p", "mem-info"), grid = h("div", "mem"), res = h("div"); el.appendChild(info); el.appendChild(grid); el.appendChild(res);
   function start() {
-    grid.innerHTML = ""; let found = 0, open = [], lock = false, moves = 0;
+    grid.innerHTML = ""; res.innerHTML = ""; act.tally = [0, 0]; act.bar(); let found = 0, open = [], lock = false, moves = 0;
     const cards = shuffle(s.pairs.flatMap((p, i) => [{ id: i, f: face(p[0], s.svg), k: "a" }, { id: i, f: p[1], k: "b" }]));
-    const upd = () => info.innerHTML = `<b>${found}</b> de ${s.pairs.length} pares · ${moves} jogadas`; upd();
+    const upd = (extra = "") => info.innerHTML = `<b>${found}</b> de ${s.pairs.length} pares · ${moves} jogadas${extra}`; upd();
     cards.forEach(c => {
       const b = h("button", "mcard", `<div class="in"><div class="f">?</div><div class="b">${c.f}</div></div>`);
       b.onclick = () => {
         if (lock || b.classList.contains("up") || b.classList.contains("found")) return;
         Sound.tock(); b.classList.add("up"); open.push([b, c]);
-
         if (open.length === 2) {
-          moves++; const [[b1, c1], [b2, c2]] = open; open = [];
-          if (c1.id === c2.id && c1.k !== c2.k) { setTimeout(() => { b1.classList.add("found"); b2.classList.add("found"); Sound.success(); found++; upd(); if (found === s.pairs.length) { info.innerHTML = `🎉 Todos os pares em ${moves} jogadas! Agora use duas palavras em uma frase.`; win(); } }, 450); }
-          else { lock = true; setTimeout(() => { Sound.error(); b1.classList.remove("up"); b2.classList.remove("up"); lock = false; }, 1100); }
+          moves++; const [[b1, c1], [b2, c2]] = open; open = []; lock = true;
+          if (c1.id === c2.id && c1.k !== c2.k) {
+            setTimeout(() => {
+              b1.classList.add("found"); b2.classList.add("found"); Sound.success(); found++; lock = false;
+              const msg = award(act, 1); upd(teamMode ? ` · ${Teams.name(Teams.turn)} achou um par e joga de novo!` : "");
+              if (found === s.pairs.length) { info.innerHTML = `🎉 Todos os pares em ${moves} jogadas! Agora use duas palavras em uma frase.`; if (teamMode) res.innerHTML = resultHTML(act); win(); }
+            }, 450);
+          } else { setTimeout(() => { Sound.error(); b1.classList.remove("up"); b2.classList.remove("up"); lock = false; passTurn(act); upd(teamMode ? ` · Não formou par: vez de ${Teams.name(Teams.turn)}.` : ""); }, 1100); }
           upd();
         }
       };
@@ -143,18 +213,29 @@ function R_gallery(s, el) {
   const r = h("div", "row"); r.style.marginTop = "14px";
   const all = h("button", "btn", "Revelar todas"); all.onclick = () => suspense().then(() => { g.querySelectorAll(".flip").forEach((f, i) => setTimeout(() => { f.classList.add("up"); Sound.tock(); }, i * 90)); });
   const hide = h("button", "btn ghost", "Esconder todas"); hide.onclick = () => g.querySelectorAll(".flip").forEach(f => f.classList.remove("up"));
-  r.appendChild(all); r.appendChild(hide); el.appendChild(r);
-  el.appendChild(h("p", "tip", "💬 Jogo rápido: a roleta sorteia um aluno, o professor diz um número e o aluno fala o nome da peça antes de virar."));
+  const pick = h("button", "btn gold", "🎲 Sortear uma foto");
+  pick.onclick = () => { const cs = [...g.querySelectorAll(".flip:not(.up)")]; if (!cs.length) return; const c = cs[Math.floor(Math.random() * cs.length)]; g.querySelectorAll(".flip").forEach(f => f.classList.remove("pickme")); c.classList.add("pickme"); c.scrollIntoView({ block: "nearest", behavior: "smooth" }); Sound.pop(); };
+  r.append(pick, all, hide); el.appendChild(r);
+  el.appendChild(h("p", "tip", "💬 Jogo rápido: sorteie uma foto, a equipe da vez diz o nome da peça e depois toque para conferir."));
 }
 function R_photos(s, el) {
   header(s, el, "Cultura"); const g = h("div", "pgrid");
   s.items.forEach(([img, cap]) => g.appendChild(h("div", "pcard", `<div style="overflow:hidden;padding:0"><img src="${I(img)}" alt="${cap}" loading="lazy"></div><div>${cap}</div>`)));
   el.appendChild(g); el.appendChild(h("p", "tip", "💬 Use: Eu vejo… · Parece… · As cores são… · Eu imagino que…"));
 }
+/* ---------- regra comum de "Conferir" para classificar/ordenar/associar ---------- */
+const boardPts = checks => [5, 3, 1][Math.min(checks, 2)];
+const BOARD_RULE = "Tudo certo no 1º “Conferir” = 5 pts · 2º = 3 · depois = 1 · errou = a outra equipe continua";
+function boardCheck(act, st, ok, total, fb, res) {
+  const all = ok === total;
+  if (all) { const msg = award(act, boardPts(st.checks)); fb.className = "fb ok"; fb.innerHTML = `✅ Perfeito! Tudo certo.${msg}`; if (teamMode) res.innerHTML = resultHTML(act); win(); st.solved = true; }
+  else { st.checks++; const pass = passTurn(act); fb.className = "fb bad"; fb.innerHTML = `Acertos: ${ok} de ${total}. Toque nas peças vermelhas para devolvê-las.${teamMode ? `${pass} Se acertarem tudo, valem <b>${boardPts(st.checks)} ${plural(boardPts(st.checks), "ponto", "pontos")}</b>.` : " Tente de novo."}`; judge(false); }
+}
 /* ---------- classificar ---------- */
 function R_sort(s, el) {
-  header(s, el); const pool = h("div", "pool"), groups = h("div", "groups"), fb = h("div", "fb"); el.appendChild(pool); el.appendChild(groups); el.appendChild(fb);
-  let sel = null, place = {}; const mix = shuffle(s.items.map((_, i) => i));
+  header(s, el); const act = newAct(BOARD_RULE); turnBar(el, act);
+  const pool = h("div", "pool"), groups = h("div", "groups"), fb = h("div", "fb"), res = h("div"); el.appendChild(pool); el.appendChild(groups); el.appendChild(fb); el.appendChild(res);
+  let sel = null, place = {}; const mix = shuffle(s.items.map((_, i) => i)), st = { checks: 0 };
   function draw() {
     pool.innerHTML = ""; groups.innerHTML = "";
     mix.forEach(i => { if (place[i] == null) { const b = h("button", "item" + (sel === i ? " sel" : ""), s.items[i][0]); b.onclick = () => { sel = sel === i ? null : i; Sound.tock(); draw(); }; pool.appendChild(b); } });
@@ -167,22 +248,17 @@ function R_sort(s, el) {
   }
   draw();
   controls(el, {
-    check() {
-      let ok = 0; groups.querySelectorAll(".item").forEach(b => { const i = +b.dataset.i, g = s.items[i][1] === place[i]; b.classList.add(g ? "ok" : "bad"); if (g) ok++; });
-      const all = ok === s.items.length; fb.className = "fb " + (all ? "ok" : "bad");
-      fb.textContent = all ? "✅ Perfeito! Todas as peças estão no grupo certo." : `Você acertou ${ok} de ${s.items.length}. Toque nas peças vermelhas para devolvê-las e tente de novo.`;
-      all ? win() : judge(false);
-    },
-    reset() { place = {}; sel = null; fb.className = "fb"; draw(); }
+    check() { if (st.solved) return; let ok = 0; groups.querySelectorAll(".item").forEach(b => { const i = +b.dataset.i, g = s.items[i][1] === place[i]; b.classList.add(g ? "ok" : "bad"); if (g) ok++; }); boardCheck(act, st, ok, s.items.length, fb, res); },
+    reset() { place = {}; sel = null; st.checks = 0; st.solved = false; act.tally = [0, 0]; act.bar(); fb.className = "fb"; res.innerHTML = ""; draw(); }
   });
   el.appendChild(h("div", "tans", s.groups.map((g, gi) => g + ": " + s.items.filter(x => x[1] === gi).map(x => x[0]).join(", ")).join(" | ")));
 }
 /* ---------- ordenar ---------- */
 function R_order(s, el) {
-  header(s, el);
+  header(s, el); const act = newAct(BOARD_RULE); turnBar(el, act);
   if (s.img) { const im = h("div", "kb", `<img class="photo" src="${s.img}" alt="" style="max-height:min(22vh,220px);object-fit:cover">`); im.style.marginBottom = "10px"; el.appendChild(im); }
-  const pool = h("div", "pool"), seq = h("div", "seq"), fb = h("div", "fb"); el.appendChild(pool); el.appendChild(seq); el.appendChild(fb);
-  let order = [], mix = shuffle(s.items.map((_, i) => i));
+  const pool = h("div", "pool"), seq = h("div", "seq"), fb = h("div", "fb"), res = h("div"); el.appendChild(pool); el.appendChild(seq); el.appendChild(fb); el.appendChild(res);
+  let order = [], mix = shuffle(s.items.map((_, i) => i)); const st = { checks: 0 };
   function draw() {
     pool.innerHTML = ""; seq.innerHTML = "";
     mix.forEach(i => { if (!order.includes(i)) { const b = h("button", "item", s.items[i]); b.onclick = () => { order.push(i); Sound.pop(); draw(); }; pool.appendChild(b); } });
@@ -196,20 +272,16 @@ function R_order(s, el) {
   }
   draw();
   controls(el, {
-    check() {
-      let ok = 0; [...seq.children].forEach((d, p) => { if (order[p] == null) return; const g = order[p] === p; d.classList.add(g ? "ok" : "bad"); if (g) ok++; });
-      const all = ok === s.items.length; fb.className = "fb " + (all ? "ok" : "bad");
-      fb.textContent = all ? "✅ Sequência coerente! Leiam o texto em voz alta." : `${ok} de ${s.items.length} na posição certa. Toque numa linha para devolvê-la.`;
-      if (all) win(); else judge(false);
-    },
-    reset() { order = []; mix = shuffle(mix); fb.className = "fb"; draw(); }
+    check() { if (st.solved) return; let ok = 0; [...seq.children].forEach((d, p) => { if (order[p] == null) return; const g = order[p] === p; d.classList.add(g ? "ok" : "bad"); if (g) ok++; }); boardCheck(act, st, ok, s.items.length, fb, res); },
+    reset() { order = []; mix = shuffle(mix); st.checks = 0; st.solved = false; act.tally = [0, 0]; act.bar(); fb.className = "fb"; res.innerHTML = ""; draw(); }
   });
   el.appendChild(h("div", "tans", s.items.map((t, i) => (i + 1) + ". " + t).join("<br>")));
 }
 /* ---------- associar ---------- */
 function R_match(s, el) {
-  header(s, el); const chips = h("div", "chips"), m = h("div", "match"), fb = h("div", "fb"); el.appendChild(chips); el.appendChild(m); el.appendChild(fb);
-  let sel = null, put = {}; const terms = shuffle(s.pairs.map((_, i) => i));
+  header(s, el); const act = newAct(BOARD_RULE); turnBar(el, act);
+  const chips = h("div", "chips"), m = h("div", "match"), fb = h("div", "fb"), res = h("div"); el.appendChild(chips); el.appendChild(m); el.appendChild(fb); el.appendChild(res);
+  let sel = null, put = {}; const terms = shuffle(s.pairs.map((_, i) => i)), st = { checks: 0 };
   function draw() {
     chips.innerHTML = ""; m.innerHTML = ""; const used = Object.values(put);
     terms.forEach(i => { const c = h("button", "chip" + (sel === i ? " sel" : "") + (used.includes(i) ? " used" : ""), s.pairs[i][0]); c.onclick = () => { sel = sel === i ? null : i; Sound.tock(); draw(); }; chips.appendChild(c); });
@@ -222,23 +294,26 @@ function R_match(s, el) {
   }
   draw();
   controls(el, {
-    check() {
-      let ok = 0; m.querySelectorAll(".mslot").forEach(sl => { const d = +sl.dataset.d; if (put[d] == null) return; const g = put[d] === d; sl.classList.add(g ? "ok" : "bad"); if (g) ok++; });
-      const all = ok === s.pairs.length; fb.className = "fb " + (all ? "ok" : "bad");
-      fb.textContent = all ? "✅ Todas as associações estão corretas!" : `${ok} de ${s.pairs.length} corretas. Toque num espaço para esvaziá-lo e tente de novo.`;
-      all ? win() : judge(false);
-    },
-    reset() { put = {}; sel = null; fb.className = "fb"; draw(); }
+    check() { if (st.solved) return; let ok = 0; m.querySelectorAll(".mslot").forEach(sl => { const d = +sl.dataset.d; if (put[d] == null) return; const g = put[d] === d; sl.classList.add(g ? "ok" : "bad"); if (g) ok++; }); boardCheck(act, st, ok, s.pairs.length, fb, res); },
+    reset() { put = {}; sel = null; st.checks = 0; st.solved = false; act.tally = [0, 0]; act.bar(); fb.className = "fb"; res.innerHTML = ""; draw(); }
   });
   el.appendChild(h("div", "tans", s.pairs.map(p => p[0] + " → " + p[1]).join("<br>")));
 }
-/* ---------- produção / role-play ---------- */
+/* ---------- produção / role-play: o professor dá a nota de cada equipe ---------- */
 function R_role(s, el) {
   header(s, el, "Produção");
+  const act = newAct("O professor dá de 1 a 3 pontos para cada apresentação"); turnBar(el, act);
   if (s.img) { const im = h("div", "kb", `<img class="photo" src="${s.img}" alt="" style="max-height:min(20vh,200px);object-fit:cover">`); im.style.marginBottom = "12px"; el.appendChild(im); }
   const g = h("div", "role"); s.cards.forEach(c => g.appendChild(h("div", "rcard", c))); el.appendChild(g);
   const ta = h("textarea"); ta.placeholder = "Rascunho opcional — você também pode fazer a atividade oralmente. Anote palavras-chave ou escreva sua produção…"; el.appendChild(ta);
   const cl = h("div", "checklist", "<b>Revise sua produção:</b>" + s.check.map(c => `<label style="display:block;margin:4px 0"><input type="checkbox"> ${c}</label>`).join("")); el.appendChild(cl);
+  const grade = h("div", "grade");
+  function paintGrade() {
+    if (!teamMode) { grade.innerHTML = ""; return; }
+    grade.innerHTML = `<b>Avaliação do professor:</b>` + [0, 1].map(t => `<span class="g-team t${t}">${Teams.name(t)} ${[1, 2, 3].map(n => `<button class="btn ghost" data-t="${t}" data-n="${n}">+${n}</button>`).join("")}</span>`).join("");
+    grade.querySelectorAll("button").forEach(b => b.onclick = () => { award(act, +b.dataset.n, +b.dataset.t); Sound.success(); });
+  }
+  allBars.add(paintGrade); Teams.onChange(paintGrade); paintGrade(); el.appendChild(grade);
   let rolling = false;
   const sb = h("button", "btn green", "🎲 Sortear uma situação");
   sb.onclick = () => {
@@ -251,7 +326,7 @@ function R_role(s, el) {
     })();
   };
   const rv = h("button", "btn", "Revisar minha produção"); rv.onclick = () => { cl.classList.toggle("on"); Sound.pop(); };
-  controls(el, { extra: [sb, rv], reset() { ta.value = ""; [...g.children].forEach(c => c.classList.remove("pick", "win")); cl.querySelectorAll("input").forEach(i => i.checked = false); cl.classList.remove("on"); } });
+  controls(el, { extra: [sb, rv], reset() { ta.value = ""; [...g.children].forEach(c => c.classList.remove("pick", "win")); cl.querySelectorAll("input").forEach(i => i.checked = false); cl.classList.remove("on"); act.tally = [0, 0]; act.bar(); } });
 }
 /* ---------- forca ----------
    Desenho da forca e do boneco adaptado de "Hangman" (20 Web Projects with Vanilla JavaScript,
@@ -273,16 +348,25 @@ function R_hangman(s, el) {
   const cats = Object.keys(s.bank), MAX = 6, HINT_COST = 2;
   const norm = c => c.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase();
   let cat = "Todas", used = new Set(), cur = null, guessed, wrong, over, hintOn;
+  /* partida em rodadas: em cada rodada, cada equipe joga uma palavra */
+  let ROUNDS = 5; try { ROUNDS = +localStorage.getItem("nab2-forca-rodadas") || 5; } catch (e) {}
+  const match = { played: 0, pts: [0, 0], done: false };
   const top = h("div", "chips hang-cats");
-  ["Todas", ...cats].forEach(c => { const b = h("button", "chip", c === "Todas" ? `🎲 Todas (${cats.reduce((n, k) => n + s.bank[k].length, 0)})` : `${c} (${s.bank[c].length})`); b.dataset.c = c; b.onclick = () => { cat = c; Sound.tock(); paintCats(); next(); }; top.appendChild(b); });
+  ["Todas", ...cats].forEach(c => { const b = h("button", "chip", c === "Todas" ? `🎲 Todas (${cats.reduce((n, k) => n + s.bank[k].length, 0)})` : `${c} (${s.bank[c].length})`); b.dataset.c = c; b.onclick = () => { cat = c; Sound.tock(); paintCats(); if (!match.done) next(); }; top.appendChild(b); });
   el.appendChild(top);
-  el.appendChild(Teams.tools());
+  const tools = Teams.tools(), rsel = h("span", "rounds-sel");
+  function paintRounds() {
+    rsel.innerHTML = `<b>Rodadas:</b> ` + [3, 5, 7, 10].map(n => `<button class="chip${n === ROUNDS ? " sel" : ""}" data-n="${n}">${n}</button>`).join("");
+    rsel.querySelectorAll("button").forEach(b => b.onclick = () => { ROUNDS = +b.dataset.n; try { localStorage.setItem("nab2-forca-rodadas", ROUNDS); } catch (e) {} Sound.tock(); paintRounds(); newMatch(); });
+  }
+  const bNew = h("button", "btn ghost", "🔄 Nova partida"); bNew.onclick = () => { Sound.whoosh(); newMatch(); };
+  paintRounds(); tools.append(rsel, bNew); el.appendChild(tools);
   const arena = h("div", "hang-arena"), box = h("div", "card hang");
-  arena.append(Teams.panel(0, { turn: true }), box, Teams.panel(1, { turn: true })); el.appendChild(arena);
+  arena.append(Teams.panel(0, { turn: true, score: t => match.pts[t], label: "pontos na partida" }), box, Teams.panel(1, { turn: true, score: t => match.pts[t], label: "pontos na partida" })); el.appendChild(arena);
   box.innerHTML = `<div class="hang-grid"><div class="hang-art">${HANG_SVG}<div class="lives"></div><div class="hang-worth"></div></div>
-    <div class="hang-main"><div class="hang-turn"></div><div class="row"><span class="tag hang-cat"></span><span class="tag hang-count"></span></div>
+    <div class="hang-main"><div class="hang-round"></div><div class="hang-turn"></div><div class="row"><span class="tag hang-cat"></span><span class="tag hang-count"></span></div>
     <div class="word hang-word"></div><div class="hang-hint"></div><div class="hang-wrong"></div><div class="keys"></div><div class="fb"></div>
-    <div class="hang-clock"></div><div class="row hang-actions"></div><div class="tans"></div></div></div>`;
+    <div class="hang-clock"></div><div class="row hang-actions"></div><div class="tans"></div></div></div><div class="match-end"></div>`;
   const $ = q => box.querySelector(q), parts = [...box.querySelectorAll(".part")], svg = $(".hang-svg");
   const keys = $(".keys");
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => { const b = h("button", null, L); b.dataset.l = L; b.onclick = () => guess(L); keys.appendChild(b); });
@@ -328,6 +412,7 @@ function R_hangman(s, el) {
     Sound.error(); paint(); resetClock();
   };
   bNext.onclick = () => { Sound.whoosh(); next(); };
+  bNext.title = "Antes de terminar a palavra: troca por outra (não conta). Depois: passa para a próxima palavra.";
   const point = (t, n) => addPoints(t, n);
   let started = false;
   const paintTurn = () => { const t = Teams.turn, p = Teams.player(t); $(".hang-turn").innerHTML = `<span class="turn-badge t${t}">🎯 Vez: <b>${Teams.name(t)}</b>${p ? ` · joga <b>${p}</b>` : ""}</span>`; };
@@ -336,14 +421,34 @@ function R_hangman(s, el) {
   Teams.onChange(() => { if (cur) paintTurn(); });
   function paintCats() { top.querySelectorAll(".chip").forEach(b => b.classList.toggle("sel", b.dataset.c === cat)); }
   function pool() { return (cat === "Todas" ? cats : [cat]).flatMap(c => s.bank[c].map(([w, hint]) => ({ w, hint, c }))); }
+  function paintRound() {
+    const r = Math.min(ROUNDS, Math.floor(match.played / 2) + 1), w = match.played % 2 + 1, fin = match.played >= ROUNDS * 2;
+    if (fin) { $(".hang-round").innerHTML = `<span class="round-badge">🏁 Partida concluída · ${ROUNDS} rodadas</span>`; return; }
+    $(".hang-round").innerHTML = `<span class="round-badge">Rodada <b>${r}</b> de ${ROUNDS}</span><span class="round-dots">${Array.from({ length: ROUNDS * 2 }, (_, k) => `<i class="${k < match.played ? "d" : k === match.played ? "c" : ""}"></i>`).join("")}</span><small>palavra ${w} de 2 nesta rodada</small>`;
+  }
+  function finishMatch() {
+    match.done = true; stopClock();
+    const [a, b] = match.pts, na = Teams.name(0), nb = Teams.name(1), tie = a === b, wt = a > b ? 0 : 1;
+    const end = box.querySelector(".match-end"); end.className = "match-end on" + (tie ? "" : " w" + wt);
+    end.innerHTML = `<div class="me-card"><div class="me-trophy">${tie ? "🤝" : "🏆"}</div><div class="me-title">${tie ? "Empate!" : `${wt ? nb : na} venceu!`}</div>
+      <div class="me-score"><span class="t0">${na} <b>${a}</b></span> × <span class="t1"><b>${b}</b> ${nb}</span></div><div class="me-sub">Fim das ${ROUNDS} rodadas · ${ROUNDS * 2} palavras</div>
+      <button class="btn green me-new">🔄 Nova partida</button></div>`;
+    end.querySelector(".me-new").onclick = () => { Sound.whoosh(); newMatch(); };
+    setTimeout(() => { Sound.fanfare(); confetti(160); }, 700);
+  }
+  function newMatch() {
+    match.played = 0; match.pts = [0, 0]; match.done = false; const end = box.querySelector(".match-end"); end.className = "match-end"; end.innerHTML = "";
+    if (over) Teams.nextTurn(); over = false; Teams.refresh(); next();
+  }
   function next() {
+    if (match.done) return;
     let p = pool().filter(x => !used.has(x.w)); if (!p.length) { pool().forEach(x => used.delete(x.w)); p = pool(); }
     cur = p[Math.floor(Math.random() * p.length)]; used.add(cur.w);
-    if (started) Teams.nextTurn(); started = true; paintTurn();
+    if (started && over) Teams.nextTurn(); started = true; paintTurn(); paintRound();
     guessed = new Set(); wrong = []; timeouts = 0; byTime = false; over = false; hintOn = false;
     svg.classList.remove("lost", "won"); parts.forEach(pt => pt.classList.remove("show"));
     keys.querySelectorAll("button").forEach(b => { b.disabled = false; b.className = ""; });
-    const fb = $(".fb"); fb.className = "fb"; fb.textContent = ""; paint(); resetClock();
+    const fb = $(".fb"); fb.className = "fb"; fb.textContent = ""; bNext.textContent = "⤼ Trocar palavra"; paint(); resetClock();
   }
   function letters() { return [...cur.w].filter(c => /[A-ZÀ-Ü]/i.test(c)); }
   function guess(L) {
@@ -373,46 +478,60 @@ function R_hangman(s, el) {
       over = true; stopClock(); $(".hang-clock").innerHTML = ""; $(".hang-clock").className = "hang-clock"; keys.querySelectorAll("button").forEach(b => b.disabled = true);
       const fb = $(".fb");
       const t = Teams.turn, other = Teams.name(t ? 0 : 1);
-      const pts = MAX - errors();
-      if (won) { svg.classList.add("won"); point(t, pts); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! <b>+${pts} ${pts === 1 ? "ponto" : "pontos"} para ${Teams.name(t)}</b> (${pts} ❤️ ${pts === 1 ? "restante" : "restantes"}). Agora diga uma frase com essa palavra. Próxima palavra: vez de <b>${other}</b>.`; win(); }
-      else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `${byTime && fb.textContent.startsWith("⏰") ? "⏰ O tempo acabou com os corações! " : "😵 Não foi desta vez. "}A palavra era <b>${cur.w}</b>. ${Teams.name(t)} perdeu a rodada. Próxima palavra: vez de <b>${other}</b>.`; Sound.error(); }
+      const pts = MAX - errors(); match.played++; if (won) match.pts[t] += pts; const last = match.played >= ROUNDS * 2;
+      if (won) { svg.classList.add("won"); point(t, pts); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! <b>+${pts} ${pts === 1 ? "ponto" : "pontos"} para ${Teams.name(t)}</b> (${pts} ❤️ ${pts === 1 ? "restante" : "restantes"}). Agora diga uma frase com essa palavra. ${last ? "" : `Próxima palavra: vez de <b>${other}</b>.`}`; win(); }
+      else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `${byTime && fb.textContent.startsWith("⏰") ? "⏰ O tempo acabou com os corações! " : "😵 Não foi desta vez. "}A palavra era <b>${cur.w}</b>. ${Teams.name(t)} não pontuou nesta palavra. ${last ? "" : `Próxima palavra: vez de <b>${other}</b>.`}`; Sound.error(); }
+      Teams.refresh(); paintRound(); bNext.textContent = last ? "🏁 Ver resultado" : "Próxima palavra ›"; if (last) { bNext.textContent = "🏁 Resultado"; setTimeout(finishMatch, 1600); }
     }
   }
   // teclado do computador
   const onKey = e => {
     if (!el.closest(".slide").classList.contains("on") || /TEXTAREA|INPUT/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
-    const L = norm(e.key); if (/^[A-Z]$/.test(L)) { e.preventDefault(); guess(L); } else if (e.key === "Enter" && over) next();
+    const L = norm(e.key); if (/^[A-Z]$/.test(L)) { e.preventDefault(); guess(L); } else if (e.key === "Enter" && over && !match.done) next();
   };
   document.addEventListener("keydown", onKey);
   paintCats(); next();
-  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. Depois de 1 minuto sem resposta, a equipe perde 1 coração a cada 15 s; se os corações acabarem, a palavra aparece e a equipe perde. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
+  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A partida tem rodadas (em cada rodada, cada equipe joga uma palavra) e no final aparece a equipe vencedora. “⤼ Trocar palavra” troca a palavra sem contar. Depois de 1 minuto sem resposta, a equipe perde 1 coração a cada 15 s; se os corações acabarem, a palavra aparece e a equipe perde. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
 }
-/* ---------- corrida contra o relógio ---------- */
+/* ---------- corrida contra o relógio: em equipes, cada pergunta é de uma equipe; mais rápido = mais pontos ---------- */
 function R_race(s, el) {
-  header(s, el, "Jogo"); const box = h("div", "card"); el.appendChild(box); let qi, hits, timer, left;
-  function start() { clearInterval(timer); qi = 0; hits = 0; box.innerHTML = ""; const b = h("button", "btn green", "▶ Começar o desafio"); b.onclick = () => { Sound.boom(); ask(); }; box.appendChild(h("p", null, `${s.items.length} perguntas · ${s.secs} segundos cada.`)); box.appendChild(b); }
+  header(s, el, "Jogo");
+  const act = newAct(`Acertou com ${Math.ceil(s.secs * 2 / 3)}+ s sobrando = 3 pts · ${Math.ceil(s.secs / 3)}+ s = 2 · depois = 1`); turnBar(el, act);
+  const box = h("div", "card"); el.appendChild(box); let qi, hits, timer, left;
+  const speedPts = l => l >= Math.ceil(s.secs * 2 / 3) ? 3 : l >= Math.ceil(s.secs / 3) ? 2 : 1;
+  function start() {
+    clearInterval(timer); qi = 0; hits = 0; act.tally = [0, 0]; act.bar(); box.innerHTML = "";
+    const b = h("button", "btn green", "▶ Começar o desafio"); b.onclick = () => { Sound.boom(); ask(); };
+    box.appendChild(h("p", null, `${s.items.length} perguntas · ${s.secs} segundos cada.${teamMode ? " As equipes se alternam a cada pergunta." : ""}`)); box.appendChild(b);
+  }
   function ask() {
     clearInterval(timer);
     if (qi >= s.items.length) {
       box.innerHTML = ""; const r = h("button", "btn", "Jogar de novo"); r.onclick = start;
-      suspense(1.5).then(() => { box.innerHTML = `<div class="big-q" style="animation:stamp .6s">🏁 Fim! ${hits} de ${s.items.length} acertos.</div><p>Usem o placar no topo para registrar os pontos da equipe.</p>`; box.appendChild(r); hits >= s.items.length - 1 ? win() : Sound.success(); });
+      suspense(1.5).then(() => { box.innerHTML = `<div class="big-q" style="animation:stamp .6s">🏁 Fim! ${hits} de ${s.items.length} acertos.</div>${teamMode ? resultHTML(act) : ""}`; box.appendChild(r); win(); });
       return;
     }
     const q = s.items[qi]; left = s.secs; box.innerHTML = "";
-    box.appendChild(h("div", "row", `<span class="tag">Pergunta ${qi + 1} de ${s.items.length}</span><span style="flex:1"></span><span class="timer">${left}</span>`));
+    box.appendChild(h("div", "row", `<span class="tag">Pergunta ${qi + 1} de ${s.items.length}</span>${teamMode ? `<span class="turn-badge t${Teams.turn}" style="margin:0">${Teams.name(Teams.turn)}${Teams.player(Teams.turn) ? " · " + Teams.player(Teams.turn) : ""}</span>` : ""}<span style="flex:1"></span><span class="timer">${left}</span>`));
     const bar = h("div", "timerbar", "<div style='width:100%'></div>"); box.appendChild(bar); box.appendChild(h("div", "big-q", q.q));
     const o = h("div", "opts"), fb = h("div", "fb"), order = shuffle(q.o.map((_, i) => i)); let answered = false;
     order.forEach(i => {
       const b = h("button", "opt", q.o[i]);
-      b.onclick = () => { if (answered) return; answered = true; clearInterval(timer); const ok = i === q.a; judge(ok); b.classList.add(ok ? "ok" : "bad"); if (ok) hits++; else o.children[order.indexOf(q.a)].classList.add("ok"); fb.className = "fb " + (ok ? "ok" : "bad"); fb.textContent = ok ? "✅ Correto!" : "❌ A resposta é: " + q.o[q.a]; next(); };
+      b.onclick = () => {
+        if (answered) return; answered = true; clearInterval(timer); const ok = i === q.a; judge(ok); b.classList.add(ok ? "ok" : "bad");
+        let msg = "";
+        if (ok) { hits++; msg = award(act, speedPts(left)); } else o.children[order.indexOf(q.a)].classList.add("ok");
+        msg += passTurn(act);
+        fb.className = "fb " + (ok ? "ok" : "bad"); fb.innerHTML = (ok ? "✅ Correto!" : "❌ A resposta é: " + q.o[q.a] + ".") + msg; next();
+      };
       o.appendChild(b);
     });
     box.appendChild(o); box.appendChild(fb);
-    function next() { const n = h("button", "btn", "Próxima ›"); n.style.marginTop = "10px"; n.onclick = () => { qi++; Sound.whoosh(); ask(); }; box.appendChild(n); }
+    function next() { const n = h("button", "btn", qi === s.items.length - 1 ? "Ver resultado ›" : "Próxima ›"); n.style.marginTop = "10px"; n.onclick = () => { qi++; Sound.whoosh(); ask(); }; box.appendChild(n); }
     timer = setInterval(() => {
       left--; const t = box.querySelector(".timer"); t.textContent = left; bar.firstChild.style.width = (left / s.secs * 100) + "%";
       if (left <= 3) { t.classList.add("low"); Sound.tick(1.4); } else Sound.tock();
-      if (left <= 0) { clearInterval(timer); answered = true; Sound.error(); fb.className = "fb bad"; fb.textContent = "⏰ Tempo esgotado! Resposta: " + q.o[q.a]; o.children[order.indexOf(q.a)].classList.add("ok"); next(); }
+      if (left <= 0) { clearInterval(timer); answered = true; Sound.error(); fb.className = "fb bad"; fb.innerHTML = "⏰ Tempo esgotado! Resposta: " + q.o[q.a] + "." + passTurn(act); o.children[order.indexOf(q.a)].classList.add("ok"); next(); }
     }, 1000);
   }
   start(); s._stop = () => clearInterval(timer);
@@ -420,24 +539,27 @@ function R_race(s, el) {
 /* ---------- onde está? ---------- */
 function R_where(s, el) {
   header(s, el, "Jogo");
-  const pos = ["em cima do", "embaixo do", "à esquerda do", "à direita do"], shapes = ["círculo", "triângulo", "losango"];
+  const act = newAct("Acertou = 2 pts · a vez alterna a cada rodada"); turnBar(el, act);
+  const pos = ["em cima do", "embaixo do", "à esquerda do", "à direita do"], shapes = ["círculo", "triângulo", "losango", "retângulo"];
   const box = h("div", "card"); el.appendChild(box); let n = 0, hits = 0;
+  const art = s => s === "retângulo" ? "o" : "o";
   function round() {
     box.innerHTML = ""; const sh = shapes[Math.floor(Math.random() * shapes.length)], p = Math.floor(Math.random() * 4);
     const off = [[0, -95], [0, 95], [-115, 0], [115, 0]][p], cx = 210 + off[0], cy = 150 + off[1];
     const shapeSvg = SH[sh].replace('<svg viewBox="0 0 100 100">', `<svg x="${cx - 35}" y="${cy - 35}" width="70" height="70" viewBox="0 0 100 100">`);
+    box.classList.add("qwide");
+    box.appendChild(h("div", "qimg board", `<svg viewBox="0 0 420 300"><rect x="170" y="110" width="80" height="80" fill="#3f8a4b"/>${shapeSvg}</svg>`));
     box.appendChild(h("div", "row", `<span class="tag">Rodada ${n + 1}</span><span class="tag">Acertos: ${hits}</span>`));
-    box.appendChild(h("div", "board", `<svg viewBox="0 0 420 300"><rect x="170" y="110" width="80" height="80" fill="#3f8a4b"/>${shapeSvg}</svg>`));
-    box.appendChild(h("div", "big-q", `Onde está o ${sh}?`));
+    box.appendChild(h("div", "big-q", `Onde está ${art(sh)} ${sh}?`));
     const o = h("div", "opts"), fb = h("div", "fb"); let done = false;
     pos.forEach((t, i) => {
-      const b = h("button", "opt", `O ${sh} está ${t} quadrado.`);
+      const b = h("button", "opt", `${art(sh) === "o" ? "O" : "A"} ${sh} está ${t} quadrado.`);
       b.onclick = () => {
         if (done) return; done = true; b.classList.add("wait");
         suspense(1.2).then(() => {
           b.classList.remove("wait"); const ok = i === p; judge(ok); b.classList.add(ok ? "ok" : "bad"); if (ok) hits++; else o.children[p].classList.add("ok");
-          fb.className = "fb " + (ok ? "ok" : "bad"); fb.textContent = ok ? "✅ Isso! Agora diga a frase em voz alta." : "❌ Observe de novo: " + o.children[p].textContent;
-
+          const msg = (ok ? award(act, 2) : "") + passTurn(act);
+          fb.className = "fb " + (ok ? "ok" : "bad"); fb.innerHTML = (ok ? "✅ Isso! Agora diga a frase em voz alta." : "❌ Observe de novo: " + o.children[p].textContent) + msg;
           const nx = h("button", "btn", "Nova rodada ›"); nx.style.marginTop = "10px"; nx.onclick = () => { n++; Sound.whoosh(); round(); }; box.appendChild(nx);
         });
       };

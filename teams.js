@@ -41,7 +41,7 @@ const Teams = (() => {
       const on = opts.turn && st.turn === t, p = player(t);
       el.classList.toggle("turn", !!on);
       el.innerHTML = `<div class="tp-head"><span class="tp-name" contenteditable="true" spellcheck="false" title="Toque para mudar o nome">${esc(name(t))}</span>
-        <span class="tp-score" title="Pontos">${score[t]}</span></div>
+        <span class="tp-score" title="${opts.label || "Pontos"}">${opts.score ? opts.score(t) : score[t]}</span></div>
         ${opts.turn ? `<div class="tp-turn">${on ? `🎯 Vez desta equipe${p ? `<br><b>Joga: ${esc(p)}</b>` : ""}` : "Aguardando a vez…"}</div>` : ""}
         <div class="tp-list">${team(t).map(n => `<button class="tp-member${on && n === p ? " now" : ""}" data-n="${esc(n)}" title="Arraste para a outra equipe (ou toque para trocar de lado)">${esc(n)}</button>`).join("") || '<span class="tp-empty">Arraste nomes para cá</span>'}</div>
         <div class="tp-count">${team(t).length} ${team(t).length === 1 ? "pessoa" : "pessoas"}</div>`;

@@ -394,3 +394,51 @@ h1{margin:.15em 0 .15em}
 .hc-txt{font-weight:800;font-size:16px}
 .hc-bar{height:9px;background:rgba(192,57,43,.2);border-radius:999px;overflow:hidden}
 .hc-bar span{display:block;height:100%;background:var(--bad);transition:width .25s linear}
+/* ===== modo equipes em todas as atividades ===== */
+.turnbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:#fff;border-radius:14px;padding:8px 12px;margin:6px 0 10px;box-shadow:0 2px 10px rgba(29,53,87,.07);border-left:6px solid var(--gold)}
+.turnbar .turn-badge{margin:0}
+.turnbar.off{border-left-color:var(--line);color:var(--muted)}
+.tb-tally{font-size:16px;color:var(--navy)}
+.tb-tally b{font-size:19px}
+.tb-tally .t0 b{color:var(--blue)} .tb-tally .t1 b{color:var(--bad)}
+.tb-tally small{color:var(--muted);margin-left:4px}
+.tb-rule{font-size:13px;color:var(--muted);flex:1;min-width:180px}
+.tb-btns{display:flex;gap:6px}
+.turnbar .btn{font-size:14px;padding:5px 10px}
+.pts{color:var(--green)}
+.pt-toast{position:fixed;left:50%;top:84px;transform:translateX(-50%);z-index:45;color:#fff;font-weight:900;font-size:24px;padding:10px 22px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);pointer-events:none;animation:toastUp 1.7s ease-out forwards}
+.pt-toast.t0{background:var(--blue)} .pt-toast.t1{background:var(--bad)}
+@keyframes toastUp{0%{opacity:0;transform:translate(-50%,20px) scale(.8)}15%{opacity:1;transform:translate(-50%,0) scale(1.08)}75%{opacity:1;transform:translate(-50%,-10px)}100%{opacity:0;transform:translate(-50%,-40px)}}
+.result{margin:12px 0;background:linear-gradient(135deg,#fff8d6,#e8f6e0);border:3px solid var(--gold);border-radius:18px;padding:14px 18px;text-align:center;animation:stamp .6s cubic-bezier(.2,.9,.3,1.4)}
+.r-title{font-weight:900;color:var(--navy);font-size:20px}
+.r-score{font-size:28px;margin:4px 0}
+.r-score .t0 b{color:var(--blue)} .r-score .t1 b{color:var(--bad)}
+.r-who{font-size:19px;color:var(--green)}
+.judge{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.judge span{font-weight:800;color:var(--navy)}
+.grade{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:#fff;border-radius:14px;padding:10px 14px;margin-top:10px;box-shadow:0 2px 10px rgba(29,53,87,.07)}
+.g-team{display:inline-flex;gap:6px;align-items:center;font-weight:800}
+.g-team.t0{color:var(--blue)} .g-team.t1{color:var(--bad)}
+.g-team .btn{padding:4px 10px;font-size:15px}
+.flip.pickme{outline:5px solid var(--gold);outline-offset:3px;animation:pop .5s}
+.mem-info{margin:6px 0}
+/* forca: rodadas */
+.rounds-sel{display:inline-flex;align-items:center;gap:6px;margin-left:6px}
+.rounds-sel .chip{padding:4px 12px;font-size:15px}
+.hang-round{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:6px}
+.round-badge{background:var(--navy);color:#fff;border-radius:999px;padding:4px 14px;font-size:16px}
+.round-dots{display:inline-flex;gap:4px}
+.round-dots i{width:12px;height:12px;border-radius:50%;background:var(--line);display:inline-block}
+.round-dots i:nth-child(odd){border:2px solid var(--blue)} .round-dots i:nth-child(even){border:2px solid var(--bad)}
+.round-dots i.d{background:var(--navy)} .round-dots i.c{background:var(--gold);animation:hcPulse 1s infinite}
+.hang-round small{color:var(--muted)}
+.card.hang{position:relative}
+.match-end{display:none}
+.match-end.on{display:flex;position:absolute;inset:0;z-index:5;align-items:center;justify-content:center;background:rgba(255,255,255,.9);border-radius:16px;animation:fadeIn .4s}
+.me-card{text-align:center;padding:20px}
+.me-trophy{font-size:100px;animation:bob 2s ease-in-out infinite}
+.me-title{font-size:clamp(30px,4vw,48px);font-weight:900;color:var(--navy)}
+.match-end.w0 .me-title{color:var(--blue)} .match-end.w1 .me-title{color:var(--bad)}
+.me-score{font-size:34px;margin:6px 0}
+.me-score .t0 b{color:var(--blue)} .me-score .t1 b{color:var(--bad)}
+.me-sub{color:var(--muted);margin-bottom:14px}
