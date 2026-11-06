@@ -15,6 +15,7 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - As equipes usam **os mesmos nomes da roleta**, divididos ao acaso em duas (**🔀 Sortear equipes** refaz a divisão).
 - A Equipe A fica à esquerda e a B à direita. **A vez alterna a cada palavra** e, dentro da equipe, gira quem joga.
 - Quem acerta ganha o ponto automaticamente no placar do topo.
+- **💡 Mostrar dica custa 2 corações** (aparecem 2 partes do boneco). Com 2 corações ou menos, a dica fica bloqueada.
 - **Arraste um nome** de um lado para o outro (ou toque nele) para mudar a pessoa de equipe. Toque no nome da equipe para renomeá-la.
 
 ## Notas adesivas

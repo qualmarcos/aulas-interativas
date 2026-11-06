@@ -383,3 +383,4 @@ h1{margin:.15em 0 .15em}
 .imgslide img{display:block;margin:0 auto;max-height:calc(var(--sh,100vh) - 16px)}
 .kb img.photo,.wrap>.cols .photo{max-height:calc(var(--sh,100vh) * .5);object-fit:cover}
 .pcard img{height:min(190px,22vh)}
+.hint-cost{color:var(--bad);font-weight:800;font-size:15px}

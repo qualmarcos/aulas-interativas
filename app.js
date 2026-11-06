@@ -270,7 +270,7 @@ const HANG_SVG = `<svg viewBox="0 0 200 250" class="hang-svg" aria-hidden="true"
   </g></svg>`;
 function R_hangman(s, el) {
   header(s, el, "Jogo");
-  const cats = Object.keys(s.bank), MAX = 6;
+  const cats = Object.keys(s.bank), MAX = 6, HINT_COST = 2;
   const norm = c => c.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase();
   let cat = "Todas", used = new Set(), cur = null, guessed, wrong, over, hintOn;
   const top = h("div", "chips hang-cats");
@@ -287,8 +287,13 @@ function R_hangman(s, el) {
   const keys = $(".keys");
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => { const b = h("button", null, L); b.dataset.l = L; b.onclick = () => guess(L); keys.appendChild(b); });
   const actions = $(".hang-actions");
-  const bHint = h("button", "btn ghost", "💡 Mostrar dica"), bNext = h("button", "btn", "Próxima palavra ›");
-  bHint.onclick = () => { hintOn = true; paint(); Sound.pop(); };
+  const bHint = h("button", "btn ghost", "💡 Mostrar dica (−2 ❤️)"), bNext = h("button", "btn", "Próxima palavra ›");
+  const errors = () => wrong.length + (hintOn ? HINT_COST : 0);
+  bHint.onclick = () => {
+    if (over || hintOn || MAX - errors() <= HINT_COST) return;
+    hintOn = true; for (let k = errors() - HINT_COST; k < errors(); k++) parts[k].classList.add("show");
+    Sound.error(); paint();
+  };
   bNext.onclick = () => { Sound.whoosh(); next(); };
   const point = t => document.querySelectorAll(".score button")[t ? 3 : 1].click();
   let started = false;
@@ -311,19 +316,21 @@ function R_hangman(s, el) {
     if (over || guessed.has(L)) return; guessed.add(L);
     const k = keys.querySelector(`[data-l="${L}"]`); k.disabled = true;
     if (letters().some(c => norm(c) === L)) { k.className = "hit"; Sound.pop(); }
-    else { k.className = "miss"; wrong.push(L); parts[wrong.length - 1].classList.add("show"); Sound.error(); $(".hang-word").classList.remove("shake"); void box.offsetWidth; $(".hang-word").classList.add("shake"); }
+    else { k.className = "miss"; wrong.push(L); parts[errors() - 1].classList.add("show"); Sound.error(); $(".hang-word").classList.remove("shake"); void box.offsetWidth; $(".hang-word").classList.add("shake"); }
     paint(true);
   }
   function paint(fromGuess) {
-    const won = letters().every(c => guessed.has(norm(c))), lost = wrong.length >= MAX;
+    const won = letters().every(c => guessed.has(norm(c))), lost = errors() >= MAX;
     $(".hang-cat").textContent = "Categoria: " + cur.c;
     $(".hang-count").textContent = `${letters().length} letras`;
     $(".hang-word").innerHTML = [...cur.w].map(c => c === " " ? '<span class="sp"></span>' : !/[A-ZÀ-Ü]/i.test(c) ? `<span class="sym">${c}</span>`
       : (guessed.has(norm(c)) || lost) ? `<span class="l${lost && !guessed.has(norm(c)) ? " miss" : ""}${fromGuess && guessed.has(norm(c)) ? " new" : ""}">${c}</span>` : '<span class="l"></span>').join("");
-    $(".hang-hint").innerHTML = hintOn ? "💡 <b>Dica:</b> " + cur.hint : "";
+    $(".hang-hint").innerHTML = hintOn ? `💡 <b>Dica:</b> ${cur.hint} <span class="hint-cost">(−${HINT_COST} ❤️)</span>` : "";
     bHint.style.display = (hintOn || won || lost) ? "none" : "";
+    const canHint = MAX - errors() > HINT_COST; bHint.disabled = !canHint;
+    bHint.textContent = canHint ? `💡 Mostrar dica (−${HINT_COST} ❤️)` : `💡 Dica bloqueada (precisa de mais de ${HINT_COST} ❤️)`;
     $(".hang-wrong").innerHTML = wrong.length ? "Letras erradas: " + wrong.map(l => `<b>${l}</b>`).join(" ") : "&nbsp;";
-    $(".lives").textContent = "❤️".repeat(MAX - wrong.length) + "🤍".repeat(wrong.length);
+    $(".lives").textContent = "❤️".repeat(Math.max(0, MAX - errors())) + "🤍".repeat(Math.min(MAX, errors()));
     $(".tans").textContent = "Resposta: " + cur.w;
     if (!over && (won || lost)) {
       over = true; keys.querySelectorAll("button").forEach(b => b.disabled = true);
@@ -340,7 +347,7 @@ function R_hangman(s, el) {
   };
   document.addEventListener("keydown", onKey);
   paintCats(); next();
-  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
+  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A dica custa 2 corações. A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
 }
 /* ---------- corrida contra o relógio ---------- */
 function R_race(s, el) {
