@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAB2 Unidade 3 · Aula interativa</title>
+<meta name="description" content="Aula interativa de português do Brasil — NAB2, Unidade 3: Roupas, escolhas e futuros.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👕</text></svg>">
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <span class="brand">Intercultura · Português do Brasil</span><span>NAB2 · Unidade 3</span>
+    <span class="sp"></span>
+    <span class="score">Equipe A <button data-t="0" data-d="-1" aria-label="Tirar ponto da equipe A">−</button><b id="sa">0</b><button data-t="0" data-d="1" aria-label="Dar ponto à equipe A">+</button></span>
+    <span class="score">Equipe B <button data-t="1" data-d="-1" aria-label="Tirar ponto da equipe B">−</button><b id="sb">0</b><button data-t="1" data-d="1" aria-label="Dar ponto à equipe B">+</button></span>
+    <button id="bWheel">🎡 Roleta</button>
+    <button id="bSound">🔊 Som</button>
+    <button id="bTeacher">Respostas · professor</button>
+    <button id="bMenu">☰ Índice</button>
+    <button id="bFull">⛶</button>
+  </div>
+  <div id="progress"><div></div></div>
+  <div id="stage"></div>
+  <div id="nav">
+    <button class="btn ghost" id="bPrev">← Anterior</button>
+    <span class="sp"></span><span id="count"></span><span class="sp"></span>
+    <button class="btn" id="bNext">Próxima →</button>
+  </div>
+</div>
+
+<div id="menu" class="overlay"><div class="panel"><h2 style="margin-top:0">Índice da aula</h2><div id="menuList"></div></div></div>
+
+<div id="suspense" class="overlay" aria-live="polite">
+  <div class="drums">🥁</div>
+  <div class="txt">Rufem os tambores<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
+</div>
+
+<div id="wheel" class="overlay">
+  <div class="box">
+    <button class="close" id="wClose" aria-label="Fechar roleta">✕</button>
+    <div>
+      <h2>🎡 Roleta da turma</h2>
+      <div class="wheelwrap"><div class="pointer" id="wPointer"></div><canvas id="wCanvas" width="940" height="940"></canvas><button class="hub" id="wHub">GIRAR</button></div>
+      <div class="winner" id="wWinner"></div>
+    </div>
+    <div>
+      <p style="margin:6px 0;font-size:17px">Escreva um nome por linha. A lista fica salva neste navegador.</p>
+      <textarea id="wNames" spellcheck="false"></textarea>
+      <label style="display:block;margin:8px 0;font-size:17px"><input type="checkbox" id="wRemove" checked> Tirar da roleta quem já foi sorteado</label>
+      <div class="row">
+        <button class="btn green" id="wSpin">🎲 Girar a roleta</button>
+        <button class="btn ghost" id="wShuffle">🔀 Embaralhar</button>
+        <button class="btn ghost" id="wReset">↺ Restaurar lista</button>
+      </div>
+      <p class="tip" id="wDone"></p>
+    </div>
+  </div>
+</div>
+
+<script src="credits.js"></script>
+<script src="audio.js"></script>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
