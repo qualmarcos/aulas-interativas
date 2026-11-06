@@ -276,3 +276,17 @@ textarea{width:100%;min-height:90px;border-radius:12px;border:2px solid var(--li
 .note-min:hover{transform:scale(1.12)}
 .note-min.drag{transform:scale(1.15);cursor:grabbing;box-shadow:0 12px 26px rgba(0,0,0,.35)}
 @keyframes bubbleIn{from{transform:scale(0)}60%{transform:scale(1.2)}}
+/* notas com imagem */
+.nt-fig{flex:1 1 auto;min-height:60px;margin:0;display:flex;flex-direction:column;padding:8px 8px 4px}
+.nt-fig img{flex:1 1 auto;min-height:0;width:100%;object-fit:contain;background:rgba(255,255,255,.55);border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.nt-cap{margin-top:6px;border:0;border-bottom:2px dashed rgba(0,0,0,.2);background:transparent;font-family:"Nunito",sans-serif;font-weight:800;color:#1d2b3a;text-align:center;padding:3px 4px;outline:none}
+.nt-cap:focus{border-bottom-color:rgba(0,0,0,.5)}
+.note.has-img textarea{flex:0 1 90px}
+.nt-addtxt{align-self:center;margin:0 0 6px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:1px 10px;font-size:12px;font-weight:800;color:#1d2b3a}
+.nt-drop{position:absolute;inset:34px 6px 6px;border:3px dashed #1d3557;border-radius:10px;background:rgba(255,255,255,.75);display:none;align-items:center;justify-content:center;font-weight:900;color:#1d3557;pointer-events:none}
+.note.dropping .nt-drop{display:flex}
+body.nt-dragging #stage{outline:4px dashed var(--gold);outline-offset:-10px}
+body.nt-dragging #stage::after{content:"Solte a imagem para criar uma nota com subtítulo";position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-weight:800;z-index:26;pointer-events:none}
+.note-min.thumb{background-size:cover;background-position:center}
+#ntHint{position:fixed;left:50%;bottom:80px;transform:translateX(-50%) translateY(20px);background:var(--bad);color:#fff;padding:10px 18px;border-radius:999px;font-weight:800;z-index:41;opacity:0;pointer-events:none;transition:.25s}
+#ntHint.on{opacity:1;transform:translateX(-50%)}
