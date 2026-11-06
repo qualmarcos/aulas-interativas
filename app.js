@@ -279,7 +279,7 @@ function R_hangman(s, el) {
   el.appendChild(Teams.tools());
   const arena = h("div", "hang-arena"), box = h("div", "card hang");
   arena.append(Teams.panel(0, { turn: true }), box, Teams.panel(1, { turn: true })); el.appendChild(arena);
-  box.innerHTML = `<div class="hang-grid"><div class="hang-art">${HANG_SVG}<div class="lives"></div></div>
+  box.innerHTML = `<div class="hang-grid"><div class="hang-art">${HANG_SVG}<div class="lives"></div><div class="hang-worth"></div></div>
     <div class="hang-main"><div class="hang-turn"></div><div class="row"><span class="tag hang-cat"></span><span class="tag hang-count"></span></div>
     <div class="word hang-word"></div><div class="hang-hint"></div><div class="hang-wrong"></div><div class="keys"></div><div class="fb"></div>
     <div class="row hang-actions"></div><div class="tans"></div></div></div>`;
@@ -295,7 +295,7 @@ function R_hangman(s, el) {
     Sound.error(); paint();
   };
   bNext.onclick = () => { Sound.whoosh(); next(); };
-  const point = t => document.querySelectorAll(".score button")[t ? 3 : 1].click();
+  const point = (t, n) => addPoints(t, n);
   let started = false;
   const paintTurn = () => { const t = Teams.turn, p = Teams.player(t); $(".hang-turn").innerHTML = `<span class="turn-badge t${t}">🎯 Vez: <b>${Teams.name(t)}</b>${p ? ` · joga <b>${p}</b>` : ""}</span>`; };
   [bHint, bNext].forEach(b => actions.appendChild(b));
@@ -331,12 +331,15 @@ function R_hangman(s, el) {
     bHint.textContent = canHint ? `💡 Mostrar dica (−${HINT_COST} ❤️)` : `💡 Dica bloqueada (precisa de mais de ${HINT_COST} ❤️)`;
     $(".hang-wrong").innerHTML = wrong.length ? "Letras erradas: " + wrong.map(l => `<b>${l}</b>`).join(" ") : "&nbsp;";
     $(".lives").textContent = "❤️".repeat(Math.max(0, MAX - errors())) + "🤍".repeat(Math.min(MAX, errors()));
+    const left = Math.max(0, MAX - errors()); $(".hang-worth").innerHTML = over ? "" : `Esta palavra vale <b>${left} ${left === 1 ? "ponto" : "pontos"}</b>`;
     $(".tans").textContent = "Resposta: " + cur.w;
     if (!over && (won || lost)) {
+      $(".hang-worth").innerHTML = "";
       over = true; keys.querySelectorAll("button").forEach(b => b.disabled = true);
       const fb = $(".fb");
       const t = Teams.turn, other = Teams.name(t ? 0 : 1);
-      if (won) { svg.classList.add("won"); point(t); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! <b>+1 ponto para ${Teams.name(t)}</b>. Agora diga uma frase com essa palavra. Próxima palavra: vez de <b>${other}</b>.`; win(); }
+      const pts = MAX - errors();
+      if (won) { svg.classList.add("won"); point(t, pts); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! <b>+${pts} ${pts === 1 ? "ponto" : "pontos"} para ${Teams.name(t)}</b> (${pts} ❤️ ${pts === 1 ? "restante" : "restantes"}). Agora diga uma frase com essa palavra. Próxima palavra: vez de <b>${other}</b>.`; win(); }
       else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `😵 Não foi desta vez. A palavra era <b>${cur.w}</b>. Próxima palavra: vez de <b>${other}</b>.`; Sound.error(); }
     }
   }
@@ -347,7 +350,7 @@ function R_hangman(s, el) {
   };
   document.addEventListener("keydown", onKey);
   paintCats(); next();
-  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A dica custa 2 corações. A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
+  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
 }
 /* ---------- corrida contra o relógio ---------- */
 function R_race(s, el) {
@@ -510,6 +513,9 @@ const bSound = document.getElementById("bSound");
 const paintSound = () => { bSound.textContent = Sound.muted ? "🔇 Sem som" : "🔊 Som"; };
 bSound.onclick = () => { Sound.toggle(); paintSound(); Sound.pop(); }; paintSound();
 document.getElementById("bFull").onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); };
+function addPoints(t, n) {
+  if (!n) return; score[t] += n; const el = document.getElementById(t ? "sb" : "sa"); el.textContent = score[t]; restart(el, "bump"); Teams.refresh();
+}
 document.querySelectorAll(".score button").forEach(b => b.onclick = () => {
   const t = +b.dataset.t, d = +b.dataset.d; score[t] = Math.max(0, score[t] + d);
   const el = document.getElementById(t ? "sb" : "sa"); el.textContent = score[t]; restart(el, "bump");

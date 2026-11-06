@@ -384,3 +384,5 @@ h1{margin:.15em 0 .15em}
 .kb img.photo,.wrap>.cols .photo{max-height:calc(var(--sh,100vh) * .5);object-fit:cover}
 .pcard img{height:min(190px,22vh)}
 .hint-cost{color:var(--bad);font-weight:800;font-size:15px}
+.hang-worth{font-size:15px;color:var(--navy);margin-top:4px;min-height:22px}
+.hang-worth b{color:var(--green)}
