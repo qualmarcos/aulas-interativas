@@ -8,7 +8,7 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - Abra `index.html` no navegador (ou o link do GitHub Pages).
 - Navegue com **← →** do teclado ou os botões; **R** abre a roleta; **☰ Índice** leva a qualquer slide.
 - **🎡 Roleta**: escreva os nomes dos alunos (um por linha). Os nomes ficam salvos no navegador.
-- **🥁 Tambores** tocam antes de cada resposta ser revelada. O botão **🔊 Som** liga/desliga.
+- O botão **🔊 Som** liga/desliga os sons das atividades (acerto, erro, roleta, cronômetro).
 - **Respostas · professor** mostra o gabarito em todas as atividades.
 
 ## Estrutura

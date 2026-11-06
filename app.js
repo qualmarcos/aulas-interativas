@@ -14,7 +14,7 @@ function header(s, el, kind) {
 }
 function controls(el, { check, reset, extra }) {
   const r = h("div", "row"); r.style.marginTop = "16px";
-  if (check) { const b = h("button", "btn", "🥁 Conferir"); b.onclick = () => suspense().then(check); r.appendChild(b); }
+  if (check) { const b = h("button", "btn", "Conferir"); b.onclick = () => suspense().then(check); r.appendChild(b); }
   if (extra) extra.forEach(x => r.appendChild(x));
   const rb = h("button", "btn ghost", "Recomeçar"); rb.onclick = () => { Sound.whoosh(); reset(); }; r.appendChild(rb);
   el.appendChild(r); el.appendChild(h("p", "tip", TIP));
@@ -97,7 +97,7 @@ function R_reveal(s, el) {
   stepper(s, el, (q, box, st, done) => {
     box.appendChild(q.img ? h("div", "qimg", `<img src="${q.img}" alt="">`) : h("div", "emoji", q.e));
     box.appendChild(h("div", "big-q", q.q));
-    const b = h("button", "btn green", st.done ? "✔ Resposta revelada" : "🥁 Descobrir resposta"), a = h("div", "reveal-ans" + (st.done ? " on" : ""), "💡 " + q.a);
+    const b = h("button", "btn green", st.done ? "✔ Resposta revelada" : "Descobrir resposta"), a = h("div", "reveal-ans" + (st.done ? " on" : ""), "💡 " + q.a);
     b.onclick = () => { if (st.done) return; suspense(1.8).then(() => { st.done = true; Sound.success(); a.classList.add("on"); b.textContent = "✔ Resposta revelada"; done(); }); };
     box.appendChild(b); box.appendChild(a);
   });
@@ -139,7 +139,7 @@ function R_gallery(s, el) {
   });
   el.appendChild(g);
   const r = h("div", "row"); r.style.marginTop = "14px";
-  const all = h("button", "btn", "🥁 Revelar todas"); all.onclick = () => suspense().then(() => { g.querySelectorAll(".flip").forEach((f, i) => setTimeout(() => { f.classList.add("up"); Sound.tock(); }, i * 90)); });
+  const all = h("button", "btn", "Revelar todas"); all.onclick = () => suspense().then(() => { g.querySelectorAll(".flip").forEach((f, i) => setTimeout(() => { f.classList.add("up"); Sound.tock(); }, i * 90)); });
   const hide = h("button", "btn ghost", "Esconder todas"); hide.onclick = () => g.querySelectorAll(".flip").forEach(f => f.classList.remove("up"));
   r.appendChild(all); r.appendChild(hide); el.appendChild(r);
   el.appendChild(h("p", "tip", "💬 Jogo rápido: a roleta sorteia um aluno, o professor diz um número e o aluno fala o nome da peça antes de virar."));

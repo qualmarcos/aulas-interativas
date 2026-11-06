@@ -69,13 +69,9 @@ const Sound = (() => {
 /* Leitura em voz alta desativada: a aula usa apenas os sons das atividades. */
 const Speak = () => {};
 
-/* ============ SUSPENSE: tambores antes de liberar a resposta ============ */
-function suspense(sec = 1.6) {
-  const el = document.getElementById("suspense");
-  const d = Sound.muted ? .7 : sec;
-  el.classList.add("on"); Sound.drumroll(sec);
-  return new Promise(r => setTimeout(() => { el.classList.remove("on"); r(); }, d * 1000 + 80));
-}
+/* Sem tambores: a resposta aparece na hora. */
+function suspense() { return Promise.resolve(); }
+try { window.speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
 
 /* ============ ROLETA DA TURMA ============ */
 const Roleta = (() => {

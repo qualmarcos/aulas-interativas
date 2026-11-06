@@ -34,7 +34,7 @@ S.push({ type: "html", menu: "Nossa rota", html: `
     <div class="col"><h3>🔮 3 · Futuros</h3><p>Planos, hipóteses e verbos do cotidiano; formas e posições.</p></div>
   </div>
   <div class="card"><b>Como funciona:</b> cada assunto começa com uma <span class="hl">capa</span> com o tema e a estrutura gramatical.
-  Antes de cada resposta, 🥁 <b>rufem os tambores!</b> Use o <b>placar</b> no topo para jogar em equipes e a <b>🎡 roleta</b> para sortear quem responde.</div>` });
+  Use o <b>placar</b> no topo para jogar em equipes e a <b>🎡 roleta</b> para sortear quem responde.</div>` });
 S.push({ type: "wheel", menu: "Roleta da turma", title: "🎡 Roleta da turma",
   lead: "Professor: abra a roleta, escreva os nomes dos alunos (um por linha) e gire para sortear quem responde. A roleta também fica no botão do topo, em qualquer slide." });
 S.push({ type: "reveal", title: "Aquecimento: o que você levaria na mala?", lead: "Converse antes de revelar. Compare sua ideia com a resposta comentada.", top: I("mala"), items: [
@@ -62,7 +62,7 @@ S.push({ type: "gallery", title: "Galeria do guarda-roupa", lead: "Olhe a foto, 
   ["sandalia", "chinelo", "Um par de chinelos"], ["brinco", "brinco", "Um brinco de pérola"]] });
 S.push({ type: "memory", title: "Jogo da memória: a mala", lead: "Vire as cartas e encontre os pares (foto ↔ palavra). Depois use duas palavras em uma frase.", pairs: [
   ["img:camiseta", "camiseta"], ["img:tenis", "tênis"], ["img:bone", "boné"], ["img:bolsa", "bolsa"], ["img:casaco", "casaco"], ["img:relogio", "relógio"]] });
-S.push({ type: "photoquiz", title: "Que peça é esta?", lead: "Observe a foto e escolha a palavra certa. Os tambores revelam a resposta!", items: [
+S.push({ type: "photoquiz", title: "Que peça é esta?", lead: "Observe a foto e escolha a palavra certa.", items: [
   { img: I("cinto"), q: "Que acessório é este?", o: ["cinto", "colar", "anel"], a: 0, c: "É um cinto. Usamos na cintura para ajustar a calça." },
   { img: I("luvas"), q: "O que protege as mãos no frio?", o: ["meias", "luvas", "botas"], a: 1, c: "Luvas (normalmente usamos um par de luvas)." },
   { img: I("chapeu"), q: "O que a pintora usa na cabeça?", o: ["um boné", "um chapéu de palha", "uma touca"], a: 1, c: "Um chapéu de palha. O boné tem aba só na frente." },
@@ -171,7 +171,7 @@ S.push({ type: "html", menu: "Cores e sentidos variam", html: `
     el.querySelectorAll(".sw").forEach(b => b.onclick = () => { const c = b.dataset.c, box = el.querySelector(".cq"); Sound.pop();
       box.style.display = "block"; box.textContent = "💬 " + qs[Math.floor(Math.random() * qs.length)](c); box.style.animation = "none"; void box.offsetWidth; box.style.animation = ""; });
   } });
-S.push({ type: "reveal", title: "Dica visual: qual é a palavra?", lead: "Leia a dica, converse e depois revele (com tambores!).", items: [
+S.push({ type: "reveal", title: "Dica visual: qual é a palavra?", lead: "Leia a dica, converse e depois revele.", items: [
   { e: "❓", q: "É um acessório usado na cintura para ajustar uma calça. Qual é?", a: "O <b>cinto</b>. Ex.: Este cinto de couro combina com o sapato." },
   { e: "❓", q: "Usamos nas orelhas; pode ser de prata ou de ouro.", a: "O <b>brinco</b> (ou os brincos)." },
   { e: "❓", q: "Protege a cabeça do sol e tem uma aba só na frente.", a: "O <b>boné</b>. (O chapéu tem aba em volta.)" },
@@ -346,7 +346,7 @@ S.push({ type: "html", menu: "Formas e posições", html: `
   </div>
   <div class="br"><b>🇧🇷 Na fala do Brasil:</b> o imperativo informal é muito usado: <i>“<b>Coloca</b> o círculo aqui em cima.”</i> · <i>“<b>Põe</b> o triângulo do lado.”</i></div>` });
 S.push({ type: "memory", title: "Memória das formas", lead: "Encontre o par: desenho ↔ nome.", svg: true, pairs: Object.keys(SH).map(k => [k, k]) });
-S.push({ type: "where", title: "Onde está?", lead: "Observe a composição e escolha a descrição correta. Os tambores revelam!" });
+S.push({ type: "where", title: "Onde está?", lead: "Observe a composição e escolha a descrição correta." });
 S.push({ type: "role", title: "Ateliê sem olhar o modelo", lead: "Uma pessoa descreve; a outra desenha sem ver o modelo. Depois comparem.", cards: [
   "✏️ Crie um modelo simples: um quadrado, um círculo e dois triângulos em uma folha. Não mostre ao colega.",
   "🗣️ Dê instruções: Ponha o círculo em cima do quadrado. O triângulo fica à direita…",
@@ -368,6 +368,6 @@ S.push({ type: "html", menu: "Parabéns!", final: true, html: `
   init(el) {
     el.querySelector(".fs").textContent = `Equipe A ${score[0]} × ${score[1]} Equipe B`;
     el.querySelector(".fw").textContent = score[0] === score[1] ? "Empate! 🤝" : (score[0] > score[1] ? "Vitória da Equipe A! 🎉" : "Vitória da Equipe B! 🎉");
-    suspense(2).then(() => { Sound.fanfare(); confetti(140); });
+    Sound.fanfare(); confetti(140);
   } });
 S.push({ type: "credits", menu: "Referências e créditos", title: "Referências e créditos" });
