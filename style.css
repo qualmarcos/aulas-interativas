@@ -363,3 +363,23 @@ body.nt-dragging #stage::after{content:"Solte a imagem para criar uma nota com s
 .turn-badge{display:inline-block;border-radius:999px;padding:5px 14px;font-size:16px;color:#fff;background:var(--blue);margin-bottom:8px;animation:pop .4s}
 .turn-badge.t1{background:var(--bad)}
 .hang-grid{grid-template-columns:minmax(150px,220px) 1fr}
+/* ===== ajuste à tela (widescreen) ===== */
+.slide{padding:18px 28px 18px}
+.wrap{max-width:1800px}
+.slide.cover{padding:18px 28px}
+.cover .wrap{min-height:calc(var(--sh,100vh) - 90px)}
+.imgslide img{max-height:calc(var(--sh,100vh) - 24px)}
+h1{margin:.15em 0 .15em}
+.lead{margin:0 0 12px}
+.card{margin:10px 0}
+@media (min-aspect-ratio:4/3) and (min-width:900px){
+  .card.qwide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:26px;align-items:start}
+  .card.qwide>.qimg{grid-column:1;grid-row:1 / span 8;height:min(calc(var(--sh,100vh) - 270px),560px);margin:0}
+  .card.qwide>*:not(.qimg){grid-column:2}
+  .card.qwide>.big-q{margin-top:0}
+}
+.wrap{display:flow-root}
+.slide.imgslide{padding:8px}
+.imgslide img{display:block;margin:0 auto;max-height:calc(var(--sh,100vh) - 16px)}
+.kb img.photo,.wrap>.cols .photo{max-height:calc(var(--sh,100vh) * .5);object-fit:cover}
+.pcard img{height:min(190px,22vh)}

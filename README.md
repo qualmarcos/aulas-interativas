@@ -24,6 +24,9 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - **Imagens:** arraste uma foto (do computador ou de outro site) para dentro de uma nota, ou solte em qualquer lugar do slide para criar uma **nota-imagem com subtítulo**. Também dá para usar o botão **🖼** ou colar (Cmd/Ctrl + V) com a nota selecionada.
 - As notas ficam salvas **neste navegador** (cada slide tem as suas).
 
+## Tela
+O conteúdo se adapta ao formato da tela: usa a largura toda em telas widescreen, coloca foto e perguntas lado a lado e, se faltar altura, reduz um pouco a escala para caber sem rolar.
+
 ## Estrutura
 Cada assunto começa com uma **capa** (assunto + estrutura gramatical):
 

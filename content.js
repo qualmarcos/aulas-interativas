@@ -412,4 +412,4 @@ S.push({ type: "html", menu: "Parabéns!", final: true, html: `
     el.querySelector(".fw").textContent = score[0] === score[1] ? "Empate! 🤝" : (score[0] > score[1] ? "Vitória da Equipe A! 🎉" : "Vitória da Equipe B! 🎉");
     Sound.fanfare(); confetti(140);
   } });
-S.push({ type: "credits", menu: "Referências e créditos", title: "Referências e créditos" });
+S.push({ type: "credits", noFit: true, menu: "Referências e créditos", title: "Referências e créditos" });

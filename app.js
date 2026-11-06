@@ -44,6 +44,7 @@ function stepper(s, el, renderQ) {
 /* múltipla escolha (com ou sem foto) */
 function mcQ(q, box, st, done) {
   box.innerHTML = "";
+  box.classList.toggle("qwide", !!q.img);
   if (q.img) box.appendChild(h("div", "qimg", `<img src="${q.img}" alt="">`));
   box.appendChild(h("div", "big-q", q.q));
   const o = h("div", "opts"), fb = h("div", "fb");
@@ -95,6 +96,7 @@ function R_fill(s, el) {
 function R_reveal(s, el) {
   header(s, el);
   stepper(s, el, (q, box, st, done) => {
+    box.classList.toggle("qwide", !!q.img);
     box.appendChild(q.img ? h("div", "qimg", `<img src="${q.img}" alt="">`) : h("div", "emoji", q.e));
     box.appendChild(h("div", "big-q", q.q));
     const b = h("button", "btn green", st.done ? "✔ Resposta revelada" : "Descobrir resposta"), a = h("div", "reveal-ans" + (st.done ? " on" : ""), "💡 " + q.a);
@@ -178,7 +180,7 @@ function R_sort(s, el) {
 /* ---------- ordenar ---------- */
 function R_order(s, el) {
   header(s, el);
-  if (s.img) { const im = h("div", "kb", `<img class="photo" src="${s.img}" alt="" style="max-height:220px;object-fit:cover">`); im.style.marginBottom = "10px"; el.appendChild(im); }
+  if (s.img) { const im = h("div", "kb", `<img class="photo" src="${s.img}" alt="" style="max-height:min(22vh,220px);object-fit:cover">`); im.style.marginBottom = "10px"; el.appendChild(im); }
   const pool = h("div", "pool"), seq = h("div", "seq"), fb = h("div", "fb"); el.appendChild(pool); el.appendChild(seq); el.appendChild(fb);
   let order = [], mix = shuffle(s.items.map((_, i) => i));
   function draw() {
@@ -233,7 +235,7 @@ function R_match(s, el) {
 /* ---------- produção / role-play ---------- */
 function R_role(s, el) {
   header(s, el, "Produção");
-  if (s.img) { const im = h("div", "kb", `<img class="photo" src="${s.img}" alt="" style="max-height:200px;object-fit:cover">`); im.style.marginBottom = "12px"; el.appendChild(im); }
+  if (s.img) { const im = h("div", "kb", `<img class="photo" src="${s.img}" alt="" style="max-height:min(20vh,200px);object-fit:cover">`); im.style.marginBottom = "12px"; el.appendChild(im); }
   const g = h("div", "role"); s.cards.forEach(c => g.appendChild(h("div", "rcard", c))); el.appendChild(g);
   const ta = h("textarea"); ta.placeholder = "Rascunho opcional — você também pode fazer a atividade oralmente. Anote palavras-chave ou escreva sua produção…"; el.appendChild(ta);
   const cl = h("div", "checklist", "<b>Revise sua produção:</b>" + s.check.map(c => `<label style="display:block;margin:4px 0"><input type="checkbox"> ${c}</label>`).join("")); el.appendChild(cl);
@@ -452,8 +454,28 @@ function go(i, quiet) {
   document.querySelector("#progress div").style.width = ((cur + 1) / S.length * 100) + "%";
   document.getElementById("bPrev").disabled = cur === 0; document.getElementById("bNext").disabled = cur === S.length - 1;
   try { history.replaceState(null, "", "#" + (cur + 1)); } catch (e) {}
-  Notes.show(cur);
+  Notes.show(cur); fit();
 }
+/* ---------- ajuste à tela: usa a largura toda e, se faltar altura, reduz a escala até caber ---------- */
+const MAXW = 1800, MINZ = 0.62;
+function fit() {
+  stage.style.setProperty("--sh", stage.clientHeight + "px");
+  const s = S[cur], sl = els[cur], w = sl && sl.querySelector(":scope > .wrap"); if (!w) return;
+  w.style.zoom = ""; w.style.maxWidth = ""; if (s.noFit) return;
+  const cs = getComputedStyle(sl), avail = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 2;
+  const fullW = sl.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  let z = 1;
+  for (let k = 0; k < 4; k++) {
+    const hgt = w.getBoundingClientRect().height; if (hgt <= avail + 1) break;
+    z = Math.max(MINZ, z * avail / hgt);
+    w.style.zoom = z; w.style.maxWidth = Math.min(MAXW, fullW) / z + "px";
+    if (z === MINZ) break;
+  }
+}
+let fitT; const refit = () => { clearTimeout(fitT); fitT = setTimeout(fit, 60); };
+window.addEventListener("resize", refit);
+document.addEventListener("fullscreenchange", refit);
+new MutationObserver(refit).observe(stage, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
 document.getElementById("bPrev").onclick = () => go(cur - 1);
 document.getElementById("bNext").onclick = () => go(cur + 1);
 document.addEventListener("keydown", e => {
