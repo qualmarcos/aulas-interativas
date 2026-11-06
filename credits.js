@@ -6,10 +6,10 @@ window.CREDITS={
   "page": "https://commons.wikimedia.org/wiki/File:T-Shirt_Wikipedia_white.jpg"
  },
  "tenis": {
-  "title": "File:Professional Sneakers - Sneakers for hostesses, pilots and other professionals. Comfortable sneakers produced in leather inside and outside.jpg",
-  "author": "Ricardovfo",
+  "title": "File:FILA FLOAT MAXXI and FILA AXILUS ACE in Brazil.jpg",
+  "author": "Laiyenbr",
   "license": "CC BY-SA 4.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Professional_Sneakers_-_Sneakers_for_hostesses,_pilots_and_other_professionals._Comfortable_sneakers_produced_in_leather_inside_and_outside.jpg"
+  "page": "https://commons.wikimedia.org/wiki/File:FILA_FLOAT_MAXXI_and_FILA_AXILUS_ACE_in_Brazil.jpg"
  },
  "bone": {
   "title": "File:Madras plaid baseball cap by Polo Ralph Lauren.jpg",

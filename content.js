@@ -56,7 +56,7 @@ S.push({ type: "html", menu: "Um guarda-roupa, muitas possibilidades", html: `
   </div>
   <div class="br"><b>🇧🇷 No Brasil:</b> na praia, usamos <b>sunga</b>, <b>maiô</b> ou <b>biquíni</b>, sentamos na <b>canga</b> e calçamos <b>chinelo</b>. No frio, também se diz <b>blusa de frio</b> ou <b>moletom</b>.</div>` });
 S.push({ type: "gallery", title: "Galeria do guarda-roupa", lead: "Olhe a foto, diga o nome em voz alta e toque para conferir.", items: [
-  ["camiseta", "camiseta", "Uma camiseta branca"], ["vestido", "vestido", "Um vestido de verão"], ["casaco", "casaco", "Um casaco verde"], ["tenis", "tênis", "Tênis pretos e brancos"],
+  ["camiseta", "camiseta", "Uma camiseta branca"], ["vestido", "vestido", "Um vestido de verão"], ["casaco", "casaco", "Um casaco verde"], ["tenis", "tênis", "Tênis de corrida coloridos"],
   ["bone", "boné", "Um boné xadrez"], ["cachecol", "cachecol", "Um cachecol azul"], ["bolsa", "bolsa", "Uma bolsa de couro"], ["luvas", "luva", "Uma luva de lã"],
   ["cinto", "cinto", "Um cinto preto"], ["relogio", "relógio", "Um relógio de pulso"], ["chapeu", "chapéu", "Um chapéu de palha"], ["pijama", "pijama", "Um pijama xadrez"],
   ["sandalia", "chinelo", "Um par de chinelos"], ["brinco", "brinco", "Um brinco de pérola"]] });
