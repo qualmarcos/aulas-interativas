@@ -86,7 +86,9 @@ const Roleta = (() => {
     $("wNames").value = names.join("\n");
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(names)); } catch (e) {} }
-  function readNames() { names = $("wNames").value.split("\n").map(s => s.trim()).filter(Boolean); save(); draw(); }
+  function saveFull() { try { localStorage.setItem(KEY + "-full", JSON.stringify(names)); } catch (e) {} window.dispatchEvent(new Event("roleta-nomes")); }
+  function allNames() { let full = null; try { full = JSON.parse(localStorage.getItem(KEY + "-full")); } catch (e) {} return (Array.isArray(full) && full.length ? full : names).slice(); }
+  function readNames() { names = $("wNames").value.split("\n").map(s => s.trim()).filter(Boolean); save(); saveFull(); draw(); }
   function draw() {
     const cv = $("wCanvas"), c = cv.getContext("2d"), W = cv.width, R = W / 2 - 14;
     c.clearRect(0, 0, W, W);
@@ -143,11 +145,10 @@ const Roleta = (() => {
     $("wNames").addEventListener("input", () => { pendingRemove = null; readNames(); });
     $("wSpin").onclick = spin; $("wHub").onclick = spin;
     $("wShuffle").onclick = () => { for (let i = names.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [names[i], names[j]] = [names[j], names[i]]; } $("wNames").value = names.join("\n"); save(); draw(); Sound.whoosh(); };
-    $("wReset").onclick = () => { let full = null; try { full = JSON.parse(localStorage.getItem(KEY + "-full")); } catch (e) {} names = (full && full.length ? full : DEFAULT).slice(); pendingRemove = null; $("wNames").value = names.join("\n"); save(); draw(); $("wDone").textContent = ""; $("wWinner").textContent = ""; };
-    $("wNames").addEventListener("change", () => { try { localStorage.setItem(KEY + "-full", JSON.stringify(names)); } catch (e) {} });
+    $("wReset").onclick = () => { let full = null; try { full = JSON.parse(localStorage.getItem(KEY + "-full")); } catch (e) {} names = (full && full.length ? full : DEFAULT).slice(); pendingRemove = null; $("wNames").value = names.join("\n"); save(); saveFull(); draw(); $("wDone").textContent = ""; $("wWinner").textContent = ""; };
     $("wClose").onclick = close; $("wheel").addEventListener("click", e => { if (e.target.id === "wheel") close(); });
   }
-  return { init, open, close, get spinning() { return spinning; } };
+  return { init, open, close, allNames, get spinning() { return spinning; } };
 })();
 
 function confetti(n = 70) {

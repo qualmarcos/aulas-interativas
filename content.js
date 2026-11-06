@@ -72,7 +72,7 @@ S.push({ type: "photoquiz", title: "Que peça é esta?", lead: "Observe a foto e
 S.push({ type: "sort", title: "Uma missão para cada peça", lead: "Toque em uma peça e depois no grupo certo. Toque numa peça já colocada para devolvê-la.",
   groups: ["❄️ Destino frio", "🥾 Caminhada ao ar livre", "🏖️ Praia ou piscina"],
   items: [["Luvas de lã", 0], ["Casaco quente", 0], ["Cachecol", 0], ["Tênis para caminhar", 1], ["Boné", 1], ["Bermuda leve", 1], ["Maiô", 2], ["Sunga", 2], ["Canga", 2], ["Chinelo", 2]] });
-S.push({ type: "hangman", title: "Jogo da forca: o guarda-roupa", lead: "Escolha uma categoria (ou todas) e descubra a palavra antes de o boneco ficar completo. Cada equipe joga uma palavra!", bank: {
+S.push({ type: "hangman", title: "Jogo da forca: o guarda-roupa", lead: "Escolha uma categoria e descubra a palavra antes de o boneco ficar completo. As equipes se alternam: cada uma joga uma palavra.", bank: {
   "Roupas": [
     ["CAMISETA", "Peça de manga curta, sem botões, muito usada no calor."], ["CAMISA", "Tem gola e botões na frente."], ["REGATA", "Camiseta sem mangas."],
     ["CALÇA", "Cobre as duas pernas, da cintura até o tornozelo."], ["BERMUDA", "Calça curta, até perto do joelho."], ["SAIA", "Cobre da cintura para baixo, sem separar as pernas."],

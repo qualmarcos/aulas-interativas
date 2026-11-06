@@ -274,27 +274,32 @@ function R_hangman(s, el) {
   const top = h("div", "chips hang-cats");
   ["Todas", ...cats].forEach(c => { const b = h("button", "chip", c === "Todas" ? `🎲 Todas (${cats.reduce((n, k) => n + s.bank[k].length, 0)})` : `${c} (${s.bank[c].length})`); b.dataset.c = c; b.onclick = () => { cat = c; Sound.tock(); paintCats(); next(); }; top.appendChild(b); });
   el.appendChild(top);
-  const box = h("div", "card hang"); el.appendChild(box);
+  el.appendChild(Teams.tools());
+  const arena = h("div", "hang-arena"), box = h("div", "card hang");
+  arena.append(Teams.panel(0, { turn: true }), box, Teams.panel(1, { turn: true })); el.appendChild(arena);
   box.innerHTML = `<div class="hang-grid"><div class="hang-art">${HANG_SVG}<div class="lives"></div></div>
-    <div class="hang-main"><div class="row"><span class="tag hang-cat"></span><span class="tag hang-count"></span></div>
+    <div class="hang-main"><div class="hang-turn"></div><div class="row"><span class="tag hang-cat"></span><span class="tag hang-count"></span></div>
     <div class="word hang-word"></div><div class="hang-hint"></div><div class="hang-wrong"></div><div class="keys"></div><div class="fb"></div>
     <div class="row hang-actions"></div><div class="tans"></div></div></div>`;
   const $ = q => box.querySelector(q), parts = [...box.querySelectorAll(".part")], svg = $(".hang-svg");
   const keys = $(".keys");
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => { const b = h("button", null, L); b.dataset.l = L; b.onclick = () => guess(L); keys.appendChild(b); });
   const actions = $(".hang-actions");
-  const bHint = h("button", "btn ghost", "💡 Mostrar dica"), bNext = h("button", "btn", "Próxima palavra ›"), bA = h("button", "btn green", "+1 Equipe A"), bB = h("button", "btn green", "+1 Equipe B");
+  const bHint = h("button", "btn ghost", "💡 Mostrar dica"), bNext = h("button", "btn", "Próxima palavra ›");
   bHint.onclick = () => { hintOn = true; paint(); Sound.pop(); };
   bNext.onclick = () => { Sound.whoosh(); next(); };
-  const point = t => { document.querySelectorAll(".score button")[t ? 3 : 1].click(); bA.disabled = bB.disabled = true; };
-  bA.onclick = () => point(0); bB.onclick = () => point(1);
-  [bHint, bNext, bA, bB].forEach(b => actions.appendChild(b));
+  const point = t => document.querySelectorAll(".score button")[t ? 3 : 1].click();
+  let started = false;
+  const paintTurn = () => { const t = Teams.turn, p = Teams.player(t); $(".hang-turn").innerHTML = `<span class="turn-badge t${t}">🎯 Vez: <b>${Teams.name(t)}</b>${p ? ` · joga <b>${p}</b>` : ""}</span>`; };
+  [bHint, bNext].forEach(b => actions.appendChild(b));
+  Teams.onChange(() => { if (cur) paintTurn(); });
   function paintCats() { top.querySelectorAll(".chip").forEach(b => b.classList.toggle("sel", b.dataset.c === cat)); }
   function pool() { return (cat === "Todas" ? cats : [cat]).flatMap(c => s.bank[c].map(([w, hint]) => ({ w, hint, c }))); }
   function next() {
     let p = pool().filter(x => !used.has(x.w)); if (!p.length) { pool().forEach(x => used.delete(x.w)); p = pool(); }
     cur = p[Math.floor(Math.random() * p.length)]; used.add(cur.w);
-    guessed = new Set(); wrong = []; over = false; hintOn = false; bA.disabled = bB.disabled = true;
+    if (started) Teams.nextTurn(); started = true; paintTurn();
+    guessed = new Set(); wrong = []; over = false; hintOn = false;
     svg.classList.remove("lost", "won"); parts.forEach(pt => pt.classList.remove("show"));
     keys.querySelectorAll("button").forEach(b => { b.disabled = false; b.className = ""; });
     const fb = $(".fb"); fb.className = "fb"; fb.textContent = ""; paint();
@@ -321,8 +326,9 @@ function R_hangman(s, el) {
     if (!over && (won || lost)) {
       over = true; keys.querySelectorAll("button").forEach(b => b.disabled = true);
       const fb = $(".fb");
-      if (won) { svg.classList.add("won"); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! Agora diga uma frase com essa palavra.`; win(); bA.disabled = bB.disabled = false; }
-      else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `😵 Não foi desta vez. A palavra era <b>${cur.w}</b>.`; Sound.error(); }
+      const t = Teams.turn, other = Teams.name(t ? 0 : 1);
+      if (won) { svg.classList.add("won"); point(t); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! <b>+1 ponto para ${Teams.name(t)}</b>. Agora diga uma frase com essa palavra. Próxima palavra: vez de <b>${other}</b>.`; win(); }
+      else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `😵 Não foi desta vez. A palavra era <b>${cur.w}</b>. Próxima palavra: vez de <b>${other}</b>.`; Sound.error(); }
     }
   }
   // teclado do computador
@@ -332,7 +338,7 @@ function R_hangman(s, el) {
   };
   document.addEventListener("keydown", onKey);
   paintCats(); next();
-  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra."));
+  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
 }
 /* ---------- corrida contra o relógio ---------- */
 function R_race(s, el) {
@@ -478,9 +484,10 @@ document.getElementById("bFull").onclick = () => { if (!document.fullscreenEleme
 document.querySelectorAll(".score button").forEach(b => b.onclick = () => {
   const t = +b.dataset.t, d = +b.dataset.d; score[t] = Math.max(0, score[t] + d);
   const el = document.getElementById(t ? "sb" : "sa"); el.textContent = score[t]; restart(el, "bump");
-  d > 0 ? Sound.success() : Sound.tock();
+  d > 0 ? Sound.success() : Sound.tock(); Teams.refresh();
 });
 Roleta.init();
 Notes.init();
+Teams.init();
 const start = Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1);
 cur = start; go(start, true); if (!els[start].classList.contains("on")) { build(start); els[start].classList.add("on"); }

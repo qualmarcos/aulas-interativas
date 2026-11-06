@@ -11,6 +11,12 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - O botão **🔊 Som** liga/desliga os sons das atividades (acerto, erro, roleta, cronômetro).
 - **Respostas · professor** mostra o gabarito em todas as atividades.
 
+## Equipes (jogo da forca)
+- As equipes usam **os mesmos nomes da roleta**, divididos ao acaso em duas (**🔀 Sortear equipes** refaz a divisão).
+- A Equipe A fica à esquerda e a B à direita. **A vez alterna a cada palavra** e, dentro da equipe, gira quem joga.
+- Quem acerta ganha o ponto automaticamente no placar do topo.
+- **Arraste um nome** de um lado para o outro (ou toque nele) para mudar a pessoa de equipe. Toque no nome da equipe para renomeá-la.
+
 ## Notas adesivas
 - **＋ Nota** (ou tecla **N**) cria uma nota no slide atual; **📝 Notas** mostra/esconde as notas.
 - Em cada nota: escolha a cor, **A− / A+** muda o tamanho da letra, **＋** cria outra nota, **–** minimiza (vira uma bolinha; toque nela para abrir), **🗑** apaga (toque duas vezes se houver texto).
