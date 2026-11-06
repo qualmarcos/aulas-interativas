@@ -14,7 +14,7 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 ## Notas adesivas
 - **＋ Nota** (ou tecla **N**) cria uma nota no slide atual; **📝 Notas** mostra/esconde as notas.
 - Em cada nota: escolha a cor, **A− / A+** muda o tamanho da letra, **＋** cria outra nota, **–** minimiza (vira uma bolinha; toque nela para abrir), **🗑** apaga (toque duas vezes se houver texto).
-- Arraste pela barra superior; redimensione pelo canto inferior direito.
+- Arraste pela **faixa pontilhada** no topo da nota (ou pelos espaços vazios da barra); redimensione pelo canto inferior direito.
 - **Imagens:** arraste uma foto (do computador ou de outro site) para dentro de uma nota, ou solte em qualquer lugar do slide para criar uma **nota-imagem com subtítulo**. Também dá para usar o botão **🖼** ou colar (Cmd/Ctrl + V) com a nota selecionada.
 - As notas ficam salvas **neste navegador** (cada slide tem as suas).
 

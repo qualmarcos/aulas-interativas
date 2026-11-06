@@ -53,10 +53,23 @@ const Notes = (() => {
   const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const snd = f => { try { Sound[f](); } catch (e) {} };
+  let topZ = 10;
+  /* arrastar robusto: acompanha o ponteiro pela janela inteira (não trava com movimento rápido) */
+  function dragFrom(handle, el, e, onMove, onEnd) {
+    if (e.button !== undefined && e.button !== 0) return;
+    e.preventDefault(); el.style.zIndex = ++topZ;
+    const id = e.pointerId; try { handle.setPointerCapture(id); } catch (_) {}
+    let raf = 0, last = e;
+    const mv = ev => { if (ev.pointerId !== id) return; last = ev; if (!raf) raf = requestAnimationFrame(() => { raf = 0; onMove(last); }); };
+    const end = ev => { if (ev.pointerId !== id) return; cancelAnimationFrame(raf); onMove(last);
+      window.removeEventListener("pointermove", mv); window.removeEventListener("pointerup", end); window.removeEventListener("pointercancel", end);
+      try { handle.releasePointerCapture(id); } catch (_) {} onEnd(); };
+    window.addEventListener("pointermove", mv); window.addEventListener("pointerup", end); window.addEventListener("pointercancel", end);
+  }
 
   function newNote(opts) {
     const n = list();
-    return Object.assign({ id: uid(), x: window.innerWidth - 310 - n.length * 24, y: 90 + n.length * 24, w: 280, h: 200,
+    return Object.assign({ id: uid(), x: window.innerWidth - 350 - n.length * 24, y: 90 + n.length * 24, w: 320, h: 220,
       color: COLORS[n.length % COLORS.length][0], fs: 2, text: "", cap: "" }, opts);
   }
   function add(from) {
@@ -97,7 +110,7 @@ const Notes = (() => {
       return { url: src.url, w: dims[0], h: dims[1] };
     }
   }
-  function sizeFor(img) { const W = 300, ih = Math.round(W * img.h / img.w); return { w: W, h: clamp(ih, 120, 420) + 74 }; }
+  function sizeFor(img) { const W = 320, ih = Math.round(W * img.h / img.w); return { w: W, h: clamp(ih, 120, 420) + 96 }; }
   async function attach(note, src) {
     try {
       const img = await storeImage(src);
@@ -124,13 +137,13 @@ const Notes = (() => {
     const W = window.innerWidth, H = window.innerHeight;
     list().forEach(note => {
       if (note.cap == null) note.cap = "";
-      note.w = clamp(note.w, 250, W - 10); note.h = clamp(note.h, 120, H - 60);
+      note.w = clamp(note.w, 270, W - 10); note.h = clamp(note.h, 120, H - 60);
       note.x = clamp(note.x, 0, W - Math.min(note.w, W)); note.y = clamp(note.y, 48, H - 60);
       if (note.min) { layer.appendChild(bubble(note)); return; }
       const el = document.createElement("div"); el.className = "note" + (note.img ? " has-img" : ""); el.dataset.id = note.id;
       Object.assign(el.style, { left: note.x + "px", top: note.y + "px", width: note.w + "px", height: note.h + "px", background: note.color });
       const showText = !note.img || note.text.trim();
-      el.innerHTML = `<div class="nt-bar" title="Arraste para mover">
+      el.innerHTML = `<div class="nt-grip" title="Arraste por aqui para mover a nota"><span></span></div><div class="nt-bar" title="Arraste para mover">
           <div class="nt-colors">${COLORS.map(([c, n]) => `<button class="nt-c${c === note.color ? " on" : ""}" style="background:${c}" data-c="${c}" title="${n}" aria-label="Cor ${n}"></button>`).join("")}</div>
           <button class="nt-b" data-a="minus" title="Diminuir letra">A−</button><button class="nt-b" data-a="plus" title="Aumentar letra">A+</button>
           <button class="nt-b" data-a="pic" title="${note.img ? "Tirar a imagem" : "Colocar imagem (ou arraste uma imagem para cá)"}">${note.img ? "✕🖼" : "🖼"}</button>
@@ -160,16 +173,13 @@ const Notes = (() => {
       el.addEventListener("drop", e => { e.preventDefault(); e.stopPropagation(); el.classList.remove("dropping"); document.body.classList.remove("nt-dragging"); const src = imageFrom(e.dataTransfer); src ? attach(note, src) : flash("Arraste uma imagem (foto ou arquivo de imagem)."); });
       // colar imagem (Ctrl/Cmd + V) com a nota selecionada
       el.addEventListener("paste", e => { const src = imageFrom(e.clipboardData); if (src) { e.preventDefault(); attach(note, src); } });
-      // arrastar pela barra
-      const bar = el.querySelector(".nt-bar");
-      bar.addEventListener("pointerdown", e => {
+      // arrastar pela faixa do topo ou pelos espaços vazios da barra
+      el.querySelectorAll(".nt-grip, .nt-bar").forEach(handle => handle.addEventListener("pointerdown", e => {
         if (e.target.closest("button")) return;
-        e.preventDefault(); bar.setPointerCapture(e.pointerId); el.classList.add("drag"); layer.appendChild(el);
-        const sx = e.clientX - note.x, sy = e.clientY - note.y;
-        const mv = ev => { note.x = clamp(ev.clientX - sx, 0, window.innerWidth - 60); note.y = clamp(ev.clientY - sy, 48, window.innerHeight - 40); el.style.left = note.x + "px"; el.style.top = note.y + "px"; };
-        const up = () => { bar.removeEventListener("pointermove", mv); bar.removeEventListener("pointerup", up); el.classList.remove("drag"); const n = list(), i = n.indexOf(note); if (i > -1) { n.splice(i, 1); n.push(note); } save(); };
-        bar.addEventListener("pointermove", mv); bar.addEventListener("pointerup", up);
-      });
+        const sx = e.clientX - note.x, sy = e.clientY - note.y; el.classList.add("drag");
+        dragFrom(handle, el, e, ev => { note.x = clamp(ev.clientX - sx, -note.w + 80, window.innerWidth - 80); note.y = clamp(ev.clientY - sy, 48, window.innerHeight - 40); el.style.left = note.x + "px"; el.style.top = note.y + "px"; },
+          () => { el.classList.remove("drag"); const n = list(), i = n.indexOf(note); if (i > -1) { n.splice(i, 1); n.push(note); } save(); });
+      }));
       // redimensionar (canto inferior direito)
       new ResizeObserver(() => { if (!el.isConnected) return; const w = el.offsetWidth, h = el.offsetHeight; if (w && h && (w !== note.w || h !== note.h)) { note.w = w; note.h = h; save(); } }).observe(el);
       layer.appendChild(el);
@@ -188,14 +198,11 @@ const Notes = (() => {
     b.title = txt ? txt.slice(0, 120) + (txt.length > 120 ? "…" : "") + "\n(toque para abrir)" : "Nota (toque para abrir)";
     b.setAttribute("aria-label", "Abrir nota minimizada");
     b.addEventListener("pointerdown", e => {
-      e.preventDefault(); b.setPointerCapture(e.pointerId);
       const sx = e.clientX - note.bx, sy = e.clientY - note.by, x0 = e.clientX, y0 = e.clientY; let moved = false;
-      const mv = ev => { if (Math.abs(ev.clientX - x0) + Math.abs(ev.clientY - y0) > 5) moved = true; if (!moved) return; b.classList.add("drag");
-        note.bx = clamp(ev.clientX - sx, 0, window.innerWidth - B); note.by = clamp(ev.clientY - sy, 48, window.innerHeight - B - 10); b.style.left = note.bx + "px"; b.style.top = note.by + "px"; };
-      const up = () => { b.removeEventListener("pointermove", mv); b.removeEventListener("pointerup", up); b.classList.remove("drag");
-        if (moved) { save(); return; }
-        note.min = false; note.x = clamp(note.bx, 0, window.innerWidth - note.w); note.y = note.by; save(); snd("pop"); render(); };
-      b.addEventListener("pointermove", mv); b.addEventListener("pointerup", up);
+      dragFrom(b, b, e, ev => { if (Math.abs(ev.clientX - x0) + Math.abs(ev.clientY - y0) > 5) moved = true; if (!moved) return; b.classList.add("drag");
+          note.bx = clamp(ev.clientX - sx, 0, window.innerWidth - B); note.by = clamp(ev.clientY - sy, 48, window.innerHeight - B - 10); b.style.left = note.bx + "px"; b.style.top = note.by + "px"; },
+        () => { b.classList.remove("drag"); if (moved) { save(); return; }
+          note.min = false; note.x = clamp(note.bx, 0, window.innerWidth - note.w); note.y = note.by; save(); snd("pop"); render(); });
     });
     return b;
   }
