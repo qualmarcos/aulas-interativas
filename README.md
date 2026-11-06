@@ -11,6 +11,12 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *NAB2 �
 - O botão **🔊 Som** liga/desliga os sons das atividades (acerto, erro, roleta, cronômetro).
 - **Respostas · professor** mostra o gabarito em todas as atividades.
 
+## Notas adesivas
+- **＋ Nota** (ou tecla **N**) cria uma nota no slide atual; **📝 Notas** mostra/esconde as notas.
+- Em cada nota: escolha a cor, **A− / A+** muda o tamanho da letra, **＋** cria outra nota, **🗑** apaga (toque duas vezes se houver texto).
+- Arraste pela barra superior; redimensione pelo canto inferior direito.
+- As notas ficam salvas **neste navegador** (cada slide tem as suas).
+
 ## Estrutura
 Cada assunto começa com uma **capa** (assunto + estrutura gramatical):
 

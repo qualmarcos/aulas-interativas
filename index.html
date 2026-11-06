@@ -7,19 +7,21 @@
 <meta name="description" content="Aula interativa de português do Brasil — NAB2, Unidade 3: Roupas, escolhas e futuros.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=6">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👕</text></svg>">
 </head>
 <body>
 <div id="app">
   <div id="topbar">
-    <span class="brand">Intercultura · Português do Brasil</span><span>NAB2 · Unidade 3</span>
+    <span class="brand">Intercultura · NAB2 · Unidade 3</span>
     <span class="sp"></span>
     <span class="score">Equipe A <button data-t="0" data-d="-1" aria-label="Tirar ponto da equipe A">−</button><b id="sa">0</b><button data-t="0" data-d="1" aria-label="Dar ponto à equipe A">+</button></span>
     <span class="score">Equipe B <button data-t="1" data-d="-1" aria-label="Tirar ponto da equipe B">−</button><b id="sb">0</b><button data-t="1" data-d="1" aria-label="Dar ponto à equipe B">+</button></span>
+    <button id="bNotes">📝 Notas</button>
+    <button id="bNoteAdd" title="Nova nota neste slide">＋ Nota</button>
     <button id="bWheel">🎡 Roleta</button>
     <button id="bSound">🔊 Som</button>
-    <button id="bTeacher">Respostas · professor</button>
+    <button id="bTeacher" title="Mostrar o gabarito (professor)">✔ Respostas</button>
     <button id="bMenu">☰ Índice</button>
     <button id="bFull">⛶</button>
   </div>
@@ -57,9 +59,10 @@
   </div>
 </div>
 
-<script src="credits.js?v=4"></script>
-<script src="audio.js?v=4"></script>
-<script src="content.js?v=4"></script>
-<script src="app.js?v=4"></script>
+<script src="credits.js?v=6"></script>
+<script src="audio.js?v=6"></script>
+<script src="content.js?v=6"></script>
+<script src="notes.js?v=6"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

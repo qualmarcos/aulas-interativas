@@ -392,6 +392,7 @@ function go(i, quiet) {
   document.querySelector("#progress div").style.width = ((cur + 1) / S.length * 100) + "%";
   document.getElementById("bPrev").disabled = cur === 0; document.getElementById("bNext").disabled = cur === S.length - 1;
   try { history.replaceState(null, "", "#" + (cur + 1)); } catch (e) {}
+  Notes.show(cur);
 }
 document.getElementById("bPrev").onclick = () => go(cur - 1);
 document.getElementById("bNext").onclick = () => go(cur + 1);
@@ -402,6 +403,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft" || e.key === "PageUp") go(cur - 1);
   if (e.key === "Escape") menu.classList.remove("on");
   if (e.key.toLowerCase() === "r") Roleta.open();
+  if (e.key.toLowerCase() === "n") Notes.add();
 });
 document.addEventListener("click", () => Sound.unlock(), true);
 const menu = document.getElementById("menu"), ml = document.getElementById("menuList");
@@ -424,5 +426,6 @@ document.querySelectorAll(".score button").forEach(b => b.onclick = () => {
   d > 0 ? Sound.success() : Sound.tock();
 });
 Roleta.init();
+Notes.init();
 const start = Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1);
 cur = start; go(start, true); if (!els[start].classList.contains("on")) { build(start); els[start].classList.add("on"); }
