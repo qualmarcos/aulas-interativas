@@ -297,3 +297,39 @@ body.nt-dragging #stage::after{content:"Solte a imagem para criar uma nota com s
 .note.drag .nt-grip{cursor:grabbing;background:rgba(0,0,0,.24)}
 .note.drag{transition:none!important;animation:none!important}
 .note.drag textarea,.note.drag .nt-fig{pointer-events:none}
+/* jogo da forca */
+.hang-cats .chip{font-size:15px;padding:6px 12px}
+.hang-grid{display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:22px;align-items:start}
+@media (max-width:700px){.hang-grid{grid-template-columns:1fr}.hang-art{max-width:220px;margin:auto}}
+.hang-art{text-align:center}
+.hang-svg{width:100%;max-height:300px;overflow:visible}
+.hang-svg line,.hang-svg circle,.hang-svg path{fill:none;stroke-linecap:round}
+.gallows line{stroke:#7a5230;stroke-width:6}
+.gallows .rope{stroke:#b08a5a;stroke-width:3}
+.man{transform-origin:140px 20px}
+.man .part{stroke:var(--navy);stroke-width:5;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.man .part.show{opacity:1;animation:drawPart .55s ease-out forwards}
+@keyframes drawPart{to{stroke-dashoffset:0}}
+.face-dead,.face-happy{opacity:0;transition:opacity .4s}
+.face-dead line,.face-dead path,.face-happy path{stroke:var(--navy);stroke-width:2.5}
+.face-happy circle{fill:var(--navy)}
+.hang-svg.lost .face-dead{opacity:1}
+.hang-svg.lost .man{animation:swing 1.6s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-7deg)}}
+.hang-svg.won .face-happy{opacity:1}
+.hang-svg.won .man{animation:jump .5s ease-in-out 3}
+@keyframes jump{50%{transform:translateY(-14px)}}
+.hang-svg.won .part{stroke:var(--ok)}
+.hang .lives{font-size:22px;margin-top:4px}
+.hang-word{display:flex;flex-wrap:wrap;gap:8px;letter-spacing:0;margin:14px 0}
+.hang-word span{display:inline-flex;align-items:flex-end;justify-content:center;width:1.05em;min-height:1.25em;border-bottom:4px solid var(--navy)}
+.hang-word span.sp{border:0;width:.6em}
+.hang-word span.sym{border:0;width:.5em}
+.hang-word span.miss{color:var(--bad)}
+.hang-word span.new{animation:pop .4s}
+.hang-hint{min-height:28px;font-size:19px;color:var(--navy)}
+.hang-wrong{font-size:17px;color:var(--muted);margin:4px 0}
+.hang-wrong b{color:var(--bad);margin-right:4px}
+.keys button.hit{background:var(--okbg);border-color:var(--ok);color:var(--ok);opacity:1}
+.keys button.miss{background:var(--badbg);border-color:var(--bad);color:var(--bad);opacity:.7}
+.hang-actions{margin-top:12px}

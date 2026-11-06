@@ -251,34 +251,88 @@ function R_role(s, el) {
   const rv = h("button", "btn", "Revisar minha produção"); rv.onclick = () => { cl.classList.toggle("on"); Sound.pop(); };
   controls(el, { extra: [sb, rv], reset() { ta.value = ""; [...g.children].forEach(c => c.classList.remove("pick", "win")); cl.querySelectorAll("input").forEach(i => i.checked = false); cl.classList.remove("on"); } });
 }
-/* ---------- forca ---------- */
+/* ---------- forca ----------
+   Desenho da forca e do boneco adaptado de "Hangman" (20 Web Projects with Vanilla JavaScript,
+   Brad Traversy / Packt Publishing, licença MIT): github.com/PacktPublishing/20-Web-Projects-with-Vanilla-JavaScript */
+const HANG_SVG = `<svg viewBox="0 0 200 250" class="hang-svg" aria-hidden="true">
+  <g class="gallows"><line x1="20" y1="230" x2="110" y2="230"/><line x1="60" y1="230" x2="60" y2="20"/><line x1="60" y1="20" x2="140" y2="20"/><line x1="60" y1="55" x2="95" y2="20"/><line x1="140" y1="20" x2="140" y2="50" class="rope"/></g>
+  <g class="man">
+    <circle cx="140" cy="70" r="20" class="part" pathLength="1"/>
+    <line x1="140" y1="90" x2="140" y2="150" class="part" pathLength="1"/>
+    <line x1="140" y1="110" x2="118" y2="132" class="part" pathLength="1"/>
+    <line x1="140" y1="110" x2="162" y2="132" class="part" pathLength="1"/>
+    <line x1="140" y1="150" x2="120" y2="185" class="part" pathLength="1"/>
+    <line x1="140" y1="150" x2="160" y2="185" class="part" pathLength="1"/>
+    <g class="face-dead"><line x1="130" y1="62" x2="136" y2="68"/><line x1="136" y1="62" x2="130" y2="68"/><line x1="144" y1="62" x2="150" y2="68"/><line x1="150" y1="62" x2="144" y2="68"/><path d="M131 80 q9 -6 18 0"/></g>
+    <g class="face-happy"><circle cx="133" cy="65" r="2"/><circle cx="147" cy="65" r="2"/><path d="M130 75 q10 9 20 0"/></g>
+  </g></svg>`;
 function R_hangman(s, el) {
-  header(s, el, "Jogo"); const box = h("div", "card"); el.appendChild(box); let wi = 0, guessed, lives, last;
-  const norm = c => c.normalize("NFD").replace(/[̀-ͯ]/g, "");
-  function start() { guessed = new Set(); lives = 6; last = null; draw(); }
-  function draw() {
-    const [w, hint] = s.words[wi], letters = [...w], win_ = letters.every(c => guessed.has(norm(c))), lose = lives <= 0; box.innerHTML = "";
-    box.appendChild(h("div", "row", `<span class="tag">Palavra ${wi + 1} de ${s.words.length}</span><span class="lives">${"❤️".repeat(Math.max(lives, 0))}${"🤍".repeat(6 - Math.max(lives, 0))}</span>`));
-    box.appendChild(h("p", null, "💡 <b>Dica:</b> " + hint));
-    box.appendChild(h("div", "word", letters.map(c => (guessed.has(norm(c)) || lose) ? `<span class="${norm(c) === last ? "new" : ""}">${c}</span>` : "<span>_</span>").join("")));
-    const k = h("div", "keys");
-    "ABCDEFGHIJLMNOPQRSTUVXZ".split("").forEach(L => {
-      const b = h("button", null, L); b.disabled = guessed.has(L) || win_ || lose;
-      b.onclick = () => { guessed.add(L); last = L; if (!letters.some(c => norm(c) === L)) { lives--; Sound.error(); } else Sound.pop(); draw(); };
-      k.appendChild(b);
-    });
-    box.appendChild(k);
-    const fb = h("div", "fb");
-    if (win_) { fb.className = "fb ok"; fb.textContent = "🎉 Acertou! Diga uma frase com essa palavra."; if (!box._won) win(); box._won = true; }
-    else if (lose) { fb.className = "fb bad"; fb.textContent = "😅 Não foi desta vez. A palavra era " + w + "."; if (!box._lost) Sound.error(); box._lost = true; }
-    else { box._won = false; box._lost = false; }
-    box.appendChild(fb);
-    const r = h("div", "row"); r.style.marginTop = "12px";
-    const nx = h("button", "btn", "Próxima palavra ›"); nx.onclick = () => { wi = (wi + 1) % s.words.length; Sound.whoosh(); start(); };
-    const rs = h("button", "btn ghost", "Recomeçar palavra"); rs.onclick = start;
-    r.appendChild(nx); r.appendChild(rs); box.appendChild(r); box.appendChild(h("div", "tans", "Resposta: " + w));
+  header(s, el, "Jogo");
+  const cats = Object.keys(s.bank), MAX = 6;
+  const norm = c => c.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase();
+  let cat = "Todas", used = new Set(), cur = null, guessed, wrong, over, hintOn;
+  const top = h("div", "chips hang-cats");
+  ["Todas", ...cats].forEach(c => { const b = h("button", "chip", c === "Todas" ? `🎲 Todas (${cats.reduce((n, k) => n + s.bank[k].length, 0)})` : `${c} (${s.bank[c].length})`); b.dataset.c = c; b.onclick = () => { cat = c; Sound.tock(); paintCats(); next(); }; top.appendChild(b); });
+  el.appendChild(top);
+  const box = h("div", "card hang"); el.appendChild(box);
+  box.innerHTML = `<div class="hang-grid"><div class="hang-art">${HANG_SVG}<div class="lives"></div></div>
+    <div class="hang-main"><div class="row"><span class="tag hang-cat"></span><span class="tag hang-count"></span></div>
+    <div class="word hang-word"></div><div class="hang-hint"></div><div class="hang-wrong"></div><div class="keys"></div><div class="fb"></div>
+    <div class="row hang-actions"></div><div class="tans"></div></div></div>`;
+  const $ = q => box.querySelector(q), parts = [...box.querySelectorAll(".part")], svg = $(".hang-svg");
+  const keys = $(".keys");
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => { const b = h("button", null, L); b.dataset.l = L; b.onclick = () => guess(L); keys.appendChild(b); });
+  const actions = $(".hang-actions");
+  const bHint = h("button", "btn ghost", "💡 Mostrar dica"), bNext = h("button", "btn", "Próxima palavra ›"), bA = h("button", "btn green", "+1 Equipe A"), bB = h("button", "btn green", "+1 Equipe B");
+  bHint.onclick = () => { hintOn = true; paint(); Sound.pop(); };
+  bNext.onclick = () => { Sound.whoosh(); next(); };
+  const point = t => { document.querySelectorAll(".score button")[t ? 3 : 1].click(); bA.disabled = bB.disabled = true; };
+  bA.onclick = () => point(0); bB.onclick = () => point(1);
+  [bHint, bNext, bA, bB].forEach(b => actions.appendChild(b));
+  function paintCats() { top.querySelectorAll(".chip").forEach(b => b.classList.toggle("sel", b.dataset.c === cat)); }
+  function pool() { return (cat === "Todas" ? cats : [cat]).flatMap(c => s.bank[c].map(([w, hint]) => ({ w, hint, c }))); }
+  function next() {
+    let p = pool().filter(x => !used.has(x.w)); if (!p.length) { pool().forEach(x => used.delete(x.w)); p = pool(); }
+    cur = p[Math.floor(Math.random() * p.length)]; used.add(cur.w);
+    guessed = new Set(); wrong = []; over = false; hintOn = false; bA.disabled = bB.disabled = true;
+    svg.classList.remove("lost", "won"); parts.forEach(pt => pt.classList.remove("show"));
+    keys.querySelectorAll("button").forEach(b => { b.disabled = false; b.className = ""; });
+    const fb = $(".fb"); fb.className = "fb"; fb.textContent = ""; paint();
   }
-  start(); el.appendChild(h("p", "tip", "Os acentos aparecem sozinhos: basta escolher a letra sem acento (A revela Á, Ã, Â…)."));
+  function letters() { return [...cur.w].filter(c => /[A-ZÀ-Ü]/i.test(c)); }
+  function guess(L) {
+    if (over || guessed.has(L)) return; guessed.add(L);
+    const k = keys.querySelector(`[data-l="${L}"]`); k.disabled = true;
+    if (letters().some(c => norm(c) === L)) { k.className = "hit"; Sound.pop(); }
+    else { k.className = "miss"; wrong.push(L); parts[wrong.length - 1].classList.add("show"); Sound.error(); $(".hang-word").classList.remove("shake"); void box.offsetWidth; $(".hang-word").classList.add("shake"); }
+    paint(true);
+  }
+  function paint(fromGuess) {
+    const won = letters().every(c => guessed.has(norm(c))), lost = wrong.length >= MAX;
+    $(".hang-cat").textContent = "Categoria: " + cur.c;
+    $(".hang-count").textContent = `${letters().length} letras`;
+    $(".hang-word").innerHTML = [...cur.w].map(c => c === " " ? '<span class="sp"></span>' : !/[A-ZÀ-Ü]/i.test(c) ? `<span class="sym">${c}</span>`
+      : (guessed.has(norm(c)) || lost) ? `<span class="l${lost && !guessed.has(norm(c)) ? " miss" : ""}${fromGuess && guessed.has(norm(c)) ? " new" : ""}">${c}</span>` : '<span class="l"></span>').join("");
+    $(".hang-hint").innerHTML = hintOn ? "💡 <b>Dica:</b> " + cur.hint : "";
+    bHint.style.display = (hintOn || won || lost) ? "none" : "";
+    $(".hang-wrong").innerHTML = wrong.length ? "Letras erradas: " + wrong.map(l => `<b>${l}</b>`).join(" ") : "&nbsp;";
+    $(".lives").textContent = "❤️".repeat(MAX - wrong.length) + "🤍".repeat(wrong.length);
+    $(".tans").textContent = "Resposta: " + cur.w;
+    if (!over && (won || lost)) {
+      over = true; keys.querySelectorAll("button").forEach(b => b.disabled = true);
+      const fb = $(".fb");
+      if (won) { svg.classList.add("won"); fb.className = "fb ok"; fb.innerHTML = `🎉 Acertou: <b>${cur.w}</b>! Agora diga uma frase com essa palavra.`; win(); bA.disabled = bB.disabled = false; }
+      else { svg.classList.add("lost"); fb.className = "fb bad"; fb.innerHTML = `😵 Não foi desta vez. A palavra era <b>${cur.w}</b>.`; Sound.error(); }
+    }
+  }
+  // teclado do computador
+  const onKey = e => {
+    if (!el.closest(".slide").classList.contains("on") || /TEXTAREA|INPUT/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+    const L = norm(e.key); if (/^[A-Z]$/.test(L)) { e.preventDefault(); guess(L); } else if (e.key === "Enter" && over) next();
+  };
+  document.addEventListener("keydown", onKey);
+  paintCats(); next();
+  el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra."));
 }
 /* ---------- corrida contra o relógio ---------- */
 function R_race(s, el) {
@@ -356,7 +410,7 @@ function R_credits(s, el) {
   el.appendChild(h("div", "card", `<b>Material de origem</b><p style="font-size:17px">NAB2 – Unidade 3 (flipchart); capa e protocolos Intercultura. Autoria/fonte: acervo fornecido pelo professor. Referência para adaptação pedagógica.</p>`));
   const rows = Object.entries(window.CREDITS || {}).sort().map(([k, c]) => `<tr><td><img src="${I(k)}" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:6px"></td><td><a href="${c.page}" target="_blank" rel="noopener">${c.title.replace(/^File:/, "")}</a></td><td>${c.author}</td><td>${c.license}</td></tr>`).join("");
   el.appendChild(h("div", "card", `<b>Fotografias (Wikimedia Commons)</b><p style="font-size:15px;color:var(--muted)">Imagens usadas sob as licenças indicadas, com redimensionamento e recorte para os quadros.</p><div class="tablewrap"><table class="conj" style="font-size:14px"><tr><th></th><th>Arquivo</th><th>Autoria</th><th>Licença</th></tr>${rows}</table></div>`));
-  el.appendChild(h("div", "card", `<b>Sons:</b> gerados no próprio navegador (Web Audio API).`));
+  el.appendChild(h("div", "card", `<b>Sons:</b> gerados no próprio navegador (Web Audio API).<br><b>Desenho do jogo da forca:</b> adaptado de “Hangman”, em <a href="https://github.com/PacktPublishing/20-Web-Projects-with-Vanilla-JavaScript" target="_blank" rel="noopener">20 Web Projects with Vanilla JavaScript</a> (Brad Traversy / Packt Publishing), licença MIT.`));
 }
 /* ---------- slides simples ---------- */
 function R_cover(s, el) {
@@ -402,6 +456,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowRight" || e.key === "PageDown") go(cur + 1);
   if (e.key === "ArrowLeft" || e.key === "PageUp") go(cur - 1);
   if (e.key === "Escape") menu.classList.remove("on");
+  if (S[cur].type === "hangman" && /^[a-zç]$/i.test(e.key)) return; // na forca, as letras são do jogo
   if (e.key.toLowerCase() === "r") Roleta.open();
   if (e.key.toLowerCase() === "n") Notes.add();
 });

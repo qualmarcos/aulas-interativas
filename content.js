@@ -72,9 +72,51 @@ S.push({ type: "photoquiz", title: "Que peça é esta?", lead: "Observe a foto e
 S.push({ type: "sort", title: "Uma missão para cada peça", lead: "Toque em uma peça e depois no grupo certo. Toque numa peça já colocada para devolvê-la.",
   groups: ["❄️ Destino frio", "🥾 Caminhada ao ar livre", "🏖️ Praia ou piscina"],
   items: [["Luvas de lã", 0], ["Casaco quente", 0], ["Cachecol", 0], ["Tênis para caminhar", 1], ["Boné", 1], ["Bermuda leve", 1], ["Maiô", 2], ["Sunga", 2], ["Canga", 2], ["Chinelo", 2]] });
-S.push({ type: "hangman", title: "Jogo da forca: o guarda-roupa", lead: "Descubra a palavra antes de perder as 6 vidas. Cada equipe joga uma palavra!", words: [
-  ["JAQUETA", "Parecida com um casaco, porém mais curta e leve."], ["PULSEIRA", "Acessório usado no pulso."], ["BERMUDA", "Calça curta, até o joelho."], ["CHINELO", "Calçado aberto, muito usado no Brasil no calor."],
-  ["PIJAMA", "Roupa para dormir."], ["RELÓGIO", "Acessório que mostra as horas."], ["CHAPÉU", "Protege a cabeça do sol; tem aba toda em volta."], ["PALETÓ", "Parte de cima de um terno."], ["SUNGA", "Roupa de banho masculina, comum nas praias do Brasil."]] });
+S.push({ type: "hangman", title: "Jogo da forca: o guarda-roupa", lead: "Escolha uma categoria (ou todas) e descubra a palavra antes de o boneco ficar completo. Cada equipe joga uma palavra!", bank: {
+  "Roupas": [
+    ["CAMISETA", "Peça de manga curta, sem botões, muito usada no calor."], ["CAMISA", "Tem gola e botões na frente."], ["REGATA", "Camiseta sem mangas."],
+    ["CALÇA", "Cobre as duas pernas, da cintura até o tornozelo."], ["BERMUDA", "Calça curta, até perto do joelho."], ["SAIA", "Cobre da cintura para baixo, sem separar as pernas."],
+    ["VESTIDO", "Peça única que cobre o tronco e as pernas."], ["TERNO", "Roupa formal: paletó e calça do mesmo tecido."], ["PALETÓ", "A parte de cima de um terno."],
+    ["PIJAMA", "Roupa para dormir."], ["MOLETOM", "Blusa de frio de tecido grosso e macio, às vezes com capuz."], ["JAQUETA", "Parecida com um casaco, porém mais curta."],
+    ["CASACO", "Peça grossa que usamos por cima da roupa no frio."], ["BLUSA", "Peça que cobre a parte de cima do corpo; no Brasil também pode ser a “blusa de frio”."],
+    ["MACACÃO", "Peça única com calça e parte de cima juntas."], ["UNIFORME", "Roupa igual para todos de uma escola ou empresa."]],
+  "Calçados e acessórios": [
+    ["TÊNIS", "Calçado confortável para caminhar e fazer esporte."], ["SAPATO", "Calçado fechado, mais formal."], ["SANDÁLIA", "Calçado aberto, preso por tiras."],
+    ["CHINELO", "Calçado aberto e simples, muito usado no Brasil no calor."], ["BOTA", "Calçado que cobre o tornozelo ou parte da perna."], ["MEIA", "Usamos nos pés, dentro do sapato ou do tênis."],
+    ["CINTO", "Usamos na cintura para ajustar a calça."], ["BOLSA", "Serve para carregar carteira, chaves e celular."], ["MOCHILA", "Bolsa que levamos nas costas."],
+    ["RELÓGIO", "Mostra as horas; usamos no pulso."], ["COLAR", "Joia ou bijuteria usada no pescoço."], ["BRINCO", "Usamos na orelha."], ["PULSEIRA", "Usamos no pulso, como enfeite."],
+    ["ANEL", "Usamos no dedo."], ["ÓCULOS", "Protegem os olhos do sol ou ajudam a enxergar."], ["BONÉ", "Protege a cabeça do sol; tem aba só na frente."],
+    ["CHAPÉU", "Protege a cabeça; tem aba em volta toda."], ["GRAVATA", "Acessório usado no pescoço, com camisa e terno."], ["CARTEIRA", "Onde guardamos dinheiro e documentos."], ["GUARDA-CHUVA", "Protege da chuva."]],
+  "Praia e clima": [
+    ["SUNGA", "Roupa de banho masculina, comum nas praias do Brasil."], ["MAIÔ", "Roupa de banho feminina de uma peça só."], ["BIQUÍNI", "Roupa de banho de duas peças."],
+    ["CANGA", "Tecido leve para sentar na areia ou amarrar na cintura."], ["GUARDA-SOL", "Grande sombrinha que levamos para a praia."], ["PROTETOR SOLAR", "Creme que protege a pele do sol."],
+    ["CACHECOL", "Usamos no pescoço quando faz frio."], ["LUVAS", "Protegem as mãos do frio."], ["TOUCA", "Protege a cabeça e as orelhas do frio."],
+    ["CAPA DE CHUVA", "Roupa impermeável para dias chuvosos."], ["CALOR", "O contrário de frio."], ["VERÃO", "Estação mais quente do ano."], ["INVERNO", "Estação mais fria do ano."]],
+  "Cores, materiais e padrões": [
+    ["VERMELHO", "A cor do Garantido, em Parintins."], ["AZUL", "A cor do Caprichoso, em Parintins."], ["AMARELO", "A cor do sol e da camisa da seleção brasileira."],
+    ["LARANJA", "Cor e também uma fruta."], ["MARROM", "A cor do café e do chocolate."], ["CINZA", "Mistura de preto e branco."], ["ROXO", "Mistura de vermelho e azul."],
+    ["DOURADO", "Da cor do ouro."], ["ALGODÃO", "Tecido natural, leve e fresco."], ["COURO", "Material de cintos, bolsas e sapatos."], ["SEDA", "Tecido fino e brilhante."],
+    ["JEANS", "Tecido azul resistente, usado em calças."], ["LISTRADO", "Com listras."], ["XADREZ", "Com quadrados, como nas festas juninas."], ["ESTAMPADO", "Com desenhos coloridos no tecido."], ["LISO", "De uma cor só, sem desenhos."]],
+  "Na loja": [
+    ["PROVADOR", "Lugar da loja onde experimentamos a roupa."], ["TAMANHO", "P, M, G ou GG."], ["ETIQUETA", "Mostra o preço, o tamanho e o material."],
+    ["DESCONTO", "Quando o preço fica mais baixo."], ["PARCELAR", "Pagar em várias vezes no cartão."], ["CARTÃO", "Forma de pagamento: de crédito ou de débito."],
+    ["VITRINE", "Onde a loja mostra as roupas para quem passa na rua."], ["CAIXA", "Lugar onde pagamos."], ["VENDEDOR", "Pessoa que atende e ajuda o cliente."],
+    ["EXPERIMENTAR", "Vestir a roupa antes de comprar."], ["APERTADA", "Quando a roupa fica pequena demais."], ["PROMOÇÃO", "Período com preços mais baixos."], ["TROCA", "Devolver uma peça para pegar outra."]],
+  "Amazonas e Parintins": [
+    ["AMAZONAS", "Estado onde fica Parintins."], ["PARINTINS", "Cidade do famoso festival dos bois-bumbás."], ["CAPRICHOSO", "O boi azul do festival."],
+    ["GARANTIDO", "O boi vermelho do festival."], ["BUMBÓDROMO", "A arena onde os bois se apresentam."], ["FIGURINO", "Conjunto de roupas de uma apresentação."],
+    ["ADEREÇO", "Objeto usado para compor a roupa ou a cena."], ["ALEGORIA", "Grande estrutura decorada que representa um tema."], ["CENÁRIO", "Ambiente montado onde a cena acontece."],
+    ["MANAUS", "Capital do Amazonas."], ["TORCIDA", "Grupo de pessoas que apoia um dos bois."], ["FLORESTA", "A Amazônia é a maior do mundo."], ["RIO NEGRO", "Rio que passa por Manaus."]],
+  "Verbos no futuro": [
+    ["FAREI", "Fazer · eu · futuro do presente."], ["DIREI", "Dizer · eu · futuro do presente."], ["TRAREI", "Trazer · eu · futuro do presente."],
+    ["VIRÃO", "Vir · eles · futuro do presente."], ["IREMOS", "Ir · nós · futuro do presente."], ["VIAJAREMOS", "Viajar · nós · futuro do presente."],
+    ["POREI", "Pôr · eu · futuro do presente."], ["FARIA", "Fazer · eu · futuro do pretérito."], ["GOSTARIA", "Gostar · eu · futuro do pretérito (pedido educado)."],
+    ["PODERIA", "Poder · você · futuro do pretérito (pedido educado)."], ["DIRIA", "Dizer · eu · futuro do pretérito."], ["COMPRARIA", "Comprar · eu · futuro do pretérito."], ["VESTIREMOS", "Vestir · nós · futuro do presente."]],
+  "Formas e posições": [
+    ["CÍRCULO", "Forma redonda."], ["QUADRADO", "Quatro lados iguais."], ["RETÂNGULO", "Quatro lados: dois longos e dois curtos."],
+    ["TRIÂNGULO", "Forma de três lados."], ["LOSANGO", "Forma da bandeira do Brasil, no meio do verde."], ["ESQUERDA", "O contrário de direita."],
+    ["DIREITA", "O contrário de esquerda."], ["EMBAIXO", "O contrário de em cima."], ["ENTRE", "No meio de duas coisas."], ["AO LADO", "Perto, na lateral."]]
+} });
 S.push({ type: "html", menu: "Descrever ajuda a encontrar", html: `
   <div class="kicker"><span>Roupas, escolhas e futuros</span><span>Estrutura</span></div>
   <h1>Descrever ajuda a encontrar</h1>

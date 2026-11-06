@@ -32,10 +32,10 @@ Cada assunto começa com uma **capa** (assunto + estrutura gramatical):
 9. Costumes e reações
 10. Formas e posições
 
-Jogos: memória (fotos, formas, verbos), forca, desafio relâmpago com cronômetro, quiz com fotos, galeria que vira, classificar, ordenar, associar, lacunas, “Onde está?”, sorteio de situações e roleta da turma.
+Jogos: memória (fotos, formas, verbos), forca com desenho do boneco e mais de 100 palavras em 8 categorias, desafio relâmpago com cronômetro, quiz com fotos, galeria que vira, classificar, ordenar, associar, lacunas, “Onde está?”, sorteio de situações e roleta da turma.
 
 ## Editar o conteúdo
 Todo o texto está em `content.js` (um `S.push({...})` por slide).
 
 ## Créditos
-Fotos do Wikimedia Commons (autoria e licença no slide “Referências e créditos” e em `credits.js`). Sons gerados com Web Audio API.
+Fotos do Wikimedia Commons (autoria e licença no slide “Referências e créditos” e em `credits.js`). Sons gerados com Web Audio API. Desenho da forca adaptado de “Hangman” (20 Web Projects with Vanilla JavaScript — Brad Traversy / Packt Publishing, licença MIT).
