@@ -7,7 +7,7 @@
 <meta name="description" content="Aula interativa de português do Brasil — NAB3, Unidade 2: tempo e clima, preferências, expressões impessoais com subjuntivo e o marabaixo do Amapá.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
 </head>
 <body>
@@ -78,6 +78,11 @@
         <button class="btn ghost" id="wReset">↺ Restaurar lista</button>
       </div>
       <p class="tip" id="wDone"></p>
+      <div class="w-teams">
+        <div class="w-teams-head"><h3>👥 Equipes</h3><button class="btn ghost" id="wTeamsDraw">🔀 Sortear equipes</button></div>
+        <p class="w-teams-tip">Arraste um nome para a outra equipe (ou toque nele para trocar de lado). Toque no nome da equipe para mudá-lo.</p>
+        <div class="w-teams-grid" id="wTeams"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -88,7 +93,7 @@
 <script src="audio.js?v=2"></script>
 <script src="content.js?v=2"></script>
 <script src="notes.js?v=2"></script>
-<script src="teams.js?v=2"></script>
+<script src="teams.js?v=3"></script>
 <script src="sala.js?v=2"></script>
 <script src="app.js?v=4"></script>
 </body>

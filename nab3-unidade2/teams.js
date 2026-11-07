@@ -87,6 +87,9 @@ const Teams = (() => {
     const fresh = !st.a.length && !st.b.length;
     if (fresh) draw(); else { sync(); emit(); }
     window.addEventListener("roleta-nomes", () => { sync(); emit(); });
+    /* as equipes também aparecem nas configurações da roleta */
+    const wt = document.getElementById("wTeams");
+    if (wt) { wt.append(panel(0), panel(1)); document.getElementById("wTeamsDraw").onclick = () => { draw(); try { Sound.whoosh(); } catch (_) {} }; }
   }
   return { init, panel, tools, nextTurn, player, name, onChange: f => subs.push(f), get turn() { return st.turn; }, refresh: emit };
 })();

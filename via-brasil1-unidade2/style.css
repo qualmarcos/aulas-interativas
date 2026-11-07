@@ -503,3 +503,15 @@ h1{margin:.15em 0 .15em}
 .bill-t{display:flex;justify-content:space-between;margin-top:6px;padding-top:6px;border-top:2px dashed #d8cba0;font-weight:900;font-size:17px}
 @keyframes billIn{from{opacity:0;transform:translateY(14px) rotate(-1deg)}to{opacity:1;transform:none}}
 @media (max-width:900px){.tally-board{grid-template-columns:1fr}}
+
+/* equipes dentro da roleta */
+.w-teams{margin-top:10px;border-top:2px solid var(--line);padding-top:10px}
+.w-teams-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.w-teams-head h3{margin:0;font-size:20px}
+.w-teams-head .btn{padding:6px 10px;font-size:15px}
+.w-teams-tip{margin:6px 0 8px;font-size:14px;color:var(--muted)}
+.w-teams-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.w-teams .team-panel{min-height:0;padding:8px}
+.w-teams .tp-list{flex-direction:row;flex-wrap:wrap;gap:5px}
+.w-teams .tp-member{font-size:14px;padding:4px 8px}
+#wheel textarea{min-height:130px}

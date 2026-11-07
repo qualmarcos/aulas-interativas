@@ -444,3 +444,15 @@ h1{margin:.15em 0 .15em}
 .me-score{font-size:34px;margin:6px 0}
 .me-score .t0 b{color:var(--blue)} .me-score .t1 b{color:var(--bad)}
 .me-sub{color:var(--muted);margin-bottom:14px}
+
+/* equipes dentro da roleta */
+.w-teams{margin-top:10px;border-top:2px solid var(--line);padding-top:10px}
+.w-teams-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.w-teams-head h3{margin:0;font-size:20px}
+.w-teams-head .btn{padding:6px 10px;font-size:15px}
+.w-teams-tip{margin:6px 0 8px;font-size:14px;color:var(--muted)}
+.w-teams-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.w-teams .team-panel{min-height:0;padding:8px}
+.w-teams .tp-list{flex-direction:row;flex-wrap:wrap;gap:5px}
+.w-teams .tp-member{font-size:14px;padding:4px 8px}
+#wheel textarea{min-height:130px}
