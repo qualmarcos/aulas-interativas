@@ -29,7 +29,6 @@ Cada atividade mostra **de quem é a vez** (equipe e aluno), o **placar da ativi
 | Desafio relâmpago | quanto mais rápido, mais pontos (3/2/1) |
 | Memória | achou o par = +1 e joga de novo · errou = passa a vez |
 | Classificar / ordenar / associar | tudo certo no 1º “Conferir” = 5 · 2º = 3 · depois = 1 · se errar, a outra equipe continua |
-| Onde está? | acertou = 2 |
 | Produções | o professor dá +1, +2 ou +3 para cada equipe |
 
 **⇄ Passar a vez** troca a equipe; **Sem equipes** desliga o modo (sem vez e sem pontos).
