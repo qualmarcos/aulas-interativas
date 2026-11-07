@@ -12,6 +12,8 @@ img{max-width:100%}
 /* ---------- barra superior ---------- */
 #topbar{display:flex;align-items:center;gap:6px;padding:7px 12px;background:var(--navy);color:#fff;font-size:13px;flex-wrap:wrap;z-index:5}
 #topbar .brand{font-weight:800}
+#topbar .home{color:#fff;text-decoration:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:3px 7px}
+#topbar .home:hover{background:rgba(255,255,255,.28)}
 #topbar .sp{flex:1}
 #topbar button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:5px 8px;transition:.15s}
 #topbar button:hover{background:rgba(255,255,255,.28);transform:translateY(-1px)}

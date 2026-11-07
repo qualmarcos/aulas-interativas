@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aulas Interativas · Intercultura</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<style>
+:root{--navy:#1d3557;--blue:#2356a0;--bg:#f4f7fb;--card:#fff;--ink:#1d2b3a;--muted:#5d6b7a;--line:#d8e0ea;--gold:#f2b705;--green:#3f8a4b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:var(--navy);color:#fff;padding:36px 16px 64px;text-align:center}
+header .k{letter-spacing:.14em;text-transform:uppercase;font-size:12px;opacity:.75;font-weight:700}
+header h1{margin:8px 0 6px;font-size:clamp(28px,5vw,44px)}
+header p{margin:0;opacity:.85}
+main{max-width:1040px;margin:-40px auto 40px;padding:0 16px}
+.search{display:flex;justify-content:center;margin-bottom:22px}
+.search input{width:min(420px,100%);padding:12px 16px;border-radius:999px;border:1px solid var(--line);font:inherit;font-size:15px;box-shadow:0 6px 18px rgba(29,53,87,.12)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.card{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(29,53,87,.10);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(29,53,87,.18)}
+.card .pic{height:160px;background:#ccd center/cover no-repeat;position:relative}
+.card .tag{position:absolute;left:12px;top:12px;background:var(--gold);color:var(--navy);font-weight:800;font-size:12px;padding:4px 10px;border-radius:999px}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h2{margin:0;font-size:20px}
+.card .sub{color:var(--blue);font-weight:700}
+.card .gram{color:var(--muted);font-size:14px;line-height:1.4}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.card .chips span{background:#eaf1f9;color:var(--navy);font-size:12px;padding:3px 9px;border-radius:999px}
+.card .go{margin-top:auto;padding-top:12px;font-weight:800;color:var(--green)}
+.empty{text-align:center;color:var(--muted);display:none}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
+</style>
+</head>
+<body>
+<header>
+  <div class="k">Intercultura · Classes de Português</div>
+  <h1>🎓 Aulas interativas</h1>
+  <p>Escolha a aula para projetar na sala.</p>
+</header>
+<main>
+  <div class="search"><input id="q" type="search" placeholder="Buscar aula ou tema…" aria-label="Buscar aula"></div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty">Nenhuma aula encontrada.</p>
+</main>
+<footer>Para adicionar uma aula nova, crie uma pasta neste repositório e acrescente-a à lista em <code>index.html</code>.</footer>
+<script>
+const AULAS = [
+  { dir: "via-brasil1-unidade2/", tag: "VIA Brasil 1 · Unidade 2", title: "Mensagens, desejos e jeitos de dizer",
+    sub: "💬 Interjeições, subjuntivo e expressões", img: "via-brasil1-unidade2/img/celular.jpg",
+    gram: "Presente e imperfeito do subjuntivo · Colocação pronominal · Formação de palavras · Superlativo · Regência · Sons do X",
+    chips: ["📱 Sala com QR", "💰 Quanto você tem?", "Forca", "Equipes"] },
+  { dir: "nab2-unidade3/", tag: "NAB2 · Unidade 3", title: "Escolhas que vestem o futuro",
+    sub: "🧳 Roupas, compras e planos", img: "nab2-unidade3/img/mala.jpg",
+    gram: "Futuro do presente · Futuro do pretérito · Verbos vestir, pôr, ir e vir",
+    chips: ["Galeria", "Memória", "Forca", "Equipes"] },
+];
+const grid = document.getElementById("grid"), q = document.getElementById("q");
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+function paint() {
+  const t = norm(q.value.trim());
+  const list = AULAS.filter(a => !t || norm([a.tag, a.title, a.sub, a.gram, ...a.chips].join(" ")).includes(t));
+  grid.innerHTML = list.map(a => `<a class="card" href="${a.dir}">
+    <div class="pic" style="background-image:url('${a.img}')"><span class="tag">${a.tag}</span></div>
+    <div class="body"><h2>${a.title}</h2><div class="sub">${a.sub}</div><div class="gram">${a.gram}</div>
+    <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">Abrir aula →</div></div></a>`).join("");
+  document.getElementById("empty").style.display = list.length ? "none" : "block";
+}
+q.oninput = paint; paint();
+</script>
+</body>
+</html>
