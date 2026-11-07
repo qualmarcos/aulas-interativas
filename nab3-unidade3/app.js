@@ -681,16 +681,13 @@ function R_tally(s, el) {
   paint();
 }
 /* ---------- embaralha as opções (a resposta certa não fica sempre em primeiro) ----------
-   A ordem é fixa para cada pergunta (semente = texto), então não muda ao recarregar. */
+   Ordem aleatória, sorteada de novo cada vez que a aula é aberta. */
 (function shuffleOptions() {
-  const seedOf = t => { let x = 2166136261; for (const c of t) { x ^= c.charCodeAt(0); x = Math.imul(x, 16777619); } return x >>> 0; };
   S.forEach(s => (s.items || []).forEach(q => {
     if (!q || !Array.isArray(q.o) || typeof q.a !== "number" || q.o.length < 2) return;
-    let r = seedOf((q.q || q.t || "") + q.o.join("|"));
-    const rnd = () => { r = (Math.imul(r, 1103515245) + 12345) >>> 0; return r / 4294967296; };
-    const idx = q.o.map((_, i) => i);
-    for (let i = idx.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
-    const right = q.o[q.a]; q.o = idx.map(i => q.o[i]); q.a = q.o.indexOf(right);
+    const right = q.o[q.a], o = q.o.slice();
+    for (let i = o.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; }
+    q.o = o; q.a = o.indexOf(right);
   }));
 })();
 const R = { cover: R_cover, img: R_img, html: R_html, mc: R_mc, photoquiz: R_photoquiz, fill: R_fill, reveal: R_reveal, memory: R_memory, gallery: R_gallery, photos: R_photos, sort: R_sort, order: R_order, match: R_match, role: R_role, hangman: R_hangman, race: R_race, where: R_where, wheel: R_wheel, credits: R_credits, tally: R_tally };
