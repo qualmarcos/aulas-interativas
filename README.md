@@ -4,6 +4,7 @@ Página inicial com todas as aulas: **https://qualmarcos.github.io/aulas-interat
 
 | Aula | Pasta | Link direto |
 |---|---|---|
+| NAB3 · Unidade 2 | `nab3-unidade2/` | https://qualmarcos.github.io/aulas-interativas/nab3-unidade2/ |
 | VIA Brasil 1 · Unidade 2 | `via-brasil1-unidade2/` | https://qualmarcos.github.io/aulas-interativas/via-brasil1-unidade2/ |
 | NAB2 · Unidade 3 | `nab2-unidade3/` | https://qualmarcos.github.io/aulas-interativas/nab2-unidade3/ |
 
