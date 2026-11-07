@@ -11,6 +11,19 @@ Aula em formato de slides, com jogos e atividades, adaptada do material *VIA Bra
 - O botão **🔊 Som** liga/desliga os sons das atividades (acerto, erro, roleta, cronômetro).
 - **Respostas · professor** mostra o gabarito em todas as atividades.
 
+## 📱 Sala: alunos pelo celular (QR)
+- Clique em **📱 Sala** no topo: aparece um **QR** e um código. Cada aluno aponta a câmera, escreve o nome e **entra direto na 🎡 roleta** (e nas equipes).
+- A sala fica aberta durante toda a aula; o botão mostra quantos alunos estão conectados. Se a página for recarregada, a sala reabre com o mesmo código e os celulares se reconectam sozinhos.
+- Funciona sem conta e sem servidor: o celular conversa direto com o computador do professor (WebRTC/PeerJS). Precisa de internet e da aula aberta pelo link do GitHub Pages (não como arquivo).
+- **↻ Nova sala** gera outro código.
+
+## 💰 Quanto você tem?
+- **Um aluno por vez:** a tela mostra “Vez de: …” (ordem da roleta ou **🔀 Sortear a ordem**). O aluno marca o que já fez e toca **✔ Confirmar e passar a vez**. Toque num nome para jogar fora da ordem ou refazer.
+- **Preços escondidos** (o professor pode usar **👁 Mostrar preços**).
+- **Pelo celular:** com a sala aberta, cada aluno vê a lista **sem preços** no celular e envia; o nome ganha 📱.
+- **🧾 Revelar faturas:** placar de quem tem mais (empates dividem a posição) e a fatura de cada aluno, item por item. Cada celular também recebe a sua fatura e a sua posição.
+- As respostas ficam salvas no navegador; **🗑 Zerar** (toque duas vezes) recomeça.
+
 ## Equipes (jogo da forca)
 - As equipes usam **os mesmos nomes da roleta**, divididos ao acaso em duas (**🔀 Sortear equipes** refaz a divisão).
 - A Equipe A fica à esquerda e a B à direita. **A vez alterna a cada palavra** e, dentro da equipe, gira quem joga.

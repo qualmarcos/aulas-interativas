@@ -455,3 +455,49 @@ h1{margin:.15em 0 .15em}
 .tally-total{margin-top:12px;font-size:30px;text-align:center;padding:10px;border-radius:14px;background:rgba(242,183,5,.18)}
 .tally-name{font:inherit;font-size:18px;padding:8px 12px;border-radius:10px;border:2px solid rgba(0,0,0,.15);min-width:220px}
 .tally-log{margin-top:10px;font-size:18px;line-height:1.6}
+
+/* ---------- Sala (QR para os celulares) ---------- */
+#sala{align-items:center;justify-content:center;padding:12px}
+#sala .box{background:#fff;border-radius:20px;max-width:980px;width:100%;max-height:96vh;overflow:auto;padding:18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;animation:pop .35s;position:relative}
+#sala h2{margin:0 0 8px}
+.sala-left{text-align:center}
+.sala-qr{width:min(100%,380px);aspect-ratio:1;margin:0 auto;display:grid;place-items:center;background:#fff;border-radius:16px;border:2px solid var(--line)}
+.sala-qr svg{width:100%;height:100%;display:block}
+.sala-wait{font-size:60px;animation:bob 2s ease-in-out infinite}
+.sala-code{margin-top:10px;font-size:22px}
+.sala-code b{font-size:34px;letter-spacing:4px;color:var(--blue)}
+.sala-url{display:block;margin-top:6px;font-size:14px;color:var(--muted);word-break:break-all}
+.sala-status{display:inline-block;padding:6px 12px;border-radius:999px;background:#eef3f9;font-weight:800}
+.sala-status.on{background:var(--okbg);color:var(--ok)}
+.sala-status.error,.sala-status.nolib{background:var(--badbg);color:var(--bad)}
+.sala-warn{background:#fff6d6;border-radius:10px;padding:8px 12px;font-size:16px}
+.sala-list{display:flex;flex-wrap:wrap;gap:6px;max-height:34vh;overflow:auto}
+.sala-st{padding:5px 10px;border-radius:999px;background:#eef3f9;color:var(--muted);font-weight:700}
+.sala-st.on{background:var(--okbg);color:var(--ink)}
+.sala-empty{color:var(--muted);font-size:16px}
+@media (max-width:760px){#sala .box{grid-template-columns:1fr}}
+.tally.hide-prices .tv{visibility:hidden}
+.tally-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.tally-bar .turn-badge{font-size:20px}
+.tally-prog{color:var(--muted);font-weight:700}
+.tally-act{margin-top:12px;flex-wrap:wrap}
+.tally-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tchip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font-weight:700;color:var(--muted)}
+.tchip.done{background:var(--okbg);border-color:var(--ok);color:var(--ink)}
+.tchip.cur{border-color:var(--gold);background:#fff6d6;color:var(--navy)}
+.tally-board{display:grid;grid-template-columns:minmax(260px,1fr) 2fr;gap:16px;align-items:start;margin-top:4px}
+.tally-board:empty{display:none}
+.tb{background:#fff;border-radius:16px;padding:12px 16px;border:2px solid var(--line)}
+.tb h3{margin:0 0 8px}
+.tb-row{display:flex;gap:10px;align-items:center;padding:6px 4px;border-bottom:1px dashed var(--line);font-size:19px}
+.tb-row.first{font-size:23px;color:var(--navy)}
+.tb-pos{width:38px;text-align:center}
+.tb-name{flex:1}
+.bills{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.bill{background:#fffdf5;border:1px solid #e9dfc0;border-radius:6px;padding:12px 14px;font-family:"Courier New",monospace;font-size:15px;box-shadow:0 3px 8px rgba(0,0,0,.08);opacity:0;animation:billIn .45s forwards}
+.bill-h{font-family:Nunito,sans-serif;font-size:17px;margin-bottom:6px;padding-bottom:6px;border-bottom:2px dashed #d8cba0}
+.bill-l{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
+.bill-l span:last-child{white-space:nowrap}
+.bill-t{display:flex;justify-content:space-between;margin-top:6px;padding-top:6px;border-top:2px dashed #d8cba0;font-weight:900;font-size:17px}
+@keyframes billIn{from{opacity:0;transform:translateY(14px) rotate(-1deg)}to{opacity:1;transform:none}}
+@media (max-width:900px){.tally-board{grid-template-columns:1fr}}

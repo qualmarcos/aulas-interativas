@@ -598,19 +598,85 @@ function R_cover(s, el) {
 }
 function R_img(s, el) { el.classList.add("imgslide"); el.innerHTML = `<img src="${I(s.src)}" alt="${s.menu}">`; }
 function R_html(s, el) { el.innerHTML = s.html; }
-/* ---------- "Quanto você tem?": cada um marca o que já fez e soma o dinheiro ---------- */
+/* ---------- "Quanto você tem?": um aluno por vez (no quadro ou no celular), preços escondidos, faturas no final ---------- */
 function R_tally(s, el) {
   header(s, el, "Aquecimento");
+  const id = "tally-" + S.indexOf(s), KEY = "viab1u2-" + id;
   const money = n => "R$ " + n.toLocaleString("pt-BR");
-  const list = h("div", "tally"), tot = h("div", "tally-total"), log = h("div", "tally-log");
-  el.appendChild(list); el.appendChild(tot);
-  const boxes = s.items.map(([txt, v]) => { const l = h("label", "tally-item", `<input type="checkbox"><span class="tt">${txt}</span><span class="tv">${money(v)}</span>`); list.appendChild(l); const c = l.querySelector("input"); c.onchange = () => { l.classList.toggle("on", c.checked); c.checked ? Sound.pop() : Sound.tock(); paint(); }; return [c, v]; });
-  const sum = () => boxes.reduce((a, [c, v]) => a + (c.checked ? v : 0), 0);
-  function paint() { const n = sum(); tot.innerHTML = `💰 Você tem <b>${money(n)}</b>`; restart(tot, "bump"); }
-  const nm = h("input", "tally-name"); nm.placeholder = "Nome do aluno"; nm.addEventListener("keydown", e => e.stopPropagation());
-  const sv = h("button", "btn gold", "Registrar e limpar"); const rows = [];
-  sv.onclick = () => { const n = sum(); rows.push([nm.value.trim() || "Aluno " + (rows.length + 1), n]); rows.sort((a, b) => b[1] - a[1]); log.innerHTML = "<b>🏆 Quem tem mais?</b>" + rows.map(([a, b], i) => `<div>${i === 0 ? "👑" : i + 1 + "."} ${a} — <b>${money(b)}</b></div>`).join(""); nm.value = ""; boxes.forEach(([c]) => { c.checked = false; c.parentNode.classList.remove("on"); }); paint(); Sound.success(); };
-  const r = h("div", "row"); r.style.marginTop = "10px"; r.append(nm, sv); el.appendChild(r); el.appendChild(log);
+  let st = { res: {}, revealed: false }; try { st = Object.assign(st, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+  let showPrices = false, turn = null, order = null, editing = false;
+  const totalOf = picks => picks.reduce((a, i) => a + s.items[i][1], 0);
+  const roster = () => { const base = order || Roleta.allNames(); return [...base, ...Object.keys(st.res).filter(n => !base.includes(n))]; };
+  const nextName = () => roster().find(n => !st.res[n]) || null;
+
+  const bar = h("div", "tally-bar"), list = h("div", "tally"), act = h("div", "row tally-act"), chips = h("div", "tally-chips"), board = h("div", "tally-board");
+  el.append(bar, list, act, chips, board);
+  const boxes = s.items.map(([txt, v]) => {
+    const l = h("label", "tally-item", `<input type="checkbox"><span class="tt">${txt}</span><span class="tv">${money(v)}</span>`); list.appendChild(l);
+    const c = l.querySelector("input"); c.onchange = () => { l.classList.toggle("on", c.checked); c.checked ? Sound.pop() : Sound.tock(); }; return c;
+  });
+  const setPicks = picks => boxes.forEach((c, i) => { c.checked = picks.includes(i); c.parentNode.classList.toggle("on", c.checked); });
+  const picked = () => boxes.map((c, i) => c.checked ? i : -1).filter(i => i >= 0);
+
+  const bOk = h("button", "btn green", "✔ Confirmar e passar a vez"), bSkip = h("button", "btn ghost", "⏭ Pular"), bMix = h("button", "btn ghost", "🔀 Sortear a ordem");
+  const bPrice = h("button", "btn ghost"), bQR = h("button", "btn gold", "📱 Responder pelo celular"), bShow = h("button", "btn", "🧾 Revelar faturas"), bZero = h("button", "btn ghost", "🗑 Zerar");
+  act.append(bOk, bSkip, bMix, bPrice, bQR, bShow, bZero);
+
+  function paint() {
+    list.classList.toggle("hide-prices", !showPrices);
+    bPrice.textContent = showPrices ? "🙈 Esconder preços" : "👁 Mostrar preços";
+    if (turn && st.res[turn] && !editing) turn = null;
+    if (!turn) turn = nextName();
+    const done = roster().filter(n => st.res[n]).length, all = roster().length;
+    bar.innerHTML = st.revealed ? `<span class="turn-badge t0">🧾 Faturas reveladas</span>`
+      : turn ? `<span class="turn-badge t0">🎯 Vez de: <b>${turn}</b></span><span class="tally-prog">${done} de ${all} já responderam</span>`
+      : `<span class="turn-badge t1">✅ Todos responderam!</span><span class="tally-prog">Toque em “🧾 Revelar faturas”.</span>`;
+    [list, bOk, bSkip, bMix].forEach(x => x.style.display = st.revealed ? "none" : "");
+    bOk.disabled = !turn; bSkip.disabled = !turn;
+    bShow.textContent = st.revealed ? "↩ Voltar ao jogo" : "🧾 Revelar faturas";
+    chips.innerHTML = st.revealed ? "" : roster().map(n => { const r = st.res[n]; return `<button class="tchip ${r ? "done" : ""} ${n === turn ? "cur" : ""}" data-n="${n.replace(/"/g, "&quot;")}" title="${r ? "Toque para refazer" : "Toque para jogar agora"}">${r ? (r.via === "phone" ? "📱" : "✔") : "…"} ${n}</button>`; }).join("");
+    chips.querySelectorAll(".tchip").forEach(b => b.onclick = () => { turn = b.dataset.n; editing = !!st.res[turn]; setPicks(st.res[turn] ? st.res[turn].picks : []); Sound.tock(); paint(); });
+    board.innerHTML = st.revealed ? boardHTML() : "";
+    fitSoon();
+  }
+  function fitSoon() { if (S[cur] === s) setTimeout(fit, 30); }
+  function record(name, picks, via) { st.res[name] = { picks, via, at: Date.now() }; save(); }
+  bOk.onclick = () => { if (!turn) return; record(turn, picked(), "board"); Sound.success(); turn = null; editing = false; setPicks([]); paint(); };
+  bSkip.onclick = () => { const r = roster().filter(n => !st.res[n]); if (r.length < 2) return; const i = r.indexOf(turn); turn = r[(i + 1) % r.length]; setPicks([]); Sound.whoosh(); paint(); };
+  bMix.onclick = () => { order = shuffle(Roleta.allNames()); turn = null; Sound.whoosh(); paint(); };
+  bPrice.onclick = () => { showPrices = !showPrices; Sound.tock(); paint(); };
+  bQR.onclick = () => Sala.open();
+  bZero.onclick = () => { if (bZero.dataset.sure !== "1") { bZero.dataset.sure = "1"; bZero.textContent = "🗑 Toque de novo para zerar"; setTimeout(() => { bZero.dataset.sure = ""; bZero.textContent = "🗑 Zerar"; }, 2500); return; }
+    st = { res: {}, revealed: false }; save(); turn = null; order = null; setPicks([]); bZero.dataset.sure = ""; bZero.textContent = "🗑 Zerar"; Sound.whoosh(); paint(); Sala.setActivity(phone()); };
+  bShow.onclick = () => { if (st.revealed) { st.revealed = false; save(); paint(); Sala.setActivity(phone()); return; } reveal(); };
+
+  function ranking() { const rk = Object.entries(st.res).map(([n, r]) => [n, totalOf(r.picks), r]).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])); rk.forEach(x => x.push(1 + rk.filter(y => y[1] > x[1]).length)); return rk; }
+  function boardHTML() {
+    const rk = ranking(); if (!rk.length) return `<div class="card">Ninguém respondeu ainda.</div>`;
+    const top = rk.map(([n, t, , pos]) => `<div class="tb-row ${pos === 1 ? "first" : ""}"><span class="tb-pos">${pos === 1 ? "👑" : pos + "º"}</span><span class="tb-name">${n}</span><b>${money(t)}</b></div>`).join("");
+    const bills = rk.map(([n, t, r], i) => `<div class="bill" style="animation-delay:${(rk.length - 1 - i) * 0.35}s"><div class="bill-h">🧾 Fatura de <b>${n}</b>${r.via === "phone" ? " · 📱" : ""}</div>
+      ${r.picks.length ? r.picks.map(k => `<div class="bill-l"><span>${s.items[k][0]}</span><span>${money(s.items[k][1])}</span></div>`).join("") : `<div class="bill-l"><span>Nada marcado. Um anjo! 😇</span><span>${money(0)}</span></div>`}
+      <div class="bill-t"><span>TOTAL</span><span>${money(t)}</span></div></div>`).join("");
+    return `<div class="tb"><h3>🏆 Placar: quem tem mais?</h3>${top}</div><div class="bills">${bills}</div>`;
+  }
+  function reveal() {
+    st.revealed = true; save(); paint();
+    const rk = ranking(); Sound.whoosh();
+    setTimeout(() => { Sound.fanfare(); confetti(120); }, Math.max(1, rk.length) * 350);
+    rk.forEach(([n, t, r, pos]) => Sala.sendToName(n, { t: "reveal", id, rank: pos, of: rk.length, total: t, lines: r.picks.map(k => s.items[k]) }));
+    Sala.setActivity(phone());
+  }
+  /* celular: recebe a lista SEM preços */
+  function phone() { return { kind: "tally", id, title: s.title.replace(/^\W+/, ""), lead: "Marque tudo o que você já fez. Os preços só aparecem no final! 🤫", items: s.items.map(x => x[0]), open: !st.revealed }; }
+  s._phone = phone;
+  Sala.on("tally", (d, name, reply) => {
+    if (d.id !== id) return;
+    if (st.revealed) { reply({ t: "closed", id }); return; }
+    const picks = (Array.isArray(d.picks) ? d.picks : []).map(Number).filter(i => i >= 0 && i < s.items.length);
+    record(name, [...new Set(picks)], "phone"); if (name === turn) { editing = false; setPicks([]); } reply({ t: "ok", id }); Sound.pop(); paint();
+  });
+  window.addEventListener("roleta-nomes", paint);
   if (s.tip) el.appendChild(h("p", "tip", s.tip));
   paint();
 }
@@ -638,6 +704,7 @@ function go(i, quiet) {
   document.getElementById("bPrev").disabled = cur === 0; document.getElementById("bNext").disabled = cur === S.length - 1;
   try { history.replaceState(null, "", "#" + (cur + 1)); } catch (e) {}
   Notes.show(cur); fit();
+  Sala.setActivity(S[cur]._phone ? S[cur]._phone() : null);
 }
 /* ---------- ajuste à tela: usa a largura toda e, se faltar altura, reduz a escala até caber ---------- */
 const MAXW = 1800, MINZ = 0.62;
@@ -697,5 +764,6 @@ document.querySelectorAll(".score button").forEach(b => b.onclick = () => {
 Roleta.init();
 Notes.init();
 Teams.init();
+Sala.init();
 const start = Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1);
 cur = start; go(start, true); if (!els[start].classList.contains("on")) { build(start); els[start].classList.add("on"); }
