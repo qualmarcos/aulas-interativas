@@ -632,6 +632,7 @@ function go(i, quiet) {
   document.getElementById("bPrev").disabled = cur === 0; document.getElementById("bNext").disabled = cur === S.length - 1;
   try { history.replaceState(null, "", "#" + (cur + 1)); } catch (e) {}
   Notes.show(cur); fit();
+  Sala.setActivity(S[cur]._phone ? S[cur]._phone() : null);
 }
 /* ---------- ajuste à tela: usa a largura toda e, se faltar altura, reduz a escala até caber ---------- */
 const MAXW = 1800, MINZ = 0.62;
@@ -691,5 +692,6 @@ document.querySelectorAll(".score button").forEach(b => b.onclick = () => {
 Roleta.init();
 Notes.init();
 Teams.init();
+Sala.init();
 const start = Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1);
 cur = start; go(start, true); if (!els[start].classList.contains("on")) { build(start); els[start].classList.add("on"); }

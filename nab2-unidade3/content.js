@@ -270,6 +270,32 @@ S.push({ type: "sort", title: "O tempo muda a mensagem", lead: "Classifique as f
   items: [["Hoje eu compro o tecido.", 0], ["Ela veste uma camisa agora.", 0], ["Nós faremos a apresentação amanhã.", 1], ["Amanhã eu comprarei o tecido.", 1], ["Eu gostaria de uma opção mais simples.", 2], ["Com mais tempo, eu compraria outra peça.", 2]] });
 S.push({ type: "order", title: "Um anúncio com começo, meio e fim", lead: "Organize as frases do anúncio da feira de trocas.", img: I("feira"), items: [
   "Nossa feira de trocas acontecerá no sábado.", "Primeiro, receberemos peças limpas e em bom estado.", "Depois, cada pessoa escolherá algo para trocar.", "Ao final, conversaremos sobre o que foi reaproveitado."] });
+S.push({ type: "hangman", menu: "Jogo da forca: revisão até aqui", title: "Jogo da forca: revisão até aqui", lead: "Palavras dos temas vistos até agora. Escolha uma categoria e descubra a palavra antes de o boneco ficar completo. As equipes se alternam: cada uma joga uma palavra.", bank: {
+  "Guarda-roupa": [
+    ["CAMISETA", "Peça de manga curta, muito usada no calor."], ["VESTIDO", "Peça única, usada em ocasiões de verão ou de festa."], ["CASACO", "Protege do frio."], ["CACHECOL", "Usamos no pescoço quando faz frio."],
+    ["CHAPÉU", "Pode ser de palha e protege a cabeça do sol."], ["CHINELO", "O calçado do dia a dia no calor do Brasil."], ["CINTO", "Usamos na cintura para ajustar a calça."], ["RELÓGIO", "Acessório de pulso que mostra as horas."],
+    ["BRINCO", "Acessório usado na orelha."], ["PIJAMA", "Roupa para dormir."], ["LUVA", "Protege a mão no frio."], ["BONÉ", "Tem aba só na frente."]],
+  "Cores e materiais": [
+    ["ALGODÃO", "Material leve: uma camiseta de ___."], ["COURO", "Material de uma bolsa: uma bolsa de ___."], ["XADREZ", "Padrão invariável: duas camisas ___."], ["LISTRADA", "Uma camiseta com listras é ___."],
+    ["ESTAMPADO", "Tecido com desenhos impressos."], ["AZUIS", "Plural de azul: duas camisas ___."], ["VERMELHO", "A cor do Garantido."], ["AZUL", "A cor do Caprichoso."],
+    ["BRANCO", "A cor que muita gente veste no Réveillon."], ["ROXO", "Cor que mistura azul e vermelho."], ["MARROM", "A cor do chocolate."]],
+  "Vestir, calçar e usar": [
+    ["VISTO", "Vestir · eu · presente."], ["VESTE", "Vestir · ele/ela · presente."], ["VESTEM", "Vestir · eles · presente."], ["VESTI", "Vestir · eu · pretérito perfeito."],
+    ["VESTIU", "Vestir · ela · pretérito perfeito."], ["VESTIRAM", "Vestir · eles · pretérito perfeito."], ["VESTIA", "Vestir · eu · pretérito imperfeito."], ["VESTÍAMOS", "Vestir · nós · pretérito imperfeito."],
+    ["CALÇO", "Calçar · eu · presente: eu ___ tênis."], ["USO", "Usar · eu · presente: ___ jeans no trabalho."]],
+  "Na loja": [
+    ["PROVADOR", "Lugar da loja onde experimentamos a roupa."], ["TAMANHO", "P, M, G ou GG."], ["EXPERIMENTAR", "Vestir a roupa antes de comprar."], ["APERTADA", "Quando a roupa fica pequena demais."],
+    ["PARCELAR", "Pagar em várias vezes no cartão."], ["PIX", "Forma de pagamento muito comum no Brasil."], ["CARTÃO", "Forma de pagamento: de crédito ou de débito."], ["ATENDENTE", "Pessoa que ajuda o cliente na loja."],
+    ["CLIENTE", "Pessoa que vai à loja para comprar."], ["GOSTARIA", "Para pedir com cortesia: ___ de ver uma camiseta azul."]],
+  "Amazonas em cena": [
+    ["PARINTINS", "Cidade do festival dos bois-bumbás."], ["BUMBÓDROMO", "A arena onde os bois se apresentam."], ["CAPRICHOSO", "O boi azul do festival."], ["GARANTIDO", "O boi vermelho do festival."],
+    ["MANAUS", "Capital do Amazonas."], ["TEATRO AMAZONAS", "Famoso teatro de Manaus."], ["FIGURINO", "Conjunto de roupas de uma apresentação."], ["ADEREÇO", "Objeto usado para compor a roupa ou a cena."],
+    ["ALEGORIA", "Grande estrutura decorada que representa um tema."], ["CENÁRIO", "Ambiente montado onde a cena acontece."], ["TORCIDA", "Grupo de pessoas que apoia um dos bois."]],
+  "Planos e anúncios": [
+    ["FAREI", "Fazer · eu · futuro do presente."], ["DIREI", "Dizer · eu · futuro do presente."], ["TRAREI", "Trazer · eu · futuro do presente."], ["POREI", "Pôr · eu · futuro do presente."],
+    ["IREI", "Ir · eu · futuro do presente."], ["VIRÃO", "Vir · eles · futuro do presente."], ["ENVIAREMOS", "Enviar · nós · futuro do presente."], ["PARTIREMOS", "Partir · nós · futuro do presente."],
+    ["BEBERÃO", "Beber · elas · futuro do presente."], ["ACONTECERÁ", "Acontecer · ela · futuro do presente: a feira ___ no sábado."], ["RECEBEREMOS", "Receber · nós · futuro do presente."], ["CONVERSAREMOS", "Conversar · nós · futuro do presente."]]
+} });
 S.push({ type: "race", title: "Desafio relâmpago: futuro", lead: "12 segundos por pergunta. Valendo ponto para a equipe!", secs: 12, items: [
   { q: "eu · fazer", o: ["farei", "fazerei", "faço"], a: 0 }, { q: "nós · partir", o: ["partiremos", "partimos", "partiríamos"], a: 0 },
   { q: "eles · vir", o: ["virão", "viram", "vierão"], a: 0 }, { q: "você · dizer", o: ["dirá", "dizerá", "diria"], a: 0 },

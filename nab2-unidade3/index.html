@@ -7,7 +7,7 @@
 <meta name="description" content="Aula interativa de português do Brasil — NAB2, Unidade 3: Roupas, escolhas e futuros.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=22">
+<link rel="stylesheet" href="style.css?v=23">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👕</text></svg>">
 </head>
 <body>
@@ -20,6 +20,7 @@
     <span class="score"><span class="tname" data-t="1">Equipe B</span> <button data-t="1" data-d="-1" aria-label="Tirar ponto da equipe B">−</button><b id="sb">0</b><button data-t="1" data-d="1" aria-label="Dar ponto à equipe B">+</button></span>
     <button id="bNotes">📝 Notas</button>
     <button id="bNoteAdd" title="Nova nota neste slide">＋ Nota</button>
+    <button id="bSala" title="QR para os alunos entrarem pelo celular">📱 Sala</button>
     <button id="bWheel">🎡 Roleta</button>
     <button id="bSound">🔊 Som</button>
     <button id="bTeacher" title="Mostrar o gabarito (professor)">✔ Respostas</button>
@@ -37,6 +38,27 @@
 
 <div id="menu" class="overlay"><div class="panel"><h2 style="margin-top:0">Índice da aula</h2><div id="menuList"></div></div></div>
 
+
+<div id="sala" class="overlay">
+  <div class="box">
+    <button class="close" id="salaClose" aria-label="Fechar a sala">✕</button>
+    <div class="sala-left">
+      <h2>📱 Entre pelo celular</h2>
+      <div id="salaQR" class="sala-qr"></div>
+      <div class="sala-code">Código da sala: <b id="salaCode">…</b></div>
+      <a id="salaURL" class="sala-url" target="_blank" rel="noopener"></a>
+    </div>
+    <div>
+      <div id="salaStatus" class="sala-status"></div>
+      <p style="font-size:17px;margin:8px 0">Aponte a câmera para o QR, escreva seu nome e pronto: você entra na <b>🎡 roleta</b> e nas <b>👥 equipes</b>.</p>
+      <p id="salaFile" class="sala-warn">⚠️ Esta aula está aberta como arquivo do computador. Para os celulares entrarem, abra pelo link do GitHub Pages.</p>
+      <h3 id="salaCount" style="margin:14px 0 6px">0 alunos conectados</h3>
+      <div id="salaList" class="sala-list"></div>
+      <div class="row" style="margin-top:14px"><button class="btn ghost" id="salaNew" title="Gera outro código (os celulares precisam ler o QR de novo)">↻ Nova sala</button></div>
+      <p class="tip">Os nomes vão direto do celular para este computador. Nada fica guardado na internet.</p>
+    </div>
+  </div>
+</div>
 
 <div id="wheel" class="overlay">
   <div class="box">
@@ -65,11 +87,14 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script src="credits.js?v=21"></script>
-<script src="audio.js?v=21"></script>
-<script src="content.js?v=21"></script>
-<script src="notes.js?v=21"></script>
+<script src="audio.js?v=22"></script>
+<script src="content.js?v=22"></script>
+<script src="notes.js?v=22"></script>
 <script src="teams.js?v=22"></script>
-<script src="app.js?v=23"></script>
+<script src="sala.js?v=2"></script>
+<script src="app.js?v=24"></script>
 </body>
 </html>

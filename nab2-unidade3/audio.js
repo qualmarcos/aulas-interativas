@@ -148,7 +148,16 @@ const Roleta = (() => {
     $("wReset").onclick = () => { let full = null; try { full = JSON.parse(localStorage.getItem(KEY + "-full")); } catch (e) {} names = (full && full.length ? full : DEFAULT).slice(); pendingRemove = null; $("wNames").value = names.join("\n"); save(); saveFull(); draw(); $("wDone").textContent = ""; $("wWinner").textContent = ""; };
     $("wClose").onclick = close; $("wheel").addEventListener("click", e => { if (e.target.id === "wheel") close(); });
   }
-  return { init, open, close, allNames, get spinning() { return spinning; } };
+  /* aluno que entra pelo celular: entra na roleta (se ainda não estiver) e devolve o nome como está na lista */
+  function addName(n) {
+    n = String(n || "").trim().slice(0, 30); if (!n) return n;
+    const full = allNames(), hit = full.find(x => x.toLowerCase() === n.toLowerCase()); if (hit) return hit;
+    full.push(n); if (!names.some(x => x.toLowerCase() === n.toLowerCase())) names.push(n);
+    try { localStorage.setItem(KEY + "-full", JSON.stringify(full)); } catch (e) {}
+    $("wNames").value = names.join("\n"); save(); draw(); window.dispatchEvent(new Event("roleta-nomes"));
+    return n;
+  }
+  return { init, open, close, allNames, addName, get spinning() { return spinning; } };
 })();
 
 function confetti(n = 70) {

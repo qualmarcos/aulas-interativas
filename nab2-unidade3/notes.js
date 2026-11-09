@@ -46,6 +46,8 @@ const Notes = (() => {
   const SIZES = [13, 15, 17, 20, 24, 28, 34];
   let data = {}, slide = 0, visible = true, layer, saveT, hint;
   try { data = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { data = {}; }
+  /* uma única vez: entrou uma forca no slide 39, então as notas daquele ponto em diante avançam um slide */
+  try { if (!localStorage.getItem(KEY + "-forca39")) { const moved = {}; Object.keys(data).forEach(k => { moved[+k >= 38 ? +k + 1 : k] = data[k]; }); data = moved; localStorage.setItem(KEY, JSON.stringify(data)); localStorage.setItem(KEY + "-forca39", "1"); } } catch (e) {}
   try { visible = localStorage.getItem(KEY + "-vis") !== "0"; } catch (e) {}
   const save = () => { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {} }, 200); };
   const list = () => (data[slide] = data[slide] || []);
