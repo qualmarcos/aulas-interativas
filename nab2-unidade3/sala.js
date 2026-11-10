@@ -64,8 +64,9 @@ const Sala = (() => {
       if (clash(name)) { let k = 2; while (clash(name + " " + k)) k++; name = name + " " + k; }
       name = Roleta.addName(name);
       const was = students.get(sid);
-      students.set(sid, { name, online: true }); conns.set(c.peer, { c, sid, name });
-      c.send({ t: "hello", name, act });
+      students.set(sid, { name, online: true }); const seen = view(act, name);
+      conns.set(c.peer, { c, sid, name, last: JSON.stringify(seen) });
+      c.send({ t: "hello", name, act: seen });
       if (!was || !was.online) { toastSala(`📱 ${name} entrou na sala`); Sound.pop(); }
       paint(); return;
     }
@@ -78,9 +79,14 @@ const Sala = (() => {
     if (!still && students.has(info.sid)) students.get(info.sid).online = false;
     paint();
   }
+  /* quem não está na vez recebe só um aviso: as opções nem chegam ao celular dele */
+  const view = (a, name) => a && a.only && a.only !== name ? { kind: "wait", id: a.id, title: a.title, turn: a.only } : a;
   function broadcast(msg) { conns.forEach(({ c }) => { try { c.open && c.send(msg); } catch (e) {} }); }
   function sendToName(name, msg) { conns.forEach(x => { if (x.name === name) try { x.c.open && x.c.send(msg); } catch (e) {} }); }
-  function setActivity(a) { act = a || null; broadcast({ t: "act", act }); }
+  function setActivity(a) {
+    act = a || null;
+    conns.forEach(x => { const v = view(act, x.name), k = JSON.stringify(v); if (x.last === k) return; x.last = k; try { x.c.open && x.c.send({ t: "act", act: v }); } catch (e) {} });
+  }
   function on(type, fn) { (handlers[type] = handlers[type] || []).push(fn); }
 
   function toastSala(txt) { const d = document.createElement("div"); d.className = "pt-toast t0"; d.textContent = txt; document.body.appendChild(d); setTimeout(() => d.remove(), 1800); }
@@ -116,5 +122,5 @@ const Sala = (() => {
     if (had) start();   // a sala já foi usada: reabre sozinha para os celulares voltarem a conectar
     paint();
   }
-  return { init, open, close, on, setActivity, sendToName, broadcast, get students() { return [...students.values()]; } };
+  return { init, open, close, on, setActivity, view, sendToName, broadcast, get students() { return [...students.values()]; } };
 })();

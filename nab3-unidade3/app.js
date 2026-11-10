@@ -20,14 +20,17 @@ function controls(el, { check, reset, extra }) {
   const rb = h("button", "btn ghost", "Recomeçar"); rb.onclick = () => { Sound.whoosh(); reset(); }; r.appendChild(rb);
   el.appendChild(r); el.appendChild(h("p", "tip", TIP));
 }
-function judge(ok) { ok ? Sound.success() : Sound.error(); }
+function judge(ok) { ok ? Sound.success() : Sound.error(); setTimeout(phoneSync, 0); }
 function win() { Sound.fanfare(); confetti(); }
 
 /* ============ MODO EQUIPES: vez + pontos em todas as atividades ============ */
 let teamMode = true;
 try { teamMode = localStorage.getItem("nab3u3-modo-equipes") !== "0"; } catch (e) {}
 const allBars = new Set();
-function setTeamMode(v) { teamMode = v; try { localStorage.setItem("nab3u3-modo-equipes", v ? "1" : "0"); } catch (e) {} allBars.forEach(f => f()); }
+function setTeamMode(v) { teamMode = v; try { localStorage.setItem("nab3u3-modo-equipes", v ? "1" : "0"); } catch (e) {} allBars.forEach(f => f()); phoneSync(); }
+/* ---------- celular: só o aluno da vez recebe as opções ---------- */
+function phoneSync() { Sala.setActivity(S[cur] && S[cur]._phone ? S[cur]._phone() : null); }
+const phoneTurn = () => teamMode ? Teams.player(Teams.turn) : null;
 /* act = placar desta atividade */
 function newAct(rule) { return { tally: [0, 0], rule, bar: null }; }
 function toast(txt, t) {
@@ -85,7 +88,16 @@ function stepper(s, el, renderQ, rule) {
       return msg;
     });
     nb.disabled = qi === s.items.length - 1; pb.disabled = qi === 0;
+    phoneSync();
   }
+  s._phone = () => {
+    const q = s.items[qi], st = state[qi]; if (!q || !q.o) return null;
+    const p = phoneTurn(); if (!p) return null;
+    const id = `q-${S.indexOf(s)}-${qi}`;
+    if (st.done) return { kind: "wait", id, title: s.title, turn: p, note: "Resposta certa: " + q.o[q.a] };
+    return { kind: "choice", id, only: p, title: s.title, n: `Questão ${qi + 1} de ${s.items.length}`, q: String(q.q || q.t).replace(/<[^>]+>/g, ""), img: q.img || null, o: q.o.map((t, i) => ({ t, off: !!(st.tried && st.tried.has(i)) })), busy: !!st.busy };
+  };
+  s._pick = i => { const b = box.querySelectorAll(".opts .opt, .chips .chip")[i]; b && b.click(); };
   draw();
 }
 const triesPts = tries => Math.max(1, 3 - tries);
@@ -460,6 +472,7 @@ function R_hangman(s, el) {
     paint(true); resetClock();
   }
   function paint(fromGuess) {
+    setTimeout(phoneSync, 0);
     const won = letters().every(c => guessed.has(norm(c))), lost = errors() >= MAX;
     $(".hang-cat").textContent = "Categoria: " + cur.c;
     $(".hang-count").textContent = `${letters().length} letras`;
@@ -490,6 +503,14 @@ function R_hangman(s, el) {
     const L = norm(e.key); if (/^[A-Z]$/.test(L)) { e.preventDefault(); guess(L); } else if (e.key === "Enter" && over && !match.done) next();
   };
   document.addEventListener("keydown", onKey);
+  /* celular: só a palavra mascarada, nunca a palavra inteira */
+  s._phone = () => {
+    if (!cur) return null; const p = phoneTurn(); if (!p) return null;
+    const id = `forca-${S.indexOf(s)}-${match.played}-${used.size}`;
+    if (over || match.done) return { kind: "wait", id, title: s.title, turn: p, note: over ? "A palavra era: " + cur.w : "" };
+    return { kind: "letters", id, only: p, title: s.title, cat: cur.c, mask: [...cur.w].map(c => !/[A-ZÀ-Ü]/i.test(c) ? c : guessed.has(norm(c)) ? c : "_"), used: [...guessed], wrong, lives: Math.max(0, MAX - errors()) };
+  };
+  s._pick = L => { if (/^[A-Z]$/.test(String(L))) guess(String(L)); };
   paintCats(); next();
   el.appendChild(h("p", "tip", "Toque nas letras ou use o teclado do computador. Os acentos e o Ç aparecem sozinhos (A revela Á, Ã, Â; C revela Ç). Enter = próxima palavra. A partida tem rodadas (em cada rodada, cada equipe joga uma palavra) e no final aparece a equipe vencedora. “⤼ Trocar palavra” troca a palavra sem contar. Depois de 1 minuto sem resposta, a equipe perde 1 coração a cada 15 s; se os corações acabarem, a palavra aparece e a equipe perde. A dica custa 2 corações. Os pontos valem os corações que sobrarem (sem erros = 6 pontos). A vez alterna entre as equipes a cada palavra; arraste um nome (ou toque nele) para mudar a pessoa de equipe."));
 }
@@ -497,16 +518,17 @@ function R_hangman(s, el) {
 function R_race(s, el) {
   header(s, el, "Jogo");
   const act = newAct(`Acertou com ${Math.ceil(s.secs * 2 / 3)}+ s sobrando = 3 pts · ${Math.ceil(s.secs / 3)}+ s = 2 · depois = 1`); turnBar(el, act);
-  const box = h("div", "card"); el.appendChild(box); let qi, hits, timer, left;
+  const box = h("div", "card"); el.appendChild(box); let qi, hits, timer, left, live = null;
   const speedPts = l => l >= Math.ceil(s.secs * 2 / 3) ? 3 : l >= Math.ceil(s.secs / 3) ? 2 : 1;
   function start() {
-    clearInterval(timer); qi = 0; hits = 0; act.tally = [0, 0]; act.bar(); box.innerHTML = "";
+    clearInterval(timer); qi = 0; hits = 0; live = null; phoneSync(); act.tally = [0, 0]; act.bar(); box.innerHTML = "";
     const b = h("button", "btn green", "▶ Começar o desafio"); b.onclick = () => { Sound.boom(); ask(); };
     box.appendChild(h("p", null, `${s.items.length} perguntas · ${s.secs} segundos cada.${teamMode ? " As equipes se alternam a cada pergunta." : ""}`)); box.appendChild(b);
   }
   function ask() {
     clearInterval(timer);
     if (qi >= s.items.length) {
+      live = null; phoneSync();
       box.innerHTML = ""; const r = h("button", "btn", "Jogar de novo"); r.onclick = start;
       suspense(1.5).then(() => { box.innerHTML = `<div class="big-q" style="animation:stamp .6s">🏁 Fim! ${hits} de ${s.items.length} acertos.</div>${teamMode ? resultHTML(act) : ""}`; box.appendChild(r); win(); });
       return;
@@ -528,12 +550,20 @@ function R_race(s, el) {
     });
     box.appendChild(o); box.appendChild(fb);
     function next() { const n = h("button", "btn", qi === s.items.length - 1 ? "Ver resultado ›" : "Próxima ›"); n.style.marginTop = "10px"; n.onclick = () => { qi++; Sound.whoosh(); ask(); }; box.appendChild(n); }
+    live = { q, order, o, isDone: () => answered }; phoneSync();
     timer = setInterval(() => {
       left--; const t = box.querySelector(".timer"); t.textContent = left; bar.firstChild.style.width = (left / s.secs * 100) + "%";
       if (left <= 3) { t.classList.add("low"); Sound.tick(1.4); } else Sound.tock();
       if (left <= 0) { clearInterval(timer); answered = true; Sound.error(); fb.className = "fb bad"; fb.innerHTML = "⏰ Tempo esgotado! Resposta: " + q.o[q.a] + "." + passTurn(act); o.children[order.indexOf(q.a)].classList.add("ok"); next(); }
     }, 1000);
   }
+  s._phone = () => {
+    if (!live) return null; const p = phoneTurn(); if (!p) return null;
+    const id = `race-${S.indexOf(s)}-${qi}`;
+    if (live.isDone()) return { kind: "wait", id, title: s.title, turn: p, note: "Resposta certa: " + live.q.o[live.q.a] };
+    return { kind: "choice", id, only: p, title: s.title, n: `Pergunta ${qi + 1} de ${s.items.length}`, q: live.q.q, o: live.order.map(i => ({ t: live.q.o[i] })), secs: s.secs };
+  };
+  s._pick = i => { const b = live && live.o.children[i]; b && b.click(); };
   start(); s._stop = () => clearInterval(timer);
 }
 /* ---------- onde está? ---------- */
@@ -541,7 +571,7 @@ function R_where(s, el) {
   header(s, el, "Jogo");
   const act = newAct("Acertou = 2 pts · a vez alterna a cada rodada"); turnBar(el, act);
   const pos = ["em cima do", "embaixo do", "à esquerda do", "à direita do"], shapes = ["círculo", "triângulo", "losango", "retângulo"];
-  const box = h("div", "card"); el.appendChild(box); let n = 0, hits = 0;
+  const box = h("div", "card"); el.appendChild(box); let n = 0, hits = 0, live = null;
   const art = s => s === "retângulo" ? "o" : "o";
   function round() {
     box.innerHTML = ""; const sh = shapes[Math.floor(Math.random() * shapes.length)], p = Math.floor(Math.random() * 4);
@@ -566,7 +596,15 @@ function R_where(s, el) {
       o.appendChild(b);
     });
     box.appendChild(o); box.appendChild(fb);
+    live = { q: `Onde está ${art(sh)} ${sh}? (olhe a figura na tela)`, o, opts: [...o.children].map(b => b.textContent), right: o.children[p].textContent, isDone: () => done, isOver: () => !!box.querySelector(".fb.ok, .fb.bad") }; phoneSync();
   }
+  s._phone = () => {
+    if (!live) return null; const p = phoneTurn(); if (!p) return null;
+    const id = `where-${S.indexOf(s)}-${n}`;
+    if (live.isOver()) return { kind: "wait", id, title: s.title, turn: p, note: "Resposta certa: " + live.right };
+    return { kind: "choice", id, only: p, title: s.title, n: `Rodada ${n + 1}`, q: live.q, o: live.opts.map(t => ({ t })), busy: live.isDone() };
+  };
+  s._pick = i => { const b = live && live.o.children[i]; b && b.click(); };
   round(); el.appendChild(h("p", "tip", "💬 Desafio extra: descreva a figura para um colega sem mostrar a tela."));
 }
 /* ---------- roleta (slide) ---------- */
@@ -639,6 +677,7 @@ function R_tally(s, el) {
     chips.querySelectorAll(".tchip").forEach(b => b.onclick = () => { turn = b.dataset.n; editing = !!st.res[turn]; setPicks(st.res[turn] ? st.res[turn].picks : []); Sound.tock(); paint(); });
     board.innerHTML = st.revealed ? boardHTML() : "";
     fitSoon();
+    if (S[cur] === s) Sala.setActivity(phone());
   }
   function fitSoon() { if (S[cur] === s) setTimeout(fit, 30); }
   function record(name, picks, via) { st.res[name] = { picks, via, at: Date.now() }; save(); }
@@ -668,11 +707,12 @@ function R_tally(s, el) {
     Sala.setActivity(phone());
   }
   /* celular: recebe a lista SEM preços */
-  function phone() { return { kind: "tally", id, title: s.title.replace(/^\W+/, ""), lead: "Marque tudo o que você já fez. Os preços só aparecem no final! 🤫", items: s.items.map(x => x[0]), open: !st.revealed }; }
+  function phone() { if (!st.revealed && !turn) return { kind: "wait", id, title: s.title.replace(/^\W+/, ""), note: "Todos já responderam. Aguarde as faturas! 🧾" }; return { only: st.revealed ? undefined : turn, kind: "tally", id, title: s.title.replace(/^\W+/, ""), lead: "Marque tudo o que você já fez. Os preços só aparecem no final! 🤫", items: s.items.map(x => x[0]), open: !st.revealed }; }
   s._phone = phone;
   Sala.on("tally", (d, name, reply) => {
     if (d.id !== id) return;
     if (st.revealed) { reply({ t: "closed", id }); return; }
+    if (name !== turn) { reply({ t: "act", act: Sala.view(phone(), name) }); return; }   // só responde quem está na vez
     const picks = (Array.isArray(d.picks) ? d.picks : []).map(Number).filter(i => i >= 0 && i < s.items.length);
     record(name, [...new Set(picks)], "phone"); if (name === turn) { editing = false; setPicks([]); } reply({ t: "ok", id }); Sound.pop(); paint();
   });
@@ -775,5 +815,11 @@ Roleta.init();
 Notes.init();
 Teams.init();
 Sala.init();
+Teams.onChange(phoneSync);
+Sala.on("choice", (d, name, reply) => {
+  const s = S[cur], a = s && s._phone ? s._phone() : null;
+  if (!a || a.only !== name || a.id !== d.id || a.busy) { reply({ t: "act", act: Sala.view(a, name) }); return; }
+  s._pick(d.i);
+});
 const start = Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1);
 cur = start; go(start, true); if (!els[start].classList.contains("on")) { build(start); els[start].classList.add("on"); }

@@ -42,6 +42,23 @@ input[type=text]:focus{border-color:var(--blue)}
 .bill-t{display:flex;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:2px dashed #d8cba0;font-weight:900;font-size:18px}
 @keyframes bob{50%{transform:translateY(-8px)}}
 .bob{animation:bob 2s ease-in-out infinite;display:inline-block}
+.myturn{background:#f2b705;color:#1d3557;font-weight:900;text-align:center;border-radius:10px;padding:8px;margin-bottom:10px}
+.qn{color:#5d6b7a;font-size:15px;margin-bottom:8px}
+.qimg{display:block;width:100%;max-height:200px;object-fit:contain;border-radius:10px;margin-bottom:8px}
+.qt{font-size:20px;font-weight:800;margin:6px 0 12px}
+.opt{display:block;width:100%;text-align:left;font:inherit;font-size:18px;padding:14px;margin-bottom:8px;border-radius:12px;border:2px solid #d8e0ea;background:#fff;color:#1d2b3a}
+.opt.sel{border-color:#2356a0;background:#e8f0fb}
+.opt.off{background:#fbe9e7;color:#c0392b;text-decoration:line-through}
+.mask{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin:10px 0}
+.mask span{min-width:24px;font-size:24px;font-weight:900;text-align:center}
+.mask span.blank{border-bottom:3px solid #1d3557}
+.mask .gap{width:14px}
+.lives{margin:6px 0 10px}
+.abc{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.abc button{font:inherit;font-weight:800;font-size:18px;padding:10px 0;border-radius:8px;border:2px solid #d8e0ea;background:#fff;color:#1d3557}
+.abc button:disabled{opacity:.45}
+.abc button.hit{background:#e3f4ea}
+.abc button.miss{background:#fbe9e7}
 </style>
 </head>
 <body>
@@ -87,11 +104,59 @@ input[type=text]:focus{border-color:var(--blue)}
   }
   function footer() { return me.name ? `<p class="who">Você é <b>${esc(me.name)}</b> · <a href="#" id="chg">trocar nome</a></p>` : ""; }
   function bindFooter() { const c = document.getElementById("chg"); if (c) c.onclick = e => { e.preventDefault(); stop(); nameScreen(); }; }
+  let wasMine = false;
   function render() {
     if (!joined) return;
-    if (!act) { app.innerHTML = `<div class="card center"><div class="big"><span class="bob">👀</span></div><h1>Você está na aula!</h1><p class="lead">Olhe para a tela. Quando houver uma atividade para o celular, ela aparece aqui.</p></div>${footer()}`; bindFooter(); return; }
+    clearInterval(tick);
+    const mine = !!(act && act.only && act.only === me.name); if (mine && !wasMine && navigator.vibrate) navigator.vibrate(150); wasMine = mine;
+    if (!act) { app.innerHTML = `<div class="card center"><div class="big"><span class="bob">👀</span></div><h1>Você está na aula!</h1><p class="lead">Olhe para a tela. Quando for a sua vez, as opções aparecem aqui.</p></div>${footer()}`; bindFooter(); return; }
     if (act.kind === "tally") return renderTally();
+    if (act.kind === "wait") return renderWait();
+    if (act.kind === "choice") return renderChoice();
+    if (act.kind === "letters") return renderLetters();
     app.innerHTML = `<div class="card center"><p class="lead">Atividade em andamento na tela. 👀</p></div>${footer()}`; bindFooter();
+  }
+  let tick = null;
+  const yourTurn = `<div class="myturn">🎯 É a sua vez!</div>`;
+  const noConn = el => { el.innerHTML = `<div class="msg bad">Sem conexão. Tentando reconectar…</div>`; };
+  function renderWait() {
+    const a = act;
+    app.innerHTML = `<h1>${esc(a.title || "")}</h1><div class="card center"><div class="big"><span class="bob">👀</span></div>
+      ${a.note ? `<p class="lead" style="margin:0 0 8px"><b>${esc(a.note)}</b></p>` : ""}
+      ${a.turn ? `<p class="lead" style="margin:0">Vez de <b>${esc(a.turn)}</b>. Olhe para a tela.</p>` : ""}
+      ${sent[a.id] ? `<div class="msg ok">✔ Suas respostas foram enviadas!</div>` : ""}</div>${footer()}`;
+    bindFooter();
+  }
+  function renderChoice() {
+    const a = act, tried = a.o.some(x => x.off);
+    app.innerHTML = `<h1>${esc(a.title)}</h1><div class="card">${yourTurn}<div class="qn">${esc(a.n || "")}${a.secs ? ` · <b id="left">${a.secs}</b> s` : ""}</div>
+      ${a.img ? `<img class="qimg" src="${esc(a.img)}" alt="">` : ""}<p class="qt">${esc(a.q)}</p><div id="opts"></div><div id="fb">${a.busy ? `<div class="msg">Conferindo… olhe para a tela! 👀</div>` : tried ? `<div class="msg bad">Ainda não. Tente outra opção.</div>` : ""}</div></div>${footer()}`;
+    const box = document.getElementById("opts"), fb = document.getElementById("fb");
+    a.o.forEach((x, i) => {
+      const b = document.createElement("button"); b.className = "opt" + (x.off ? " off" : ""); b.textContent = x.t; b.disabled = x.off || a.busy;
+      b.onclick = () => {
+        if (!conn || !conn.open) return noConn(fb);
+        box.querySelectorAll("button").forEach(y => y.disabled = true); b.classList.add("sel");
+        conn.send({ t: "choice", id: a.id, i }); fb.innerHTML = `<div class="msg">Conferindo… olhe para a tela! 👀</div>`;
+      };
+      box.appendChild(b);
+    });
+    if (a.secs) { let n = a.secs; tick = setInterval(() => { n--; const l = document.getElementById("left"); if (l) l.textContent = Math.max(0, n); if (n <= 0) clearInterval(tick); }, 1000); }
+    bindFooter();
+  }
+  function renderLetters() {
+    const a = act, used = new Set(a.used);
+    app.innerHTML = `<h1>${esc(a.title)}</h1><div class="card center">${yourTurn}<div class="qn">${esc(a.cat)}</div>
+      <div class="mask">${a.mask.map(c => c === " " ? `<i class="gap"></i>` : `<span class="${c === "_" ? "blank" : ""}">${c === "_" ? "&nbsp;" : esc(c)}</span>`).join("")}</div>
+      <div class="lives">${"❤️".repeat(a.lives)}</div>${a.wrong.length ? `<div class="qn">Erradas: ${a.wrong.map(esc).join(" ")}</div>` : ""}
+      <div class="abc" id="abc"></div><div id="fb"></div></div>${footer()}`;
+    const box = document.getElementById("abc"), fb = document.getElementById("fb");
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => {
+      const b = document.createElement("button"); b.textContent = L; b.disabled = used.has(L); if (a.wrong.includes(L)) b.className = "miss"; else if (used.has(L)) b.className = "hit";
+      b.onclick = () => { if (!conn || !conn.open) return noConn(fb); box.querySelectorAll("button").forEach(y => y.disabled = true); conn.send({ t: "choice", id: a.id, i: L }); };
+      box.appendChild(b);
+    });
+    bindFooter();
   }
   function renderTally() {
     const a = act, b = bills[a.id];
