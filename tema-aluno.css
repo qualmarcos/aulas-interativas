@@ -1,0 +1,21 @@
+/* Modo escuro da página do celular (aluno.html). Segue o tema do celular. */
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --navy:#d3e3f7; --blue:#6ea3e8; --bg:#0f1722; --card:#1a2533; --green:#5cb26a; --ink:#e3eaf2;
+  --muted:#9db0c3; --line:#33445a; --ok:#5fcf8e; --okbg:#173927; --bad:#ef7464; --badbg:#3e2220;
+}
+:where(html[data-theme="dark"]) header{background:#13294a}
+:where(html[data-theme="dark"]) .btn{background:#2f6bb8}
+:where(html[data-theme="dark"]) .btn.green{background:#3f8a4b}
+:where(html[data-theme="dark"]) .btn.ghost{background:transparent;color:var(--blue)}
+:where(html[data-theme="dark"]) input[type=text]{background:#223042;color:var(--ink)}
+:where(html[data-theme="dark"]) :is(.item,.opt,.abc button){background:var(--card);color:var(--ink);border-color:var(--line)}
+:where(html[data-theme="dark"]) .item.on{background:var(--okbg);border-color:var(--ok)}
+:where(html[data-theme="dark"]) .opt.sel{background:#1d3350;border-color:var(--blue)}
+:where(html[data-theme="dark"]) .opt.off{background:var(--badbg);color:var(--bad)}
+:where(html[data-theme="dark"]) .abc button.hit{background:var(--okbg);color:var(--ok)}
+:where(html[data-theme="dark"]) .abc button.miss{background:var(--badbg);color:var(--bad)}
+:where(html[data-theme="dark"]) .qn{color:var(--muted)}
+:where(html[data-theme="dark"]) .mask span.blank{border-bottom-color:var(--navy)}
+:where(html[data-theme="dark"]) .card{box-shadow:0 2px 12px rgba(0,0,0,.4)}
+:where(html[data-theme="dark"]) .bill{color:#1d2b3a}

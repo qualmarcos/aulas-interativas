@@ -1,0 +1,64 @@
+/* Modo escuro das aulas (ativado por tema.js com <html data-theme="dark">).
+   Carregar DEPOIS de style.css. */
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --navy:#d3e3f7; --blue:#6ea3e8; --sky:#2b4664; --bg:#0f1722; --card:#1a2533;
+  --green:#5cb26a; --lime:#a8c94a; --ink:#e3eaf2; --muted:#9db0c3; --line:#33445a;
+  --ok:#5fcf8e; --okbg:#173927; --bad:#ef7464; --badbg:#3e2220; --gold:#f2b705;
+  --navybg:#13294a; --btn:#2f6bb8; --soft:#223042; --warm:#3b3216;
+}
+:where(html[data-theme="dark"]) :is(button,input,select,textarea){color:var(--ink)}
+:where(html[data-theme="dark"]) :is(input,select,textarea):not([type=checkbox]):not([type=radio]):not([type=range]){background:var(--soft);border-color:var(--line)}
+
+/* fundos azul-marinho com texto branco */
+:where(html[data-theme="dark"]) #topbar,:where(html[data-theme="dark"]) table.conj th,:where(html[data-theme="dark"]) .flip .b,:where(html[data-theme="dark"]) .mcard .f,:where(html[data-theme="dark"]) .seqslot .n,:where(html[data-theme="dark"]) .hub,:where(html[data-theme="dark"]) .tp-score,:where(html[data-theme="dark"]) .round-badge,:where(html[data-theme="dark"]) .round-dots i.d,:where(html[data-theme="dark"]) #topbar #bNotes.on .nt-count{background-color:var(--navybg)}
+:where(html[data-theme="dark"]) #topbar{border-bottom:1px solid var(--line)}
+:where(html[data-theme="dark"]) .flip .b,:where(html[data-theme="dark"]) .mcard .f{background:linear-gradient(135deg,#2a5b9c,var(--navybg))}
+:where(html[data-theme="dark"]) body.nt-dragging #stage::after{background:var(--navybg)}
+:where(html[data-theme="dark"]) .cover{background:linear-gradient(135deg,#0c1a30 0%,#183c6e 60%,#22548f 100%)}
+
+/* botões e elementos com fundo azul */
+:where(html[data-theme="dark"]) .btn,:where(html[data-theme="dark"]) .qnav button.cur,:where(html[data-theme="dark"]) .chip.sel,:where(html[data-theme="dark"]) .turn-badge,:where(html[data-theme="dark"]) .pt-toast.t0{background-color:var(--btn)}
+:where(html[data-theme="dark"]) .qnav button.cur{border-color:var(--btn)}
+:where(html[data-theme="dark"]) .btn.ghost{background:transparent;color:var(--blue);border-color:var(--blue)}
+:where(html[data-theme="dark"]) .btn.gold{background:var(--gold)}
+
+/* texto escuro sobre amarelo / verde-limão */
+:where(html[data-theme="dark"]) #topbar button.on,:where(html[data-theme="dark"]) .btn.gold,:where(html[data-theme="dark"]) .cover .gram{color:#1d3557}
+
+/* cartões e superfícies brancas */
+:where(html[data-theme="dark"]) table.conj,:where(html[data-theme="dark"]) .pcard,:where(html[data-theme="dark"]) .qnav button,:where(html[data-theme="dark"]) .opt,:where(html[data-theme="dark"]) .chip,:where(html[data-theme="dark"]) .item,:where(html[data-theme="dark"]) .group,:where(html[data-theme="dark"]) .seqslot,:where(html[data-theme="dark"]) .mdef,:where(html[data-theme="dark"]) .mslot,:where(html[data-theme="dark"]) .rcard,:where(html[data-theme="dark"]) .keys button,:where(html[data-theme="dark"]) #nav,:where(html[data-theme="dark"]) #menu .panel,:where(html[data-theme="dark"]) #wheel .box,:where(html[data-theme="dark"]) #sala .box,:where(html[data-theme="dark"]) .team-panel,:where(html[data-theme="dark"]) .turnbar,:where(html[data-theme="dark"]) .grade,:where(html[data-theme="dark"]) .tchip,:where(html[data-theme="dark"]) .tb,:where(html[data-theme="dark"]) .tally-item,:where(html[data-theme="dark"]) .tp-ghost,:where(html[data-theme="dark"]) .mcard .b{background-color:var(--card)}
+:where(html[data-theme="dark"]) .card,:where(html[data-theme="dark"]) .team-panel{box-shadow:0 2px 14px rgba(0,0,0,.35)}
+:where(html[data-theme="dark"]) .board svg{background:var(--card)}
+
+/* superfícies azul-claras */
+:where(html[data-theme="dark"]) .qimg,:where(html[data-theme="dark"]) .emoji,:where(html[data-theme="dark"]) .pool,:where(html[data-theme="dark"]) .tp-member,:where(html[data-theme="dark"]) .sala-status,:where(html[data-theme="dark"]) .sala-st,:where(html[data-theme="dark"]) #menu .panel a:hover,:where(html[data-theme="dark"]) table.conj tr:hover td{background-color:var(--soft)}
+:where(html[data-theme="dark"]) .fb.info,:where(html[data-theme="dark"]) .checklist{background:#1d3350;color:var(--navy)}
+:where(html[data-theme="dark"]) .t1 .tp-member{background:#3a2426}
+
+/* destaques amarelos */
+:where(html[data-theme="dark"]) .opt.wait,:where(html[data-theme="dark"]) .group.target,:where(html[data-theme="dark"]) .team-panel.drop,:where(html[data-theme="dark"]) .tp-member.now,:where(html[data-theme="dark"]) .tchip.cur,:where(html[data-theme="dark"]) .sala-warn{background-color:var(--warm)}
+:where(html[data-theme="dark"]) .hl{background:#5a4a12;color:#fff4c7}
+:where(html[data-theme="dark"]) .tans{background:#3b2f14;color:#f6c86a}
+:where(html[data-theme="dark"]) .team-panel.turn .tp-turn{color:#f6c86a}
+:where(html[data-theme="dark"]) .br{background:linear-gradient(90deg,#1c3322,#33301a)}
+:where(html[data-theme="dark"]) .result{background:linear-gradient(135deg,#33301a,#1c3322)}
+:where(html[data-theme="dark"]) .reveal-ans{color:var(--ok)}
+:where(html[data-theme="dark"]) .match-end.on{background:rgba(15,23,34,.93)}
+:where(html[data-theme="dark"]) .tally-name{border-color:var(--line)}
+
+/* forca: madeira mais clara para aparecer no fundo escuro */
+:where(html[data-theme="dark"]) .gallows line{stroke:#c08a52}
+:where(html[data-theme="dark"]) .gallows .rope{stroke:#d9b98a}
+
+/* papel: notas fiscais e notas adesivas continuam claras, com texto escuro */
+:where(html[data-theme="dark"]) .bill{color:#1d2b3a}
+:where(html[data-theme="dark"]) .bill :is(b,strong,span,div){color:inherit}
+
+/* fotos e figuras: um pouco menos de brilho */
+:where(html[data-theme="dark"]) .imgslide img,:where(html[data-theme="dark"]) .photo{filter:brightness(.92)}
+
+/* botão do tema na barra */
+#bTema{min-width:34px}
+
+:where(html[data-theme="dark"]) .btn.green{background:#3f8a4b}

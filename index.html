@@ -39,10 +39,22 @@ main{max-width:1040px;margin:-40px auto 40px;padding:0 16px}
 .tab.vazio.on{color:#fff}
 .empty{text-align:center;color:var(--muted);display:none}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
+header{position:relative}
+#bTema{position:absolute;right:16px;top:16px;font:inherit;font-size:18px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:6px 10px;cursor:pointer}
+#bTema:hover{background:rgba(255,255,255,.25)}
+html[data-theme="dark"]{color-scheme:dark;--navy:#d3e3f7;--blue:#6ea3e8;--bg:#0f1722;--card:#1a2533;--ink:#e3eaf2;--muted:#9db0c3;--line:#33445a;--green:#5fcf8e}
+html[data-theme="dark"] header{background:#13294a}
+html[data-theme="dark"] .search input{background:#22324a;color:var(--ink);border-color:#4a5f7a;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+html[data-theme="dark"] .card{box-shadow:0 8px 24px rgba(0,0,0,.4)}
+html[data-theme="dark"] .card .tag{color:#1d3557}
+html[data-theme="dark"] .card .chips span,html[data-theme="dark"] .tab small{background:#223042;color:var(--navy)}
+html[data-theme="dark"] .tab.on{background:#2f6bb8;border-color:#2f6bb8}
+html[data-theme="dark"] .tab.on small{background:var(--gold);color:#1d3557}
 </style>
+<script src="tema.js?v=1"></script>
 </head>
 <body>
-<header>
+<header data-tema>
   <div class="k">Intercultura · Classes de Português</div>
   <h1>🎓 Aulas interativas</h1>
   <p>Escolha a aula para projetar na sala.</p>
