@@ -101,6 +101,11 @@ main{position:relative;z-index:3;max-width:var(--larg);margin:-86px auto 40px;pa
 .card .go{margin-top:auto;padding-top:12px;font-weight:900;color:var(--c);display:flex;align-items:center;gap:6px}
 .card .go b{transition:transform .18s}
 .card:hover .go b{transform:translateX(4px)}
+.grupo+.grupo{margin-top:38px}
+.gt{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:20px;font-weight:900;color:var(--ink)}
+.gt span{font-size:22px}
+.gt small{font-size:13px;font-weight:800;background:var(--soft);color:var(--muted);border-radius:999px;padding:2px 10px}
+.gt::after{content:"";flex:1;height:2px;background:var(--line);border-radius:2px}
 .empty{text-align:center;color:var(--muted);display:none;padding:30px 0;font-weight:700}
 
 footer{max-width:var(--larg);margin:0 auto;padding:30px var(--gut) 40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
@@ -158,7 +163,7 @@ html[data-theme="dark"] footer .logo-b{display:block}
       <input id="q" type="search" placeholder="Buscar aula ou tema…" aria-label="Buscar aula">
     </label>
   </div>
-  <div class="grid" id="grid"></div>
+  <div id="grid"></div>
   <p class="empty" id="empty">Nenhuma aula encontrada.</p>
 </main>
 <footer>
@@ -220,10 +225,13 @@ function paint() {
   document.getElementById("titulo").innerHTML = t
     ? `Resultados<small>${list.length} ${list.length === 1 ? "aula encontrada" : "aulas encontradas"}</small>`
     : `${nv[1]}<small>${nv[2]} · ${list.length} ${list.length === 1 ? "aula" : "aulas"}</small>`;
-  grid.innerHTML = list.map((a, i) => `<a class="card" href="${a.dir}" style="--c:var(--${a.level});animation-delay:${Math.min(i, 12) * 30}ms">
+  const card = (a, i) => `<a class="card" href="${a.dir}" style="--c:var(--${a.level});animation-delay:${Math.min(i, 12) * 30}ms">
     <div class="pic" style="background-image:url('${a.img}')"><span class="tag">${a.tag}</span>${isRev(a) ? '<span class="rev">Revisão</span>' : ""}</div>
     <div class="body"><h3>${a.title}</h3><div class="sub">${a.sub}</div><div class="gram">${a.gram}</div>
-    <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">Abrir aula <b>→</b></div></div></a>`).join("");
+    <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">Abrir aula <b>→</b></div></div></a>`;
+  const grupo = (nome, ic, itens) => itens.length ? `<section class="grupo"><h3 class="gt"><span>${ic}</span>${nome}<small>${itens.length}</small></h3>
+    <div class="grid">${itens.map(card).join("")}</div></section>` : "";
+  grid.innerHTML = grupo("Unidades", "📘", list.filter(a => !isRev(a))) + grupo("Revisões", "🔁", list.filter(isRev));
   const empty = document.getElementById("empty");
   empty.textContent = t ? "Nenhuma aula encontrada." : `Ainda não há aulas de ${nv[1]}.`;
   empty.style.display = list.length ? "none" : "block";
