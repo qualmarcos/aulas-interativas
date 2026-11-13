@@ -1,104 +1,80 @@
 window.CREDITS={
- "mercado": {
-  "title": "File:CacioMurilo MercadoArtesanato JoãoPessoa PB (39078463980).jpg",
-  "author": "MTur Destinos",
-  "license": "Public domain",
-  "page": "https://commons.wikimedia.org/wiki/File:CacioMurilo_MercadoArtesanato_Jo%C3%A3oPessoa_PB_(39078463980).jpg"
+ "agenda": {
+  "title": "agenda",
+  "author": "Marko Klaric",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/clipboard-with-calendar-placed-on-desk-amidst-stationery-6408282/"
  },
- "rendeira": {
-  "title": "File:RENDEIRA FAZENDO RENDA RENASCENÇA.jpg",
-  "author": "Fios de Poção",
+ "amigos": {
+  "title": "amigos",
+  "author": "Helena Lopes",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/group-of-friends-hanging-out-933964/"
+ },
+ "bus": {
+  "title": "Ônibus e rua de Belo Horizonte",
+  "author": "Andre Moura",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/bus-in-city-22812073/"
+ },
+ "caderno": {
+  "title": "Um caderno aberto e uma caneta sobre a mesa.",
+  "author": "Asad Photo Maldives",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/close-up-of-notebook-and-pen-on-wooden-desk-29614952/"
+ },
+ "chef": {
+  "title": "Cozinheiro preparando uma refeição",
+  "author": "Rene Terp",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/chef-cooking-in-the-kitchen-2544829/"
+ },
+ "estudo": {
+  "title": "estudo",
+  "author": "Rachel Claire",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/laptop-on-table-with-books-5490334/"
+ },
+ "mechanic": {
+  "title": "Mecânico trabalhando no motor de um carro",
+  "author": "Sergey Meshkov",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/mechanic-fixing-a-car-8478267/"
+ },
+ "nurse": {
+  "title": "Profissional de enfermagem em uniforme",
+  "author": "Tran Nhu Tuan",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/confident-female-nurse-in-medical-uniform-29995629/"
+ },
+ "orla-rr": {
+  "title": "Orla de Boa Vista-RR",
+  "author": "Andrezza Mariot",
   "license": "CC BY-SA 4.0",
-  "page": "https://commons.wikimedia.org/wiki/File:RENDEIRA_FAZENDO_RENDA_RENASCEN%C3%87A.jpg"
+  "page": "https://commons.wikimedia.org/wiki/File:Orla_de_Boa_Vista-RR.jpg"
  },
- "labirinto": {
-  "title": "File:Bordadolabirinto.jpg",
-  "author": "Joao0Paulo",
-  "license": "CC0",
-  "page": "https://commons.wikimedia.org/wiki/File:Bordadolabirinto.jpg"
+ "phone": {
+  "title": "Pessoa usando um celular ao ar livre",
+  "author": "Antoni Shkraba",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/a-person-holding-a-smartphone-8206940/"
  },
- "saofrancisco": {
-  "title": "File:Centro Cultural São Francisco João Pessoa PB BR.jpg",
-  "author": "Rogerio121402",
+ "teacher": {
+  "title": "Professor em sala de aula com estudantes",
+  "author": "Pavel Danilyuk",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/a-teacher-and-students-inside-a-classroom-8423020/"
+ },
+ "teatro-rr": {
+  "title": "Teatro de Boa Vista-RR",
+  "author": "Andrezza Mariot",
   "license": "CC BY-SA 4.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Centro_Cultural_S%C3%A3o_Francisco_Jo%C3%A3o_Pessoa_PB_BR.jpg"
+  "page": "https://commons.wikimedia.org/wiki/File:Teatro_de_Boa_Vista-RR.jpg"
  },
- "cofrinho": {
-  "title": "File:Piggy-bank-968302.jpg",
-  "author": "stevepb",
-  "license": "CC0",
-  "page": "https://commons.wikimedia.org/wiki/File:Piggy-bank-968302.jpg"
- },
- "nota2": {
-  "title": "File:2 Brazil real Second Reverse.jpg",
-  "author": "Rawlan1998",
-  "license": "Public domain",
-  "page": "https://commons.wikimedia.org/wiki/File:2_Brazil_real_Second_Reverse.jpg"
- },
- "nota20": {
-  "title": "File:20 Brazilian Real banknote featuring a Golden Lion Tamarin monkey.jpg",
-  "author": "Oleg Yunakov",
-  "license": "CC BY-SA 4.0",
-  "page": "https://commons.wikimedia.org/wiki/File:20_Brazilian_Real_banknote_featuring_a_Golden_Lion_Tamarin_monkey.jpg"
- },
- "nota200": {
-  "title": "File:200 Brazil real Second Reverse.jpg",
-  "author": "Central Bank of Brazil",
-  "license": "Public domain",
-  "page": "https://commons.wikimedia.org/wiki/File:200_Brazil_real_Second_Reverse.jpg"
- },
- "mico": {
-  "title": "File:Golden lion tamarin portrait3.jpg",
-  "author": "Jeroen Kransen",
-  "license": "CC BY-SA 2.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Golden_lion_tamarin_portrait3.jpg"
- },
- "arara": {
-  "title": "File:Red-and-green macaws (Ara chloropterus).JPG",
-  "author": "Charles J. Sharp",
-  "license": "CC BY-SA 4.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Red-and-green_macaws_(Ara_chloropterus).JPG"
- },
- "tartaruga": {
-  "title": "File:Chelonia mydas swimming, Hawaii.jpg",
-  "author": "Dominik Keller",
-  "license": "CC BY-SA 3.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Chelonia_mydas_swimming,_Hawaii.jpg"
- },
- "garca": {
-  "title": "File:Flying great egret 1.jpg",
-  "author": "Brocken Inaglory",
-  "license": "CC BY-SA 4.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Flying_great_egret_1.jpg"
- },
- "garoupa": {
-  "title": "File:Epinephelus marginatus - Palmitos Park.jpg",
-  "author": "H. Zell",
-  "license": "CC BY-SA 3.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Epinephelus_marginatus_-_Palmitos_Park.jpg"
- },
- "mercado2": {
-  "title": "File:CacioMurilo MercadoArtesanato JoãoPessoa PB (39078467870).jpg",
-  "author": "MTur Destinos",
-  "license": "Public domain",
-  "page": "https://commons.wikimedia.org/wiki/File:CacioMurilo_MercadoArtesanato_Jo%C3%A3oPessoa_PB_(39078467870).jpg"
- },
- "onca": {
-  "title": "File:Jaguar head shot-edit2.jpg",
-  "author": "Cburnett at English Wikipedia",
-  "license": "CC BY-SA 3.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Jaguar_head_shot-edit2.jpg"
- },
- "lobo": {
-  "title": "File:Lobo-guará (Chrysocyon brachyurus).jpg",
-  "author": "Clodomiro Esteves Junior",
-  "license": "CC BY-SA 4.0",
-  "page": "https://commons.wikimedia.org/wiki/File:Lobo-guar%C3%A1_(Chrysocyon_brachyurus).jpg"
- },
- "farol2": {
-  "title": "File:Apr2024. Cabo Branco Lighthouse aka Farol do Cabo Branco, João Pessoa, state of Paraíba, Brazil. 05.jpg",
-  "author": "Ridiculopathy",
-  "license": "CC0",
-  "page": "https://commons.wikimedia.org/wiki/File:Apr2024._Cabo_Branco_Lighthouse_aka_Farol_do_Cabo_Branco,_Jo%C3%A3o_Pessoa,_state_of_Para%C3%ADba,_Brazil._05.jpg"
+ "workteam": {
+  "title": "Equipe reunida em uma mesa de trabalho",
+  "author": "Mikhail Nilov",
+  "license": "Pexels License",
+  "page": "https://www.pexels.com/photo/office-team-sitting-at-the-table-7988240/"
  }
 };

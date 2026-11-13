@@ -1,0 +1,836 @@
+/* Gerado por ferramentas/gerar_aulas.py — cartões do launcher para as aulas geradas dos flipcharts 2026. */
+window.AULAS_GERADAS = [
+ {
+  "dir": "nab1-unidade1/",
+  "level": "nab1",
+  "unit": 1,
+  "tag": "NAB1 · Unidade 1",
+  "title": "Gente que se encontra",
+  "sub": "📍 Rio de Janeiro · Identidade, apresentações e pessoas que cuidam de um monumento",
+  "img": "nab1-unidade1/img/workteam.jpg",
+  "gram": "Cumprimentos e apresentações · Nomes e alfabeto · O verbo ser · Profissões · Origem e moradia · Rio de Janeiro · Verbos em -ar no presente · Ser e estar · Artigos e plural · Números",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-unidade2/",
+  "level": "nab1",
+  "unit": 2,
+  "tag": "NAB1 · Unidade 2",
+  "title": "Dias, caminhos e planos",
+  "sub": "📍 Bahia · Mobilidade cotidiana e encontros em Salvador",
+  "img": "nab1-unidade2/img/lacerda.jpg",
+  "gram": "Perguntas pessoais · Dias da semana · As horas · Possessivos · Demonstrativos · O verbo ir · Bahia: Salvador · O verbo poder · Ter e ter que",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-revisao12/",
+  "level": "nab1",
+  "unit": 2.5,
+  "tag": "NAB1 · Revisão 1 e 2",
+  "title": "Pessoas e planos",
+  "sub": "📍 Paraná · Receber visitantes, cidade e natureza em Curitiba",
+  "img": "nab1-revisao12/img/jardim_curitiba.jpg",
+  "gram": "Apresentações e perguntas · Números, rotina e artigos · Paraná: Curitiba · Planos e convites",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-unidade3/",
+  "level": "nab1",
+  "unit": 3,
+  "tag": "NAB1 · Unidade 3",
+  "title": "À mesa e em boa companhia",
+  "sub": "📍 Minas Gerais · Queijo artesanal, saberes da mesa e encontros em cafés",
+  "img": "nab1-unidade3/img/pao-queijo.jpg",
+  "gram": "No restaurante · Pedir comida e bebida · Minas Gerais · O verbo gostar · Verbos em -er · Ser e estar · Convites",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-unidade4/",
+  "level": "nab1",
+  "unit": 4,
+  "tag": "NAB1 · Unidade 4",
+  "title": "Escolhas, ações e instruções",
+  "sub": "📍 Pernambuco · São João de Caruaru, dança, encontros e organização da festa",
+  "img": "nab1-unidade4/img/caruaru.jpg",
+  "gram": "Comparativos · Verbos em -ir · Fazer e preferir · Pernambuco: Caruaru · Estar + gerúndio · Imperativo · Receitas",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-revisao34/",
+  "level": "nab1",
+  "unit": 4.5,
+  "tag": "NAB1 · Revisão 3 e 4",
+  "title": "Uma viagem de encontros",
+  "sub": "📍 Ceará · Fortaleza: artesanato, criatividade, sustentabilidade e hospitalidade",
+  "img": "nab1-revisao34/img/mercado-fortaleza.jpg",
+  "gram": "À mesa · Posse e comparação · Ceará: Fortaleza · Instruções e ações",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-unidade5/",
+  "level": "nab1",
+  "unit": 5,
+  "tag": "NAB1 · Unidade 5",
+  "title": "Um lugar para viver",
+  "sub": "📍 Pará · Belém: moradia, arquitetura e encontros no Ver-o-Peso",
+  "img": "nab1-unidade5/img/casa.jpg",
+  "gram": "Tipos de moradia · Cômodos e atividades · Descrever lugares · Objetos da casa · Localização · Pretérito perfeito regular · Pará: Belém",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-unidade6/",
+  "level": "nab1",
+  "unit": 6,
+  "tag": "NAB1 · Unidade 6",
+  "title": "Dias que viram histórias",
+  "sub": "📍 Rio Grande do Sul · Porto Alegre: lazer na Orla do Guaíba e encontros cotidianos",
+  "img": "nab1-unidade6/img/orla-rs.jpg",
+  "gram": "Rotina e frequência · Passado, presente e futuro · Pretérito perfeito irregular · Pronomes o, a, os, as · Pronomes -lo, -la · Meses e datas · Pronúncia do L · Rio Grande do Sul",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab1-revisao56/",
+  "level": "nab1",
+  "unit": 6.5,
+  "tag": "NAB1 · Revisão 5 e 6",
+  "title": "Casa, dias e planos",
+  "sub": "📍 Santa Catarina · Moradia no litoral e criatividade em Ituporanga",
+  "img": "nab1-revisao56/img/casa-sc.jpg",
+  "gram": "Casa e localização · Pretérito perfeito · Pronomes e datas · Santa Catarina",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-unidade1/",
+  "level": "nab2",
+  "unit": 1,
+  "tag": "NAB2 · Unidade 1",
+  "title": "Cuidar, orientar e conhecer",
+  "sub": "📍 Espírito Santo · Corpo, convivência, paneleiras de Goiabeiras e congo capixaba",
+  "img": "nab2-unidade1/img/pes-congo.jpg",
+  "gram": "O corpo e a saúde · Imperativo · Ter que e precisar · Espírito Santo · O verbo ver no passado · Pronomes lhe e lhes · Superlativo · Plural · Descrever pessoas",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-unidade2/",
+  "level": "nab2",
+  "unit": 2,
+  "tag": "NAB2 · Unidade 2",
+  "title": "Lugares, trabalho e histórias de vida",
+  "sub": "📍 São Paulo · Vida de bairro, comércio e feiras na capital paulista",
+  "img": "nab2-unidade2/img/cristo_redentor.jpg",
+  "gram": "Pronúncia: qu e v · Profissões e trabalho · São Paulo · Pretérito imperfeito · Perfeito × imperfeito · Estava + gerúndio · Numerais ordinais",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-revisao12/",
+  "level": "nab2",
+  "unit": 2.5,
+  "tag": "NAB2 · Revisão 1 e 2",
+  "title": "Gente, encontros e histórias",
+  "sub": "📍 Distrito Federal · Brasília: patrimônio urbano, trabalho, feira e encontro de culturas",
+  "img": "nab2-revisao12/img/catedral.jpg",
+  "gram": "Corpo, imperativo e pronomes · Perfeito e imperfeito · Distrito Federal · Ordinais",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-unidade4/",
+  "level": "nab2",
+  "unit": 4,
+  "tag": "NAB2 · Unidade 4",
+  "title": "Gente, encontros e histórias",
+  "sub": "📍 Maranhão · Bumba-meu-boi: recepção, personagens e saberes entre gerações",
+  "img": "nab2-unidade4/img/familia.jpg",
+  "gram": "Hipóteses · Família e relações · Trazer e levar · Concordar e discordar · Saber e conhecer · O verbo dizer · Maranhão · Mais-que-perfeito",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-revisao34/",
+  "level": "nab2",
+  "unit": 4.5,
+  "tag": "NAB2 · Revisão 3 e 4",
+  "title": "Um encontro em Goiás",
+  "sub": "📍 Goiás · Cidade de Goiás, Museu Casa de Cora Coralina e histórias entre gerações",
+  "img": "nab2-revisao34/img/casa-cora.jpg",
+  "gram": "Futuro · Goiás · Hipóteses e verbos · Mais-que-perfeito",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-unidade5/",
+  "level": "nab2",
+  "unit": 5,
+  "tag": "NAB2 · Unidade 5",
+  "title": "Viagens, encontros e descobertas",
+  "sub": "📍 Mato Grosso do Sul · Bonito e Campo Grande: ecoturismo, sabores e encontros de fronteira",
+  "img": "nab2-unidade5/img/sucuri.jpg",
+  "gram": "Viagens e expressões · Mato Grosso do Sul: Bonito · Perfeito composto · Mais-que-perfeito composto · Advérbios · Pronomes indefinidos · Diminutivo · Turismo responsável",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-unidade6/",
+  "level": "nab2",
+  "unit": 6,
+  "tag": "NAB2 · Unidade 6",
+  "title": "Vozes, saberes e sabores",
+  "sub": "📍 Rio Grande do Norte · Natal e Seridó: diversidade de vozes, bordado e gastronomia potiguar",
+  "img": "nab2-unidade6/img/natal.jpg",
+  "gram": "Variedades do português · Voz passiva · Ser × estar + particípio · Anúncios · Rio Grande do Norte · Pedidos e quantidades · Todo e tudo · Cada",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab2-revisao56/",
+  "level": "nab2",
+  "unit": 6.5,
+  "tag": "NAB2 · Revisão 5 e 6",
+  "title": "Feira de histórias e encontros",
+  "sub": "📍 Alagoas · Pontal da Barra e lagoas Mundaú-Manguaba: filé, trabalho artesanal e histórias de pessoas",
+  "img": "nab2-revisao56/img/pontal.jpg",
+  "gram": "Alagoas · Perfeito composto e advérbios · Voz passiva, todo e cada",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade1/",
+  "level": "nab3",
+  "unit": 1,
+  "tag": "NAB3 · Unidade 1",
+  "title": "Novos encontros, novos caminhos",
+  "sub": "📍 Rondônia · Porto Velho: memória da ferrovia e encontros cotidianos",
+  "img": "nab3-unidade1/img/workteam.jpg",
+  "gram": "Ir + infinitivo · Possessivos · Gostar de · Os sentidos de ficar · Comparativos · Rondônia: Porto Velho · Pretérito perfeito",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade2/",
+  "level": "nab3",
+  "unit": 2,
+  "tag": "NAB3 · Unidade 2",
+  "title": "Desejos que viram conversa",
+  "sub": "📍 Acre · Rio Branco: mercados, memórias e desejos cotidianos",
+  "img": "nab3-unidade2/img/mercado-acre.jpg",
+  "gram": "Presente do subjuntivo: desejo · Formas regulares do subjuntivo · Formas irregulares · Certeza × dúvida · Demonstrativos · Acre: Rio Branco · Estudo e trabalho",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade3/",
+  "level": "nab3",
+  "unit": 3,
+  "tag": "NAB3 · Unidade 3",
+  "title": "Trajetórias, habilidades e projetos",
+  "sub": "📍 Roraima · Boa Vista: pluralidade de trajetórias, cultura urbana e projetos",
+  "img": "nab3-unidade3/img/estudo.jpg",
+  "gram": "Estudos e carreira · A escola no Brasil · Conselhos com subjuntivo · Roraima: Boa Vista · Demonstrativos · Indicativo × subjuntivo · Escolhas",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-revisao234/",
+  "level": "nab3",
+  "unit": 4.5,
+  "tag": "NAB3 · Revisão 2, 3 e 4",
+  "title": "Escolhas para um novo encontro",
+  "sub": "📍 Tocantins · Jalapão: paisagens, saberes, clima e escolhas para uma visita",
+  "img": "nab3-revisao234/img/dunas-to.jpg",
+  "gram": "Presente do subjuntivo · Demonstrativos · Tocantins: Jalapão · Clima e expressões impessoais",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade6/",
+  "level": "nab3",
+  "unit": 6,
+  "tag": "NAB3 · Unidade 6",
+  "title": "E se a história fosse diferente?",
+  "sub": "📍 Piauí · Paisagens do Delta do Parnaíba e narrativas do imaginário piauiense e brasileiro",
+  "img": "nab3-unidade6/img/delta.jpg",
+  "gram": "Expressões de opinião · Imaginário brasileiro · Piauí · Imperfeito do subjuntivo · Subjuntivo no passado · Presente × imperfeito do subjuntivo · Hipóteses",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-revisao56/",
+  "level": "nab3",
+  "unit": 6.5,
+  "tag": "NAB3 · Revisão 5 e 6",
+  "title": "Consumo e escolhas",
+  "sub": "📍 Sergipe · Aracaju: mercados, trabalho artesanal e escolhas de consumo",
+  "img": "nab3-revisao56/img/mercado-aracaju.jpg",
+  "gram": "Dinheiro e consumo · Sergipe: Aracaju · Conjunções · Imperfeito do subjuntivo · Hipóteses com se",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-revisao56-complementar/",
+  "level": "nab3",
+  "unit": 6.6,
+  "tag": "NAB3 · Revisão 5 e 6 · Complementar",
+  "title": "E se a visita fosse sua?",
+  "sub": "📍 Sergipe · São Cristóvão: patrimônio, hipóteses de visita e narrativas criadas pela turma",
+  "img": "nab3-revisao56-complementar/img/praca-sc.jpg",
+  "gram": "Vocabulário e valores · Sergipe: São Cristóvão · Hipóteses · Subjuntivo no passado · Conjunções",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade7/",
+  "level": "nab3",
+  "unit": 7,
+  "tag": "NAB3 · Unidade 7",
+  "title": "Serviços, saberes e possibilidades",
+  "sub": "📍 Mato Grosso · Cuiabá e São Gonçalo Beira Rio: ofícios, cerâmica e viola de cocho",
+  "img": "nab3-unidade7/img/encanador.jpg",
+  "gram": "Problemas e serviços · Trabalho · Futuro do subjuntivo · Conectores · Mato Grosso · Pretérito perfeito do subjuntivo · Mais-que-perfeito do subjuntivo · Futuro composto do subjuntivo",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade8/",
+  "level": "nab3",
+  "unit": 8,
+  "tag": "NAB3 · Unidade 8",
+  "title": "Circulação, encontros e convivência",
+  "sub": "📍 Tocantins · Palmas: espaços públicos, memória urbana e diferentes maneiras de circular",
+  "img": "nab3-unidade8/img/palmas.jpg",
+  "gram": "Orientação na cidade · Haver e fazer · Tocantins: Palmas · Na oficina · Infinitivo pessoal · Para mim × para eu · Infinitivo pessoal × futuro do subjuntivo · Os porquês",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-revisao78/",
+  "level": "nab3",
+  "unit": 8.5,
+  "tag": "NAB3 · Revisão 7 e 8",
+  "title": "Serviços, caminhos e decisões compartilhadas",
+  "sub": "📍 Mato Grosso · Chapada dos Guimarães: paisagem do Cerrado, planejamento e cuidado com animais em reportagem histórica",
+  "img": "nab3-revisao78/img/cidade-pedra.jpg",
+  "gram": "Problemas e soluções · Futuro do subjuntivo e formas compostas · Infinitivo pessoal · Mato Grosso: Chapada dos Guimarães",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade9/",
+  "level": "nab3",
+  "unit": 9,
+  "tag": "NAB3 · Unidade 9",
+  "title": "Ibirapuera: lazer, encontros e outros caminhos possíveis",
+  "sub": "📍 São Paulo · Ibirapuera: lazer, encontros e outros caminhos possíveis",
+  "img": "nab3-unidade9/img/ibirapuera.jpg",
+  "gram": "Convites e lazer · São Paulo: Ibirapuera · Hipóteses sobre o passado · Pronomes relativos · Cujo e o qual · Registro",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade10/",
+  "level": "nab3",
+  "unit": 10,
+  "tag": "NAB3 · Unidade 10",
+  "title": "Recôncavo: rodas de música, mensagens e convivência",
+  "sub": "📍 Bahia · Recôncavo: rodas de música, mensagens e convivência",
+  "img": "nab3-unidade10/img/phone.jpg",
+  "gram": "Mensagens e contexto · Bahia: Recôncavo · Hipóteses sobre o passado · Pronomes relativos · Registro",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-unidade11/",
+  "level": "nab3",
+  "unit": 11,
+  "tag": "NAB3 · Unidade 11",
+  "title": "Recife: língua em circulação, frevo e histórias relatadas",
+  "sub": "📍 Pernambuco · Recife: língua em circulação, frevo e histórias relatadas",
+  "img": "nab3-unidade11/img/paco-frevo.jpg",
+  "gram": "O português no mundo · Variação de vocabulário · Pernambuco: Recife · Discurso indireto · Verbos de relato · Marcadores de tempo no relato · Pronúncia: r e rr",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "nab3-revisao91011/",
+  "level": "nab3",
+  "unit": 11.5,
+  "tag": "NAB3 · Revisão 9, 10 e 11",
+  "title": "Diamantina: música, encontros e histórias que circulam",
+  "sub": "📍 Minas Gerais · Diamantina: música, encontros e histórias que circulam",
+  "img": "nab3-revisao91011/img/vesperata.jpg",
+  "gram": "Hipóteses sobre o passado · Minas Gerais: Diamantina · Pronomes relativos · Registro · Discurso indireto",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade1/",
+  "level": "via1",
+  "unit": 1,
+  "tag": "VIA Brasil 1 · Unidade 1",
+  "title": "Por trás do desfile",
+  "sub": "📍 Rio de Janeiro · Rio de Janeiro: barracões, ofícios e regras do desfile das escolas de samba",
+  "img": "via1-unidade1/img/sapucai.jpg",
+  "gram": "Se eu fosse você… · Você deveria… · Que tal + infinitivo? · Acho melhor que + subjuntivo · Pretérito perfeito × pretérito imperfeito · Características, estados, mudanças e localização · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao1/",
+  "level": "via1",
+  "unit": 1.5,
+  "tag": "VIA Brasil 1 · Revisão 1",
+  "title": "Gigantes da língua",
+  "sub": "📍 Pernambuco · Olinda: os bonecos gigantes do carnaval",
+  "img": "via1-revisao1/img/bonecos.jpg",
+  "gram": "des-, in-, -oso, -vel · aderir a, agradar a… · lembrá-la · escutá-lo · arrumá-la · ser × estar × ficar · Cenário × fatos · no fundo do poço · tiro na água · por baixo do pano · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao2/",
+  "level": "via1",
+  "unit": 2.5,
+  "tag": "VIA Brasil 1 · Revisão 2",
+  "title": "A maior festa da gramática",
+  "sub": "📍 Santa Catarina · Blumenau: a Oktoberfest, herança alemã e gastronomia",
+  "img": "via1-revisao2/img/oktober.jpg",
+  "gram": "Ênclise: quando usar e não usar · o/a com outro sentido · en-…-ecer · a-…-ar · reforço · prefixo · repetição · diminutivo · comparação · Compreensão de vídeo · regência",
+  "chips": [
+   "📱 Sala com QR",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade3/",
+  "level": "via1",
+  "unit": 3,
+  "tag": "VIA Brasil 1 · Unidade 3",
+  "title": "Fé, pressa e palavras",
+  "sub": "📍 Bahia · Salvador: fitas do Senhor do Bonfim, fé popular e comércio",
+  "img": "via1-unidade3/img/fitas.jpg",
+  "gram": "de + aquilo = daquilo · em + esta = nesta · todo × tudo · quando, se, assim que + futuro do subjuntivo · de carro · a pé · a cavalo · andar de · Cardinais · ordinais · frações · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Memória",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao3/",
+  "level": "via1",
+  "unit": 3.5,
+  "tag": "VIA Brasil 1 · Revisão 3",
+  "title": "Os rios como estradas",
+  "sub": "📍 Amazonas · Manaus e o transporte fluvial: barcos, encomendas e novas soluções",
+  "img": "via1-revisao3/img/porto-flutuante.jpg",
+  "gram": "à medida que, assim que, logo que, exceto se + futuro do subjuntivo · pertencer ao · desistir da · de barco · a pé · por via marítima · obter, abster-se, deter · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade4/",
+  "level": "via1",
+  "unit": 4,
+  "tag": "VIA Brasil 1 · Unidade 4",
+  "title": "Escolhas e caminhos",
+  "sub": "📍 Goiás · Chapada dos Veadeiros e Alto Paraíso: natureza, misticismo e mudanças de vida",
+  "img": "via1-unidade4/img/chapada.jpg",
+  "gram": "ter (presente) + particípio × pretérito perfeito · Introdução · desenvolvimento · conclusão · deveria ter / poderia ter + particípio · ser de lua · até que enfim · eita! · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao4/",
+  "level": "via1",
+  "unit": 4.5,
+  "tag": "VIA Brasil 1 · Revisão 4",
+  "title": "No ritmo da comitiva",
+  "sub": "📍 Mato Grosso do Sul · Pantanal: comitivas, peões, boiadas e vida no campo",
+  "img": "via1-revisao4/img/boiada.jpg",
+  "gram": "Opinião · expressões com conta · tenho feito × fiz · ser de lua · algum (= nenhum) · certo × certas · acabar de/com/em · confiar em · contar com · gradação · Compreensão de vídeo",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade5/",
+  "level": "via1",
+  "unit": 5,
+  "tag": "VIA Brasil 1 · Unidade 5",
+  "title": "Gestos, queixas e combinados",
+  "sub": "📍 Rio Grande do Sul · A roda de chimarrão: hospitalidade, gestos e regras não escritas",
+  "img": "via1-unidade5/img/roda-historica.jpg",
+  "gram": "Descrever gestos · comparar culturas · tornar a · fazer questão de · e nada · com certeza · afinal de contas · dá nisso · vier × vir · viesse × visse · convir, intervir, provir, sobrevir · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao5/",
+  "level": "via1",
+  "unit": 5.5,
+  "tag": "VIA Brasil 1 · Revisão 5",
+  "title": "Uma ilha só nossa",
+  "sub": "📍 Tocantins · Ilha do Bananal: a maior ilha fluvial do mundo, rios e povos indígenas",
+  "img": "via1-revisao5/img/cantao.jpg",
+  "gram": "pode / não pode · vir vindo · fazer questão · nada de · dá nisso · convir, propor · se + tiver / tivesse / tivesse + particípio · caso + presente · Posições · quiz · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade6/",
+  "level": "via1",
+  "unit": 6,
+  "tag": "VIA Brasil 1 · Unidade 6",
+  "title": "O jeito de falar",
+  "sub": "📍 São Paulo · Piracicaba: o r caipira, o dialeto do interior e a Rua do Porto",
+  "img": "via1-unidade6/img/rua-porto.jpg",
+  "gram": "O que foi? · da noite pro dia · na hora H · num piscar de olhos · shopping · outdoor · notebook · caro × carro · coro × corro · há (passado) · daqui a (futuro) · a (distância) · à · Tempo · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao6/",
+  "level": "via1",
+  "unit": 6.5,
+  "tag": "VIA Brasil 1 · Revisão 6",
+  "title": "Daqui a pouquinho",
+  "sub": "📍 Piauí · Teresina: a cajuína, hospitalidade e patrimônio",
+  "img": "via1-revisao6/img/cajuina.jpg",
+  "gram": "se + imperfeito do subjuntivo · palavras compostas · já já · agorinha · há · daqui a · locuções de tempo · eu progrido · ele agride · que previnam · j × ch · t/d · nh × lh · bem × bom · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade7/",
+  "level": "via1",
+  "unit": 7,
+  "tag": "VIA Brasil 1 · Unidade 7",
+  "title": "Trabalho, ócio e cuidado",
+  "sub": "📍 Paraíba · São Bento: a capital das redes de dormir, trabalho têxtil e descanso",
+  "img": "via1-unidade7/img/redes-venda.jpg",
+  "gram": "Opinião · embora, mesmo que · esperto × expert · largo × comprido · diminuir · mão de vaca · mão na roda · pé-frio · pé-rapado · deixa pra lá · dar um jeito · balões · alemães · bênçãos · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao7/",
+  "level": "via1",
+  "unit": 7.5,
+  "tag": "VIA Brasil 1 · Revisão 7",
+  "title": "Ponto por ponto",
+  "sub": "📍 Sergipe · Divina Pastora: a renda irlandesa e o saber passado entre gerações",
+  "img": "via1-revisao7/img/map-interior.jpg",
+  "gram": "fazer direito × de qualquer jeito · s entre vogais = z · consigo · para si · pensar em · queixar-se de · mão de vaca · pé-frio · debater-se · despedir-se · Compreensão de vídeo",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade8/",
+  "level": "via1",
+  "unit": 8,
+  "tag": "VIA Brasil 1 · Unidade 8",
+  "title": "Grandes e pequenos, cores e jogos",
+  "sub": "📍 Maranhão · Lençóis Maranhenses: cores, dunas, lagoas e o título da Unesco",
+  "img": "via1-unidade8/img/lencois.jpg",
+  "gram": "Opinião · ordenar prioridades · laboral · levar × fazer um curso · tratar × tentar · janela × chá · vala × bala · -inho, -ejo, -ela · -ão, -aço, -orra · afeto, desprezo, ironia · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade9/",
+  "level": "via1",
+  "unit": 9,
+  "tag": "VIA Brasil 1 · Unidade 9",
+  "title": "Emoção e medida certa",
+  "sub": "📍 Pará · Belém: o Círio de Nazaré, fé, emoção e brinquedos de miriti",
+  "img": "via1-unidade9/img/cirio2.jpg",
+  "gram": "emocionado × empolgado · e ainda por cima · meio (advérbio) · meio/meia (adjetivo) · a metade · tornar × tornar-se · os sentidos de já · mesmo · Caramba! · Puxa vida! · Que droga! · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Forca",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao89/",
+  "level": "via1",
+  "unit": 9.5,
+  "tag": "VIA Brasil 1 · Revisão 8 e 9",
+  "title": "Memória e liberdade",
+  "sub": "📍 Alagoas · Serra da Barriga: o Quilombo dos Palmares e a memória da resistência negra",
+  "img": "via1-revisao89/img/serra-barriga.jpg",
+  "gram": "já · mesmo · pôr × buscar × tomar · Aumentativo e diminutivo · pronomes com preposição · já, mesmo, meio · regência · Mensagens de apoio e conselhos · Compreensão de vídeo",
+  "chips": [
+   "📱 Sala com QR",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-unidade10/",
+  "level": "via1",
+  "unit": 10,
+  "tag": "VIA Brasil 1 · Unidade 10",
+  "title": "Maravilhas, escolhas e conexões",
+  "sub": "📍 Paraná · Foz do Iguaçu: as Cataratas, os quatis e uma maravilha natural na fronteira",
+  "img": "via1-unidade10/img/garganta.jpg",
+  "gram": "Quiz · -ram × -rão (chegaram × chegarão) · bicho de sete cabeças · macaco velho · vai dar zebra · também não / nem eu · aditivas · adversativas · alternativas · conclusivas · explicativas · …",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ },
+ {
+  "dir": "via1-revisao10/",
+  "level": "via1",
+  "unit": 10.5,
+  "tag": "VIA Brasil 1 · Revisão 10",
+  "title": "Bichos, apoio e conclusões",
+  "sub": "📍 Espírito Santo · Projeto Tamar: tartarugas marinhas em Vitória e Regência",
+  "img": "via1-revisao10/img/tartaruga.jpg",
+  "gram": "amigo da onça · pagar o pato · ser coruja · peixe fora d’água · logo, portanto, por isso · porque, pois, que · Compreensão de vídeo",
+  "chips": [
+   "📱 Sala com QR",
+   "Classificar",
+   "Equipes"
+  ],
+  "gerada": true
+ }
+];

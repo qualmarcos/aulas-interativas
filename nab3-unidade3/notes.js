@@ -7,7 +7,7 @@ const NoteImgs = (() => {
   let dbp; const urls = {};
   function db() {
     return dbp || (dbp = new Promise((res, rej) => {
-      const r = indexedDB.open("nab3u3-notas-img", 1);
+      const r = indexedDB.open("nab3-u3-notas-img", 1);
       r.onupgradeneeded = () => r.result.createObjectStore("img");
       r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
     }));
@@ -41,7 +41,7 @@ function shrinkImage(file, max = 1000) {
 }
 
 const Notes = (() => {
-  const KEY = "nab3u3-notas";
+  const KEY = "nab3-u3-notas";
   const COLORS = [["#fff59d", "Amarelo"], ["#f8bbd0", "Rosa"], ["#c5e1a5", "Verde"], ["#b3e5fc", "Azul"], ["#ffcc80", "Laranja"], ["#d1c4e9", "Lilás"]];
   const SIZES = [13, 15, 17, 20, 24, 28, 34];
   let data = {}, slide = 0, visible = true, layer, saveT, hint;

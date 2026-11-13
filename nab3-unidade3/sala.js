@@ -6,7 +6,7 @@
      Sala.on("tipo", fn)      → recebe mensagens dos celulares
      Sala.sendToName(nome, msg)                                                    */
 const Sala = (() => {
-  const PFX = "nab3u3-", KEY = PFX + "sala-codigo";
+  const PFX = "nab3-u3-", KEY = PFX + "sala-codigo";
   const ICE = { config: { iceServers: [
     { urls: "stun:stun.l.google.com:19302" },
     { urls: "turn:openrelay.metered.ca:80", username: "openrelayproject", credential: "openrelayproject" },

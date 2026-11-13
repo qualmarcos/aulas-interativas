@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAB3 · Revisão 2, 3 e 4</title>
+<meta name="description" content="Aula interativa de português do Brasil — NAB3 · Revisão 2, 3 e 4: Escolhas para um novo encontro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="../tema.css?v=1">
+<script src="../tema.js?v=1"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <a class="home" href="../" title="Todas as aulas">🏠</a>
+    <span class="brand">Intercultura · NAB3 · Revisão 2, 3 e 4</span>
+    <span class="sp"></span>
+    <span class="score"><span class="tname" data-t="0">Equipe A</span> <button data-t="0" data-d="-1" aria-label="Tirar ponto da equipe A">−</button><b id="sa">0</b><button data-t="0" data-d="1" aria-label="Dar ponto à equipe A">+</button></span>
+    <span class="score"><span class="tname" data-t="1">Equipe B</span> <button data-t="1" data-d="-1" aria-label="Tirar ponto da equipe B">−</button><b id="sb">0</b><button data-t="1" data-d="1" aria-label="Dar ponto à equipe B">+</button></span>
+    <button id="bNotes">📝 Notas</button>
+    <button id="bNoteAdd" title="Nova nota neste slide">＋ Nota</button>
+    <button id="bSala" title="QR para os alunos entrarem pelo celular">📱 Sala</button>
+    <button id="bWheel">🎡 Roleta</button>
+    <button id="bSound">🔊 Som</button>
+    <button id="bTeacher" title="Mostrar o gabarito (professor)">✔ Respostas</button>
+    <button id="bMenu">☰ Índice</button>
+    <button id="bFull">⛶</button>
+  </div>
+  <div id="progress"><div></div></div>
+  <div id="stage"></div>
+  <div id="nav">
+    <button class="btn ghost" id="bPrev">← Anterior</button>
+    <span class="sp"></span><span id="count"></span><span class="sp"></span>
+    <button class="btn" id="bNext">Próxima →</button>
+  </div>
+</div>
+
+<div id="menu" class="overlay"><div class="panel"><h2 style="margin-top:0">Índice da aula</h2><div id="menuList"></div></div></div>
+
+
+<div id="sala" class="overlay">
+  <div class="box">
+    <button class="close" id="salaClose" aria-label="Fechar a sala">✕</button>
+    <div class="sala-left">
+      <h2>📱 Entre pelo celular</h2>
+      <div id="salaQR" class="sala-qr"></div>
+      <div class="sala-code">Código da sala: <b id="salaCode">…</b></div>
+      <a id="salaURL" class="sala-url" target="_blank" rel="noopener"></a>
+    </div>
+    <div>
+      <div id="salaStatus" class="sala-status"></div>
+      <p style="font-size:17px;margin:8px 0">Aponte a câmera para o QR, escreva seu nome e pronto: você entra na <b>🎡 roleta</b> e, quando for a sua vez, responde no celular.</p>
+      <p id="salaFile" class="sala-warn">⚠️ Esta aula está aberta como arquivo do computador. Para os celulares entrarem, abra pelo link do GitHub Pages.</p>
+      <h3 id="salaCount" style="margin:14px 0 6px">0 alunos conectados</h3>
+      <div id="salaList" class="sala-list"></div>
+      <div class="row" style="margin-top:14px"><button class="btn ghost" id="salaNew" title="Gera outro código (os celulares precisam ler o QR de novo)">↻ Nova sala</button></div>
+      <p class="tip">Os nomes e as respostas vão direto do celular para este computador. Nada fica guardado na internet.</p>
+    </div>
+  </div>
+</div>
+
+<div id="wheel" class="overlay">
+  <div class="box">
+    <button class="close" id="wClose" aria-label="Fechar roleta">✕</button>
+    <div>
+      <h2>🎡 Roleta da turma</h2>
+      <div class="wheelwrap"><div class="pointer" id="wPointer"></div><canvas id="wCanvas" width="940" height="940"></canvas><button class="hub" id="wHub">GIRAR</button></div>
+      <div class="winner" id="wWinner"></div>
+    </div>
+    <div>
+      <p style="margin:6px 0;font-size:17px">Escreva um nome por linha. A lista fica salva neste navegador.</p>
+      <textarea id="wNames" spellcheck="false"></textarea>
+      <label style="display:block;margin:8px 0;font-size:17px"><input type="checkbox" id="wRemove" checked> Tirar da roleta quem já foi sorteado</label>
+      <div class="row">
+        <button class="btn green" id="wSpin">🎲 Girar a roleta</button>
+        <button class="btn ghost" id="wShuffle">🔀 Embaralhar</button>
+        <button class="btn ghost" id="wReset">↺ Restaurar lista</button>
+      </div>
+      <p class="tip" id="wDone"></p>
+      <div class="w-teams">
+        <div class="w-teams-head"><h3>👥 Equipes</h3><button class="btn ghost" id="wTeamsDraw">🔀 Sortear equipes</button></div>
+        <p class="w-teams-tip">Arraste um nome para a outra equipe (ou toque nele para trocar de lado). Toque no nome da equipe para mudá-lo.</p>
+        <div class="w-teams-grid" id="wTeams"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="credits.js?v=2"></script>
+<script src="audio.js?v=2"></script>
+<script src="content.js?v=2"></script>
+<script src="notes.js?v=2"></script>
+<script src="teams.js?v=3"></script>
+<script src="sala.js?v=3"></script>
+<script src="app.js?v=5"></script>
+</body>
+</html>

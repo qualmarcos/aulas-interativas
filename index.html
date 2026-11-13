@@ -40,6 +40,7 @@ main{max-width:1040px;margin:-40px auto 40px;padding:0 16px}
 .empty{text-align:center;color:var(--muted);display:none}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
 header{position:relative}
+main{position:relative}
 #bTema{position:absolute;right:16px;top:16px;font:inherit;font-size:18px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:6px 10px;cursor:pointer}
 #bTema:hover{background:rgba(255,255,255,.25)}
 html[data-theme="dark"]{color-scheme:dark;--navy:#d3e3f7;--blue:#6ea3e8;--bg:#0f1722;--card:#1a2533;--ink:#e3eaf2;--muted:#9db0c3;--line:#33445a;--green:#5fcf8e}
@@ -66,14 +67,15 @@ html[data-theme="dark"] .tab.on small{background:var(--gold);color:#1d3557}
   <p class="empty" id="empty">Nenhuma aula encontrada.</p>
 </main>
 <footer>Para adicionar uma aula nova, crie uma pasta neste repositório e acrescente-a à lista em <code>index.html</code>, indicando o nível.</footer>
+<script src="aulas-geradas.js?v=1"></script>
 <script>
-const AULAS = [
-  { dir: "nab3-unidade3/", level: "nab3", unit: 3, tag: "NAB3 · Unidade 3", title: "Escolhas, contas e boas conversas",
-    sub: "🧺 Dinheiro, orçamento e a Paraíba", img: "nab3-unidade3/img/mercado.jpg",
+const AULAS = (window.AULAS_GERADAS || []).concat([
+  { dir: "nab3-unidade5/", level: "nab3", unit: 5, tag: "NAB3 · Unidade 5", title: "Escolhas, contas e boas conversas",
+    sub: "🧺 Dinheiro, orçamento e a Paraíba", img: "nab3-unidade5/img/mercado.jpg",
     gram: "Ler valores em reais · Cédulas e fauna · Orçamento · Conectores com subjuntivo: caso, contanto que, para que, embora, antes que, até que, sem que · Procuro alguém que…",
     chips: ["📱 Sala com QR", "💰 Quanto você tem?", "Artesanato", "Forca", "Equipes"] },
-  { dir: "nab3-unidade2/", level: "nab3", unit: 2, tag: "NAB3 · Unidade 2", title: "O tempo muda, a conversa continua",
-    sub: "🌦️ Tempo, planos e o Amapá", img: "nab3-unidade2/img/marabaixo.jpg",
+  { dir: "nab3-unidade4/", level: "nab3", unit: 4, tag: "NAB3 · Unidade 4", title: "O tempo muda, a conversa continua",
+    sub: "🌦️ Tempo, planos e o Amapá", img: "nab3-unidade4/img/marabaixo.jpg",
     gram: "Tempo × clima · Faz calor, está nublado, chove · Preferência e desejo · É possível que… / É importante que… + subjuntivo",
     chips: ["📱 Sala com QR", "💰 Quanto você tem?", "Marabaixo", "Forca", "Equipes"] },
   { dir: "via-brasil1-unidade2/", level: "via1", unit: 2, tag: "VIA Brasil 1 · Unidade 2", title: "Mensagens, desejos e jeitos de dizer",
@@ -84,7 +86,7 @@ const AULAS = [
     sub: "🧳 Roupas, compras e planos", img: "nab2-unidade3/img/mala.jpg",
     gram: "Futuro do presente · Futuro do pretérito · Verbos vestir, pôr, ir e vir",
     chips: ["📱 Sala com QR", "Galeria", "Memória", "Forca", "Equipes"] },
-];
+]);
 /* Níveis do menu. Cada aula em AULAS indica o seu em "level" e a ordem em "unit". */
 const NIVEIS = [["nab1", "NAB1"], ["nab2", "NAB2"], ["nab3", "NAB3"], ["via1", "VIA 1"], ["via2", "VIA 2"]];
 const KEY = "aulas-nivel", ids = NIVEIS.map(n => n[0]);

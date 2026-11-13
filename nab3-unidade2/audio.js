@@ -1,7 +1,7 @@
 /* ============ SONS (Web Audio, sem arquivos externos) ============ */
 const Sound = (() => {
   let ctx, master, noiseBuf, muted = false;
-  try { muted = localStorage.getItem("nab3u2-mute") === "1"; } catch (e) {}
+  try { muted = localStorage.getItem("nab3-u2-mute") === "1"; } catch (e) {}
   function ac() {
     if (!ctx) {
       ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -37,7 +37,7 @@ const Sound = (() => {
 
   return {
     get muted() { return muted; },
-    toggle() { muted = !muted; try { localStorage.setItem("nab3u2-mute", muted ? "1" : "0"); } catch (e) {} return muted; },
+    toggle() { muted = !muted; try { localStorage.setItem("nab3-u2-mute", muted ? "1" : "0"); } catch (e) {} return muted; },
     unlock() { try { ac(); } catch (e) {} },
     /* rufar de tambores: acelera e termina com bumbo + prato */
     drumroll(sec = 1.6) {
@@ -75,7 +75,7 @@ try { window.speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
 
 /* ============ ROLETA DA TURMA ============ */
 const Roleta = (() => {
-  const KEY = "nab3u2-roleta";
+  const KEY = "nab3-u2-roleta";
   const DEFAULT = ["Ana", "Bruno", "Camila", "Diego", "Eduarda", "Felipe", "Gabriela", "Heitor"];
   const COLORS = ["#2356a0", "#a8c94a", "#f2b705", "#3f8a4b", "#c0392b", "#1d3557", "#8e44ad", "#f77f00", "#16a085", "#d35400"];
   let names = [], angle = 0, spinning = false, lastIdx = -1, pendingRemove = null;

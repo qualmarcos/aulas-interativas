@@ -25,9 +25,9 @@ function win() { Sound.fanfare(); confetti(); }
 
 /* ============ MODO EQUIPES: vez + pontos em todas as atividades ============ */
 let teamMode = true;
-try { teamMode = localStorage.getItem("nab3u2-modo-equipes") !== "0"; } catch (e) {}
+try { teamMode = localStorage.getItem("nab3-u2-modo-equipes") !== "0"; } catch (e) {}
 const allBars = new Set();
-function setTeamMode(v) { teamMode = v; try { localStorage.setItem("nab3u2-modo-equipes", v ? "1" : "0"); } catch (e) {} allBars.forEach(f => f()); phoneSync(); }
+function setTeamMode(v) { teamMode = v; try { localStorage.setItem("nab3-u2-modo-equipes", v ? "1" : "0"); } catch (e) {} allBars.forEach(f => f()); phoneSync(); }
 /* ---------- celular: só o aluno da vez recebe as opções ---------- */
 function phoneSync() { Sala.setActivity(S[cur] && S[cur]._phone ? S[cur]._phone() : null); }
 const phoneTurn = () => teamMode ? Teams.player(Teams.turn) : null;
@@ -361,7 +361,7 @@ function R_hangman(s, el) {
   const norm = c => c.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase();
   let cat = "Todas", used = new Set(), cur = null, guessed, wrong, over, hintOn;
   /* partida em rodadas: em cada rodada, cada equipe joga uma palavra */
-  let ROUNDS = 5; try { ROUNDS = +localStorage.getItem("nab3u2-forca-rodadas") || 5; } catch (e) {}
+  let ROUNDS = 5; try { ROUNDS = +localStorage.getItem("nab3-u2-forca-rodadas") || 5; } catch (e) {}
   const match = { played: 0, pts: [0, 0], done: false };
   const top = h("div", "chips hang-cats");
   ["Todas", ...cats].forEach(c => { const b = h("button", "chip", c === "Todas" ? `🎲 Todas (${cats.reduce((n, k) => n + s.bank[k].length, 0)})` : `${c} (${s.bank[c].length})`); b.dataset.c = c; b.onclick = () => { cat = c; Sound.tock(); paintCats(); if (!match.done) next(); }; top.appendChild(b); });
@@ -369,7 +369,7 @@ function R_hangman(s, el) {
   const tools = Teams.tools(), rsel = h("span", "rounds-sel");
   function paintRounds() {
     rsel.innerHTML = `<b>Rodadas:</b> ` + [3, 5, 7, 10].map(n => `<button class="chip${n === ROUNDS ? " sel" : ""}" data-n="${n}">${n}</button>`).join("");
-    rsel.querySelectorAll("button").forEach(b => b.onclick = () => { ROUNDS = +b.dataset.n; try { localStorage.setItem("nab3u2-forca-rodadas", ROUNDS); } catch (e) {} Sound.tock(); paintRounds(); newMatch(); });
+    rsel.querySelectorAll("button").forEach(b => b.onclick = () => { ROUNDS = +b.dataset.n; try { localStorage.setItem("nab3-u2-forca-rodadas", ROUNDS); } catch (e) {} Sound.tock(); paintRounds(); newMatch(); });
   }
   const bNew = h("button", "btn ghost", "🔄 Nova partida"); bNew.onclick = () => { Sound.whoosh(); newMatch(); };
   paintRounds(); tools.append(rsel, bNew); el.appendChild(tools);
@@ -388,10 +388,10 @@ function R_hangman(s, el) {
   const errors = () => wrong.length + (hintOn ? HINT_COST : 0) + timeouts;
   /* ---- tempo: 1 minuto sem resposta -> contagem de 15 s -> perde 1 coração ---- */
   const IDLE = 60, COUNT = 15; let clockOn = true, tick = null, idleT0 = 0;
-  try { clockOn = localStorage.getItem("nab3u2-forca-tempo") !== "0"; } catch (e) {}
+  try { clockOn = localStorage.getItem("nab3-u2-forca-tempo") !== "0"; } catch (e) {}
   const bClock = h("button", "btn ghost");
   const paintClockBtn = () => { bClock.textContent = clockOn ? "⏱ Tempo: ligado" : "⏱ Tempo: desligado"; };
-  bClock.onclick = () => { clockOn = !clockOn; try { localStorage.setItem("nab3u2-forca-tempo", clockOn ? "1" : "0"); } catch (e) {} paintClockBtn(); resetClock(); Sound.tock(); };
+  bClock.onclick = () => { clockOn = !clockOn; try { localStorage.setItem("nab3-u2-forca-tempo", clockOn ? "1" : "0"); } catch (e) {} paintClockBtn(); resetClock(); Sound.tock(); };
   function stopClock() { clearInterval(tick); tick = null; }
   function resetClock() {
     stopClock(); const c = $(".hang-clock"); c.className = "hang-clock"; c.innerHTML = "";
@@ -639,7 +639,7 @@ function R_html(s, el) { el.innerHTML = s.html; }
 /* ---------- "Quanto você tem?": um aluno por vez (no quadro ou no celular), preços escondidos, faturas no final ---------- */
 function R_tally(s, el) {
   header(s, el, "Aquecimento");
-  const id = "tally-" + S.indexOf(s), KEY = "nab3u2-" + id;
+  const id = "tally-" + S.indexOf(s), KEY = "nab3-u2-" + id;
   const money = n => "R$ " + n.toLocaleString("pt-BR");
   let st = { res: {}, revealed: false }; try { st = Object.assign(st, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };

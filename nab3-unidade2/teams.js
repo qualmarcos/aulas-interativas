@@ -2,7 +2,7 @@
    Usa os mesmos nomes da roleta e divide em duas equipes (salvas no navegador).
    Os nomes podem ser arrastados de uma equipe para a outra (ou tocados para trocar de lado). */
 const Teams = (() => {
-  const KEY = "nab3u2-equipes";
+  const KEY = "nab3-u2-equipes";
   let st, subs = [];
   try { st = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
   if (!st || !Array.isArray(st.a)) st = { a: [], b: [], na: "Equipe A", nb: "Equipe B", turn: 0, idx: [0, 0] };

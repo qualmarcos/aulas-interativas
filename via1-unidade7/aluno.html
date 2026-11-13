@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aula no celular · VIA Brasil 1 · Unidade 7</title>
+<meta name="description" content="Entre na aula interativa pelo celular: escreva seu nome e responda as atividades.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+<style>
+:root{--navy:#1d3557;--blue:#2356a0;--bg:#f4f7fb;--card:#fff;--green:#3f8a4b;--ink:#1d2b3a;--muted:#5d6b7a;--line:#d8e0ea;--ok:#2e8b57;--okbg:#e3f4ea;--bad:#c0392b;--badbg:#fbe9e7;--gold:#f2b705}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+header{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:2}
+header b{flex:1;font-size:16px}
+#net{font-size:13px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.15);white-space:nowrap}
+main{padding:16px;max-width:560px;margin:0 auto}
+h1{font-size:26px;margin:6px 0 6px;color:var(--navy)}
+.lead{color:var(--muted);font-size:17px;margin:0 0 14px}
+.card{background:var(--card);border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(29,53,87,.08);margin-bottom:14px}
+input[type=text]{width:100%;font:inherit;font-size:20px;padding:12px 14px;border-radius:12px;border:2px solid var(--line);outline:none}
+input[type=text]:focus{border-color:var(--blue)}
+.btn{display:block;width:100%;margin-top:12px;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:14px;font:inherit;font-size:19px;font-weight:800;box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.btn:active{transform:translateY(1px);box-shadow:none}
+.btn.green{background:var(--green)}
+.btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue);box-shadow:none}
+.btn:disabled{opacity:.5}
+.item{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;border:2px solid var(--line);background:#fff;margin-bottom:8px;font-size:18px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.item input{width:24px;height:24px;flex:none;accent-color:var(--ok)}
+.item.on{border-color:var(--ok);background:var(--okbg)}
+.big{font-size:64px;text-align:center;margin:10px 0}
+.center{text-align:center}
+.msg{border-radius:12px;padding:10px 14px;margin-top:12px;font-size:17px}
+.msg.ok{background:var(--okbg);color:var(--ok)}
+.msg.bad{background:var(--badbg);color:var(--bad)}
+.who{font-size:15px;color:var(--muted);margin-top:14px;text-align:center}
+.who a{color:var(--blue)}
+.bill{background:#fffdf5;border:1px solid #e9dfc0;border-radius:8px;padding:14px;font-family:"Courier New",monospace;font-size:15px}
+.bill-l{display:flex;justify-content:space-between;gap:8px;padding:3px 0}
+.bill-l span:last-child{white-space:nowrap}
+.bill-t{display:flex;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:2px dashed #d8cba0;font-weight:900;font-size:18px}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.bob{animation:bob 2s ease-in-out infinite;display:inline-block}
+.myturn{background:#f2b705;color:#1d3557;font-weight:900;text-align:center;border-radius:10px;padding:8px;margin-bottom:10px}
+.qn{color:#5d6b7a;font-size:15px;margin-bottom:8px}
+.qimg{display:block;width:100%;max-height:200px;object-fit:contain;border-radius:10px;margin-bottom:8px}
+.qt{font-size:20px;font-weight:800;margin:6px 0 12px}
+.opt{display:block;width:100%;text-align:left;font:inherit;font-size:18px;padding:14px;margin-bottom:8px;border-radius:12px;border:2px solid #d8e0ea;background:#fff;color:#1d2b3a}
+.opt.sel{border-color:#2356a0;background:#e8f0fb}
+.opt.off{background:#fbe9e7;color:#c0392b;text-decoration:line-through}
+.mask{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin:10px 0}
+.mask span{min-width:24px;font-size:24px;font-weight:900;text-align:center}
+.mask span.blank{border-bottom:3px solid #1d3557}
+.mask .gap{width:14px}
+.lives{margin:6px 0 10px}
+.abc{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.abc button{font:inherit;font-weight:800;font-size:18px;padding:10px 0;border-radius:8px;border:2px solid #d8e0ea;background:#fff;color:#1d3557}
+.abc button:disabled{opacity:.45}
+.abc button.hit{background:#e3f4ea}
+.abc button.miss{background:#fbe9e7}
+</style>
+<link rel="stylesheet" href="../tema-aluno.css?v=1">
+<script src="../tema.js?v=1"></script>
+</head>
+<body>
+<header><span>📱</span><b>VIA Brasil 1 · Unidade 7</b><span id="net">…</span></header>
+<main id="app"></main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
+<script>
+(() => {
+  const PFX = "via1-u7-", ME = PFX + "aluno";
+  const ICE = { config: { iceServers: [
+    { urls: "stun:stun.l.google.com:19302" },
+    { urls: "turn:openrelay.metered.ca:80", username: "openrelayproject", credential: "openrelayproject" },
+    { urls: "turn:openrelay.metered.ca:443", username: "openrelayproject", credential: "openrelayproject" },
+    { urls: "turn:openrelay.metered.ca:443?transport=tcp", username: "openrelayproject", credential: "openrelayproject" }] } };
+  const room = (new URLSearchParams(location.search).get("s") || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const app = document.getElementById("app"), net = document.getElementById("net");
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const money = n => "R$ " + Number(n).toLocaleString("pt-BR");
+  let me = {}; try { me = JSON.parse(localStorage.getItem(ME)) || {}; } catch (e) {}
+  if (!me.sid) me.sid = Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+  const saveMe = () => { try { localStorage.setItem(ME, JSON.stringify(me)); } catch (e) {} };
+  let peer = null, conn = null, act = null, joined = false, retryT = null, openT = null, fails = 0;
+  const sent = {}, bills = {};   // por atividade: já enviei? fatura recebida?
+  const draft = id => { try { return JSON.parse(localStorage.getItem(PFX + "rasc-" + id)) || []; } catch (e) { return []; } };
+  const keepDraft = (id, v) => { try { localStorage.setItem(PFX + "rasc-" + id, JSON.stringify(v)); } catch (e) {} };
+  const setNet = (t, ok) => { net.textContent = t; net.style.background = ok ? "rgba(63,138,75,.9)" : "rgba(255,255,255,.15)"; };
+
+  /* ---------- telas ---------- */
+  function nameScreen(err) {
+    setNet("offline", false);
+    app.innerHTML = `<h1>Olá! 👋</h1><p class="lead">Escreva seu nome para entrar na aula.</p>
+      <div class="card"><input type="text" id="nm" maxlength="30" autocomplete="given-name" placeholder="Seu nome" value="${esc(me.name || "")}">
+      <button class="btn" id="go">Entrar na aula</button>${err ? `<div class="msg bad">${err}</div>` : ""}</div>`;
+    const nm = document.getElementById("nm"), go = document.getElementById("go");
+    const enter = () => { const v = nm.value.trim(); if (!v) { nm.focus(); return; } me.name = v; saveMe(); connect(); };
+    go.onclick = enter; nm.onkeydown = e => { if (e.key === "Enter") enter(); };
+    if (!room) { go.disabled = true; app.querySelector(".card").insertAdjacentHTML("beforeend", `<div class="msg bad">Este link não tem o código da sala. Leia o QR que está na tela da aula.</div>`); }
+  }
+  function waiting(txt) {
+    app.innerHTML = `<div class="card center"><div class="big"><span class="bob">⏳</span></div><p class="lead" style="margin:0">${txt}</p></div>${footer()}`;
+    bindFooter();
+  }
+  function footer() { return me.name ? `<p class="who">Você é <b>${esc(me.name)}</b> · <a href="#" id="chg">trocar nome</a></p>` : ""; }
+  function bindFooter() { const c = document.getElementById("chg"); if (c) c.onclick = e => { e.preventDefault(); stop(); nameScreen(); }; }
+  let wasMine = false;
+  function render() {
+    if (!joined) return;
+    clearInterval(tick);
+    const mine = !!(act && act.only && act.only === me.name); if (mine && !wasMine && navigator.vibrate) navigator.vibrate(150); wasMine = mine;
+    if (!act) { app.innerHTML = `<div class="card center"><div class="big"><span class="bob">👀</span></div><h1>Você está na aula!</h1><p class="lead">Olhe para a tela. Quando for a sua vez, as opções aparecem aqui.</p></div>${footer()}`; bindFooter(); return; }
+    if (act.kind === "tally") return renderTally();
+    if (act.kind === "wait") return renderWait();
+    if (act.kind === "choice") return renderChoice();
+    if (act.kind === "letters") return renderLetters();
+    app.innerHTML = `<div class="card center"><p class="lead">Atividade em andamento na tela. 👀</p></div>${footer()}`; bindFooter();
+  }
+  let tick = null;
+  const yourTurn = `<div class="myturn">🎯 É a sua vez!</div>`;
+  const noConn = el => { el.innerHTML = `<div class="msg bad">Sem conexão. Tentando reconectar…</div>`; };
+  function renderWait() {
+    const a = act;
+    app.innerHTML = `<h1>${esc(a.title || "")}</h1><div class="card center"><div class="big"><span class="bob">👀</span></div>
+      ${a.note ? `<p class="lead" style="margin:0 0 8px"><b>${esc(a.note)}</b></p>` : ""}
+      ${a.turn ? `<p class="lead" style="margin:0">Vez de <b>${esc(a.turn)}</b>. Olhe para a tela.</p>` : ""}
+      ${sent[a.id] ? `<div class="msg ok">✔ Suas respostas foram enviadas!</div>` : ""}</div>${footer()}`;
+    bindFooter();
+  }
+  function renderChoice() {
+    const a = act, tried = a.o.some(x => x.off);
+    app.innerHTML = `<h1>${esc(a.title)}</h1><div class="card">${yourTurn}<div class="qn">${esc(a.n || "")}${a.secs ? ` · <b id="left">${a.secs}</b> s` : ""}</div>
+      ${a.img ? `<img class="qimg" src="${esc(a.img)}" alt="">` : ""}<p class="qt">${esc(a.q)}</p><div id="opts"></div><div id="fb">${a.busy ? `<div class="msg">Conferindo… olhe para a tela! 👀</div>` : tried ? `<div class="msg bad">Ainda não. Tente outra opção.</div>` : ""}</div></div>${footer()}`;
+    const box = document.getElementById("opts"), fb = document.getElementById("fb");
+    a.o.forEach((x, i) => {
+      const b = document.createElement("button"); b.className = "opt" + (x.off ? " off" : ""); b.textContent = x.t; b.disabled = x.off || a.busy;
+      b.onclick = () => {
+        if (!conn || !conn.open) return noConn(fb);
+        box.querySelectorAll("button").forEach(y => y.disabled = true); b.classList.add("sel");
+        conn.send({ t: "choice", id: a.id, i }); fb.innerHTML = `<div class="msg">Conferindo… olhe para a tela! 👀</div>`;
+      };
+      box.appendChild(b);
+    });
+    if (a.secs) { let n = a.secs; tick = setInterval(() => { n--; const l = document.getElementById("left"); if (l) l.textContent = Math.max(0, n); if (n <= 0) clearInterval(tick); }, 1000); }
+    bindFooter();
+  }
+  function renderLetters() {
+    const a = act, used = new Set(a.used);
+    app.innerHTML = `<h1>${esc(a.title)}</h1><div class="card center">${yourTurn}<div class="qn">${esc(a.cat)}</div>
+      <div class="mask">${a.mask.map(c => c === " " ? `<i class="gap"></i>` : `<span class="${c === "_" ? "blank" : ""}">${c === "_" ? "&nbsp;" : esc(c)}</span>`).join("")}</div>
+      <div class="lives">${"❤️".repeat(a.lives)}</div>${a.wrong.length ? `<div class="qn">Erradas: ${a.wrong.map(esc).join(" ")}</div>` : ""}
+      <div class="abc" id="abc"></div><div id="fb"></div></div>${footer()}`;
+    const box = document.getElementById("abc"), fb = document.getElementById("fb");
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(L => {
+      const b = document.createElement("button"); b.textContent = L; b.disabled = used.has(L); if (a.wrong.includes(L)) b.className = "miss"; else if (used.has(L)) b.className = "hit";
+      b.onclick = () => { if (!conn || !conn.open) return noConn(fb); box.querySelectorAll("button").forEach(y => y.disabled = true); conn.send({ t: "choice", id: a.id, i: L }); };
+      box.appendChild(b);
+    });
+    bindFooter();
+  }
+  function renderTally() {
+    const a = act, b = bills[a.id];
+    if (!a.open) {
+      app.innerHTML = `<h1>${esc(a.title)}</h1>` + (b ? `<div class="card center"><div class="big">${b.rank === 1 ? "👑" : "🧾"}</div><p class="lead" style="margin:0">Você ficou em <b>${b.rank}º lugar</b> de ${b.of}!</p></div>
+        <div class="bill">${b.lines.length ? b.lines.map(([t, v]) => `<div class="bill-l"><span>${esc(t)}</span><span>${money(v)}</span></div>`).join("") : `<div class="bill-l"><span>Nada marcado. Um anjo! 😇</span><span>${money(0)}</span></div>`}<div class="bill-t"><span>TOTAL</span><span>${money(b.total)}</span></div></div>`
+        : `<div class="card center"><div class="big">🧾</div><p class="lead" style="margin:0">As faturas foram reveladas na tela!</p></div>`) + footer();
+      bindFooter(); return;
+    }
+    const picks = new Set(draft(a.id));
+    app.innerHTML = `<h1>${esc(a.title)}</h1><p class="lead">${esc(a.lead || "")}</p><div id="its"></div>
+      <button class="btn green" id="send">${sent[a.id] ? "Enviar de novo" : "Enviar minhas respostas"}</button><div id="fb"></div>${footer()}`;
+    const its = document.getElementById("its");
+    a.items.forEach((t, i) => {
+      const l = document.createElement("label"); l.className = "item" + (picks.has(i) ? " on" : "");
+      l.innerHTML = `<input type="checkbox" ${picks.has(i) ? "checked" : ""}><span>${esc(t)}</span>`;
+      l.querySelector("input").onchange = e => { e.target.checked ? picks.add(i) : picks.delete(i); l.classList.toggle("on", e.target.checked); keepDraft(a.id, [...picks]); };
+      its.appendChild(l);
+    });
+    const fb = document.getElementById("fb");
+    if (sent[a.id]) fb.innerHTML = `<div class="msg ok">✔ Respostas enviadas! Você pode mudar e enviar de novo até o professor revelar.</div>`;
+    document.getElementById("send").onclick = () => {
+      if (!conn || !conn.open) { fb.innerHTML = `<div class="msg bad">Sem conexão. Tentando reconectar…</div>`; return; }
+      conn.send({ t: "tally", id: a.id, picks: [...picks] }); fb.innerHTML = `<div class="msg">Enviando…</div>`;
+    };
+    bindFooter();
+  }
+
+  /* ---------- conexão ---------- */
+  function stop() { clearTimeout(retryT); clearTimeout(openT); joined = false; try { conn && conn.close(); } catch (e) {} try { peer && peer.destroy(); } catch (e) {} peer = conn = null; }
+  function retry(txt) { stop(); setNet("reconectando…", false); waiting(txt); retryT = setTimeout(connect, 3000); }
+  function connect() {
+    if (typeof Peer === "undefined") { nameScreen("Não foi possível carregar a página da aula. Verifique a internet e recarregue."); return; }
+    stop(); setNet("conectando…", false); waiting("Entrando na sala…");
+    const p = peer = new Peer(undefined, ICE);
+    openT = setTimeout(() => { fails++; retry(fails > 2 ? "Ainda não consegui falar com o computador do professor. Confira se a aula está aberta na tela e se o celular tem internet. Tentando de novo…" : "Conectando… só um instante."); }, 15000);
+    p.on("open", () => {
+      const c = conn = p.connect(PFX + room, { reliable: true });
+      c.on("open", () => { clearTimeout(openT); fails = 0; c.send({ t: "join", name: me.name, sid: me.sid }); });
+      c.on("data", onData);
+      c.on("close", () => { if (c === conn) retry("A conexão caiu. Reconectando…"); });
+      c.on("error", () => { if (c === conn) retry("A conexão caiu. Reconectando…"); });
+    });
+    p.on("error", e => {
+      if (p !== peer) return;
+      if (e.type === "peer-unavailable") { fails++; retry("A sala ainda não está aberta. Peça ao professor para abrir “📱 Sala” na tela. Tentando de novo…"); }
+      else retry("Problema de conexão. Tentando de novo…");
+    });
+  }
+  function onData(d) {
+    if (!d || typeof d !== "object") return;
+    if (d.t === "hello") { joined = true; me.name = d.name; saveMe(); act = d.act; setNet("🟢 na aula", true); render(); }
+    else if (d.t === "act") { act = d.act; render(); }
+    else if (d.t === "ok") { sent[d.id] = true; if (act && act.id === d.id) render(); if (navigator.vibrate) navigator.vibrate(60); }
+    else if (d.t === "closed") { if (act && act.id === d.id) { act.open = false; render(); } }
+    else if (d.t === "reveal") { bills[d.id] = d; if (act && act.id === d.id) { act.open = false; render(); } if (navigator.vibrate) navigator.vibrate([80, 60, 80]); }
+  }
+
+  if (me.name && room) connect(); else nameScreen();
+})();
+</script>
+</body>
+</html>
