@@ -88,7 +88,7 @@ const AULAS = (window.AULAS_GERADAS || []).concat([
     chips: ["📱 Sala com QR", "Galeria", "Memória", "Forca", "Equipes"] },
 ]);
 /* Níveis do menu. Cada aula em AULAS indica o seu em "level" e a ordem em "unit". */
-const NIVEIS = [["nab1", "NAB1"], ["nab2", "NAB2"], ["nab3", "NAB3"], ["via1", "VIA 1"], ["via2", "VIA 2"]];
+const NIVEIS = [["nab1", "NAB1"], ["nab2", "NAB2"], ["nab3", "NAB3"], ["via1", "VIA 1"]];
 const KEY = "aulas-nivel", ids = NIVEIS.map(n => n[0]);
 const grid = document.getElementById("grid"), q = document.getElementById("q"), tabs = document.getElementById("tabs");
 let saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
