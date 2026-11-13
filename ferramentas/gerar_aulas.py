@@ -164,7 +164,8 @@ def gerar(inf):
                        f'<meta name="description" content="Aula interativa de português do Brasil — {e(inf["short"])}: {e(d.get("subtitle", ""))}.">', t)
         (out / f).write_text(t)
     for k in FIXAS:
-        shutil.copy(MODELO / "img" / f"{k}.jpg", out / "img" / f"{k}.jpg")
+        if not (out / "img" / f"{k}.jpg").exists():  # capas do PDF: ferramentas/capas_pdf.py
+            shutil.copy(MODELO / "img" / f"{k}.jpg", out / "img" / f"{k}.jpg")
 
     usadas = set()
     for p in d["pages"]:
