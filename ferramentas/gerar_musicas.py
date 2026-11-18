@@ -102,14 +102,14 @@ MUSICAS = [
   ["Tic Tic Tac", "Carrapicho", 1996, "nordeste", "Banda do Amazonas que estourou na França e na Europa com o ritmo do boi-bumbá."],
 
   # ---- Pop, soul e funk ----
-  ["Ai Se Eu Te Pego", "Michel Teló", 2011, "pop", "Chegou ao 1.º lugar das paradas em vários países da Europa e da América Latina, com dancinha de jogadores famosos."],
-  ["Balada", "Gusttavo Lima", 2011, "pop", "O “tchê tcherere tchê tchê” fez sucesso em vários países depois do Teló."],
+  ["Ai Se Eu Te Pego", "Michel Teló", 2011, "hits", "Chegou ao 1.º lugar das paradas em vários países da Europa e da América Latina, com dancinha de jogadores famosos."],
+  ["Balada", "Gusttavo Lima", 2011, "hits", "O “tchê tcherere tchê tchê” fez sucesso em vários países depois do Teló."],
   ["Lambada", "Kaoma", 1989, "pop", "Um dos maiores sucessos mundiais de 1989; a melodia vem de uma canção boliviana, “Llorando se fue”."],
-  ["Show das Poderosas", "Anitta", 2013, "pop", "O hit que transformou Anitta em estrela nacional antes da carreira internacional."],
-  ["Vai Malandra", "Anitta", 2017, "pop", "Gravado no Morro do Vidigal, no Rio; o clipe teve milhões de visualizações em poucos dias."],
-  ["Bum Bum Tam Tam", "MC Fioti", 2017, "pop", "O funk usa um trecho de flauta de Bach e virou sucesso mundial no YouTube."],
-  ["Tá OK", "DENNIS", 2023, "pop", "Viralizou nas redes do mundo todo e ganhou remix com a cantora colombiana Karol G."],
-  ["K.O.", "Pabllo Vittar", 2017, "pop", "Pabllo Vittar é uma das drag queens mais seguidas do mundo nas redes sociais."],
+  ["Show das Poderosas", "Anitta", 2013, "hits", "O hit que transformou Anitta em estrela nacional antes da carreira internacional."],
+  ["Vai Malandra", "Anitta", 2017, "hits", "Gravado no Morro do Vidigal, no Rio; o clipe teve milhões de visualizações em poucos dias."],
+  ["Bum Bum Tam Tam", "MC Fioti", 2017, "hits", "O funk usa um trecho de flauta de Bach e virou sucesso mundial no YouTube."],
+  ["Tá OK", "DENNIS", 2023, "hits", "Viralizou nas redes do mundo todo e ganhou remix com a cantora colombiana Karol G."],
+  ["K.O.", "Pabllo Vittar", 2017, "hits", "Pabllo Vittar é uma das drag queens mais seguidas do mundo nas redes sociais."],
   ["Sossego", "Tim Maia", 1978, "pop", "O soul de Tim Maia é cultuado por DJs e colecionadores de discos no mundo todo."],
   ["Gostava Tanto de Você", "Tim Maia", 1973, "pop", "Uma das baladas românticas mais conhecidas do Brasil."],
   ["Primavera", "Tim Maia", 1970, "pop", "Também conhecida como “Vai Chuva”, foi um dos primeiros sucessos de Tim Maia."],
@@ -120,6 +120,67 @@ MUSICAS = [
   ["Burguesinha", "Seu Jorge", 2007, "pop", "Brinca com o estilo de vida de uma moça rica do Rio."],
   ["Mina do Condomínio", "Seu Jorge", 2007, "pop", "Um dos maiores sucessos de Seu Jorge no Brasil."],
   ["Você Abusou", "Antonio Carlos & Jocafi", 1971, "pop", "Foi usada em samples de rap e regravada por artistas estrangeiros."],
+
+  # ---- Pop e funk de hoje ----
+  ["Envolver", "Anitta", 2021, "hits", "Em 2022 virou a primeira música de uma artista brasileira a chegar ao 1.º lugar do ranking global do Spotify. É cantada em espanhol."],
+  ["Downtown", "Anitta & J Balvin", 2017, "hits", "Parceria em espanhol com o colombiano J Balvin; é uma das músicas de artistas brasileiros mais ouvidas no Spotify.", "Anitta"],
+  ["Sua Cara", "Major Lazer, Anitta & Pabllo Vittar", 2017, "hits", "Gravada com o grupo americano Major Lazer; o clipe, filmado num deserto do Marrocos, bateu recordes de visualizações em 24 horas.", "Major Lazer"],
+  ["Sim ou Não", "Anitta & Maluma", 2016, "hits", "Primeira grande parceria de Anitta com um astro latino, o colombiano Maluma, misturando português e espanhol.", "Anitta"],
+  ["Paradinha", "Anitta", 2017, "hits", "Primeira música de Anitta toda em espanhol; o clipe foi gravado em Nova York."],
+  ["Medicina", "Anitta", 2018, "hits", "Em espanhol, fez parte da estratégia de Anitta para conquistar a América Latina."],
+  ["Me Gusta", "Anitta, Cardi B & Myke Towers", 2020, "hits", "Com a americana Cardi B e o porto-riquenho Myke Towers; o clipe foi gravado no Pelourinho, em Salvador.", "Anitta"],
+  ["Girl From Rio", "Anitta", 2021, "hits", "Usa a melodia de “Garota de Ipanema” para mostrar um Rio de Janeiro diferente do cartão-postal."],
+  ["Some Que Ele Vem Atrás", "Anitta & Marília Mendonça", 2019, "hits", "Encontro da rainha do pop com a rainha da sofrência: mistura de pop e sertanejo.", "Anitta"],
+  ["Funk Rave", "Anitta", 2023, "hits", "Abriu a fase “Funk Generation”, em que Anitta quis mostrar o funk carioca ao mundo."],
+  ["Mil Veces", "Anitta", 2023, "hits", "Balada romântica em espanhol que mostra um lado mais calmo de Anitta."],
+  ["Dançarina", "Pedro Sampaio & MC Pedrinho", 2023, "hits", "Entrou no ranking global do Spotify e ganhou um remix com Anitta e o porto-riquenho Nicky Jam.", "Pedro Sampaio"],
+  ["Olha a Explosão", "Kevinho", 2016, "hits", "Um dos funks brasileiros mais vistos no YouTube; tocou muito em festas da América Latina."],
+  ["Ela É do Tipo", "Kevin O Chris", 2019, "hits", "Funk de 150 BPM que chamou a atenção até do rapper canadense Drake, que fez uma versão com a voz de Kevin.", "MC Kevin O Chris"],
+  ["Corpo Sensual", "Pabllo Vittar", 2017, "hits", "Com Mateus Carrilho; um dos clipes mais vistos da drag queen mais famosa do Brasil."],
+  ["Rainha da Favela", "Ludmilla", 2020, "hits", "Ludmilla canta o orgulho de ter vindo da periferia, em Duque de Caxias (RJ)."],
+  ["Pesadão", "IZA", 2017, "hits", "Com Marcelo Falcão (O Rappa); mistura pop, reggae e funk e lançou IZA para o Brasil todo."],
+  ["A Queda", "Gloria Groove", 2021, "hits", "Gloria Groove fala de fama e críticas; virou uma das músicas mais cantadas de 2022."],
+  ["Chico", "Luísa Sonza", 2023, "hits", "Declaração de amor que foi uma das músicas mais comentadas do ano no Brasil."],
+  ["Várias Queixas", "Gilsons", 2019, "hits", "Os Gilsons são filho e netos de Gilberto Gil; a música viralizou nas redes e ganhou remix de Vintage Culture."],
+
+  # ---- Eletrônica ----
+  ["Hear Me Now", "Alok, Bruno Martini & Zeeba", 2016, "eletronica", "Entrou nas paradas de muitos países e foi a primeira música de um brasileiro no Top 100 global do Spotify.", "Alok"],
+  ["Big Jet Plane", "Alok & Mathieu Koss", 2017, "eletronica", "Versão eletrônica de uma música do cantor australiano Angus Stone; tocou em rádios da Europa.", "Alok"],
+  ["Ocean", "Alok, Zeeba & IRO", 2018, "eletronica", "Mais uma parceria de Alok com a cantora Zeeba, a voz de “Hear Me Now”.", "Alok"],
+  ["Party On My Own", "Alok & Vintage Culture", 2020, "eletronica", "Encontro dos dois DJs brasileiros mais conhecidos no exterior, com o alemão FAULHABER.", "Alok"],
+  ["Car Keys (Ayla)", "Alok & Ava Max", 2022, "eletronica", "Com a cantora americana Ava Max; relê “Ayla”, um clássico do trance dos anos 90.", "Alok"],
+  ["Headlights", "Alan Walker & Alok", 2022, "eletronica", "Com o norueguês Alan Walker, um dos DJs mais ouvidos do mundo.", "Alan Walker"],
+  ["Deep Down", "Alok, Ella Eyre & Kenny Dope", 2022, "eletronica", "Com a cantora inglesa Ella Eyre; fez sucesso nas rádios do Reino Unido.", "Alok"],
+  ["Don't Say Goodbye", "Alok & Ilkay Sencan", 2023, "eletronica", "Com o turco Ilkay Sencan e a cantora sueca Tove Lo: um hit feito em três países.", "Alok"],
+  ["My Girl", "Vintage Culture & Fancy Inc", 2019, "eletronica", "Vintage Culture, de Mato Grosso do Sul, é um dos DJs brasileiros mais tocados em festivais da Europa.", "Vintage Culture"],
+
+  # ---- Reggae e praia ----
+  ["Andei Só", "Natiruts", 2001, "reggae", "A banda de Brasília é uma das mais queridas do reggae na América Latina e lota shows no Chile, na Argentina e no Uruguai."],
+  ["Sorri, Sou Rei", "Natiruts", 2009, "reggae", "Um dos hinos do Natiruts, cantado em coro nos shows dentro e fora do Brasil."],
+  ["Quero Ser Feliz Também", "Natiruts", 2005, "reggae", "Está no disco acústico gravado no Rio, que foi indicado ao Grammy Latino."],
+  ["Presente de um Beija-Flor", "Natiruts", 1998, "reggae", "Canção de amor que fez o Natiruts ser conhecido no Brasil inteiro."],
+  ["Liberdade pra Dentro da Cabeça", "Natiruts", 1998, "reggae", "Fala de paz e liberdade, temas que o Natiruts canta desde o começo."],
+  ["Exército da Paz (Peace Army)", "Natiruts & Jacob Hemphill", 2020, "reggae", "Com Jacob Hemphill, vocalista da banda americana SOJA, em português e inglês.", "Natiruts"],
+  ["Mergulhei nos Seus Olhos", "Natiruts & Katchafire", 2018, "reggae", "Parceria com a banda de reggae Katchafire, da Nova Zelândia.", "Natiruts"],
+  ["Tudo Vai Dar Certo", "Natiruts & Amani Kush", 2020, "reggae", "Lançada no começo da pandemia como mensagem de esperança.", "Natiruts"],
+  ["Lágrimas de Alegria", "Maneva & Natiruts", 2021, "reggae", "Encontro de duas das maiores bandas do reggae brasileiro.", "Maneva"],
+  ["Outra Vida", "Armandinho", 2006, "reggae", "Armandinho, de Porto Alegre, faz reggae de surfista; é música de praia e luau."],
+  ["Versos Simples", "Chimarruts", 2005, "reggae", "Banda gaúcha que levou o reggae para o Sul do Brasil e para o Uruguai."],
+  ["O Sol", "Vitor Kley", 2017, "reggae", "Pop de praia que foi uma das músicas mais tocadas nas rádios brasileiras em 2018."],
+  ["Meu Abrigo", "Melim", 2017, "reggae", "Os três irmãos do Melim ficaram famosos tocando em reality show e viralizaram com essa música."],
+  ["Trevo (Tu)", "ANAVITÓRIA", 2016, "reggae", "Com Tiago Iorc; ganhou o Grammy Latino de melhor canção em língua portuguesa."],
+
+  # ---- Sertanejo ----
+  ["Infiel", "Marília Mendonça", 2016, "sertanejo", "Marília, a “Rainha da Sofrência”, foi uma das cantoras mais ouvidas do Brasil; morreu em 2021 num acidente de avião."],
+  ["Supera", "Marília Mendonça", 2019, "sertanejo", "Conselho para quem não esquece um amor; é um clássico da sofrência."],
+  ["Arranhão", "Henrique & Juliano", 2021, "sertanejo", "Henrique & Juliano estão entre os artistas mais ouvidos do Brasil; esta gravação é de um show deles em Nova York, em 2022."],
+  ["Propaganda", "Jorge & Mateus", 2016, "sertanejo", "Uma das duplas mais populares do sertanejo universitário."],
+  ["Largado às Traças", "Zé Neto & Cristiano", 2017, "sertanejo", "Virou uma das músicas mais tocadas nas rádios do Brasil."],
+  ["Termina Comigo Antes", "Gusttavo Lima", 2018, "sertanejo", "Gusttavo Lima, o “Embaixador”, é um dos cantores que mais fazem shows no Brasil."],
+  ["Batom de Cereja", "Israel & Rodolffo", 2021, "sertanejo", "Estourou depois que Rodolffo participou do reality show Big Brother Brasil."],
+  ["Pipoco", "Ana Castela", 2022, "sertanejo", "Com Melody e DJ Chris no Beat; a “Boiadeira” misturou sertanejo e funk e virou febre entre os jovens."],
+  ["Erro Gostoso", "Simone Mendes", 2023, "sertanejo", "Primeiro grande sucesso de Simone na carreira solo, depois da dupla com a irmã Simaria."],
+  ["Te Esperando", "Luan Santana", 2013, "sertanejo", "Luan Santana começou a fazer sucesso ainda adolescente e é um dos ídolos do sertanejo pop."],
 
   # ---- Românticas e Jovem Guarda ----
   ["Detalhes", "Roberto Carlos", 1971, "romantica", "Roberto Carlos, o “Rei”, é um dos cantores latinos que mais venderam discos na história e gravou muito em espanhol."],
@@ -132,12 +193,16 @@ MUSICAS = [
 ]
 
 CATS = {
+  "hits": ["Pop e funk de hoje", "🔥", "#e91e63", ["Você já ouviu essa música numa festa ou no TikTok?", "Anitta canta em português, espanhol e inglês. Por que isso ajuda a fazer sucesso?", "Que artista do seu país faz sucesso fora dele?", "Você dançaria essa música? Onde?"]],
+  "eletronica": ["Eletrônica", "🎧", "#3949ab", ["Você gosta de música eletrônica?", "Você já foi a um festival? Como foi?", "Por que a eletrônica quase não precisa de letra para fazer sucesso?", "Onde você ouviria essa música: academia, carro ou festa?"]],
+  "reggae": ["Reggae e praia", "🌊", "#2e7d32", ["Que lugar essa música faz você imaginar?", "O reggae é popular no seu país?", "Qual é a sua praia favorita?", "Que mensagem a música passa: paz, amor, liberdade…?"]],
+  "sertanejo": ["Sertanejo", "🤠", "#8d6e63", ["Existe música parecida com essa no seu país?", "Por que as músicas de “sofrência” fazem tanto sucesso?", "Você prefere música alegre ou música triste?", "Você já foi a um show grande? De quem?"]],
   "bossa": ["Bossa nova", "🎷", "#00796b", ["Você já tinha ouvido essa música? Onde?", "Que sensação essa música passa?", "Por que a bossa nova fez tanto sucesso fora do Brasil?", "Em que lugar ou momento do dia você ouviria essa música?"]],
   "samba": ["Samba e choro", "🥁", "#c62828", ["Você sabe sambar?", "Que instrumentos você reconhece?", "O samba parece alegre ou triste? Por quê?", "Que ritmo do seu país se parece com esse?"]],
   "mpb": ["MPB e Tropicália", "🌴", "#6a1b9a", ["Que palavras você entendeu?", "Sobre o que você acha que é a letra?", "Que imagem essa música cria na sua cabeça?", "Você colocaria essa música na sua playlist?"]],
   "rock": ["Rock brasileiro", "🎸", "#37474f", ["Você gosta de rock?", "Essa música lembra alguma banda que você conhece?", "Como era ser jovem nos anos 80?", "Que banda de rock do seu país você recomendaria?"]],
   "nordeste": ["Nordeste e Bahia", "🪗", "#ef6c00", ["Que instrumentos você ouve?", "Dá vontade de dançar?", "O que você sabe sobre as festas do Nordeste?", "Que música típica do seu país tem essa energia?"]],
-  "pop": ["Pop, soul e funk", "💃", "#d81b60", ["Você já tinha ouvido essa música em alguma festa?", "Por que algumas músicas viralizam no mundo todo?", "Você dançaria essa música?", "Que música do seu país virou sucesso lá fora?"]],
+  "pop": ["Soul e pop clássico", "💃", "#d81b60", ["Você já tinha ouvido essa música em alguma festa?", "Por que algumas músicas viralizam no mundo todo?", "Você dançaria essa música?", "Que música do seu país virou sucesso lá fora?"]],
   "romantica": ["Românticas e Jovem Guarda", "💘", "#ad1457", ["Você conhecia essa música em espanhol?", "Para quem você dedicaria essa música?", "As músicas românticas de antes eram melhores?", "Qual é a música mais romântica que você conhece?"]],
 }
 
@@ -145,10 +210,10 @@ UA = {"User-Agent": "aulas-interativas-musica/1.0 (educational)"}
 norm = lambda s: re.sub(r"[^a-z0-9 ]", "", unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode().lower())
 
 ALIAS = {"Tom Jobim": "Antonio Carlos Jobim", "Jorge Ben": "Jorge Ben Jor", "DENNIS": "DENNIS"}
-PREFERE = {"Jorge Ben | Mas Que Nada": "samba esquema novo", "Tim Maia | Primavera": "1970", "Gusttavo Lima | Balada": "inventor dos amores"}
+PREFERE = {"Pabllo Vittar | Corpo Sensual": "vai passar mal", "Natiruts | Sorri, Sou Rei": "racaman", "Natiruts | Quero Ser Feliz Também": "nossa missao", "Jorge Ben | Mas Que Nada": "samba esquema novo", "Tim Maia | Primavera": "1970", "Gusttavo Lima | Balada": "inventor dos amores"}
 
-def busca(titulo, artista):
-    q_art = ALIAS.get(artista, artista)
+def busca(titulo, artista, q_art=None):
+    q_art = q_art or ALIAS.get(artista, artista)
     for pais in ("BR", "US"):
         u = "https://itunes.apple.com/search?" + urllib.parse.urlencode(dict(term=f"{q_art} {titulo}", entity="song", country=pais, limit=50))
         for i in range(6):
@@ -177,15 +242,17 @@ def busca(titulo, artista):
 
 cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
 saida = []
-for t, a, ano, cat, cur in MUSICAS:
+for t, a, ano, cat, cur, *busca_art in MUSICAS:
     k = f"{a} | {t}"
     if k not in cache:
-        cache[k] = busca(t, a)
+        cache[k] = busca(t, a, busca_art[0] if busca_art else None)
         CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1))
         print(("OK " if cache[k] else "-- ") + k, "->", cache[k] and (cache[k]["nome"], cache[k]["art"], cache[k]["album"]), flush=True)
     it = cache[k]
     saida.append(dict(t=t, a=a, ano=ano, cat=cat, cur=cur, **({k2: it[k2] for k2 in ("id", "prev", "capa", "link", "album")} if it else {})))
 
+# estilos atuais: mais novas primeiro
+saida.sort(key=lambda m: -m["ano"] if m["cat"] in ("hits", "eletronica", "reggae", "sertanejo") else 0)
 OUT.parent.mkdir(exist_ok=True)
 OUT.write_text("/* Gerado por ferramentas/gerar_musicas.py — não editar à mão. */\nwindow.CATS_MUSICA = "
                + json.dumps({k: dict(nome=v[0], ic=v[1], cor=v[2], perg=v[3]) for k, v in CATS.items()}, ensure_ascii=False)
