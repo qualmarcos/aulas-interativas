@@ -54,13 +54,18 @@ main{position:relative;z-index:3;margin:-60px 0 40px;padding:0 var(--gut)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-top:18px}
 .filme{border:0;padding:0;text-align:left;background:var(--card);border-radius:20px;overflow:hidden;box-shadow:var(--sombra);color:var(--ink);display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
 .filme:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:var(--sombra2)}
-.cartaz{position:relative;aspect-ratio:3/3.6;color:#fff;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;
+.cartaz{position:relative;overflow:hidden;aspect-ratio:2/3;color:#fff;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;
   background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.28),transparent 45%),linear-gradient(160deg,var(--c),color-mix(in srgb,var(--c) 45%,#000))}
+.cartaz img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cartaz.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 25%,transparent 70%,rgba(0,0,0,.35))}
+.cartaz.foto b,.cartaz.foto .ic{display:none}
+.cartaz .ano,.cartaz .av{z-index:1}
 .cartaz .ic{position:absolute;top:50%;left:50%;transform:translate(-50%,-62%);font-size:clamp(64px,8vw,92px);filter:drop-shadow(0 10px 16px rgba(0,0,0,.35))}
 .cartaz .ano{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.35);border-radius:999px;padding:3px 10px;font-weight:900;font-size:13px}
 .cartaz .av{position:absolute;top:12px;right:12px;background:#fff;color:#b71c1c;border-radius:999px;padding:3px 9px;font-weight:900;font-size:12px}
 .cartaz b{position:relative;font-size:21px;font-weight:900;line-height:1.1;text-shadow:0 2px 10px rgba(0,0,0,.4)}
 .info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.info .nome{font-weight:900;font-size:16px;line-height:1.2}
 .info .dir{font-size:13px;color:var(--muted);font-weight:700}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tags span{font-size:12px;font-weight:800;border-radius:999px;padding:3px 9px;background:var(--line);color:var(--ink)}
@@ -80,6 +85,7 @@ footer{padding:10px var(--gut) 34px;color:var(--muted);font-weight:700;font-size
 .p-x{border:0;background:rgba(255,255,255,.16);color:#fff;border-radius:12px;width:44px;height:44px;font-size:22px;font-weight:900}
 .p-corpo{flex:1;overflow:auto;padding:6px var(--gut) 18px;display:flex;flex-direction:column;align-items:center}
 .p-cab{display:flex;align-items:center;gap:18px;width:min(980px,100%);margin:6px 0 18px}
+.p-cab .poster{flex:0 0 auto;width:clamp(70px,9vw,120px);aspect-ratio:2/3;object-fit:cover;border-radius:12px;box-shadow:0 12px 26px rgba(0,0,0,.4)}
 .p-cab .ic{font-size:clamp(56px,8vw,96px);line-height:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.3))}
 .p-cab h2{margin:0;font-size:clamp(28px,4.6vw,60px);font-weight:900;line-height:1.05}
 .p-cab p{margin:6px 0 0;font-weight:800;opacity:.88;font-size:clamp(14px,1.6vw,18px)}
@@ -150,14 +156,14 @@ html[data-theme="dark"] .pal b{color:#ffc94d}
   <div class="cats" id="cats" role="tablist" aria-label="Gêneros"></div>
   <div class="grid" id="grid"></div>
   <div class="vazio" id="vazio">Nenhum filme encontrado.</div>
-  <p class="nota">⚠️ marca filmes com violência, sexo ou temas pesados. O nível do português considera sotaque, gírias e velocidade da fala.</p>
+  <p class="nota">⚠️ marca filmes com violência, sexo ou temas pesados. O nível do português considera sotaque, gírias e velocidade da fala. Cartazes: Wikipédia em português.</p>
 </main>
 <footer>Intercultura Costa Rica · Classes de Português · Heredia</footer>
 
 <div id="palco" role="dialog" aria-modal="true" aria-labelledby="pTit">
   <div class="p-topo"><div class="abas" id="abas"></div><button class="p-x" id="pX" aria-label="Fechar">✕</button></div>
   <div class="p-corpo">
-    <div class="p-cab"><span class="ic" id="pIc"></span><div><h2 id="pTit"></h2><p id="pSub"></p></div></div>
+    <div class="p-cab"><img class="poster" id="pImg" alt=""><span class="ic" id="pIc"></span><div><h2 id="pTit"></h2><p id="pSub"></p></div></div>
     <div class="painel" id="painel"></div>
   </div>
   <div class="p-base">
@@ -167,13 +173,15 @@ html[data-theme="dark"] .pal b{color:#ffc94d}
   </div>
 </div>
 
-<script src="filmes.js?v=1"></script>
+<script src="filmes.js?v=2"></script>
 <script>
 const $ = id => document.getElementById(id);
 const G = Object.fromEntries(GENEROS.map(([id, nome, ic, cor]) => [id, { id, nome, ic, cor }]));
 const NIV = { 1: "🟢 Português mais fácil", 2: "🟡 Português médio", 3: "🔴 Português desafiador" };
 const lista = a => a.join("|").split("|").filter(Boolean);
 FILMES.forEach((f, i) => { f.id = i; f.antes = lista(f.antes); f.depois = lista(f.depois); });
+const slug = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const cartaz = f => `img/cartazes/${slug(f.t)}.jpg`;
 const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 let gen = "todos", atual = null, aba = 0, vistas = 0;
 const ABAS = [["filme", "🎬 O filme"], ["antes", "🍿 Antes de assistir"], ["depois", "💬 Depois de assistir"], ["pal", "📝 Palavras"]];
@@ -192,8 +200,8 @@ function pintar() {
     return `<button class="cat${g.id === gen ? " on" : ""}" style="--c:${g.cor}" role="tab" aria-selected="${g.id === gen}" data-id="${g.id}">${g.ic} ${g.nome} <small>${n}</small></button>`; }).join("");
   $("cats").querySelectorAll(".cat").forEach(b => b.onclick = () => { gen = b.dataset.id; pintar(); });
   $("grid").innerHTML = l.map(f => `<button class="filme" style="--c:${f.cor}" data-id="${f.id}">
-      <div class="cartaz"><span class="ano">${f.ano}</span>${f.aviso ? '<span class="av" title="Conteúdo sensível">⚠️ adulto</span>' : ""}<span class="ic">${f.ic}</span><b>${f.t}</b></div>
-      <div class="info"><span class="dir">${f.dir}</span><div class="tags"><span class="pt">${NIV[f.pt].split(" ")[0]} ${["", "fácil", "médio", "desafiador"][f.pt]}</span><span>${G[f.gen].ic} ${G[f.gen].nome}</span></div></div></button>`).join("");
+      <div class="cartaz foto"><img src="${cartaz(f)}" alt="Cartaz de ${f.t}" loading="lazy" onerror="this.parentNode.classList.remove('foto');this.remove()"><span class="ano">${f.ano}</span>${f.aviso ? '<span class="av" title="Conteúdo sensível">⚠️ adulto</span>' : ""}<span class="ic">${f.ic}</span><b>${f.t}</b></div>
+      <div class="info"><span class="nome">${f.t}</span><span class="dir">${f.dir}</span><div class="tags"><span class="pt">${NIV[f.pt].split(" ")[0]} ${["", "fácil", "médio", "desafiador"][f.pt]}</span><span>${G[f.gen].ic} ${G[f.gen].nome}</span></div></div></button>`).join("");
   $("grid").querySelectorAll(".filme").forEach(b => b.onclick = () => abrir(FILMES[+b.dataset.id]));
   $("vazio").style.display = l.length ? "none" : "block";
 }
@@ -205,7 +213,7 @@ function mostrar() {
   $("palco").style.setProperty("--c", f.cor);
   $("abas").innerHTML = ABAS.map(([id, nome], i) => `<button class="aba${i === aba ? " on" : ""}" data-i="${i}">${nome}</button>`).join("");
   $("abas").querySelectorAll(".aba").forEach(b => b.onclick = () => { aba = +b.dataset.i; vistas = 1; mostrar(); });
-  $("pIc").textContent = f.ic; $("pTit").textContent = f.t;
+  $("pIc").textContent = f.ic; $("pIc").style.display = "none"; const im = $("pImg"); im.style.display = ""; im.alt = "Cartaz de " + f.t; im.onerror = () => { im.style.display = "none"; $("pIc").style.display = ""; }; im.src = cartaz(f); $("pTit").textContent = f.t;
   $("pSub").textContent = `${f.ano} · ${f.dir} · ${G[f.gen].nome}`;
   const yt = "https://www.youtube.com/results?search_query=" + encodeURIComponent(`trailer ${f.t} ${f.ano} filme`);
   $("painel").innerHTML = k === "filme"
