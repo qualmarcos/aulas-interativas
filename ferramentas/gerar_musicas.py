@@ -4,6 +4,7 @@ Uso: python3 ferramentas/gerar_musicas.py   (a API aceita ~20 buscas/min; o scri
 Para acrescentar uma música: coloque uma linha em MUSICAS e rode de novo (as já encontradas ficam em cache)."""
 import json, re, time, unicodedata, urllib.request, urllib.parse
 from pathlib import Path
+from perguntas_musicas import PERGUNTAS
 
 REPO = Path(__file__).resolve().parents[1]
 OUT = REPO / "papo-musica" / "musicas.js"
@@ -249,10 +250,13 @@ for t, a, ano, cat, cur, *busca_art in MUSICAS:
         CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1))
         print(("OK " if cache[k] else "-- ") + k, "->", cache[k] and (cache[k]["nome"], cache[k]["art"], cache[k]["album"]), flush=True)
     it = cache[k]
-    saida.append(dict(t=t, a=a, ano=ano, cat=cat, cur=cur, **({k2: it[k2] for k2 in ("id", "prev", "capa", "link", "album")} if it else {})))
+    saida.append(dict(t=t, a=a, ano=ano, cat=cat, cur=cur, **({"perg": PERGUNTAS[k]} if k in PERGUNTAS else {}), **({k2: it[k2] for k2 in ("id", "prev", "capa", "link", "album")} if it else {})))
 
 # estilos atuais: mais novas primeiro
 saida.sort(key=lambda m: -m["ano"] if m["cat"] in ("hits", "eletronica", "reggae", "sertanejo") else 0)
+sobra = set(PERGUNTAS) - {f"{x[1]} | {x[0]}" for x in MUSICAS}
+assert not sobra, f"perguntas sem música: {sobra}"
+assert all(len(v) == 4 for v in PERGUNTAS.values())
 OUT.parent.mkdir(exist_ok=True)
 OUT.write_text("/* Gerado por ferramentas/gerar_musicas.py — não editar à mão. */\nwindow.CATS_MUSICA = "
                + json.dumps({k: dict(nome=v[0], ic=v[1], cor=v[2], perg=v[3]) for k, v in CATS.items()}, ensure_ascii=False)

@@ -7,6 +7,12 @@ window.MUSICAS = [
 "ano": 2023,
 "cat": "hits",
 "cur": "Viralizou nas redes do mundo todo e ganhou remix com a cantora colombiana Karol G.",
+"perg": [
+"A música ganhou remix com a colombiana Karol G. Você conhecia a versão com ela?",
+"“Tá OK” é uma expressão do dia a dia. Que expressões curtas você usa muito em português?",
+"DENNIS é DJ e produtor de funk. Você acha que hoje o DJ é tão importante quanto o cantor?",
+"Que música viralizou no seu país no último ano?"
+],
 "id": 1684548976,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c7/b5/94/c7b59496-107c-b23d-5c1e-316c36aa5f35/mzaf_7531602410747714237.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/65/e2/62/65e262fb-d8a5-0550-1531-20c8a3351907/196871077576.jpg/600x600bb.jpg",
@@ -19,6 +25,12 @@ window.MUSICAS = [
 "ano": 2023,
 "cat": "hits",
 "cur": "Abriu a fase “Funk Generation”, em que Anitta quis mostrar o funk carioca ao mundo.",
+"perg": [
+"O funk carioca nasceu nas favelas do Rio. Você já tinha ouvido funk antes?",
+"Por que alguns estilos nascem na periferia e depois o mundo todo começa a ouvir?",
+"Que ritmo do seu país nasceu nos bairros populares?",
+"Você iria a uma festa de funk no Rio? Por quê?"
+],
 "id": 1693024348,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e8/b3/2b/e8b32be0-195f-b1dc-721d-7c98d02861c5/mzaf_56452199082737437.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/5b/31/4f/5b314f88-e878-d65d-2328-7b21ae2dbdec/23UMGIM63510.rgb.jpg/600x600bb.jpg",
@@ -31,6 +43,12 @@ window.MUSICAS = [
 "ano": 2023,
 "cat": "hits",
 "cur": "Balada romântica em espanhol que mostra um lado mais calmo de Anitta.",
+"perg": [
+"Aqui Anitta canta uma balada romântica. Você prefere a Anitta romântica ou a da festa?",
+"O que você faria “mil vezes” sem se cansar?",
+"Qual é a música mais romântica que você conhece em espanhol?",
+"Você acha que um artista precisa mudar de estilo para não cansar o público?"
+],
 "id": 1710661498,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e2/ee/3c/e2ee3c0e-f183-3a8d-2713-4fff6ab471c5/mzaf_10898168587229965737.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b3/9e/99/b39e99a0-b102-1693-4f9a-062e67464d71/23UM1IM19490.rgb.jpg/600x600bb.jpg",
@@ -43,6 +61,12 @@ window.MUSICAS = [
 "ano": 2023,
 "cat": "hits",
 "cur": "Entrou no ranking global do Spotify e ganhou um remix com Anitta e o porto-riquenho Nicky Jam.",
+"perg": [
+"Pedro Sampaio é DJ e produtor. Você sabe qual é a diferença entre DJ, produtor e cantor?",
+"A música fala de uma dançarina. Você dança bem ou prefere ficar olhando?",
+"Por que algumas músicas do Brasil entram no ranking mundial mesmo sendo em português?",
+"Que música brasileira você mostraria para um amigo do seu país?"
+],
 "id": 1607911029,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5e/65/66/5e6566a6-0f6d-2552-99db-77b98fd19f08/mzaf_9887341635874343885.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/25/d8/e5/25d8e5e0-ba84-c2cd-a640-6cece1206345/190296503351.jpg/600x600bb.jpg",
@@ -55,6 +79,12 @@ window.MUSICAS = [
 "ano": 2023,
 "cat": "hits",
 "cur": "Declaração de amor que foi uma das músicas mais comentadas do ano no Brasil.",
+"perg": [
+"A música é uma declaração de amor com um nome próprio. Você já ganhou ou fez uma declaração assim?",
+"Você acha bom ou ruim expor um namoro nas redes sociais e nas músicas?",
+"Que nomes brasileiros você conhece e acha bonitos?",
+"Qual é a melhor forma de dizer “eu te amo”: música, carta, presente ou pessoalmente?"
+],
 "id": 1748239129,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/45/a2/f445a242-0e74-341e-14e9-9b369108a01e/mzaf_13251308251801829144.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/64/33/5c/64335cda-ff96-cf5e-f4d0-d50fb826ae16/196871415392.jpg/600x600bb.jpg",
@@ -67,6 +97,12 @@ window.MUSICAS = [
 "ano": 2023,
 "cat": "eletronica",
 "cur": "Com o turco Ilkay Sencan e a cantora sueca Tove Lo: um hit feito em três países.",
+"perg": [
+"A música foi feita por artistas do Brasil, da Turquia e da Suécia. Como a internet mudou a forma de fazer música?",
+"Para você, qual é a despedida mais difícil?",
+"Você é bom ou ruim para dizer adeus?",
+"Que palavra ou gesto o seu país usa para se despedir?"
+],
 "id": 1531583978,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dc/13/e0/dc13e02b-913d-0769-2c5e-12c4a4a1ead8/mzaf_2075277123685280994.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0c/e2/76/0ce27604-1225-8713-270f-70c31dab24c7/886448755777.jpg/600x600bb.jpg",
@@ -79,6 +115,12 @@ window.MUSICAS = [
 "ano": 2023,
 "cat": "sertanejo",
 "cur": "Primeiro grande sucesso de Simone na carreira solo, depois da dupla com a irmã Simaria.",
+"perg": [
+"Simone cantava em dupla com a irmã e agora canta sozinha. É mais difícil fazer sucesso sozinho?",
+"O que é um “erro gostoso”? Você já cometeu um?",
+"Existem erros que valem a pena?",
+"Você trabalharia com um irmão ou uma irmã?"
+],
 "id": 1716984127,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5a/92/16/5a92167f-41b9-c701-633d-235faa175ab0/mzaf_7091857548839571354.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/17/cd/28/17cd2823-c66d-f4a4-ffe1-7015a5bc56c8/23UM1IM55040.rgb.jpg/600x600bb.jpg",
@@ -91,6 +133,12 @@ window.MUSICAS = [
 "ano": 2022,
 "cat": "eletronica",
 "cur": "Com a cantora americana Ava Max; relê “Ayla”, um clássico do trance dos anos 90.",
+"perg": [
+"A música relê um sucesso de trance dos anos 90. Você gosta quando refazem músicas antigas?",
+"Que música dos anos 90 você gostaria de ouvir numa versão nova?",
+"“Car keys”: você dirige? Qual é a melhor música para ouvir no carro?",
+"Ava Max é americana. Por que tantos cantores estrangeiros querem trabalhar com Alok?"
+],
 "id": 1690792416,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7f/10/8d/7f108dc5-7f28-107b-67f9-d0b40e8c1d1c/mzaf_6805895624621741901.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/44/ce/ba/44cebafa-e0ba-5792-c37e-abd75bad9f9a/196871205993.jpg/600x600bb.jpg",
@@ -103,6 +151,12 @@ window.MUSICAS = [
 "ano": 2022,
 "cat": "eletronica",
 "cur": "Com o norueguês Alan Walker, um dos DJs mais ouvidos do mundo.",
+"perg": [
+"Alan Walker é da Noruega e Alok é do Brasil. Como dois países tão diferentes fazem música juntos?",
+"Alan Walker sempre aparece de máscara. Por que um artista esconderia o rosto?",
+"Você ouve música para dirigir à noite? Que tipo?",
+"Você já foi a algum festival de música eletrônica? Gostaria de ir?"
+],
 "id": 1606444035,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f4/3e/db/f43edb7a-e67f-b7fe-d2d5-a89015071ded/mzaf_17235544578715541661.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5e/2b/be/5e2bbedd-eef5-451f-80de-b9851430b25f/8445162596237.jpg/600x600bb.jpg",
@@ -115,6 +169,12 @@ window.MUSICAS = [
 "ano": 2022,
 "cat": "eletronica",
 "cur": "Com a cantora inglesa Ella Eyre; fez sucesso nas rádios do Reino Unido.",
+"perg": [
+"A música tocou muito nas rádios do Reino Unido. Você ouve rádio ou só aplicativos de música?",
+"“Deep down” quer dizer “lá no fundo”. Lá no fundo, o que você realmente quer para o futuro?",
+"Você prefere eletrônica com voz ou só instrumental?",
+"Você acha que a eletrônica é música “de verdade”? Por quê?"
+],
 "id": 1627314055,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/09/63/f3/0963f3b4-bdf6-a85f-21a5-2cff1e8e14d2/mzaf_9955351935137643243.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f3/4b/cf/f34bcf3f-3f7d-bbce-4f8f-403df6624357/196589224651.jpg/600x600bb.jpg",
@@ -127,6 +187,12 @@ window.MUSICAS = [
 "ano": 2022,
 "cat": "sertanejo",
 "cur": "Com Melody e DJ Chris no Beat; a “Boiadeira” misturou sertanejo e funk e virou febre entre os jovens.",
+"perg": [
+"Ana Castela, a “Boiadeira”, mistura sertanejo e funk. O que você acha dessa mistura?",
+"Ela ficou famosa muito jovem, pelas redes sociais. As redes mudaram o jeito de ficar famoso?",
+"Na Costa Rica existe a cultura do sabanero, o vaqueiro. Ela é parecida com a cultura sertaneja?",
+"Você já andou a cavalo?"
+],
 "id": 1704150475,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/23/0a/2d/230a2db4-a048-dc10-e4c3-f6fccffe0dcf/mzaf_16615117017820688627.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/bf/66/c0/bf66c077-a8d8-a597-8509-2bbabeeb3124/8720205160126.png/600x600bb.jpg",
@@ -139,6 +205,12 @@ window.MUSICAS = [
 "ano": 2021,
 "cat": "hits",
 "cur": "Em 2022 virou a primeira música de uma artista brasileira a chegar ao 1.º lugar do ranking global do Spotify. É cantada em espanhol.",
+"perg": [
+"Anitta canta essa música em espanhol. Você acha que cantar em outra língua ajuda um artista a fazer sucesso?",
+"A coreografia de “Envolver” virou desafio no TikTok. Você já tentou fazer alguma dança das redes?",
+"Você conhecia Anitta antes da aula? De onde?",
+"Uma música pode ficar famosa só por causa de uma dança? Dê um exemplo."
+],
 "id": 1593185593,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2a/6f/96/2a6f96a5-b362-d87c-eadc-d477d1ed47c3/mzaf_14425900406954055410.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c5/ba/2b/c5ba2b96-ff06-5f58-35ad-1c070973cee7/190296362989.jpg/600x600bb.jpg",
@@ -151,6 +223,12 @@ window.MUSICAS = [
 "ano": 2021,
 "cat": "hits",
 "cur": "Usa a melodia de “Garota de Ipanema” para mostrar um Rio de Janeiro diferente do cartão-postal.",
+"perg": [
+"A música usa a melodia de “Garota de Ipanema”. Você reconheceu? Ouça as duas e compare.",
+"Anitta diz que o Rio não é só a praia de Ipanema. Que imagem as pessoas de fora têm do seu país?",
+"Essa imagem é verdadeira ou é um estereótipo?",
+"Se você fosse ao Rio, o que gostaria de conhecer além das praias famosas?"
+],
 "id": 1618275411,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7d/5e/86/7d5e867c-532e-7092-ecd9-76be840da6e3/mzaf_888785861904380917.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/04/06/95/04069522-48f9-529b-bca8-9e763d9d7a7f/093624871330.jpg/600x600bb.jpg",
@@ -163,6 +241,12 @@ window.MUSICAS = [
 "ano": 2021,
 "cat": "hits",
 "cur": "Gloria Groove fala de fama e críticas; virou uma das músicas mais cantadas de 2022.",
+"perg": [
+"A música fala de pessoas que esperam a “queda” de quem faz sucesso. Por que algumas pessoas torcem contra os outros?",
+"Como os artistas lidam com críticas e “haters” na internet?",
+"Você acha que a fama é boa ou ruim? Você gostaria de ser famoso?",
+"O que você faz quando alguém fala mal de você?"
+],
 "id": 1607610834,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/76/c8/74/76c874f3-18a8-88b0-08af-bf5a14a74e80/mzaf_4410156846903112858.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/07/18/4a/07184a33-173a-4595-f581-f1a55583e2ff/dj.geexiitu.jpg/600x600bb.jpg",
@@ -175,6 +259,12 @@ window.MUSICAS = [
 "ano": 2021,
 "cat": "reggae",
 "cur": "Encontro de duas das maiores bandas do reggae brasileiro.",
+"perg": [
+"Você já chorou de alegria? Quando?",
+"O Maneva é de São Paulo e o Natiruts, de Brasília. Por que o reggae fez sucesso longe da Bahia e do Maranhão?",
+"Que momento da sua vida você gostaria de viver de novo?",
+"Você prefere shows de bandas ou de cantores solo?"
+],
 "id": 1565810402,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/49/d3/7e/49d37e81-32f9-bbc3-1fd4-8a3d3c1eff7d/mzaf_12626666315797477704.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ca/68/89/ca6889b3-3054-3d13-0981-6386825b3a7f/21UMGIM02156.rgb.jpg/600x600bb.jpg",
@@ -187,6 +277,12 @@ window.MUSICAS = [
 "ano": 2021,
 "cat": "sertanejo",
 "cur": "Henrique & Juliano estão entre os artistas mais ouvidos do Brasil; esta gravação é de um show deles em Nova York, em 2022.",
+"perg": [
+"Henrique & Juliano são irmãos. Por que há tantas duplas de irmãos no sertanejo?",
+"Essa gravação é de um show deles em Nova York. Por que um artista sertanejo faz show nos EUA?",
+"No sertanejo, o público canta mais alto que o cantor. Você canta alto nos shows?",
+"O sertanejo é o estilo mais ouvido do Brasil. Qual é o estilo mais ouvido no seu país?"
+],
 "id": 1882401007,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/11/c2/8a/11c28a4a-783f-d303-852b-d7ffbc8234d0/mzaf_5724339760327807166.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/55/b2/72/55b27218-f33a-facc-7160-3fc98bce216f/00602458496307_Cover.jpg/600x600bb.jpg",
@@ -199,6 +295,12 @@ window.MUSICAS = [
 "ano": 2021,
 "cat": "sertanejo",
 "cur": "Estourou depois que Rodolffo participou do reality show Big Brother Brasil.",
+"perg": [
+"Rodolffo ficou ainda mais famoso no Big Brother Brasil. Você assiste a reality shows?",
+"O batom de cereja na roupa é a prova de uma traição. Que outras “provas” as músicas contam?",
+"Um reality show ajuda ou atrapalha a carreira de um artista?",
+"Que cheiro, sabor ou cor faz você lembrar de alguém?"
+],
 "id": 1547356069,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/48/d6/08/48d608f1-c3fa-d465-d2c7-4f59e2d01823/mzaf_7701517545881255588.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/85/33/b8/8533b8ee-17ba-baa9-2832-c73b317a7fb7/7891430531577.jpg/600x600bb.jpg",
@@ -211,6 +313,12 @@ window.MUSICAS = [
 "ano": 2020,
 "cat": "hits",
 "cur": "Com a americana Cardi B e o porto-riquenho Myke Towers; o clipe foi gravado no Pelourinho, em Salvador.",
+"perg": [
+"O clipe foi gravado no Pelourinho, em Salvador. O que você sabe sobre a Bahia?",
+"Complete: “Me gusta… / Eu gosto de…”. Diga três coisas de que você gosta muito.",
+"A música tem Brasil, Estados Unidos e Porto Rico. Que país você colocaria nessa parceria?",
+"Você conhece algum lugar histórico e colorido como o Pelourinho no seu país?"
+],
 "id": 1533049433,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/06/f1/ee/06f1eeaf-e901-b718-93e3-142718b1d2f0/mzaf_1333941156451408656.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/63/47/bb/6347bb8b-b21a-49c8-4d32-49b6234f9293/054391928870.jpg/600x600bb.jpg",
@@ -223,6 +331,12 @@ window.MUSICAS = [
 "ano": 2020,
 "cat": "hits",
 "cur": "Ludmilla canta o orgulho de ter vindo da periferia, em Duque de Caxias (RJ).",
+"perg": [
+"Ludmilla tem orgulho de ter vindo da favela. O que significa ter orgulho de onde você vem?",
+"O que você sabe sobre as favelas do Brasil? E o que acha que é estereótipo?",
+"Quem seria a “rainha” ou o “rei” do seu bairro?",
+"Você conhece artistas do seu país que vieram de bairros pobres e fizeram sucesso?"
+],
 "id": 1536470226,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/3d/57/5c/3d575c42-1c44-01d2-c68c-4e29d77ace20/mzaf_15280209936383271332.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0c/0d/af/0c0dafaf-3086-7fdc-1a8b-063e54b97fc3/190295135980.jpg/600x600bb.jpg",
@@ -235,6 +349,12 @@ window.MUSICAS = [
 "ano": 2020,
 "cat": "eletronica",
 "cur": "Encontro dos dois DJs brasileiros mais conhecidos no exterior, com o alemão FAULHABER.",
+"perg": [
+"“Party on my own” é fazer festa sozinho. Você já se divertiu sozinho? Como?",
+"Durante a pandemia muita gente fez festa em casa. Como foram aqueles dias para você?",
+"Você prefere uma festa grande ou um encontro pequeno com amigos?",
+"Alok e Vintage Culture são os DJs brasileiros mais famosos lá fora. Que DJs você conhece?"
+],
 "id": 1525774251,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e5/3d/48/e53d484a-40f6-7f3f-8e56-22606ef04d46/mzaf_18141811508577428295.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/e8/ef/96e8ef79-f03a-0a72-e403-49922c327e56/8445162177153.jpg/600x600bb.jpg",
@@ -247,6 +367,12 @@ window.MUSICAS = [
 "ano": 2020,
 "cat": "reggae",
 "cur": "Com Jacob Hemphill, vocalista da banda americana SOJA, em português e inglês.",
+"perg": [
+"A música é em português e em inglês, com o vocalista da banda americana SOJA. Você conhece o SOJA?",
+"O que seria um “exército da paz”? Quem faria parte dele?",
+"A Costa Rica não tem exército desde 1948. O que você acha disso?",
+"O que cada pessoa pode fazer no dia a dia pela paz?"
+],
 "id": 1492490091,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c0/00/de/c000de91-815f-39e0-321f-c302d5b6ab2e/mzaf_4092841261703465438.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4f/56/8a/4f568ad3-a538-7d3b-2c9d-c26c042168f0/886448224662.jpg/600x600bb.jpg",
@@ -259,6 +385,12 @@ window.MUSICAS = [
 "ano": 2020,
 "cat": "reggae",
 "cur": "Lançada no começo da pandemia como mensagem de esperança.",
+"perg": [
+"A música saiu no começo da pandemia. Como foi esse período para você?",
+"Você é otimista? Acha que “tudo vai dar certo”?",
+"O que você diria para um amigo num momento difícil?",
+"Que música deu esperança para você em algum momento?"
+],
 "id": 1508006369,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d9/69/dd/d969dda4-d116-246d-aec6-1e1d9f5c3f17/mzaf_449260434083052215.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ff/fc/39/fffc39df-1d17-68c7-4446-2b79ce6e3537/886448406990.jpg/600x600bb.jpg",
@@ -271,6 +403,12 @@ window.MUSICAS = [
 "ano": 2019,
 "cat": "hits",
 "cur": "Encontro da rainha do pop com a rainha da sofrência: mistura de pop e sertanejo.",
+"perg": [
+"O título é um conselho: se você sumir, ele vem atrás. Você concorda com esse conselho?",
+"A música junta pop e sertanejo. Que dois estilos do seu país dariam uma boa mistura?",
+"Marília Mendonça era a “rainha da sofrência”. O que você acha que significa “sofrência”?",
+"No amor, é melhor fazer joguinho ou ser sincero?"
+],
 "id": 1484990520,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/30/50/37/30503700-e922-db2d-c71a-99ee950f8ca4/mzaf_2119440781732498207.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/59/da/33/59da3323-6b85-3643-d963-d59363ce0423/190296854279.jpg/600x600bb.jpg",
@@ -283,6 +421,12 @@ window.MUSICAS = [
 "ano": 2019,
 "cat": "hits",
 "cur": "Funk de 150 BPM que chamou a atenção até do rapper canadense Drake, que fez uma versão com a voz de Kevin.",
+"perg": [
+"O rapper Drake fez uma versão dessa música. Por que um artista famoso dos EUA se interessaria por um funk do Rio?",
+"“Ela é do tipo…” Complete a frase sobre uma pessoa que você conhece.",
+"O funk de 150 BPM é mais rápido que o normal. Você prefere músicas rápidas ou lentas?",
+"Você já descobriu uma música brasileira por causa de um artista estrangeiro?"
+],
 "id": 1454839875,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/75/89/96/7589961b-4fab-b1e0-247c-afd518de7840/mzaf_4660572086926750890.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/5a/90/07/5a90077b-46a1-7d2f-98c0-adfcd8ddd06c/0.jpg/600x600bb.jpg",
@@ -295,6 +439,12 @@ window.MUSICAS = [
 "ano": 2019,
 "cat": "hits",
 "cur": "Os Gilsons são filho e netos de Gilberto Gil; a música viralizou nas redes e ganhou remix de Vintage Culture.",
+"perg": [
+"Os Gilsons são filho e netos de Gilberto Gil. Talento passa de pai para filho?",
+"Na sua família alguém toca algum instrumento ou canta?",
+"“Queixa” quer dizer reclamação. Sobre o que você mais reclama no dia a dia?",
+"A música tem um ritmo da Bahia. Ela parece mais alegre ou mais tranquila?"
+],
 "id": 1576861643,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ff/ee/33/ffee33df-55b9-8a31-461d-7fc594500159/mzaf_9048990673505048898.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/32/40/4c/32404c91-b4aa-3b95-f9e7-ae10695450ce/cover.jpg/600x600bb.jpg",
@@ -307,6 +457,12 @@ window.MUSICAS = [
 "ano": 2019,
 "cat": "eletronica",
 "cur": "Vintage Culture, de Mato Grosso do Sul, é um dos DJs brasileiros mais tocados em festivais da Europa.",
+"perg": [
+"Vintage Culture é de Mato Grosso do Sul, longe do mar e das grandes capitais. Dá para fazer sucesso mundial saindo do interior?",
+"Você prefere ouvir eletrônica num clube fechado ou num festival ao ar livre?",
+"Que música você usaria para começar uma festa?",
+"Por que você acha que o Brasil tem tantos DJs famosos?"
+],
 "id": 1462912755,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b6/b2/41/b6b24194-caa0-ab97-03bc-2f33dda773bf/mzaf_9941363726584762924.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/70/01/3a/70013a13-14c3-d9de-6ae0-3fd779014048/8712944599923.jpg/600x600bb.jpg",
@@ -319,6 +475,12 @@ window.MUSICAS = [
 "ano": 2019,
 "cat": "sertanejo",
 "cur": "Conselho para quem não esquece um amor; é um clássico da sofrência.",
+"perg": [
+"A música é um conselho para alguém que não esquece um amor. Que conselho você daria?",
+"Quanto tempo é normal para superar um fim de namoro?",
+"O que ajuda mais: falar com os amigos, sair ou ficar em casa?",
+"Você acha que mandar mensagem para o ex é sempre um erro?"
+],
 "id": 1475315742,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/7e/f1/c9/7ef1c951-960b-cc0d-0e03-22aba0529253/mzaf_1671151312448162900.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/28/88/8a/28888ad9-7027-56d0-2094-66c5c8e91021/7891430413873.jpg/600x600bb.jpg",
@@ -331,6 +493,12 @@ window.MUSICAS = [
 "ano": 2018,
 "cat": "hits",
 "cur": "Em espanhol, fez parte da estratégia de Anitta para conquistar a América Latina.",
+"perg": [
+"Para Anitta, a música e a dança são “remédio”. Qual é o seu remédio quando está triste ou cansado?",
+"Você dança para relaxar? Em casa ou fora?",
+"Que música você ouviria agora para melhorar o seu dia?",
+"Você acredita que a música pode curar? Explique."
+],
 "id": 1410965215,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/95/b4/20/95b420c4-24e3-0c13-efc3-30ffdb1dcdd4/mzaf_13211085106312023278.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b8/e6/1d/b8e61df7-3a9d-6254-246c-b57be06b6eac/190296905476.jpg/600x600bb.jpg",
@@ -343,6 +511,12 @@ window.MUSICAS = [
 "ano": 2018,
 "cat": "eletronica",
 "cur": "Mais uma parceria de Alok com a cantora Zeeba, a voz de “Hear Me Now”.",
+"perg": [
+"Que sensação essa música passa: calma, energia ou saudade?",
+"Você prefere o mar ou a montanha?",
+"Qual é a praia mais bonita que você conhece no seu país?",
+"Você acha que a música eletrônica pode ser romântica?"
+],
 "id": 1372852545,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8b/7a/a3/8b7aa3f6-efc4-b9c6-50d0-d4da8cbdbb89/mzaf_10122003895124659582.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/85/f1/d4/85f1d463-cc2c-1866-3b3f-c9b6d9e4b21d/190295637354.jpg/600x600bb.jpg",
@@ -355,6 +529,12 @@ window.MUSICAS = [
 "ano": 2018,
 "cat": "reggae",
 "cur": "Parceria com a banda de reggae Katchafire, da Nova Zelândia.",
+"perg": [
+"O Katchafire é uma banda de reggae da Nova Zelândia. Você imaginava que lá também tinha reggae?",
+"“Mergulhar nos olhos de alguém”: o que essa imagem quer dizer?",
+"Você gosta de mergulhar? Onde é o melhor lugar para isso no seu país?",
+"Por que o reggae se espalhou por tantos países diferentes?"
+],
 "id": 1444801161,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9c/0c/44/9c0c44db-6833-6112-99be-a713d8ff05f5/mzaf_1703948494470817498.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/86/d4/94/86d4943d-a019-af47-f054-7c01d74e7db3/886447277089.jpg/600x600bb.jpg",
@@ -367,6 +547,12 @@ window.MUSICAS = [
 "ano": 2018,
 "cat": "sertanejo",
 "cur": "Gusttavo Lima, o “Embaixador”, é um dos cantores que mais fazem shows no Brasil.",
+"perg": [
+"Ele pede para terminar antes de ser traído. Você prefere a verdade, mesmo que doa?",
+"Qual é a melhor forma de terminar um namoro: pessoalmente, por telefone ou por mensagem?",
+"Gusttavo Lima é o “Embaixador”. Por que os artistas brasileiros têm tantos apelidos?",
+"Você já foi a um rodeio ou a uma festa do interior?"
+],
 "id": 1615470453,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/41/2f/5d/412f5d7d-174d-884e-b58b-cd893efb5089/mzaf_18288917483040972000.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/41/c6/97/41c697b7-f807-a922-119b-e7effc303ad1/196589038401.jpg/600x600bb.jpg",
@@ -379,6 +565,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "Gravado no Morro do Vidigal, no Rio; o clipe teve milhões de visualizações em poucos dias.",
+"perg": [
+"O clipe foi gravado no Morro do Vidigal, no Rio. O que você imagina quando ouve a palavra “morro”?",
+"“Malandro” é uma figura típica do Rio. O que você acha que é ser malandro?",
+"O clipe gerou polêmica no Brasil. Por que alguns clipes causam discussão?",
+"Existe uma palavra parecida com “malandro” no seu país?"
+],
 "id": 1325912203,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/d6/89/f4d6897b-e4a5-c29a-2805-e88f58afaa24/mzaf_6882109198031027987.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3d/11/25/3d1125ea-a6c7-9baa-02aa-bf772033493a/190296939372.jpg/600x600bb.jpg",
@@ -391,6 +583,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "O funk usa um trecho de flauta de Bach e virou sucesso mundial no YouTube.",
+"perg": [
+"A música usa um trecho de flauta de Johann Sebastian Bach. Você reconheceu?",
+"O que você acha de misturar música clássica com funk?",
+"O clipe foi um dos vídeos brasileiros mais vistos no YouTube. Por que você acha que viralizou?",
+"Que música clássica você conhece e acha que daria um bom remix?"
+],
 "id": 1591005156,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5e/d2/d5/5ed2d53d-369d-350d-5569-7eb5d05437ae/mzaf_3116198879303436674.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/d4/12/ed/d412eda7-a396-61a5-5d59-5a24428588c8/196292257694.jpg/600x600bb.jpg",
@@ -403,6 +601,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "Pabllo Vittar é uma das drag queens mais seguidas do mundo nas redes sociais.",
+"perg": [
+"“K.O.” vem do boxe e quer dizer nocaute. O que deixaria você “K.O.” de tanta paixão?",
+"Pabllo Vittar mistura pop com ritmos do Norte e do Nordeste. Que ritmos regionais você conhece?",
+"Por que você acha que Pabllo virou um ícone fora do Brasil?",
+"Que artista do seu país tem um estilo bem único?"
+],
 "id": 1308273742,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview118/v4/04/00/ed/0400ed0c-51c8-eef1-015b-8a80c55f16e9/mzaf_3462796197254686220.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/d1/e9/3a/d1e93a7f-b677-f733-5d51-eaf4c346b7f7/7891430452728.jpg/600x600bb.jpg",
@@ -415,6 +619,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "Parceria em espanhol com o colombiano J Balvin; é uma das músicas de artistas brasileiros mais ouvidas no Spotify.",
+"perg": [
+"O que você imagina quando ouve a palavra “downtown”? Como é o centro da sua cidade?",
+"Anitta é brasileira e J Balvin é colombiano. Que outras parcerias entre países você conhece?",
+"O reggaeton é popular no seu país? Em que lugares ele toca?",
+"Você prefere sair à noite no centro da cidade ou num lugar mais tranquilo?"
+],
 "id": 1314701330,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cb/c2/0b/cbc20b0b-7fc0-d4e4-4389-bb47b4f8259e/mzaf_6422085914129634477.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/dd/73/79/dd7379d2-881e-1115-1259-00f1f17a9122/190296928536.jpg/600x600bb.jpg",
@@ -427,6 +637,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "Gravada com o grupo americano Major Lazer; o clipe, filmado num deserto do Marrocos, bateu recordes de visualizações em 24 horas.",
+"perg": [
+"O clipe foi gravado num deserto. Você já esteve num deserto ou gostaria de ir?",
+"A música mistura inglês, português e funk. Que palavras em português você reconheceu?",
+"Pabllo Vittar é uma drag queen muito famosa no Brasil. Existem artistas drag famosos no seu país?",
+"Major Lazer trabalha com artistas do mundo todo. Por que os produtores gostam de misturar estilos?"
+],
 "id": 1240018091,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f5/6c/50/f56c505f-cb4e-703c-c6a4-05f74b8baf2b/mzaf_2280301695652265223.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c9/21/e6/c921e609-7f7a-88e9-0980-2a613126c59f/5060525430947_cover.jpg/600x600bb.jpg",
@@ -439,6 +655,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "Primeira música de Anitta toda em espanhol; o clipe foi gravado em Nova York.",
+"perg": [
+"A “paradinha” é um passo de dança em que a música para e o corpo também. Você consegue fazer?",
+"O clipe foi gravado nas ruas de Nova York. Que cidade você escolheria para gravar um clipe?",
+"Por que uma cantora brasileira decidiria gravar uma música toda em espanhol?",
+"Em qual idioma você acha mais difícil cantar? Por quê?"
+],
 "id": 1243044908,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/40/93/12/4093121b-47ed-f2ea-4de7-a55f4cb7acbf/mzaf_12480721986295296003.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/3b/1d/a0/3b1da08e-1ec7-5ee9-8c43-e539b3d2ead9/190296951084.jpg/600x600bb.jpg",
@@ -451,6 +673,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "Com Mateus Carrilho; um dos clipes mais vistos da drag queen mais famosa do Brasil.",
+"perg": [
+"Pabllo Vittar é uma das drag queens mais seguidas do mundo nas redes. Por que você acha que ela fez tanto sucesso?",
+"A música tem uma batida de forró eletrônico do Pará. Você sentiu a diferença?",
+"Como o seu país vê os artistas LGBTQIA+? Mudou nos últimos anos?",
+"O Brasil é um país de contrastes: muito diverso e, ao mesmo tempo, conservador. Isso também acontece no seu país?"
+],
 "id": 6831730695,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bf/45/14/bf451426-b0ba-f6b5-ac83-16a9398f4897/mzaf_15763937949973722694.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/87/56/cf/8756cf04-a391-9b39-97e7-a2549f4f1cdd/885288731743.jpg/600x600bb.jpg",
@@ -463,6 +691,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "hits",
 "cur": "Com Marcelo Falcão (O Rappa); mistura pop, reggae e funk e lançou IZA para o Brasil todo.",
+"perg": [
+"A música mistura pop, reggae e funk. Quantos estilos você consegue identificar?",
+"“Pesadão” é gíria. O que você acha que quer dizer? Que gírias você já aprendeu em português?",
+"IZA fala de força e de confiança. O que faz você se sentir forte?",
+"Que cantora do seu país tem uma voz tão forte quanto a da IZA?"
+],
 "id": 1412312204,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview118/v4/a2/bc/34/a2bc3491-7393-e334-127b-af95eee0beb3/mzaf_4227301863540627119.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/fd/85/b7/fd85b73a-d854-e06e-f857-71df0e2ff5c0/7891430461423.jpg/600x600bb.jpg",
@@ -475,6 +709,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "eletronica",
 "cur": "Versão eletrônica de uma música do cantor australiano Angus Stone; tocou em rádios da Europa.",
+"perg": [
+"A música fala de viajar num avião grande com quem você ama. Para onde você iria nesse avião?",
+"Você gosta de viajar de avião ou tem medo?",
+"Qual foi a viagem mais longa que você já fez?",
+"Se você pudesse morar em outro país por um ano, qual seria?"
+],
 "id": 1293274878,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b7/32/49/b7324926-b5e6-0cc4-a38e-e74f5adabd7d/mzaf_17174757088157852703.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/0d/97/bf/0d97bf8d-3893-4b70-f010-cd6e2a09d2d8/190295727499.jpg/600x600bb.jpg",
@@ -487,6 +727,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "reggae",
 "cur": "Pop de praia que foi uma das músicas mais tocadas nas rádios brasileiras em 2018.",
+"perg": [
+"O que você mais gosta de fazer em dias de sol?",
+"Na Costa Rica tem a época seca e a época de chuva. Qual você prefere?",
+"Essa música é muito otimista. O que deixa você de bom humor de manhã?",
+"Que música você chamaria de “música de verão”?"
+],
 "id": 1590379985,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/39/fb/fa/39fbfa39-b66a-7390-40f4-5e91758def0e/mzaf_11812103025654298765.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2a/a7/88/2aa7883e-1b15-ddc9-5697-7cdc7939ffbe/725566923869.jpg/600x600bb.jpg",
@@ -499,6 +745,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "reggae",
 "cur": "Os três irmãos do Melim ficaram famosos tocando em reality show e viralizaram com essa música.",
+"perg": [
+"Melim são três irmãos. Você trabalharia com os seus irmãos ou a sua família?",
+"Quem é o seu “abrigo”, a pessoa que protege você?",
+"Eles ficaram famosos num reality show de música. Você assiste a esse tipo de programa?",
+"Que lugar é o seu abrigo quando você precisa de paz?"
+],
 "id": 1076597555,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/3d/1c/e4/3d1ce4ec-8d92-4360-3d16-75587e98d6f3/mzaf_683942690765729454.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music69/v4/4d/e6/5b/4de65b6a-96cd-dc68-c5fe-8c4f788c0f3e/23860.jpg/600x600bb.jpg",
@@ -511,6 +763,12 @@ window.MUSICAS = [
 "ano": 2017,
 "cat": "sertanejo",
 "cur": "Virou uma das músicas mais tocadas nas rádios do Brasil.",
+"perg": [
+"“Largado às traças” é uma expressão para alguém abandonado e sem cuidar de si. Que expressões sobre tristeza você conhece?",
+"O que a pessoa faz na música para esquecer o amor? É uma boa ideia?",
+"No Brasil, muita gente ouve sertanejo no bar com os amigos. E no seu país, o que se ouve no bar?",
+"Que música você ouve quando está triste?"
+],
 "id": 1358937616,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/aa/60/a4/aa60a4ce-aed4-1773-eae9-f16970dd275b/mzaf_3097247514510704577.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9e/28/29/9e2829f5-f1de-b588-b14a-103c032a7b10/7891430250379.jpg/600x600bb.jpg",
@@ -523,6 +781,12 @@ window.MUSICAS = [
 "ano": 2016,
 "cat": "hits",
 "cur": "Primeira grande parceria de Anitta com um astro latino, o colombiano Maluma, misturando português e espanhol.",
+"perg": [
+"A música mistura português e espanhol. Quais palavras são parecidas nas duas línguas?",
+"Quando você gosta de alguém, prefere uma resposta direta, “sim ou não”, ou deixa as coisas acontecerem?",
+"O que você sabe sobre Maluma e a música da Colômbia?",
+"Brasil e Costa Rica: os ritmos que tocam nas festas são parecidos?"
+],
 "id": 1137676729,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ec/17/75/ec177596-df95-3d5a-ec81-70ed0f28abd6/mzaf_5672986795003635211.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d0/67/f8/d067f8a7-e08a-79ec-9ca8-8bff1259b16b/190296989001.jpg/600x600bb.jpg",
@@ -535,6 +799,12 @@ window.MUSICAS = [
 "ano": 2016,
 "cat": "hits",
 "cur": "Um dos funks brasileiros mais vistos no YouTube; tocou muito em festas da América Latina.",
+"perg": [
+"Kevinho começou a cantar muito jovem. Com que idade você acha que alguém deve começar uma carreira?",
+"Os clipes de funk têm milhões de visualizações no YouTube. Você assiste a clipes ou só ouve as músicas?",
+"Essa música tocava em festas no seu país?",
+"Que palavra em português você aprendeu com essa música?"
+],
 "id": 1520044401,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c0/de/b0/c0deb00b-4d41-b546-0c15-3ba2e77e6205/mzaf_14168657712279509149.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/75/5a/63/755a631a-b49a-6f5f-991c-c161200ab011/195081887593.jpg/600x600bb.jpg",
@@ -547,6 +817,12 @@ window.MUSICAS = [
 "ano": 2016,
 "cat": "eletronica",
 "cur": "Entrou nas paradas de muitos países e foi a primeira música de um brasileiro no Top 100 global do Spotify.",
+"perg": [
+"Alok é o DJ brasileiro mais famoso do mundo. Você já tinha ouvido falar dele?",
+"A letra é em inglês. Você esperava que um sucesso brasileiro fosse cantado em inglês?",
+"“Hear me now”: o que você gostaria que o mundo ouvisse de você?",
+"Para você, essa música combina mais com praia, carro ou festa?"
+],
 "id": 1337209540,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/32/76/32/3276329b-7e16-dcf5-0c69-1a6a42b78e4e/mzaf_9851417004182666035.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/14/b5/fe/14b5fedf-a650-853a-35d5-209e3437ac2c/8712944526554.jpg/600x600bb.jpg",
@@ -559,6 +835,12 @@ window.MUSICAS = [
 "ano": 2016,
 "cat": "reggae",
 "cur": "Com Tiago Iorc; ganhou o Grammy Latino de melhor canção em língua portuguesa.",
+"perg": [
+"O trevo de quatro folhas dá sorte. Você acredita em amuletos de sorte?",
+"Anavitória são duas amigas do Tocantins. Você tem uma amizade muito antiga?",
+"A música ganhou o Grammy Latino. Você acompanha prêmios de música?",
+"Você prefere músicas calmas como essa ou músicas animadas?"
+],
 "id": 1724821507,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bc/1a/95/bc1a9558-1806-390f-9379-0ab9f11792f9/mzaf_16549282936233074878.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8a/43/94/8a4394b9-ffb9-edc2-d029-4959f6154268/00602557148039_Cover.jpg/600x600bb.jpg",
@@ -571,6 +853,12 @@ window.MUSICAS = [
 "ano": 2016,
 "cat": "sertanejo",
 "cur": "Marília, a “Rainha da Sofrência”, foi uma das cantoras mais ouvidas do Brasil; morreu em 2021 num acidente de avião.",
+"perg": [
+"A música fala de traição. Você acha que dá para perdoar uma traição?",
+"Marília Mendonça mudou o sertanejo: antes só os homens cantavam a dor de amor. O que mudou com ela?",
+"Muitos fãs choraram quando ela morreu, em 2021. Que artista fez você sentir isso?",
+"Por que as pessoas gostam de ouvir músicas tristes?"
+],
 "id": 1475775628,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c6/65/c6/c665c67d-fea0-5c52-e819-53bf2efcc929/mzaf_13402726045129379952.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/57/98/a5/5798a518-210c-055b-7cf8-e3341b5f9a33/194491162078.jpg/600x600bb.jpg",
@@ -583,6 +871,12 @@ window.MUSICAS = [
 "ano": 2016,
 "cat": "sertanejo",
 "cur": "Uma das duplas mais populares do sertanejo universitário.",
+"perg": [
+"Na música, a pessoa não precisa fazer “propaganda” do amor. O que isso quer dizer?",
+"Você acha que os casais mostram demais o namoro nas redes sociais?",
+"Que propaganda da TV ou da internet você nunca esquece?",
+"Você prefere sertanejo animado ou romântico?"
+],
 "id": 1350041630,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6b/66/33/6b6633de-69e7-5f61-c753-fcdea5273b1d/mzaf_13175972996071988986.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9c/ac/85/9cac8568-c3ce-20a4-8678-9fdbc806ef06/7891430462727.jpg/600x600bb.jpg",
@@ -595,6 +889,12 @@ window.MUSICAS = [
 "ano": 2013,
 "cat": "hits",
 "cur": "O hit que transformou Anitta em estrela nacional antes da carreira internacional.",
+"perg": [
+"Foi com essa música que Anitta ficou famosa no Brasil. Quem você acha que são as “poderosas”?",
+"Anitta saiu de um bairro simples do Rio e virou estrela mundial. Que qualidades isso exige?",
+"Você conhece uma mulher “poderosa” que admira? Quem?",
+"Você prefere a Anitta de 2013 ou a Anitta de hoje?"
+],
 "id": 664709254,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/54/24/1b/54241bdf-0c2b-0b2f-173e-c089be508b3c/mzaf_3965719555603875073.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/d2/b7/f3/d2b7f329-e79f-33ea-7d0a-1bfa5c245e18/825646428915.jpg/600x600bb.jpg",
@@ -607,6 +907,12 @@ window.MUSICAS = [
 "ano": 2013,
 "cat": "sertanejo",
 "cur": "Luan Santana começou a fazer sucesso ainda adolescente e é um dos ídolos do sertanejo pop.",
+"perg": [
+"Até quando você esperaria por alguém que ama?",
+"Luan Santana ficou famoso ainda adolescente. Quais são os riscos de ficar famoso tão cedo?",
+"Você é uma pessoa paciente ou ansiosa?",
+"Qual é o lugar mais chato para ficar esperando?"
+],
 "id": 628202794,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7c/31/98/7c319830-0112-9535-8f0c-65abd1c1cc59/mzaf_1546504067794232983.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/dd/05/9c/dd059c91-ae26-2111-026f-6984012045de/7891430294922.jpg/600x600bb.jpg",
@@ -619,6 +925,12 @@ window.MUSICAS = [
 "ano": 2011,
 "cat": "hits",
 "cur": "Chegou ao 1.º lugar das paradas em vários países da Europa e da América Latina, com dancinha de jogadores famosos.",
+"perg": [
+"Essa música foi enorme na Europa e na América Latina. Você lembra onde ouviu pela primeira vez?",
+"Jogadores de futebol famosos fizeram a dancinha dela ao marcar gols. Que dança de comemoração você conhece?",
+"Por que uma música com letra tão simples faz sucesso no mundo todo?",
+"O que você acha que quer dizer “ai, se eu te pego”?"
+],
 "id": 875865065,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/be/ec/18/beec18f1-d34a-7545-8bd5-91b3d8c1ebe8/mzaf_13625513380943299108.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/20/95/38/209538b3-d002-1ffb-2e2f-c701af65c6a3/888831079477.jpg/600x600bb.jpg",
@@ -631,6 +943,12 @@ window.MUSICAS = [
 "ano": 2011,
 "cat": "hits",
 "cur": "O “tchê tcherere tchê tchê” fez sucesso em vários países depois do Teló.",
+"perg": [
+"Todo mundo canta o “tchê tcherere tchê tchê”, mesmo sem entender. Por que refrões sem sentido grudam tanto?",
+"O que é uma “balada” no Brasil? E como se diz isso no seu país?",
+"Você prefere balada, barzinho ou ficar em casa no sábado?",
+"Que música grudou na sua cabeça e não saiu mais?"
+],
 "id": 1482037797,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/50/92/43/50924302-1955-e667-912c-0ad447e6ba9d/mzaf_18073216224440107835.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/27/49/a9/2749a9e2-0238-23cb-9ed7-5e94d7416009/886447893432.jpg/600x600bb.jpg",
@@ -643,6 +961,12 @@ window.MUSICAS = [
 "ano": 2009,
 "cat": "reggae",
 "cur": "Um dos hinos do Natiruts, cantado em coro nos shows dentro e fora do Brasil.",
+"perg": [
+"“Sorri, sou rei”: o que faz você se sentir um rei ou uma rainha?",
+"Nos shows, todo mundo canta essa música em coro. Que música todo mundo canta junto no seu país?",
+"Sorrir ajuda nos dias difíceis? Dê um exemplo.",
+"Você conhece o reggae da Costa Rica, de Limón? Ele é parecido com esse?"
+],
 "id": 1119312493,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c4/fb/4c/c4fb4c93-8ac4-c6ca-48aa-91bcb1f6d281/mzaf_10899348756445768645.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/33/67/87/33678768-57ca-fb11-2b3b-bbf6852a6e1a/886443478701.jpg/600x600bb.jpg",
@@ -655,6 +979,12 @@ window.MUSICAS = [
 "ano": 2006,
 "cat": "reggae",
 "cur": "Armandinho, de Porto Alegre, faz reggae de surfista; é música de praia e luau.",
+"perg": [
+"Armandinho faz reggae de surfista. Você surfa ou gostaria de aprender?",
+"Se você pudesse ter “outra vida”, como ela seria?",
+"Essa música é perfeita para um luau. Você já foi a um luau?",
+"Qual é a melhor praia para surfar na Costa Rica?"
+],
 "id": 1443330989,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/aa/1a/4c/aa1a4c5d-931e-833f-65e4-4818a350044a/mzaf_16685873370524199232.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/30/90/9c/30909ccf-03e8-9386-7ca2-cb37bb3b9437/08UMGIM00032.rgb.jpg/600x600bb.jpg",
@@ -667,6 +997,12 @@ window.MUSICAS = [
 "ano": 2005,
 "cat": "reggae",
 "cur": "Está no disco acústico gravado no Rio, que foi indicado ao Grammy Latino.",
+"perg": [
+"O que você precisa para ser feliz? Diga três coisas.",
+"Você acha que a felicidade depende de dinheiro?",
+"“Pura vida” é o jeito costarriquenho de ver a vida. Existe uma expressão parecida no Brasil?",
+"Em que lugar você se sente mais feliz?"
+],
 "id": 1119311825,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/da/d8/e4/dad8e4f6-d901-f422-e4f0-f108a3979dab/mzaf_15084291823181309806.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music18/v4/02/5e/91/025e9193-1d97-0ca6-ed15-8a5726b6deac/886443478695.jpg/600x600bb.jpg",
@@ -679,6 +1015,12 @@ window.MUSICAS = [
 "ano": 2005,
 "cat": "reggae",
 "cur": "Banda gaúcha que levou o reggae para o Sul do Brasil e para o Uruguai.",
+"perg": [
+"A banda é do Rio Grande do Sul e tem nome de chimarrão. Você conhece essa bebida?",
+"O que é mais bonito para você: uma letra simples ou uma letra difícil?",
+"Escreva um “verso simples” para alguém de quem você gosta.",
+"No Sul do Brasil faz frio. Você imaginava que o Brasil tinha lugares frios?"
+],
 "id": 1544337276,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/07/cf/40/07cf4071-65a7-a455-ac0a-20bbefac53e0/mzaf_3264522135817669625.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/8c/ce/84/8cce8478-a01f-a273-f200-f90bbfbf09ea/0.jpg/600x600bb.jpg",
@@ -691,6 +1033,12 @@ window.MUSICAS = [
 "ano": 2001,
 "cat": "reggae",
 "cur": "A banda de Brasília é uma das mais queridas do reggae na América Latina e lota shows no Chile, na Argentina e no Uruguai.",
+"perg": [
+"O Natiruts é de Brasília, longe do mar, mas faz reggae de praia. Por que você acha que o reggae combinou com o Brasil?",
+"Você gosta de “andar só” às vezes? Onde você vai para pensar?",
+"O Natiruts lota shows no Chile e na Argentina. Ele é conhecido na Costa Rica também?",
+"Que banda de reggae você conhece além de Bob Marley?"
+],
 "id": 1400910597,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/93/da/71/93da7116-fa20-c574-b5db-dc3ddf948266/mzaf_6886161801010362646.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d1/73/04/d173045a-81a4-6b3e-8496-45e3f3e9ea16/00602567737001.rgb.jpg/600x600bb.jpg",
@@ -703,6 +1051,12 @@ window.MUSICAS = [
 "ano": 1998,
 "cat": "reggae",
 "cur": "Canção de amor que fez o Natiruts ser conhecido no Brasil inteiro.",
+"perg": [
+"O beija-flor aparece em muitas músicas e lendas. Que animal simboliza o amor no seu país?",
+"Qual foi o presente mais bonito que você já ganhou?",
+"Você prefere dar ou receber presentes?",
+"Que animais e pássaros você vê perto da sua casa?"
+],
 "id": 1400893754,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/69/10/99/69109901-aa83-367b-415e-b6e1b06a9a89/mzaf_11034454200765335094.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3b/6d/81/3b6d81fc-2f36-dfb0-93ed-b7c5628bd51b/18UMGIM30681.rgb.jpg/600x600bb.jpg",
@@ -715,6 +1069,12 @@ window.MUSICAS = [
 "ano": 1998,
 "cat": "reggae",
 "cur": "Fala de paz e liberdade, temas que o Natiruts canta desde o começo.",
+"perg": [
+"O que significa ter “liberdade dentro da cabeça”?",
+"O reggae fala muito de paz e liberdade. Que outro estilo de música tem uma mensagem social forte?",
+"O que você faz para limpar a cabeça e relaxar?",
+"Você acha que a música pode mudar a forma como as pessoas pensam?"
+],
 "id": 1400893312,
 "prev": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/32/f9/57/32f957da-62a9-c732-7bf9-fbf4266c089b/mzaf_12780893200584580500.plus.aac.p.m4a",
 "capa": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3b/6d/81/3b6d81fc-2f36-dfb0-93ed-b7c5628bd51b/18UMGIM30681.rgb.jpg/600x600bb.jpg",

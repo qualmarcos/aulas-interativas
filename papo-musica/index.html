@@ -211,7 +211,7 @@ html[data-theme="dark"] .pergs li{background:#1c1928;color:#efeaf8}
   </div>
 </div>
 
-<script src="musicas.js?v=2"></script>
+<script src="musicas.js?v=3"></script>
 <script>
 const $ = id => document.getElementById(id);
 const C = window.CATS_MUSICA, M = window.MUSICAS.map((m, i) => Object.assign(m, { i }));
@@ -295,7 +295,7 @@ function pintar() {
 
 /* ---------- Palco ---------- */
 function mostrar() {
-  const m = atual, c = C[m.cat], perg = c.perg, oc = adivinhe && !revelada;
+  const m = atual, c = C[m.cat], oc = adivinhe && !revelada, perg = pergDe(m);
   $("palco").style.setProperty("--c", c.cor); $("palco").classList.toggle("oculto", oc);
   $("pCat").textContent = oc ? "🎧 Modo Adivinhe" : `${c.ic} ${c.nome}`;
   $("pCv").innerHTML = c.ic + (m.capa ? `<img src="${m.capa}" alt="">` : "");
@@ -311,7 +311,9 @@ function mostrar() {
 }
 function abrir(m, play) { atual = m; vistas = 1; revelada = false; $("palco").classList.add("on"); document.body.style.overflow = "hidden"; mostrar(); if (play && tocando !== m) tocar(m); }
 function fechar() { $("palco").classList.remove("on"); document.body.style.overflow = ""; atual = null; if (tocando) mini(); }
-function passo(d) { if (!atual) return; const n = Math.max(1, Math.min(C[atual.cat].perg.length, vistas + d)); if (n !== vistas) { vistas = n; mostrar(); } }
+// No Modo Adivinhe as perguntas próprias entregariam a música: até revelar, ficam as do estilo.
+function pergDe(m) { return m.perg && !(adivinhe && !revelada) ? m.perg : C[m.cat].perg; }
+function passo(d) { if (!atual) return; const n = Math.max(1, Math.min(pergDe(atual).length, vistas + d)); if (n !== vistas) { vistas = n; mostrar(); } }
 function sortear() {
   const base = filtradas().filter(m => m.prev && m !== atual), pool = base.length ? base : M.filter(m => m.prev);
   abrir(pool[Math.floor(Math.random() * pool.length)], true);
