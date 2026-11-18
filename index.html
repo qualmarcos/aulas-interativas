@@ -194,6 +194,10 @@ const AULAS = (window.AULAS_GERADAS || []).concat([
     sub: "🎯 3 bancos · 24 categorias", img: "jogos-forca/img/forca.svg",
     gram: "Primeiras palavras (NAB1–NAB2): animais, frutas, cores, família, corpo, roupas, casa, profissões · Dia a dia (NAB2–NAB3): cidade, transportes, clima, esportes, sentimentos, rotina, tecnologia, saúde · Brasil: estados, capitais, comidas, animais, música, natureza",
     chips: ["📱 Sala com QR", "Forca", "Roleta", "Equipes"] },
+  { dir: "jogos-verdadeiro-falso/", level: "jogos", unit: 2, tag: "Jogos · Verdadeiro ou falso", title: "Verdadeiro ou falso?",
+    sub: "✅ 6 categorias · 60 frases", img: "jogos-verdadeiro-falso/img/vf.svg",
+    gram: "Brasil: geografia · cultura e costumes · Língua portuguesa: gramática básica (NAB1–NAB2) · falsos amigos português × espanhol · gramática intermediária (NAB3) · Expressões idiomáticas (VIA)",
+    chips: ["📱 Sala com QR", "Explicações", "Roleta", "Equipes"] },
   { dir: "nab2-unidade3/", level: "nab2", unit: 3, tag: "NAB2 · Unidade 3", title: "Escolhas que vestem o futuro",
     sub: "🧳 Roupas, compras e planos", img: "nab2-unidade3/img/mala.jpg",
     gram: "Futuro do presente · Futuro do pretérito · Verbos vestir, pôr, ir e vir",
@@ -234,14 +238,14 @@ function paint() {
   const card = (a, i) => `<a class="card" href="${a.dir}" style="--c:var(--${a.level});animation-delay:${Math.min(i, 12) * 30}ms">
     <div class="pic" style="background-image:url('${a.img}')"><span class="tag">${a.tag}</span>${isRev(a) ? '<span class="rev">Revisão</span>' : ""}</div>
     <div class="body"><h3>${a.title}</h3><div class="sub">${a.sub}</div><div class="gram">${a.gram}</div>
-    <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">Abrir aula <b>→</b></div></div></a>`;
+    <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">${a.level === "jogos" ? "Abrir jogo" : "Abrir aula"} <b>→</b></div></div></a>`;
   const grupo = (nome, ic, itens) => itens.length ? `<section class="grupo"><h3 class="gt"><span>${ic}</span>${nome}<small>${itens.length}</small></h3>
     <div class="grid">${itens.map(card).join("")}</div></section>` : "";
   const jogos = list.filter(a => a.level === "jogos"); list = list.filter(a => a.level !== "jogos");
   grid.innerHTML = grupo("Jogos", "🎲", jogos) + grupo("Unidades", "📘", list.filter(a => !isRev(a))) + grupo("Revisões", "🔁", list.filter(isRev));
   const empty = document.getElementById("empty");
   empty.textContent = t ? "Nenhuma aula encontrada." : `Ainda não há aulas de ${nv[1]}.`;
-  empty.style.display = list.length ? "none" : "block";
+  empty.style.display = list.length + jogos.length ? "none" : "block";
 }
 q.oninput = paint; paint();
 window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (ids.includes(id)) choose(id); });

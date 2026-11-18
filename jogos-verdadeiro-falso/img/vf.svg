@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7b733"/><stop offset="1" stop-color="#c26a00"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#fff" opacity=".18"/></pattern>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect width="640" height="360" fill="url(#dots)"/>
+  <circle cx="600" cy="10" r="130" fill="#fff" opacity=".12"/>
+  <circle cx="20" cy="360" r="110" fill="#fff" opacity=".10"/>
+  <!-- cartão verdadeiro -->
+  <g transform="translate(78 64) rotate(-8 120 110)">
+    <rect width="230" height="220" rx="28" fill="#fff"/>
+    <circle cx="115" cy="92" r="58" fill="#2e9e5b"/>
+    <path d="M88 94l20 20 36-40" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="115" y="190" text-anchor="middle" font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif" font-weight="900" font-size="28" fill="#1f6b3e">VERDADEIRO</text>
+  </g>
+  <!-- cartão falso -->
+  <g transform="translate(332 64) rotate(7 120 110)">
+    <rect width="230" height="220" rx="28" fill="#fff"/>
+    <circle cx="115" cy="92" r="58" fill="#d64545"/>
+    <path d="M90 67l50 50M140 67l-50 50" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+    <text x="115" y="190" text-anchor="middle" font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif" font-weight="900" font-size="32" fill="#9c2a2a">FALSO</text>
+  </g>
+  <!-- ponto de interrogação -->
+  <g transform="translate(320 300)">
+    <circle r="34" fill="#3b1f00"/>
+    <text y="16" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="46" fill="#ffd27a">?</text>
+  </g>
+</svg>

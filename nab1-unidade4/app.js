@@ -118,19 +118,20 @@ function mcQ(q, box, st, done) {
       suspense(1.3).then(() => {
         st.busy = false; b.classList.remove("wait"); const ok = i === q.a; judge(ok);
         b.classList.add(ok ? "ok" : "bad");
+        if (!ok && q.vf) { st.done = true; st.wrong = true; st.tried.add(i); st.msg = done(0); o.children[q.a].classList.add("ok"); fb.className = "fb bad"; fb.innerHTML = "❌ Não. A resposta certa é <b>" + q.o[q.a] + "</b>. " + q.c + st.msg; return; } /* verdadeiro ou falso: uma chance só */
         if (ok) { st.done = true; st.msg = done(triesPts(st.tried.size)); fb.className = "fb ok"; fb.innerHTML = "✅ Muito bem! " + q.c + st.msg; }
         else { st.tried.add(i); b.disabled = true; fb.className = "fb bad"; fb.innerHTML = `❌ Ainda não. Tente outra opção.${teamMode ? ` Agora vale <b>${triesPts(st.tried.size)} ${plural(triesPts(st.tried.size), "ponto", "pontos")}</b>.` : ""}`; }
       });
     };
     o.appendChild(b);
   });
-  box.appendChild(o); if (st.done) { fb.className = "fb ok"; fb.innerHTML = "✅ " + q.c + (st.msg || ""); } box.appendChild(fb);
+  box.appendChild(o); if (st.done) { fb.className = st.wrong ? "fb bad" : "fb ok"; fb.innerHTML = (st.wrong ? "❌ A resposta certa é <b>" + q.o[q.a] + "</b>. " : "✅ ") + q.c + (st.msg || ""); } box.appendChild(fb);
   box.appendChild(h("div", "tans", "Resposta: " + q.o[q.a]));
 }
 function R_mc(s, el) {
   header(s, el);
   if (s.video) el.appendChild(h("div", "card", `🎬 <b>${s.videoTitle || "Vídeo em português"}${s.videoLen ? " · " + s.videoLen : ""}</b><br><span style="font-size:16px;color:var(--muted)">Use uma conexão à internet. Assista e depois responda às questões.</span><div class="row" style="margin-top:8px"><a class="btn" target="_blank" rel="noopener" href="${s.video}" style="text-decoration:none">▶ Abrir vídeo</a></div>`));
-  stepper(s, el, mcQ);
+  stepper(s, el, mcQ, s.rule);
 }
 const R_photoquiz = R_mc;
 function R_fill(s, el) {

@@ -11,6 +11,8 @@ MOTOR = ["app.js", "audio.js", "teams.js", "notes.js", "sala.js", "aluno.html", 
 JOGOS = [
     dict(dir="jogos-forca", pfx="jogos-forca-", short="Jogos · Forca",
          desc="Jogo da forca com categorias de vocabulário para todos os níveis."),
+    dict(dir="jogos-verdadeiro-falso", pfx="jogos-vf-", short="Jogos · Verdadeiro ou falso",
+         desc="Verdadeiro ou falso sobre o Brasil e a língua portuguesa, por categorias."),
 ]
 
 for j in JOGOS:
