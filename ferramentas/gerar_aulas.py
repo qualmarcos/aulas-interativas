@@ -10,6 +10,7 @@ A numeração segue a dos flipcharts publicados (NAB3 renumerado: Primeira aula 
 O motor (app.js, sala.js…) é copiado de nab3-unidade5 com o prefixo do localStorage trocado.
 Aulas feitas à mão e que NÃO são geradas aqui: nab2-unidade3, via-brasil1-unidade2, nab3-unidade4, nab3-unidade5.
 """
+from aplicar_forca import ajustar
 import json, re, shutil, subprocess, sys, html
 from pathlib import Path
 
@@ -280,6 +281,7 @@ def gerar(inf):
     for cat, ws in hang.items():
         seen = {}; [seen.setdefault(w, h) for w, h in ws]
         if len(seen) >= 4: bank[cat] = [[w, h] for w, h in seen.items()]
+    bank = ajustar(inf["dir"], bank)  # categorias escritas à mão: ferramentas/forca_categorias.json
     if sum(len(v) for v in bank.values()) >= 6:
         S.append(dict(type="hangman", menu="Jogo da forca", title=f"Jogo da forca: {inf['short'].split(' · ', 1)[1]}",
                       lead="Escolha uma categoria e descubra a palavra antes de o boneco ficar completo. As equipes se alternam: cada uma joga uma palavra.", bank=bank))

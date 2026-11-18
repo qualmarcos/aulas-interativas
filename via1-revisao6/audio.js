@@ -76,12 +76,15 @@ try { window.speechSynthesis && speechSynthesis.cancel(); } catch (e) {}
 /* ============ ROLETA DA TURMA ============ */
 const Roleta = (() => {
   const KEY = "via1-r6-roleta";
-  const DEFAULT = ["Ana", "Bruno", "Camila", "Diego", "Eduarda", "Felipe", "Gabriela", "Heitor"];
+  const DEFAULT = []; /* a lista começa sempre vazia: o professor escreve os nomes ou os alunos entram pela Sala */
+  const EXEMPLO = ["Ana", "Bruno", "Camila", "Diego", "Eduarda", "Felipe", "Gabriela", "Heitor"]; /* nomes de exemplo de versões antigas: são apagados */
+  const exemplo = a => Array.isArray(a) && a.length > 0 && a.every(n => EXEMPLO.includes(n));
   const COLORS = ["#2356a0", "#a8c94a", "#f2b705", "#3f8a4b", "#c0392b", "#1d3557", "#8e44ad", "#f77f00", "#16a085", "#d35400"];
   let names = [], angle = 0, spinning = false, lastIdx = -1, pendingRemove = null;
   const $ = id => document.getElementById(id);
   function load() {
     let saved = null; try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+    try { if (exemplo(saved)) { saved = null; localStorage.removeItem(KEY); } if (exemplo(JSON.parse(localStorage.getItem(KEY + "-full")))) localStorage.removeItem(KEY + "-full"); } catch (e) {}
     names = Array.isArray(saved) && saved.length ? saved : DEFAULT.slice();
     $("wNames").value = names.join("\n");
   }
@@ -119,6 +122,7 @@ const Roleta = (() => {
   function spin() {
     if (spinning) return;
     if (pendingRemove != null) { names.splice(pendingRemove, 1); pendingRemove = null; $("wNames").value = names.join("\n"); save(); }
+    if (!names.length && !allNames().length) { $("wWinner").textContent = "Escreva os nomes dos alunos na lista ✍️"; $("wDone").textContent = "Um nome por linha. Quem entra pela 📱 Sala aparece aqui sozinho."; return; }
     if (!names.length) { $("wWinner").textContent = "Todos já foram sorteados! 🎉"; $("wDone").textContent = "Clique em “Restaurar lista” para começar de novo."; return; }
     Sound.unlock(); spinning = true; $("wWinner").textContent = ""; $("wWinner").classList.remove("on");
     const start = angle, total = Math.PI * 2 * (5 + Math.random() * 3) + Math.random() * Math.PI * 2, dur = 5200 + Math.random() * 1200, t0 = performance.now();

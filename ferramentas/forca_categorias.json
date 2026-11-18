@@ -1,0 +1,112 @@
+{
+  "_leia": "Categorias da forca escritas à mão para as aulas geradas. Substituem as categorias automáticas 'Pares da memória' e 'Vocabulário' (as outras categorias da aula ficam). Aplicar: python3 ferramentas/aplicar_forca.py (gerar_aulas.py também usa este arquivo).",
+  "nab1-unidade1": {
+    "O que a pergunta quer saber?": [["NOME", "Como você se chama?"], ["ORIGEM", "De onde você é?"], ["PROFISSÃO", "O que você faz?"], ["IDADE", "Quantos anos você tem?"], ["ENDEREÇO", "Onde você mora?"]],
+    "Material escolar": [["CELULAR", "Telefone que levamos no bolso."], ["CANETA", "Escreve com tinta."], ["CADERNO", "Onde escrevemos as lições."], ["LÁPIS", "Escreve e pode ser apagado."], ["BORRACHA", "Apaga o lápis."], ["MOCHILA", "Levamos o material nas costas."]],
+    "Instruções da aula": [["LEIA", "Veja o texto e descubra o que ele diz."], ["OUÇA", "Preste atenção ao áudio ou à fala."], ["ASSOCIE", "Relacione os cartões que combinam."], ["COMPLETE", "Escreva ou escolha o que falta."], ["ESCREVA", "Use o lápis ou a caneta."], ["REPITA", "Diga de novo, igual ao professor."]]
+  },
+  "nab1-unidade6": {
+    "Pretérito perfeito: eu…": [["TIVE", "Eu ___ (ter)."], ["ESTIVE", "Eu ___ (estar)."], ["FIZ", "Eu ___ (fazer)."], ["PUDE", "Eu ___ (poder)."], ["QUIS", "Eu ___ (querer)."], ["FUI", "Eu ___ (ser / ir)."]],
+    "Coisas da viagem": [["DOCUMENTO", "Papel que mostra quem você é."], ["MALA", "Onde levamos as roupas na viagem."], ["CONVITE", "Cartão para chamar alguém para uma festa."], ["FOTOGRAFIA", "Imagem feita com a câmera."], ["PASSAGEM", "Bilhete para viajar de avião ou de ônibus."], ["PASSAPORTE", "Documento para viajar a outro país."]]
+  },
+  "nab2-unidade1": {
+    "Partes do corpo": [["MÃOS", "Usamos para segurar e trabalhar."], ["OLHO", "Usamos para ver."], ["PÉS", "Usamos para andar e dançar."], ["CABEÇA", "Parte de cima do corpo."], ["BOCA", "Usamos para comer e falar."], ["NARIZ", "Usamos para sentir cheiro."]],
+    "Espírito Santo": [["CAPIXABA", "Quem nasce no Espírito Santo."], ["PANELA DE BARRO", "Feita pelas paneleiras de Goiabeiras, em Vitória."], ["CONGO", "Música e dança tradicional capixaba, com tambores."], ["MOQUECA", "Prato capixaba feito na panela de barro."], ["VITÓRIA", "Capital do Espírito Santo."]]
+  },
+  "nab2-revisao12": {
+    "Partes do corpo": [["MÃOS", "Usamos para segurar um objeto."], ["OLHOS", "Usamos para observar uma imagem."], ["PÉS", "Usamos para dar passos na dança."], ["CABEÇA", "Viramos para olhar para o lado."]],
+    "Plural": [["PÃES", "Plural de pão."], ["LIMÕES", "Plural de limão."], ["PAPÉIS", "Plural de papel."], ["ANIMAIS", "Plural de animal."], ["HOMENS", "Plural de homem."], ["CORAÇÕES", "Plural de coração."]]
+  },
+  "nab2-revisao34": {
+    "Roupas": [["CAMISETA", "Roupa leve de manga curta."], ["CALÇA JEANS", "Calça de tecido azul e resistente."], ["TÊNIS", "Calçado para esporte."], ["CASACO", "Roupa para o frio."]],
+    "Particípios irregulares": [["FEITO", "Particípio de fazer."], ["VISTO", "Particípio de ver."], ["DITO", "Particípio de dizer."], ["POSTO", "Particípio de pôr."], ["ESCRITO", "Particípio de escrever."], ["ABERTO", "Particípio de abrir."]]
+  },
+  "nab2-unidade4": {
+    "Particípios irregulares": [["FEITO", "Particípio de fazer."], ["DITO", "Particípio de dizer."], ["VISTO", "Particípio de ver."], ["POSTO", "Particípio de pôr."], ["ABERTO", "Particípio de abrir."], ["ESCRITO", "Particípio de escrever."]]
+  },
+  "nab2-unidade5": {
+    "Particípios irregulares": [["FEITO", "Particípio de fazer."], ["VISTO", "Particípio de ver."], ["ESCRITO", "Particípio de escrever."], ["ABERTO", "Particípio de abrir."], ["POSTO", "Particípio de pôr."], ["DITO", "Particípio de dizer."]],
+    "Diminutivo e aumentativo": [["CAFEZINHO", "Diminutivo de café."], ["CASARÃO", "Aumentativo de casa."], ["PEZINHO", "Diminutivo de pé."], ["PROBLEMÃO", "Aumentativo de problema."], ["FLORZINHA", "Diminutivo de flor."], ["PRESENTÃO", "Aumentativo de presente."]],
+    "Profissões do turismo": [["GUIA DE TURISMO", "Apresenta informações e acompanha visitantes num roteiro."], ["RECEPCIONISTA", "Recebe os hóspedes no hotel."], ["ARTESÃO", "Cria peças artesanais."], ["AGENTE DE VIAGENS", "Ajuda a organizar passagens e hotéis."]]
+  },
+  "nab2-revisao56": {
+    "Diminutivo e aumentativo": [["CAFEZINHO", "Diminutivo de café."], ["FLORZINHA", "Diminutivo de flor."], ["PEZINHO", "Diminutivo de pé."], ["PROBLEMÃO", "Aumentativo de problema."], ["CASARÃO", "Aumentativo de casa."], ["PRESENTÃO", "Aumentativo de presente."]]
+  },
+  "nab2-unidade6": {
+    "Regiões do Brasil": [["NORTE", "Região do Pará e do Amazonas."], ["NORDESTE", "Região da Bahia e de Pernambuco."], ["SUDESTE", "Região de São Paulo e do Rio de Janeiro."], ["SUL", "Região do Paraná e do Rio Grande do Sul."], ["CENTRO-OESTE", "Região de Goiás e do Distrito Federal."]],
+    "Frutas da feira": [["MANGA", "Amarela por dentro, com um caroço grande."], ["BANANA", "Vem em cacho."], ["MAMÃO", "Laranja por dentro, com sementes pretas."], ["CAJU", "Tem a castanha do lado de fora."], ["ABACAXI", "Tem coroa e casca com espinhos."], ["GOIABA", "Vira doce em barra."]]
+  },
+  "nab3-unidade1": {
+    "Pretérito perfeito irregular": [["FIZ", "Eu ___ (fazer)."], ["TIVE", "Eu ___ (ter)."], ["VI", "Eu ___ (ver)."], ["DEI", "Eu ___ (dar)."], ["TROUXE", "Eu ___ (trazer)."], ["PUS", "Eu ___ (pôr)."]]
+  },
+  "nab3-unidade2": {
+    "Presente do subjuntivo": [["FALE", "Espero que você ___ (falar)."], ["APRENDA", "Espero que você ___ (aprender)."], ["ABRA", "Espero que você ___ (abrir)."], ["CONVERSE", "Espero que você ___ (conversar)."], ["VENDA", "Espero que você ___ (vender)."], ["PARTA", "Espero que você ___ (partir)."]],
+    "Mercado e memória": [["MERCADO", "Espaço de compra, venda e encontro."], ["ARTESANATO", "Peças feitas à mão."], ["MEMÓRIA", "Lembrança e registro de experiências."], ["VISITANTE", "Pessoa que vem conhecer um lugar."]],
+    "Estudos e carreira": [["BOLSA DE ESTUDO", "Apoio para estudar, conforme as condições de um programa."], ["FORMATURA", "Festa de conclusão dos estudos."], ["HABILIDADE", "Algo que a pessoa sabe fazer."], ["PROFISSÃO", "Atividade de trabalho de uma pessoa."]]
+  },
+  "nab3-unidade3": {
+    "Estudos e cursos": [["CARGA HORÁRIA", "Quantidade de horas de um curso."], ["INSCRIÇÃO", "Registro para participar de um curso ou processo."], ["REQUISITO", "Condição pedida para participar."], ["CERTIFICADO", "Documento que mostra que você concluiu um curso."], ["BOLSA DE ESTUDO", "Apoio para estudar, conforme as condições de um programa."]],
+    "Presente do subjuntivo irregular": [["FAÇA", "Espero que você ___ (fazer)."], ["DIGA", "Espero que você ___ (dizer)."], ["POSSA", "Espero que você ___ (poder)."], ["VENHA", "Espero que você ___ (vir)."], ["TRAGA", "Espero que você ___ (trazer)."], ["PONHA", "Espero que você ___ (pôr)."]]
+  },
+  "nab3-revisao56": {
+    "Ações com dinheiro": [["POUPAR", "Reservar uma parte do dinheiro para depois."], ["GASTAR", "Usar dinheiro para comprar algo."], ["ECONOMIZAR", "Gastar menos para guardar dinheiro."], ["PAGAR", "Entregar dinheiro por uma compra."], ["COMPARAR", "Ver qual preço é melhor antes de comprar."], ["PARCELAR", "Dividir o pagamento em partes."]],
+    "Ideias dos conectores": [["FINALIDADE", "Ideia de para que."], ["CONCESSÃO", "Ideia de embora."], ["CONDIÇÃO", "Ideia de contanto que."], ["TEMPO", "Ideia de antes que."]]
+  },
+  "nab3-revisao56-complementar": {
+    "Dinheiro": [["ORÇAMENTO", "Previsão de entradas e gastos."], ["POUPAR", "Reservar dinheiro para depois."], ["PARCELA", "Uma parte do pagamento."], ["DESCONTO", "Redução no preço."]],
+    "Ideias dos conectores": [["FINALIDADE", "Ideia de para que."], ["CONCESSÃO", "Ideia de embora."], ["CONDIÇÃO", "Ideia de contanto que."], ["HIPÓTESE", "Ideia de se eu tivesse…"]]
+  },
+  "nab3-unidade6": {
+    "Crenças e histórias": [["LENDA", "Narrativa tradicional com várias versões."], ["SUPERSTIÇÃO", "Crença que liga sinais ou práticas à sorte."], ["AMULETO", "Objeto que, para algumas pessoas, protege."], ["SIMPATIA", "Prática popular para conseguir um desejo."], ["NARRADOR", "Voz que conta uma história."], ["VERSÃO", "Uma maneira de contar a mesma história."]],
+    "Figuras do folclore": [["CURUPIRA", "Tem os pés virados para trás."], ["SACI-PERERÊ", "Tem uma perna só e usa um gorro vermelho."], ["IARA", "Sereia dos rios da Amazônia."], ["LOBISOMEM", "Homem que vira lobo na lua cheia."]],
+    "Feminino dos animais": [["ÉGUA", "Fêmea do cavalo."], ["GALINHA", "Fêmea do galo."], ["CADELA", "Fêmea do cão."], ["OVELHA", "Fêmea do carneiro."], ["CABRA", "Fêmea do bode."], ["VACA", "Fêmea do touro."]],
+    "Imperfeito do subjuntivo": [["FALASSE", "Se eu ___ (falar)…"], ["VENDESSE", "Se eu ___ (vender)…"], ["PARTISSE", "Se eu ___ (partir)…"], ["FIZESSE", "Se eu ___ (fazer)…"], ["TIVESSE", "Se eu ___ (ter)…"], ["FOSSE", "Se eu ___ (ser / ir)…"]]
+  },
+  "nab3-unidade7": {
+    "Futuro do subjuntivo": [["FIZER", "Quando eu ___ (fazer)…"], ["TIVER", "Quando eu ___ (ter)…"], ["VIER", "Quando eu ___ (vir)…"], ["PUDER", "Quando eu ___ (poder)…"], ["DISSER", "Quando eu ___ (dizer)…"], ["TROUXER", "Quando eu ___ (trazer)…"]]
+  },
+  "nab3-unidade8": {
+    "Partes do carro": [["VOLANTE", "Peça usada para dar a direção ao carro."], ["ESTEPE", "Pneu reserva."], ["RETROVISOR", "Espelho para ver o que está atrás ou ao lado."], ["PORTA-MALAS", "Lugar para guardar as bagagens."], ["PARA-BRISA", "Vidro da frente do carro."], ["FAROL", "Luz da frente do carro."]]
+  },
+  "nab3-unidade9": {
+    "Particípios irregulares": [["FEITO", "Particípio de fazer."], ["VISTO", "Particípio de ver."], ["DITO", "Particípio de dizer."], ["POSTO", "Particípio de pôr."], ["ESCRITO", "Particípio de escrever."], ["ABERTO", "Particípio de abrir."]]
+  },
+  "nab3-unidade11": {
+    "Países de língua portuguesa": [["BRASIL", "Capital: Brasília."], ["PORTUGAL", "Capital: Lisboa."], ["ANGOLA", "Capital: Luanda."], ["MOÇAMBIQUE", "Capital: Maputo."], ["CABO VERDE", "Capital: Praia."], ["TIMOR-LESTE", "Capital: Díli."]],
+    "Nacionalidades": [["BRASILEIRO", "Quem nasce no Brasil."], ["PORTUGUÊS", "Quem nasce em Portugal."], ["ANGOLANO", "Quem nasce em Angola."], ["MOÇAMBICANO", "Quem nasce em Moçambique."], ["CABO-VERDIANO", "Quem nasce em Cabo Verde."], ["TIMORENSE", "Quem nasce em Timor-Leste."]]
+  },
+  "via1-unidade1": {
+    "Prefixos e sufixos": [["RELER", "Ler novamente."], ["ANTEVER", "Ver antes."], ["ENSACAR", "Colocar em um saco."], ["SOBREVOAR", "Voar por cima."], ["CONTRAPRODUCENTE", "Que produz o efeito contrário."], ["DESOBSTRUIR", "Tirar o que impede a passagem."], ["GORDUROSO", "Cheio de gordura."]],
+    "Palavras compostas": [["BATE-PAPO", "Conversa informal."], ["ARRANHA-CÉU", "Prédio muito alto."], ["VIRA-LATA", "Cão sem raça definida."], ["QUEBRA-CABEÇA", "Jogo de montar ou problema difícil."], ["GUARDA-ROUPA", "Móvel para guardar roupas."], ["PUXA-SACO", "Pessoa que bajula alguém."]],
+    "Expressões idiomáticas": [["PISAR EM OVOS", "Agir com muito cuidado."], ["DEIXAR NA MÃO", "Não ajudar quando era preciso."], ["PRA INGLÊS VER", "Só para manter as aparências."], ["ENGOLIR SAPO", "Aceitar algo desagradável sem reclamar."]],
+    "Carnaval": [["RITMISTA", "Toca na bateria."], ["COSTUREIRA", "Costura as fantasias."], ["COMPOSITOR", "Compõe o samba-enredo."], ["CARNAVALESCO", "Cria o enredo e o visual do desfile."], ["ADERECISTA", "Produz os adereços."], ["PASSISTA", "Samba com destaque à frente das alas."], ["COMISSÃO DE FRENTE", "Abre o desfile e apresenta o enredo."], ["BATERIA", "Mantém o ritmo sem parar."], ["ALA DAS BAIANAS", "Mulheres com saias rodadas."], ["CARRO ALEGÓRICO", "Estrutura que representa o enredo."], ["SAMBA-ENREDO", "Música composta para o tema do desfile."]]
+  },
+  "via1-revisao2": {
+    "Formação de verbos": [["ENLOUQUECER", "Ficar louco."], ["ENVELHECER", "Ficar velho."], ["ENDIREITAR", "Deixar direito."], ["EMBELEZAR", "Deixar belo."], ["ENTORTAR", "Deixar torto."], ["AMACIAR", "Deixar macio."]]
+  },
+  "via1-unidade3": {
+    "Verbos e preposições": [["COMEÇAR", "___ pelo fim."], ["COMUNICAR-SE", "___ com o público."], ["CASAR-SE", "___ com uma colega."], ["CONCENTRAR-SE", "___ no assunto."], ["ARREPENDER-SE", "___ de não ter ido."], ["CONCORDAR", "___ com a proposta."]],
+    "Coletivos": [["ARQUIPÉLAGO", "Coletivo de ilhas."], ["CARDUME", "Coletivo de peixes."], ["CONSTELAÇÃO", "Coletivo de estrelas."], ["ELENCO", "Coletivo de atores."], ["ESQUADRA", "Coletivo de navios."], ["FORNADA", "Coletivo de pães."]]
+  },
+  "via1-unidade4": {
+    "Expressões idiomáticas": [["DAR À LUZ", "Ter um filho."], ["SER DE LUA", "Ter humor variável."], ["ATÉ QUE ENFIM", "Finalmente."], ["DAR-SE CONTA DE", "Perceber."], ["TOMAR CONTA DE", "Cuidar."], ["LEVAR EM CONTA", "Levar em consideração."], ["FAZER QUESTÃO DE", "Insistir em fazer algo."]]
+  },
+  "via1-revisao6": {
+    "Advérbios e locuções": [["ATUALMENTE", "Nos dias de hoje."], ["OUTRORA", "Antigamente."], ["POR ENQUANTO", "Até agora; provisoriamente."], ["EM MEADOS DE", "Por volta do meio de."], ["ÀS ESCURAS", "Sem luz."], ["ÀS MOSCAS", "Vazio, sem clientes."], ["DE COR", "De memória."], ["DE ANTEMÃO", "Com antecedência."], ["DE SOBRA", "Em excesso."]]
+  },
+  "via1-unidade6": {
+    "Expressões": [["NÃO PRESTA", "Não tem qualidade; não serve."], ["FORA DE COGITAÇÃO", "Impossível de considerar."], ["NA HORA H", "No momento decisivo."], ["DE CABO A RABO", "Do começo ao fim."]],
+    "Corpo em linguagem popular": [["GOELA", "Garganta."], ["CACHOLA", "Cabeça."], ["CANGOTE", "Pescoço."], ["ANCA", "Quadril."], ["ESPINHA", "Coluna."], ["PESTANA", "Cílios."]]
+  },
+  "via1-unidade7": {
+    "Expressões com mão": [["MÃO DE VACA", "Pessoa avarenta, pão-dura."], ["MÃO ABERTA", "Pessoa generosa."], ["MÃO DE FERRO", "Autoridade rígida."], ["MÃOS DE FADA", "Habilidade em trabalhos delicados."], ["MÃO NA RODA", "Uma grande ajuda."]],
+    "Expressões com pé": [["PÉ-FRIO", "Pessoa que dá azar."], ["PÉ-RAPADO", "Pessoa muito pobre."], ["PÉ DE GALINHA", "Rugas no canto dos olhos."], ["PÉ DE BOI", "Pessoa muito trabalhadora."], ["PÉ DE CHUMBO", "Motorista que corre muito."], ["PÉ DE ANJO", "Pé muito grande (brincadeira)."]],
+    "Verbos e preposições": [["PEDIR", "___ para sair."], ["QUEIXAR-SE", "___ do calor."], ["PENSAR", "___ nas consequências."], ["PREOCUPAR-SE", "___ em chegar na hora."], ["PERTENCER", "___ a todos."], ["REFERIR-SE", "___ ao que aconteceu."]]
+  },
+  "via1-revisao7": {
+    "Expressões com mão e pé": [["MÃO DE VACA", "Pessoa avarenta."], ["MÃO ABERTA", "Pessoa generosa."], ["MÃO NA RODA", "Uma grande ajuda."], ["MÃOS DE FADA", "Habilidade manual delicada."], ["PÉ-FRIO", "Pessoa que dá azar."], ["PÉ-RAPADO", "Pessoa pobre."]]
+  },
+  "via1-unidade9": {
+    "Nomes e preposições": [["ACESSÍVEL", "___ ao público."], ["CAPAZ", "___ de entender."], ["CONTENTE", "___ com o resultado."], ["DIFERENTE", "___ dos outros."], ["FALTA", "___ de tempo."], ["DÚVIDA", "___ sobre o assunto."]]
+  }
+}

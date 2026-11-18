@@ -14,7 +14,7 @@
 :root{
   --verde:#0d5a3a;--verde2:#1f8f4e;--lima:#a5c21b;--lima2:#c9dc4a;
   --bg:#f3f6f1;--card:#fff;--ink:#16261d;--muted:#5b6b62;--line:#dbe4dc;--soft:#eef4ea;
-  --nab1:#006b4f;--nab2:#145da1;--nab3:#6b4598;--via1:#a6462d;
+  --nab1:#006b4f;--nab2:#145da1;--nab3:#6b4598;--via1:#a6462d;--jogos:#c26a00;
   --larg:none;--gut:clamp(16px,3.5vw,80px);--sombra:0 10px 30px rgba(13,58,40,.10);--sombra2:0 18px 40px rgba(13,58,40,.18);
 }
 *{box-sizing:border-box}
@@ -57,7 +57,7 @@ h1 span{display:block;color:var(--lima2)}
 
 /* ---------- Níveis ---------- */
 main{position:relative;z-index:3;max-width:var(--larg);margin:-86px auto 40px;padding:0 var(--gut)}
-.niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.niveis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .nivel{--c:var(--verde);position:relative;overflow:hidden;text-align:left;font:inherit;color:var(--ink);cursor:pointer;
   background:var(--card);border:2px solid transparent;border-radius:20px;padding:18px 18px 16px;box-shadow:var(--sombra);
   display:flex;flex-direction:column;gap:2px;transition:transform .18s,box-shadow .18s,border-color .18s}
@@ -112,6 +112,7 @@ footer{max-width:var(--larg);margin:0 auto;padding:30px var(--gut) 40px;display:
 footer img{height:40px;width:auto}
 footer .logo-b{display:none}
 
+@media (max-width:1100px){.niveis{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;text-align:center;padding-bottom:100px}
   .lead{margin:0 auto}.stats{justify-content:center}
@@ -124,7 +125,7 @@ footer .logo-b{display:none}
 
 /* ---------- Modo escuro ---------- */
 html[data-theme="dark"]{color-scheme:dark;--bg:#0e1612;--card:#17221c;--ink:#e4ede6;--muted:#9fb3a6;--line:#2b3b31;--soft:#22312a;
-  --nab1:#3fbf8f;--nab2:#6aa8ea;--nab3:#b18ce6;--via1:#ec8a6b;--sombra:0 10px 30px rgba(0,0,0,.4);--sombra2:0 18px 40px rgba(0,0,0,.55)}
+  --nab1:#3fbf8f;--nab2:#6aa8ea;--nab3:#b18ce6;--via1:#ec8a6b;--jogos:#f0a640;--sombra:0 10px 30px rgba(0,0,0,.4);--sombra2:0 18px 40px rgba(0,0,0,.55)}
 html[data-theme="dark"] header{background:radial-gradient(1200px 500px at 85% -10%,rgba(165,194,27,.18),transparent 60%),linear-gradient(135deg,#062a1b,#0a3d28 50%,#0f5134)}
 html[data-theme="dark"] .faixa{opacity:.5}
 html[data-theme="dark"] .selo .disco{background:#f4f8ee}
@@ -189,13 +190,17 @@ const AULAS = (window.AULAS_GERADAS || []).concat([
     sub: "💬 Interjeições, subjuntivo e expressões", img: "via-brasil1-unidade2/img/celular.jpg",
     gram: "Presente e imperfeito do subjuntivo · Colocação pronominal · Formação de palavras · Superlativo · Regência · Sons do X",
     chips: ["📱 Sala com QR", "💰 Quanto você tem?", "Forca", "Equipes"] },
+  { dir: "jogos-forca/", level: "jogos", unit: 1, tag: "Jogos · Forca", title: "Jogo da forca",
+    sub: "🎯 3 bancos · 24 categorias", img: "jogos-forca/img/forca.svg",
+    gram: "Primeiras palavras (NAB1–NAB2): animais, frutas, cores, família, corpo, roupas, casa, profissões · Dia a dia (NAB2–NAB3): cidade, transportes, clima, esportes, sentimentos, rotina, tecnologia, saúde · Brasil: estados, capitais, comidas, animais, música, natureza",
+    chips: ["📱 Sala com QR", "Forca", "Roleta", "Equipes"] },
   { dir: "nab2-unidade3/", level: "nab2", unit: 3, tag: "NAB2 · Unidade 3", title: "Escolhas que vestem o futuro",
     sub: "🧳 Roupas, compras e planos", img: "nab2-unidade3/img/mala.jpg",
     gram: "Futuro do presente · Futuro do pretérito · Verbos vestir, pôr, ir e vir",
     chips: ["📱 Sala com QR", "Galeria", "Memória", "Forca", "Equipes"] },
 ]);
 /* Níveis do menu: [id, nome, legenda]. Cada aula em AULAS indica o seu em "level" e a ordem em "unit". */
-const NIVEIS = [["nab1", "NAB1", "Nível 1"], ["nab2", "NAB2", "Nível 2"], ["nab3", "NAB3", "Nível 3"], ["via1", "VIA 1", "VIA Brasil"]];
+const NIVEIS = [["nab1", "NAB1", "Nível 1"], ["nab2", "NAB2", "Nível 2"], ["nab3", "NAB3", "Nível 3"], ["via1", "VIA 1", "VIA Brasil"], ["jogos", "Jogos", "Todos os níveis"]];
 const KEY = "aulas-nivel", ids = NIVEIS.map(n => n[0]);
 const grid = document.getElementById("grid"), q = document.getElementById("q"), tabs = document.getElementById("tabs");
 let saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
@@ -204,7 +209,7 @@ let nivel = ids.includes(fromHash) ? fromHash : ids.includes(saved) ? saved : id
 const count = id => AULAS.filter(a => a.level === id).length;
 const isRev = a => /Revis/.test(a.tag);
 const stat = (n, t) => `<div class="stat"><b>${n}</b><small>${t}</small></div>`;
-document.getElementById("stats").innerHTML = stat(AULAS.length, "aulas") + stat(NIVEIS.length, "níveis") + stat(AULAS.filter(isRev).length, "revisões");
+document.getElementById("stats").innerHTML = stat(AULAS.filter(a => a.level !== "jogos").length, "aulas") + stat(NIVEIS.length - 1, "níveis") + stat(AULAS.filter(isRev).length, "revisões");
 function choose(id) {
   nivel = id; q.value = "";
   try { localStorage.setItem(KEY, id); } catch (e) {}
@@ -217,22 +222,23 @@ function paint() {
   tabs.innerHTML = NIVEIS.map(([id, nome, leg], i) => {
     const on = !t && id === nivel, n = count(id);
     return `<button class="nivel${on ? " on" : ""}" style="--c:var(--${id})" role="tab" aria-selected="${on}" data-id="${id}">
-      <span class="n">${leg}</span><span class="t">${nome}</span><span class="q">${n} ${n === 1 ? "aula" : "aulas"}</span><span class="num" aria-hidden="true">${i + 1}</span></button>`;
+      <span class="n">${leg}</span><span class="t">${nome}</span><span class="q">${n} ${id === "jogos" ? (n === 1 ? "jogo" : "jogos") : n === 1 ? "aula" : "aulas"}</span><span class="num" aria-hidden="true">${id === "jogos" ? "🎲" : i + 1}</span></button>`;
   }).join("");
   tabs.querySelectorAll(".nivel").forEach(b => b.onclick = () => choose(b.dataset.id));
-  const list = AULAS.filter(a => t ? norm([a.tag, a.title, a.sub, a.gram, ...a.chips].join(" ")).includes(t) : a.level === nivel)
+  let list = AULAS.filter(a => t ? norm([a.tag, a.title, a.sub, a.gram, ...a.chips].join(" ")).includes(t) : a.level === nivel)
     .sort((a, b) => ids.indexOf(a.level) - ids.indexOf(b.level) || a.unit - b.unit);
   const nv = NIVEIS[ids.indexOf(nivel)];
   document.getElementById("titulo").innerHTML = t
     ? `Resultados<small>${list.length} ${list.length === 1 ? "aula encontrada" : "aulas encontradas"}</small>`
-    : `${nv[1]}<small>${nv[2]} · ${list.length} ${list.length === 1 ? "aula" : "aulas"}</small>`;
+    : `${nv[1]}<small>${nv[2]} · ${list.length} ${nivel === "jogos" ? (list.length === 1 ? "jogo" : "jogos") : list.length === 1 ? "aula" : "aulas"}</small>`;
   const card = (a, i) => `<a class="card" href="${a.dir}" style="--c:var(--${a.level});animation-delay:${Math.min(i, 12) * 30}ms">
     <div class="pic" style="background-image:url('${a.img}')"><span class="tag">${a.tag}</span>${isRev(a) ? '<span class="rev">Revisão</span>' : ""}</div>
     <div class="body"><h3>${a.title}</h3><div class="sub">${a.sub}</div><div class="gram">${a.gram}</div>
     <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">Abrir aula <b>→</b></div></div></a>`;
   const grupo = (nome, ic, itens) => itens.length ? `<section class="grupo"><h3 class="gt"><span>${ic}</span>${nome}<small>${itens.length}</small></h3>
     <div class="grid">${itens.map(card).join("")}</div></section>` : "";
-  grid.innerHTML = grupo("Unidades", "📘", list.filter(a => !isRev(a))) + grupo("Revisões", "🔁", list.filter(isRev));
+  const jogos = list.filter(a => a.level === "jogos"); list = list.filter(a => a.level !== "jogos");
+  grid.innerHTML = grupo("Jogos", "🎲", jogos) + grupo("Unidades", "📘", list.filter(a => !isRev(a))) + grupo("Revisões", "🔁", list.filter(isRev));
   const empty = document.getElementById("empty");
   empty.textContent = t ? "Nenhuma aula encontrada." : `Ainda não há aulas de ${nv[1]}.`;
   empty.style.display = list.length ? "none" : "block";
