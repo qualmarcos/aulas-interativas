@@ -14,7 +14,7 @@
 :root{
   --verde:#0d5a3a;--verde2:#1f8f4e;--lima:#a5c21b;--lima2:#c9dc4a;
   --bg:#f3f6f1;--card:#fff;--ink:#16261d;--muted:#5b6b62;--line:#dbe4dc;--soft:#eef4ea;
-  --nab1:#006b4f;--nab2:#145da1;--nab3:#6b4598;--via1:#a6462d;--jogos:#c26a00;
+  --nab1:#006b4f;--nab2:#145da1;--nab3:#6b4598;--via1:#a6462d;--jogos:#c26a00;--modulos:#0d5a3a;--papo:#c2185b;
   --larg:none;--gut:clamp(16px,3.5vw,80px);--sombra:0 10px 30px rgba(13,58,40,.10);--sombra2:0 18px 40px rgba(13,58,40,.18);
 }
 *{box-sizing:border-box}
@@ -57,7 +57,7 @@ h1 span{display:block;color:var(--lima2)}
 
 /* ---------- Níveis ---------- */
 main{position:relative;z-index:3;max-width:var(--larg);margin:-86px auto 40px;padding:0 var(--gut)}
-.niveis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.niveis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .nivel{--c:var(--verde);position:relative;overflow:hidden;text-align:left;font:inherit;color:var(--ink);cursor:pointer;
   background:var(--card);border:2px solid transparent;border-radius:20px;padding:18px 18px 16px;box-shadow:var(--sombra);
   display:flex;flex-direction:column;gap:2px;transition:transform .18s,box-shadow .18s,border-color .18s}
@@ -112,7 +112,6 @@ footer{max-width:var(--larg);margin:0 auto;padding:30px var(--gut) 40px;display:
 footer img{height:40px;width:auto}
 footer .logo-b{display:none}
 
-@media (max-width:1100px){.niveis{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;text-align:center;padding-bottom:100px}
   .lead{margin:0 auto}.stats{justify-content:center}
@@ -123,9 +122,37 @@ footer .logo-b{display:none}
 @media (max-width:420px){.nivel .t{font-size:22px}.nivel .num{font-size:34px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
+
+/* ---------- Seções (tela inicial) ---------- */
+.secoes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.secao{--c:var(--verde);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:4px;padding:26px 26px 22px;min-height:230px;border-radius:24px;
+  background:var(--card);color:var(--ink);text-decoration:none;box-shadow:var(--sombra);border-top:8px solid var(--c);transition:transform .18s,box-shadow .18s}
+.secao:hover{transform:translateY(-5px);box-shadow:var(--sombra2)}
+.secao[data-id="modulos"]{border-top-color:var(--lima)}
+.secao:focus-visible{outline:3px solid var(--lima);outline-offset:3px}
+.secao::after{content:"";position:absolute;right:-60px;bottom:-60px;width:200px;height:200px;border-radius:50%;background:var(--c);opacity:.08}
+.s-ic{font-size:46px;line-height:1;margin-bottom:6px}
+.s-leg{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.s-nome{font-size:clamp(26px,2.4vw,34px);font-weight:900;color:var(--c);line-height:1.1}
+.s-desc{font-size:15px;color:var(--muted);line-height:1.45;max-width:34ch}
+.s-q{margin-top:auto;padding-top:12px;font-weight:900;color:var(--c)}
+.s-q b{display:inline-block;transition:transform .18s}
+.secao:hover .s-q b{transform:translateX(4px)}
+.voltar-row{display:none;align-items:center;gap:12px;margin-bottom:14px}
+body:not([data-secao="inicio"]) .voltar-row{display:flex}
+.voltar{font:inherit;font-weight:900;font-size:15px;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:999px;padding:9px 18px;cursor:pointer;box-shadow:var(--sombra)}
+.voltar:hover{border-color:var(--verde2)}
+.sec-nome{font-weight:900;font-size:18px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+body:not([data-secao="modulos"]) .niveis{display:none}
+body[data-secao="inicio"] .barra{margin-top:30px}
+.breve{display:flex;flex-direction:column;align-items:center;gap:6px;padding:30px 16px;background:var(--card);border-radius:22px;box-shadow:var(--sombra);font-size:16px}
+.breve span{font-size:54px}.breve b{font-size:24px;color:var(--papo)}
+@media (max-width:860px){.secoes{grid-template-columns:1fr}.secao{min-height:0}}
+html[data-theme="dark"] .secao{border-top-color:var(--c)}
+
 /* ---------- Modo escuro ---------- */
 html[data-theme="dark"]{color-scheme:dark;--bg:#0e1612;--card:#17221c;--ink:#e4ede6;--muted:#9fb3a6;--line:#2b3b31;--soft:#22312a;
-  --nab1:#3fbf8f;--nab2:#6aa8ea;--nab3:#b18ce6;--via1:#ec8a6b;--jogos:#f0a640;--sombra:0 10px 30px rgba(0,0,0,.4);--sombra2:0 18px 40px rgba(0,0,0,.55)}
+  --nab1:#3fbf8f;--nab2:#6aa8ea;--nab3:#b18ce6;--via1:#ec8a6b;--jogos:#f0a640;--modulos:#4cc38a;--papo:#f06292;--sombra:0 10px 30px rgba(0,0,0,.4);--sombra2:0 18px 40px rgba(0,0,0,.55)}
 html[data-theme="dark"] header{background:radial-gradient(1200px 500px at 85% -10%,rgba(165,194,27,.18),transparent 60%),linear-gradient(135deg,#062a1b,#0a3d28 50%,#0f5134)}
 html[data-theme="dark"] .faixa{opacity:.5}
 html[data-theme="dark"] .selo .disco{background:#f4f8ee}
@@ -150,23 +177,25 @@ html[data-theme="dark"] footer .logo-b{display:block}
     <div>
       <div class="eyebrow"><i></i>Classes de Português · Heredia</div>
       <h1>Aulas <span>interativas</span></h1>
-      <p class="lead">Escolha o nível e a aula para projetar na sala. Os alunos participam pelo celular com um QR.</p>
+      <p class="lead">Escolha o que usar na aula: módulos, jogos ou Papo e Pipoca. Os alunos participam pelo celular com um QR.</p>
       <div class="stats" id="stats"></div>
     </div>
     <div class="selo"><div class="disco"><img src="marca/emblema.png" alt="Classes de Português" width="480" height="480"></div></div>
   </div>
 </header>
 <main>
+  <div class="voltar-row" id="voltarRow"><button class="voltar" id="voltar">← Início</button></div>
+  <div class="secoes" id="secoes" aria-label="Seções"></div>
   <div class="niveis" id="tabs" role="tablist" aria-label="Níveis"></div>
   <div class="barra">
     <h2 id="titulo">Aulas</h2>
     <label class="busca">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-      <input id="q" type="search" placeholder="Buscar aula ou tema…" aria-label="Buscar aula">
+      <input id="q" type="search" placeholder="Buscar aula, jogo ou tema…" aria-label="Buscar">
     </label>
   </div>
   <div id="grid"></div>
-  <p class="empty" id="empty">Nenhuma aula encontrada.</p>
+  <div class="empty" id="empty">Nenhuma aula encontrada.</div>
 </main>
 <footer>
   <div>
@@ -203,52 +232,76 @@ const AULAS = (window.AULAS_GERADAS || []).concat([
     gram: "Futuro do presente · Futuro do pretérito · Verbos vestir, pôr, ir e vir",
     chips: ["📱 Sala com QR", "Galeria", "Memória", "Forca", "Equipes"] },
 ]);
-/* Níveis do menu: [id, nome, legenda]. Cada aula em AULAS indica o seu em "level" e a ordem em "unit". */
-const NIVEIS = [["nab1", "NAB1", "Nível 1"], ["nab2", "NAB2", "Nível 2"], ["nab3", "NAB3", "Nível 3"], ["via1", "VIA 1", "VIA Brasil"], ["jogos", "Jogos", "Todos os níveis"]];
+/* Seções da tela inicial: Módulos (aulas por nível), Jogos e Papo e Pipoca.
+   Cada item de AULAS tem "level": nab1/nab2/nab3/via1 (Módulos), "jogos" ou "papo". */
+const SECOES = [
+  { id: "modulos", nome: "Módulos", leg: "Aulas por nível", ic: "📚", desc: "As unidades e revisões de NAB1, NAB2, NAB3 e VIA Brasil.", cor: "modulos" },
+  { id: "jogos", nome: "Jogos", leg: "Todos os níveis", ic: "🎲", desc: "Forca, verdadeiro ou falso e outros jogos para revisar em equipes.", cor: "jogos" },
+  { id: "papo", nome: "Papo e Pipoca", leg: "Conversa e cinema", ic: "🍿", desc: "Encontros de conversa com temas, vídeos e debates.", cor: "papo" },
+];
+const NIVEIS = [["nab1", "NAB1", "Nível 1"], ["nab2", "NAB2", "Nível 2"], ["nab3", "NAB3", "Nível 3"], ["via1", "VIA 1", "VIA Brasil"]];
 const KEY = "aulas-nivel", ids = NIVEIS.map(n => n[0]);
-const grid = document.getElementById("grid"), q = document.getElementById("q"), tabs = document.getElementById("tabs");
-let saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
-const fromHash = location.hash.slice(1);
-let nivel = ids.includes(fromHash) ? fromHash : ids.includes(saved) ? saved : ids.find(id => AULAS.some(a => a.level === id));
+const $ = id => document.getElementById(id);
+const grid = $("grid"), q = $("q"), tabs = $("tabs");
+const secaoDe = a => ids.includes(a.level) ? "modulos" : a.level;
 const count = id => AULAS.filter(a => a.level === id).length;
+const nSec = id => AULAS.filter(a => secaoDe(a) === id).length;
 const isRev = a => /Revis/.test(a.tag);
+const pl = (n, um, varios) => `${n} ${n === 1 ? um : varios}`;
+const PAL = { modulos: ["aula", "aulas"], jogos: ["jogo", "jogos"], papo: ["encontro", "encontros"] };
 const stat = (n, t) => `<div class="stat"><b>${n}</b><small>${t}</small></div>`;
-document.getElementById("stats").innerHTML = stat(AULAS.filter(a => a.level !== "jogos").length, "aulas") + stat(NIVEIS.length - 1, "níveis") + stat(AULAS.filter(isRev).length, "revisões");
-function choose(id) {
-  nivel = id; q.value = "";
-  try { localStorage.setItem(KEY, id); } catch (e) {}
-  history.replaceState(null, "", "#" + id);
-  paint();
+$("stats").innerHTML = stat(nSec("modulos"), "aulas") + stat(nSec("jogos"), "jogos") + stat(NIVEIS.length, "níveis");
+let saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
+let nivel = ids.includes(saved) ? saved : ids[0], secao = null;
+function lerHash() {
+  const h = location.hash.slice(1);
+  if (ids.includes(h)) { secao = "modulos"; nivel = h; }
+  else secao = SECOES.some(s => s.id === h) ? h : null;
 }
+function ir(hash) { q.value = ""; if (location.hash.slice(1) !== hash) history.pushState(null, "", hash ? "#" + hash : location.pathname); lerHash(); paint(); scrollTo({ top: secao ? document.querySelector("main").offsetTop - 120 : 0, behavior: "smooth" }); }
+function choose(id) { nivel = id; try { localStorage.setItem(KEY, id); } catch (e) {} q.value = ""; history.replaceState(null, "", "#" + id); paint(); }
 const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-function paint() {
-  const t = norm(q.value.trim());
-  tabs.innerHTML = NIVEIS.map(([id, nome, leg], i) => {
-    const on = !t && id === nivel, n = count(id);
-    return `<button class="nivel${on ? " on" : ""}" style="--c:var(--${id})" role="tab" aria-selected="${on}" data-id="${id}">
-      <span class="n">${leg}</span><span class="t">${nome}</span><span class="q">${n} ${id === "jogos" ? (n === 1 ? "jogo" : "jogos") : n === 1 ? "aula" : "aulas"}</span><span class="num" aria-hidden="true">${id === "jogos" ? "🎲" : i + 1}</span></button>`;
-  }).join("");
-  tabs.querySelectorAll(".nivel").forEach(b => b.onclick = () => choose(b.dataset.id));
-  let list = AULAS.filter(a => t ? norm([a.tag, a.title, a.sub, a.gram, ...a.chips].join(" ")).includes(t) : a.level === nivel)
-    .sort((a, b) => ids.indexOf(a.level) - ids.indexOf(b.level) || a.unit - b.unit);
-  const nv = NIVEIS[ids.indexOf(nivel)];
-  document.getElementById("titulo").innerHTML = t
-    ? `Resultados<small>${list.length} ${list.length === 1 ? "aula encontrada" : "aulas encontradas"}</small>`
-    : `${nv[1]}<small>${nv[2]} · ${list.length} ${nivel === "jogos" ? (list.length === 1 ? "jogo" : "jogos") : list.length === 1 ? "aula" : "aulas"}</small>`;
-  const card = (a, i) => `<a class="card" href="${a.dir}" style="--c:var(--${a.level});animation-delay:${Math.min(i, 12) * 30}ms">
+const card = (a, i) => `<a class="card" href="${a.dir}" style="--c:var(--${a.level});animation-delay:${Math.min(i, 12) * 30}ms">
     <div class="pic" style="background-image:url('${a.img}')"><span class="tag">${a.tag}</span>${isRev(a) ? '<span class="rev">Revisão</span>' : ""}</div>
     <div class="body"><h3>${a.title}</h3><div class="sub">${a.sub}</div><div class="gram">${a.gram}</div>
-    <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">${a.level === "jogos" ? "Abrir jogo" : "Abrir aula"} <b>→</b></div></div></a>`;
-  const grupo = (nome, ic, itens) => itens.length ? `<section class="grupo"><h3 class="gt"><span>${ic}</span>${nome}<small>${itens.length}</small></h3>
+    <div class="chips">${a.chips.map(c => `<span>${c}</span>`).join("")}</div><div class="go">${{ jogos: "Abrir jogo", papo: "Abrir encontro" }[a.level] || "Abrir aula"} <b>→</b></div></div></a>`;
+const grupo = (nome, ic, itens) => itens.length ? `<section class="grupo"><h3 class="gt"><span>${ic}</span>${nome}<small>${itens.length}</small></h3>
     <div class="grid">${itens.map(card).join("")}</div></section>` : "";
-  const jogos = list.filter(a => a.level === "jogos"); list = list.filter(a => a.level !== "jogos");
-  grid.innerHTML = grupo("Jogos", "🎲", jogos) + grupo("Unidades", "📘", list.filter(a => !isRev(a))) + grupo("Revisões", "🔁", list.filter(isRev));
-  const empty = document.getElementById("empty");
-  empty.textContent = t ? "Nenhuma aula encontrada." : `Ainda não há aulas de ${nv[1]}.`;
-  empty.style.display = list.length + jogos.length ? "none" : "block";
+function paint() {
+  const t = norm(q.value.trim()), sec = SECOES.find(s => s.id === secao);
+  document.body.dataset.secao = secao || "inicio";
+  $("secoes").innerHTML = secao || t ? "" : SECOES.map(s => { const n = nSec(s.id);
+    return `<a class="secao" href="#${s.id}" data-id="${s.id}" style="--c:var(--${s.cor})"><span class="s-ic" aria-hidden="true">${s.ic}</span>
+      <span class="s-leg">${s.leg}</span><span class="s-nome">${s.nome}</span><span class="s-desc">${s.desc}</span>
+      <span class="s-q">${n ? pl(n, ...PAL[s.id]) : "Em breve"} <b>→</b></span></a>`; }).join("");
+  $("secoes").querySelectorAll(".secao").forEach(x => x.onclick = e => { e.preventDefault(); ir(x.dataset.id); });
+  tabs.innerHTML = secao !== "modulos" ? "" : NIVEIS.map(([id, nome, leg], i) => {
+    const on = !t && id === nivel, n = count(id);
+    return `<button class="nivel${on ? " on" : ""}" style="--c:var(--${id})" role="tab" aria-selected="${on}" data-id="${id}">
+      <span class="n">${leg}</span><span class="t">${nome}</span><span class="q">${pl(n, "aula", "aulas")}</span><span class="num" aria-hidden="true">${i + 1}</span></button>`;
+  }).join("");
+  tabs.querySelectorAll(".nivel").forEach(b => b.onclick = () => choose(b.dataset.id));
+  const ordem = a => SECOES.findIndex(s => s.id === secaoDe(a)) * 10 + Math.max(0, ids.indexOf(a.level));
+  let list = AULAS.filter(a => t ? norm([a.tag, a.title, a.sub, a.gram, ...a.chips].join(" ")).includes(t)
+      : secao === "modulos" ? a.level === nivel : secao && secaoDe(a) === secao)
+    .sort((a, b) => ordem(a) - ordem(b) || a.unit - b.unit);
+  const titulo = $("titulo"), nv = NIVEIS[ids.indexOf(nivel)];
+  titulo.innerHTML = t ? `Resultados<small>${pl(list.length, "resultado", "resultados")}</small>`
+    : secao === "modulos" ? `${nv[1]}<small>${nv[2]} · ${pl(list.length, "aula", "aulas")}</small>`
+    : sec ? `${sec.ic} ${sec.nome}<small>${sec.leg} · ${list.length ? pl(list.length, ...PAL[sec.id]) : "em breve"}</small>`
+    : `O que vamos fazer hoje?<small>Escolha uma seção ou busque direto</small>`;
+  const de = id => list.filter(a => secaoDe(a) === id), mod = de("modulos");
+  grid.innerHTML = !t && !secao ? "" : grupo("Jogos", "🎲", de("jogos")) + grupo("Papo e Pipoca", "🍿", de("papo"))
+    + grupo("Unidades", "📘", mod.filter(a => !isRev(a))) + grupo("Revisões", "🔁", mod.filter(isRev));
+  const empty = $("empty");
+  empty.innerHTML = t ? "Nenhum resultado." : secao === "papo"
+    ? `<div class="breve"><span>🍿</span><b>Em breve</b>Os encontros de Papo e Pipoca vão aparecer aqui.</div>` : `Ainda não há nada aqui.`;
+  empty.style.display = (t || secao) && !list.length ? "block" : "none";
 }
-q.oninput = paint; paint();
-window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (ids.includes(id)) choose(id); });
+$("voltar").onclick = () => ir("");
+q.oninput = paint; lerHash(); paint();
+window.addEventListener("popstate", () => { lerHash(); paint(); });
+window.addEventListener("hashchange", () => { lerHash(); paint(); });
 </script>
 </body>
 </html>
